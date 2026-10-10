@@ -6,6 +6,11 @@
 
 ## 1011
 
+- [Changed] `AGENTS.md` 的「项目 SOP」补写五阶段正文：采集（状态分组、只移动不删除）、构思（讨论稿收全并原样保留）、验证、定稿、维护，后两阶段暂留待定。
+- [Changed] 删掉「一、放哪，何时搬」里被 SOP 取代的四步走法，状态标记由英文五态改为指向 SOP 的中文分组；`README.md` 同步。——commit: `24dfeec`
+
+## 1011
+
 - [Changed] `AGENTS.md` 新增第 8 条「联动更新自行完成」，原第 8 条顺延为第 9 条，交付前自检同步加一条。
 - [Added] 新增 `.gitattributes`，仓库内文本文件行尾统一为 LF。
 - [Changed] `README.md` 的「怎么用」补齐项目 SOP 与项目经验两节；`THIRD_PARTY_NOTICES.md` 失效的章节引用改为按小节名引用。——commit: `b89e15f`
