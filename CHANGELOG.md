@@ -6,6 +6,12 @@
 
 ## 1011
 
+- [Changed] `AGENTS.md` 新增第 8 条「联动更新自行完成」，原第 8 条顺延为第 9 条，交付前自检同步加一条。
+- [Added] 新增 `.gitattributes`，仓库内文本文件行尾统一为 LF。
+- [Changed] `README.md` 的「怎么用」补齐项目 SOP 与项目经验两节；`THIRD_PARTY_NOTICES.md` 失效的章节引用改为按小节名引用。——commit: `b89e15f`
+
+## 1011
+
 - [Added] 收录 `.gitignore`、`LICENSE`（MIT）、`THIRD_PARTY_NOTICES.md`，仓库骨架文件至此全部入库。
 - [Changed] `AGENTS.md` 人工修订：规则 2、3、4、6 的措辞调整，新增「六、项目经验」章节。——commit: `6c3293c`
 
