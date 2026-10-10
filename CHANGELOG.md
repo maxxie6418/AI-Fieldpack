@@ -6,6 +6,10 @@
 
 ## 1010
 
+- [Changed] `AGENTS.md` 硬性规则新增第 5 条「隐私与密钥严禁入库」，交付前自检与 `README.md` 约定概览同步更新。——commit: `dbe4a16`
+
+## 1010
+
 - [Changed] 重写 `AGENTS.md`：合并 `_todo/` 与 `_drafts/` 为 `_drafts/`，硬性规则扩至 7 条（含完成即提交、不碰他人改动、不确定先问），新增「项目 SOP」占位章节。
 - [Changed] 文件名分隔符由 `-` 统一改为 `_`；`README.md` 同步更新工作区说明、结构总览与「怎么用」。——commit: `726fa20`
 
