@@ -1,6 +1,6 @@
 # Changelog
 
-本文件记录 AI Fieldpack 的变更，格式与时机以本说明为准。日期倒序，最新在最上面；日期作小标题，条目用无序列表并以类型标签开头（`[Added]` `[Changed]` `[Fixed]` `[Removed]` `[Deprecated]` `[Security]`）；同类小事合并成一条，一件事一句话，单句不超过 150 字；有提交的在该批最后一条记录末尾附 `——commit: <短哈希>`，没有提交则不写；同一天有多批改动时，日期小标题按批次重复；跨年后如需区分年份，日期小标题改用 `YYYYMMDD`。
+本文件记录 AI Fieldpack 的变更，格式与时机以本说明为准。日期倒序，最新在最上面；日期作小标题，条目用无序列表并以类型标签开头（`[Added]` `[Changed]` `[Fixed]` `[Removed]` `[Deprecated]` `[Security]`）；同类小事合并成一条，一件事一句话，单句不超过 150 字；有提交的在同一批提交的最后一条记录末尾附 `——commit: <短哈希>`，没有提交则不写；同一天有多批改动时共用一个日期小标题，条目按时间倒序连续排列；跨年后如需区分年份，日期小标题改用 `YYYYMMDD`。
 
 结构、成果区定稿或约定本身发生变化时记一条；错别字、措辞、补链接等小修不记。
 
@@ -8,42 +8,21 @@
 
 - [Added] 建立一级目录骨架 `_drafts/`、`_lab/`、`_archive/`、`handbook/`、`examples/`、`packs/`、`assets/`，空目录用 `.gitkeep` 占位；新增 `_drafts/todolist.md`。
 - [Changed] SOP 采集阶段的状态分组改为待讨论、讨论中、已展开、已搁置、已关闭；`todolist.md` 作为分组容器不写状态标记；`README.md` 结构总览补 `.gitattributes`。——commit: `66282e2`
-
-## 1011
-
 - [Changed] `AGENTS.md` 的 SOP 构思阶段补充：讨论稿开始衍生其他文档或需携带附属资源时升级为同名文件夹并建齐文档；确定执行后整体移入 `_lab/`，原验证阶段重复的一句删除。——commit: `c4e5316`
-
-## 1011
-
 - [Changed] `AGENTS.md` 的「项目 SOP」补写五阶段正文：采集（状态分组、只移动不删除）、构思（讨论稿收全并原样保留）、验证、定稿、维护，后两阶段暂留待定。
 - [Changed] 删掉「一、放哪，何时搬」里被 SOP 取代的四步走法，状态标记由英文五态改为指向 SOP 的中文分组；`README.md` 同步。——commit: `24dfeec`
-
-## 1011
-
 - [Changed] `AGENTS.md` 新增第 8 条「联动更新自行完成」，原第 8 条顺延为第 9 条，交付前自检同步加一条。
 - [Added] 新增 `.gitattributes`，仓库内文本文件行尾统一为 LF。
 - [Changed] `README.md` 的「怎么用」补齐项目 SOP 与项目经验两节；`THIRD_PARTY_NOTICES.md` 失效的章节引用改为按小节名引用。——commit: `b89e15f`
-
-## 1011
-
 - [Added] 收录 `.gitignore`、`LICENSE`（MIT）、`THIRD_PARTY_NOTICES.md`，仓库骨架文件至此全部入库。
 - [Changed] `AGENTS.md` 人工修订：规则 2、3、4、6 的措辞调整，新增「六、项目经验」章节。——commit: `6c3293c`
 
 ## 1010
 
 - [Changed] `AGENTS.md` 硬性规则新增第 5 条「隐私与密钥严禁入库」，交付前自检与 `README.md` 约定概览同步更新。——commit: `dbe4a16`
-
-## 1010
-
 - [Changed] 重写 `AGENTS.md`：合并 `_todo/` 与 `_drafts/` 为 `_drafts/`，硬性规则扩至 7 条（含完成即提交、不碰他人改动、不确定先问），新增「项目 SOP」占位章节。
 - [Changed] 文件名分隔符由 `-` 统一改为 `_`；`README.md` 同步更新工作区说明、结构总览与「怎么用」。——commit: `726fa20`
-
-## 1010
-
 - [Added] 建立仓库骨架文档：`AGENTS.md`、`LICENSE`（MIT）、`CHANGELOG.md`（含记录格式）、`THIRD_PARTY_NOTICES.md`、`.gitignore`。
 - [Changed] 将 `_sandbox/` 定义为临时收件箱，并在 `AGENTS.md` 中补充分流规则与执行清单。
 - [Added] `README.md` 新增「项目库介绍」一节，说明三个分区与六类可复用资产。
-
-## 1010
-
 - [Added] 建立仓库，创建 `README.md`，写明项目目的与目录结构。——commit: `df4b441`
