@@ -38,6 +38,7 @@ ai-fieldpack/
 ├─ LICENSE
 ├─ CHANGELOG.md
 ├─ .gitignore
+├─ .gitattributes             # 文本文件行尾统一为 LF
 ├─ THIRD_PARTY_NOTICES.md     # 第三方内容来源与许可登记
 │
 ├─ _drafts/                   # 讨论稿与计划（未发布）
