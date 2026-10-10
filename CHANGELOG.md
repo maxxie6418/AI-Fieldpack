@@ -6,6 +6,11 @@
 
 ## 1011
 
+- [Added] 建立一级目录骨架 `_drafts/`、`_lab/`、`_archive/`、`handbook/`、`examples/`、`packs/`、`assets/`，空目录用 `.gitkeep` 占位；新增 `_drafts/todolist.md`。
+- [Changed] SOP 采集阶段的状态分组改为待讨论、讨论中、已展开、已搁置、已关闭；`todolist.md` 作为分组容器不写状态标记；`README.md` 结构总览补 `.gitattributes`。——commit: `66282e2`
+
+## 1011
+
 - [Changed] `AGENTS.md` 的 SOP 构思阶段补充：讨论稿开始衍生其他文档或需携带附属资源时升级为同名文件夹并建齐文档；确定执行后整体移入 `_lab/`，原验证阶段重复的一句删除。——commit: `c4e5316`
 
 ## 1011
