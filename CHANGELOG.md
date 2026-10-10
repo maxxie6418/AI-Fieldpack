@@ -1,0 +1,20 @@
+# Changelog
+
+本文件记录 AI Fieldpack 的变更，格式与时机以本说明为准。日期倒序，最新在最上面；日期作小标题，条目用无序列表并以类型标签开头（`[Added]` `[Changed]` `[Fixed]` `[Removed]` `[Deprecated]` `[Security]`）；同类小事合并成一条，一件事一句话，单句不超过 150 字；有提交的在该批最后一条记录末尾附 `——commit: <短哈希>`，没有提交则不写；同一天有多批改动时，日期小标题按批次重复；跨年后如需区分年份，日期小标题改用 `YYYYMMDD`。
+
+结构、成果区定稿或约定本身发生变化时记一条；错别字、措辞、补链接等小修不记。
+
+## 1010
+
+- [Changed] 重写 `AGENTS.md`：合并 `_todo/` 与 `_drafts/` 为 `_drafts/`，硬性规则扩至 7 条（含完成即提交、不碰他人改动、不确定先问），新增「项目 SOP」占位章节。
+- [Changed] 文件名分隔符由 `-` 统一改为 `_`；`README.md` 同步更新工作区说明、结构总览与「怎么用」。——commit: `726fa20`
+
+## 1010
+
+- [Added] 建立仓库骨架文档：`AGENTS.md`、`LICENSE`（MIT）、`CHANGELOG.md`（含记录格式）、`THIRD_PARTY_NOTICES.md`、`.gitignore`。
+- [Changed] 将 `_sandbox/` 定义为临时收件箱，并在 `AGENTS.md` 中补充分流规则与执行清单。
+- [Added] `README.md` 新增「项目库介绍」一节，说明三个分区与六类可复用资产。
+
+## 1010
+
+- [Added] 建立仓库，创建 `README.md`，写明项目目的与目录结构。——commit: `df4b441`
