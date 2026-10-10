@@ -4,6 +4,11 @@
 
 结构、成果区定稿或约定本身发生变化时记一条；错别字、措辞、补链接等小修不记。
 
+## 1011
+
+- [Added] 收录 `.gitignore`、`LICENSE`（MIT）、`THIRD_PARTY_NOTICES.md`，仓库骨架文件至此全部入库。
+- [Changed] `AGENTS.md` 人工修订：规则 2、3、4、6 的措辞调整，新增「六、项目经验」章节。——commit: `6c3293c`
+
 ## 1010
 
 - [Changed] `AGENTS.md` 硬性规则新增第 5 条「隐私与密钥严禁入库」，交付前自检与 `README.md` 约定概览同步更新。——commit: `dbe4a16`
