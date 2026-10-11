@@ -6,6 +6,7 @@
 
 ## 1011
 
+- [Changed] `_sandbox/` 纳入版本管理：`.gitignore` 去掉该排除项，`AGENTS.md`、`README.md`、`THIRD_PARTY_NOTICES.md` 中「不进版本历史 / 内容不随仓库分发」的表述同步改写；该目录仍是暂存区、不算成果区，其中第三方内容不单独登记。首批入库 106 个文件。——commit: `36a34b3`
 - [Changed] `THIRD_PARTY_NOTICES.md` 登记说明补记 4 件保留收录但已知瑕疵的 skill（`cloudflare-one` 指向缺失技能、`react-native-skills` 漏列 3 条规则、`redis-development` 索引少 5 条、`frontend-skill` 无规则库结构）的具体缺口。——commit: `b54357d`
 - [Removed] 4 个缺上游内容、本地补不了的飞书 skill（`lark-apps`、`lark-doc`、`lark-markdown`、`lark-vc-agent`）退回 `_sandbox/skills/`，成果区 `packs/skills/` 收缩为 48 个包；`THIRD_PARTY_NOTICES.md` 中这四条移出登记表，已考证的上游与许可记入「待办」。
 - [Changed] 成果区 `packs/skills/shadcn/` 去掉上游带来的 Claude Code 专有写法（`user-invocable: false`、`allowed-tools` 与 shell 动态注入三处），以适配通用宿主；文档与规则内容未动。——commit: `b79eb93`
