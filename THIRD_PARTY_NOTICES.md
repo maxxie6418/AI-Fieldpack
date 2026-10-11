@@ -100,6 +100,7 @@
 - `packs/skills/vibecoding-standards/` 不属于第三方内容，故不在上表：其 15 篇规范文档由用户本人整理，是本库自有内容，无需登记与署名。
 - `packs/skills/canvas-design/` 收录的是上游包的**修改版**：本库新增 `references/rendering.md`（输出路径与字体使用说明），并把 `SKILL.md` 中一段字体指引改为优先使用包内 `canvas-fonts/`。按 Apache-2.0 第 4(b) 条，这两处改动都带显著说明——`SKILL.md` frontmatter 之后与 `references/rendering.md` 标题下各有一条 `Modified/Added by AI Fieldpack` 标注。包内随附的 81 个字体文件（54 个字重、27 个族）为 SIL OFL 1.1，各族的 `*-OFL.txt` 随文件保留。
 - `packs/skills/shadcn/` 收录的是**改写版**：上游 `SKILL.md` 用了 Claude Code 专有的 `user-invocable: false`、`allowed-tools` 两行前端字段，以及第 17 行的 `` !`npx shadcn@latest info --json` `` shell 动态注入。本库删去前两行并把该段改写为普通说明，以适配通用宿主；文档与规则内容未动。该包上游没有 `LICENSE` 文件。
+- 另有几件有已知瑕疵但不阻塞使用，保留收录并在此标注：`cloudflare-one` 有一处把「从其它厂商迁移」指向未随包提供的 `cloudflare-one-migrations`，且无回退说明；`react-native-skills` 的 `SKILL.md` 只列 33 条，漏掉 `design-system-compound-components`、`scroll-position-no-state`、`state-ground-truth` 三条；`redis-development` 的 Quick Reference 少列 5 条，但同包 `AGENTS.md` 是覆盖全部规则的全量编译产物，可作补救；`frontend-skill` 是单文件方法论文档，没有规则库与索引，内容自洽、无断链。
 
 ## 待办
 
