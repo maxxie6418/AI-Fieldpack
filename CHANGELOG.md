@@ -6,6 +6,9 @@
 
 ## 1011
 
+- [Added] 新建成果区 `packs/skills/`，从 `_sandbox/skills/` 迁入 13 个有明示许可的 skill，保留各包原有目录结构与 `SKILL.md` 入口。
+- [Added] `THIRD_PARTY_NOTICES.md` 登记这 13 个 skill 的作者、许可与本库位置，「待办」改写为 `_sandbox/` 剩余未登记内容。
+- [Changed] `AGENTS.md` 的「二、命名与查找」新增唯一豁免：`packs/skills/` 保留 skill 原目录名（含 `-`）与 `SKILL.md` 入口名，改名会使包无法被宿主调用。——commit: `76c5e90`
 - [Changed] 记录格式调整：同一天的多批改动合并到同一个日期小标题下，条目按时间倒序连续排列，不再按批次重复小标题。——commit: `3b4aa9b`
 - [Added] 建立一级目录骨架 `_drafts/`、`_lab/`、`_archive/`、`handbook/`、`examples/`、`packs/`、`assets/`，空目录用 `.gitkeep` 占位；新增 `_drafts/todolist.md`。
 - [Changed] SOP 采集阶段的状态分组改为待讨论、讨论中、已展开、已搁置、已关闭；`todolist.md` 作为分组容器不写状态标记；`README.md` 结构总览补 `.gitattributes`。——commit: `66282e2`
