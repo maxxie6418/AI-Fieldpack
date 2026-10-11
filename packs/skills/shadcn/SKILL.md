@@ -1,8 +1,6 @@
 ---
 name: shadcn
 description: 管理 shadcn 组件与项目——添加、搜索、修复、调试、定制样式与组合 UI。提供项目上下文、组件文档与用法示例。适用于处理 shadcn/ui、组件 registry、preset、--preset 代码，或任何带有 components.json 文件的项目。也会在“shadcn init”“用 --preset 创建应用”“切换到 --preset”等场景触发。
-user-invocable: false
-allowed-tools: Bash(npx shadcn@latest *), Bash(pnpm dlx shadcn@latest *), Bash(bunx --bun shadcn@latest *)
 ---
 
 # shadcn/ui
@@ -13,11 +11,7 @@ A framework for building ui, components and design systems. Components are added
 
 ## Current Project Context
 
-```json
-!`npx shadcn@latest info --json`
-```
-
-The JSON above contains the project config and installed components. Use `npx shadcn@latest docs <component>` to get documentation and example URLs for any component.
+Run `npx shadcn@latest info --json` first to read the project config and installed components. Use `npx shadcn@latest docs <component>` to get documentation and example URLs for any component.
 
 ## Principles
 

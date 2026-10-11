@@ -79,10 +79,6 @@
 | writing-plans | Jesse Vincent，同上 `skills/writing-plans/` | MIT（同上） | `packs/skills/writing-plans/` | 把设计写成可逐步执行的实现计划 |
 | executing-plans | Jesse Vincent，同上 `skills/executing-plans/` | MIT（同上） | `packs/skills/executing-plans/` | 按既定计划逐任务执行并收尾 |
 | test-driven-development | Jesse Vincent，同上 `skills/test-driven-development/` | MIT（同上） | `packs/skills/test-driven-development/` | TDD 红绿重构流程与反模式 |
-| lark-apps | Lark，`github.com/larksuite/cli` 的 `skills/lark-apps/`（基线 CLI v1.0.96，commit `32d1988`） | MIT（`Copyright (c) 2026 Lark Technologies Pte. Ltd.`） | `packs/skills/lark-apps/` | 飞书妙搭应用开发（29 篇命令参考 + 创意设计子技能） |
-| lark-doc | Lark，同上 `skills/lark-doc/` | MIT（同上） | `packs/skills/lark-doc/` | 飞书云文档读写与体裁模板（15 + 28 篇） |
-| lark-markdown | Lark，同上 `skills/lark-markdown/` | MIT（同上） | `packs/skills/lark-markdown/` | 飞书文档的 markdown 子命令（fetch / create / patch / diff / overwrite） |
-| lark-vc-agent | Lark，同上 `skills/lark-vc-agent/` | MIT（同上） | `packs/skills/lark-vc-agent/` | 飞书会议 VC agent；包内是 15 行转发桩，指向未随包提供的上级技能，实质不可用 |
 | json-canvas | Steph Ango，`github.com/kepano/obsidian-skills` 的 `skills/json-canvas/` | MIT（`Copyright (c) 2026 Steph Ango (@kepano)`） | `packs/skills/json-canvas/` | 生成与校验 JSON Canvas 画布文件 |
 | defuddle | Steph Ango，同上 `skills/defuddle/` | MIT（同上） | `packs/skills/defuddle/` | 用 defuddle CLI 把网页清洗成 markdown |
 | shadcn | shadcn，`github.com/shadcn-ui/ui` 的 `skills/shadcn/` | MIT（`Copyright (c) 2023 shadcn`） | `packs/skills/shadcn/` | shadcn/ui 组件安装与定制 |
@@ -103,10 +99,12 @@
 - 3 个包的目录名与 frontmatter `name` 不一致：`composition-patterns`（`vercel-composition-patterns`）、`react-best-practices`（`vercel-react-best-practices`）、`react-native-skills`（`vercel-react-native-skills`）。入库时保留其原目录名与 `SKILL.md` 入口名：skill 的调用名由目录名与 frontmatter 的 `name` 共同决定，改名会使包无法被宿主调用。按 [AGENTS.md](AGENTS.md) 的「二、命名与查找」，落档以成品自身的格式要求为准。
 - `packs/skills/vibecoding-standards/` 不属于第三方内容，故不在上表：其 15 篇规范文档由用户本人整理，是本库自有内容，无需登记与署名。
 - `packs/skills/canvas-design/` 收录的是上游包的**修改版**：本库新增 `references/rendering.md`（输出路径与字体使用说明），并把 `SKILL.md` 中一段字体指引改为优先使用包内 `canvas-fonts/`。按 Apache-2.0 第 4(b) 条，这两处改动都带显著说明——`SKILL.md` frontmatter 之后与 `references/rendering.md` 标题下各有一条 `Modified/Added by AI Fieldpack` 标注。包内随附的 81 个字体文件（54 个字重、27 个族）为 SIL OFL 1.1，各族的 `*-OFL.txt` 随文件保留。
+- `packs/skills/shadcn/` 收录的是**改写版**：上游 `SKILL.md` 用了 Claude Code 专有的 `user-invocable: false`、`allowed-tools` 两行前端字段，以及第 17 行的 `` !`npx shadcn@latest info --json` `` shell 动态注入。本库删去前两行并把该段改写为普通说明，以适配通用宿主；文档与规则内容未动。该包上游没有 `LICENSE` 文件。
 
 ## 待办
 
 - `slides` 本地 `LICENSE.txt` 的 `Copyright (c) Microsoft Corporation.` 与上游同族的占位符写法不一致，来源未查清；`slides` 与 `redis-development` 两件的 `LICENSE.txt` 尚未与上游逐字节比对。
 - `web-design-guidelines` 的上游没有 `LICENSE` 文件，只有 README 里的一个词 `MIT`，是否足以支撑再分发属法务判断，需要时再议。
 - `gh-cli`、`slides`、`redis-development` 三件的上游已各自删除或退役该技能，本地是这些下架版本的留存，升级时无新版可对齐。
-- `_sandbox/skills/` 已清空，`_sandbox/` 下仅余一个来源不明的 [AGENTS.md](_sandbox/AGENTS.md)（另一项目的模板，与本库约定无关），待确认后删除。
+- 以下 4 件已考证到上游与许可，但缺口在内容本身、本地补不了，按「不能直接使用的不进成果区」退回 `_sandbox/skills/`，待补齐后再收录：`lark-apps`（`references/lark-apps-file.md` 不存在却被 4 处引用，另有 1 处组件命名不符、2 个文件无入口）、`lark-doc`（自身 43 篇无断链，但引用 9 个从未附上的兄弟技能）、`lark-markdown`（同上，引用 `lark-shared` 18 处、`lark-drive` 7 处）、`lark-vc-agent`（15 行转发桩，强制读取不存在的 `../lark-meeting/SKILL.md`）。四件同出自 `larksuite/cli`，MIT，`Copyright (c) 2026 Lark Technologies Pte. Ltd.`，基线 CLI v1.0.96（commit `32d1988`）。
+- `_sandbox/` 下存有上述 4 个未收录的 skill 目录，以及一个来源不明的 [AGENTS.md](_sandbox/AGENTS.md)（另一项目的模板，与本库约定无关），后者待确认后删除。
