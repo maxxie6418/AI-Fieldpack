@@ -6,6 +6,8 @@
 
 ## 1011
 
+- [Removed] 4 个缺上游内容、本地补不了的飞书 skill（`lark-apps`、`lark-doc`、`lark-markdown`、`lark-vc-agent`）退回 `_sandbox/skills/`，成果区 `packs/skills/` 收缩为 48 个包；`THIRD_PARTY_NOTICES.md` 中这四条移出登记表，已考证的上游与许可记入「待办」。
+- [Changed] 成果区 `packs/skills/shadcn/` 去掉上游带来的 Claude Code 专有写法（`user-invocable: false`、`allowed-tools` 与 shell 动态注入三处），以适配通用宿主；文档与规则内容未动。——commit: `b79eb93`
 - [Added] 成果区 `packs/skills/` 迁入余下 36 个 skill（合计 519 个文件），包内目录结构原样保留，该目录现为 52 个包，`_sandbox/skills/` 随之清空。——commit: `5f1264d`
 - [Changed] 第三方收录规则由「只收录允许再分发的内容」改为默认收录：除非内容明确声明禁止再分发，否则不因许可不明拒绝收录，收录时保留其许可与版权声明文件并在登记处写明归属；`AGENTS.md`「四、收录第三方内容」与 `THIRD_PARTY_NOTICES.md` 登记规则同步。
 - [Changed] `THIRD_PARTY_NOTICES.md` 登记表按上游核对结果重写：`screenshot`、`security-best-practices`、`slides` 的来源由 Anthropic 更正为 `openai/skills`，15 条补齐作者、仓库路径与许可，并记录本地为中文化派生版、6 个 Anthropic 包署名行丢失。——commit: `c014c25`
