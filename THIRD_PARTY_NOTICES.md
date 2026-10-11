@@ -32,8 +32,8 @@
 - 上表的许可结论来自包内 `LICENSE.txt` 或 `SKILL.md` frontmatter 的自我声明，未与上游仓库核对：本会话 `web_fetch` 对所有域名均返回 `resolves to a non-public IP address`，`web_search` 又缺少 API Key，无法联网核验。若日后能访问上游，应补记作者与来源 URL。
 - 8 个 Apache-2.0 包中，7 个的 `LICENSE.txt` 版权人栏仍是 Apache 官方模板占位符 `[yyyy] [name of copyright owner]`，署名信息不完整；仅 `slides` 已填写。这不影响 Apache-2.0 的授权本身，但再分发时的署名义务无法据此完成。
 - 3 个包的目录名与 frontmatter `name` 不一致：`composition-patterns`（`vercel-composition-patterns`）、`react-best-practices`（`vercel-react-best-practices`）、`react-native-skills`（`vercel-react-native-skills`）。入库时保留其原目录名与 `SKILL.md` 入口名：skill 的调用名由目录名与 frontmatter 的 `name` 共同决定，改名会使包无法被宿主调用。按 [AGENTS.md](AGENTS.md) 的「二、命名与查找」，落档以成品自身的格式要求为准。
+- `packs/skills/vibecoding-standards/` 不属于第三方内容，故不在上表：其 15 篇规范文档由用户本人整理，是本库自有内容，无需登记与署名。
 
 ## 待办
 
-- `_sandbox/skills/` 余 39 个 skill 尚未登记：其中 37 个无任何许可声明、2 个有 Apache-2.0 但存在质量缺口（`canvas-design`、`frontend-skill`）。完成登记或清理前，不要并入成果区。
-- `_sandbox/manual/` 下的 15 篇 `*-mimo.md` 拷贝尚未登记。
+- `_sandbox/skills/` 余 38 个第三方 skill 尚未登记：其中 36 个无任何许可声明、2 个有 Apache-2.0 但存在质量缺口（`canvas-design`、`frontend-skill`）。完成登记或清理前，不要并入成果区。
