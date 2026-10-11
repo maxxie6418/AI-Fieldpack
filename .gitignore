@@ -1,6 +1,3 @@
-# 临时收件箱与一次性文件（不进版本历史）
-_sandbox/
-
 # 操作系统
 .DS_Store
 Thumbs.db

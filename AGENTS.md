@@ -67,12 +67,12 @@
 | `_lab/<project>/` | 假设、实验记录、结论、执行计划 | 结论稳定且可复用 → 成果区；不回流讨论区 |
 | `handbook/` `examples/` `packs/` | 已成稳定方法或可直接取用的成果 | 过时或被替代 → `_archive/` |
 | `_archive/` | 退役内容，只读 | —— |
-| `_sandbox/` | 临时收件箱：来源或去向未定 | 尽快分流，或直接删除；不进版本历史 |
+| `_sandbox/` | 临时收件箱：来源或去向未定 | 尽快分流，或直接删除；随仓库提交，但不算成果区 |
 | `assets/` | 跨文档共用素材 | 不再被引用时删除 |
 
 `_drafts/` 与 `_lab/` 里的文件（`_drafts/todolist.md` 除外，它本身就是分组容器）第一行写状态标记，取值同 SOP 的五个分组。`_lab/` 是**单向**的，进去后不退回讨论区；过程中冒出的新问题另开 `_drafts/` 条目。
 
-从 `_sandbox/` 分流出的成果类内容，须先在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 登记来源与许可才能进入成果区；`_sandbox/` 已列入 `.gitignore`，内容不随仓库分发。
+从 `_sandbox/` 分流出的成果类内容，须先在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 登记来源与许可才能进入成果区。`_sandbox/` 已纳入版本管理，内容随仓库提交，但它仍是暂存区、不算成果区，其中的第三方内容不单独登记。
 
 ## 二、命名与查找
 

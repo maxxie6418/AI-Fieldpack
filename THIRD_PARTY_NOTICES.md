@@ -7,7 +7,7 @@
 - 默认收录：除非内容明确声明禁止再分发，否则不因许可不明而拒绝收录；许可与作者能考证就写实，考证不到的注明「未能考证」。
 - 收录时保留内容自带的 `LICENSE` 与版权声明文件，并在下表中写明版权归属。
 - 每条登记五项：名称、作者 / 来源 URL、许可类型、在本库中的位置、用途说明。
-- 从 `_sandbox/` 分流进来的第三方内容，完成登记后才能进入成果区。
+- 从 `_sandbox/` 分流进来的第三方内容，完成登记后才能进入成果区；`_sandbox/` 本身是暂存区，其内容随仓库提交但不登记在本表。
 - 完整规则见 [AGENTS.md](AGENTS.md) 的「收录第三方内容」一节。
 
 ## 登记表
@@ -108,4 +108,4 @@
 - `web-design-guidelines` 的上游没有 `LICENSE` 文件，只有 README 里的一个词 `MIT`，是否足以支撑再分发属法务判断，需要时再议。
 - `gh-cli`、`slides`、`redis-development` 三件的上游已各自删除或退役该技能，本地是这些下架版本的留存，升级时无新版可对齐。
 - 以下 4 件已考证到上游与许可，但缺口在内容本身、本地补不了，按「不能直接使用的不进成果区」退回 `_sandbox/skills/`，待补齐后再收录：`lark-apps`（`references/lark-apps-file.md` 不存在却被 4 处引用，另有 1 处组件命名不符、2 个文件无入口）、`lark-doc`（自身 43 篇无断链，但引用 9 个从未附上的兄弟技能）、`lark-markdown`（同上，引用 `lark-shared` 18 处、`lark-drive` 7 处）、`lark-vc-agent`（15 行转发桩，强制读取不存在的 `../lark-meeting/SKILL.md`）。四件同出自 `larksuite/cli`，MIT，`Copyright (c) 2026 Lark Technologies Pte. Ltd.`，基线 CLI v1.0.96（commit `32d1988`）。
-- `_sandbox/` 下存有上述 4 个未收录的 skill 目录，以及一个来源不明的 [AGENTS.md](_sandbox/AGENTS.md)（另一项目的模板，与本库约定无关），后者待确认后删除。
+- `_sandbox/` 下存有上述 4 个未收录的 skill 目录，以及一个来源不明的 [AGENTS.md](_sandbox/AGENTS.md)（另一项目的模板，与本库约定无关），后者经用户确认保留并随仓库提交。该目录已纳入版本管理，但其内容按约定不在上表登记，来源与许可仅在此「待办」记明。
