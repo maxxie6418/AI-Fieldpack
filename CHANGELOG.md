@@ -6,6 +6,8 @@
 
 ## 1011
 
+- [Changed] 第三方收录规则由「只收录允许再分发的内容」改为默认收录：除非内容明确声明禁止再分发，否则不因许可不明拒绝收录，收录时保留其许可与版权声明文件并在登记处写明归属；`AGENTS.md`「四、收录第三方内容」与 `THIRD_PARTY_NOTICES.md` 登记规则同步。
+- [Changed] `THIRD_PARTY_NOTICES.md` 登记表按上游核对结果重写：`screenshot`、`security-best-practices`、`slides` 的来源由 Anthropic 更正为 `openai/skills`，15 条补齐作者、仓库路径与许可，并记录本地为中文化派生版、6 个 Anthropic 包署名行丢失。——commit: `c014c25`
 - [Added] 成果区 `packs/skills/` 新增 `frontend-skill`：单一 `SKILL.md` 的视觉设计方法（落地页、应用界面、图像、文案、动效与检验清单），184 行、无外部引用、无断链，原样收录未作改动。——commit: `5a92b9f`
 - [Added] 成果区 `packs/skills/` 新增 `canvas-design`：原包只有设计理念、没有输出路径，本库新增 `references/rendering.md` 写明无头浏览器与 Pillow 两条渲染路线及字体使用规则，随包迁入 81 个 SIL OFL 字体文件，并按 Apache-2.0 第 4(b) 条标注改动。——commit: `5ffcc30`
 - [Added] 成果区 `packs/skills/` 新增 `vibecoding-standards`：15 篇自有开发规范并入包内 `references/`，技能内路径由工作区绝对引用改为包内相对引用，此前指向工作区外的断链随之消除。——commit: `fb0294a`
