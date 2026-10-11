@@ -6,6 +6,7 @@
 
 ## 1011
 
+- [Changed] 成果区 `packs/skills/grilling/` 补入上游后加的一句：提问措辞要让回答「是」即等于接受你推荐的答案；补后本地与上游仅剩 `description` 汉化差异。
 - [Added] 成果区 `packs/skills/` 新增 `prototype`、`writing-for-agents`、`wait-what` 三个 skill（共 9 个文件），仅把 `description` 汉化；`wait-what` 内的 `GLOSSARY.md`/`GLOSSARY-MAP.md` 依本库约定改为 `CONTEXT.md`/`CONTEXT-MAP.md`，`THIRD_PARTY_NOTICES.md` 同步登记。
 - [Changed] 按自用定位简化两处约定：CHANGELOG 条目与它记录的改动放进同一个提交，不再另开只装本文件的记录提交，条目末尾也不再标 `——commit:`；第三方登记收缩为只对会随仓库分发的内容按需登记，`AGENTS.md`「四、收录第三方内容」、`THIRD_PARTY_NOTICES.md` 登记规则与 `README.md` 同步，考证以够用为限。
 - [Changed] `_sandbox/` 纳入版本管理：`.gitignore` 去掉该排除项，`AGENTS.md`、`README.md`、`THIRD_PARTY_NOTICES.md` 中「不进版本历史 / 内容不随仓库分发」的表述同步改写；该目录仍是暂存区、不算成果区，其中第三方内容不单独登记。首批入库 106 个文件。——commit: `36a34b3`
