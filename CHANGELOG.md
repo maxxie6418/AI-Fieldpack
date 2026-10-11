@@ -6,6 +6,7 @@
 
 ## 1011
 
+- [Changed] 格式要求改为只约束落档前：`AGENTS.md`「二、命名与查找」新增限定段并删掉 `packs/skills/` 专项豁免，落档时以成品自身格式为准；`README.md`、`THIRD_PARTY_NOTICES.md` 与交付前自检同步。——commit: `afc136f`
 - [Added] 新建成果区 `packs/skills/`，从 `_sandbox/skills/` 迁入 13 个有明示许可的 skill，保留各包原有目录结构与 `SKILL.md` 入口。
 - [Added] `THIRD_PARTY_NOTICES.md` 登记这 13 个 skill 的作者、许可与本库位置，「待办」改写为 `_sandbox/` 剩余未登记内容。
 - [Changed] `AGENTS.md` 的「二、命名与查找」新增唯一豁免：`packs/skills/` 保留 skill 原目录名（含 `-`）与 `SKILL.md` 入口名，改名会使包无法被宿主调用。——commit: `76c5e90`
