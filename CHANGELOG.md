@@ -6,6 +6,7 @@
 
 ## 1011
 
+- [Changed] `AGENTS.md`「二、命名与查找」新增一条：落档前的过程文件与项目名尽量用中文，英文关键词可保留；原「全小写」收窄为「英文部分小写」，示例与占位符改为 `MMDD_<主题>.md`，`README.md` 两处描述同步。
 - [Changed] `AGENTS.md` 的「项目 SOP」新增一条统领原则：AI 的主要职责是沟通与设计，多与用户讨论目的和需求、多确认思路和目标，不因已有大致方向就催促用户开始执行；`README.md` 的描述同步补上这一句。
 - [Changed] 成果区 `packs/skills/grilling/` 补入上游后加的一句：提问措辞要让回答「是」即等于接受你推荐的答案；补后本地与上游仅剩 `description` 汉化差异。
 - [Added] 成果区 `packs/skills/` 新增 `prototype`、`writing-for-agents`、`wait-what` 三个 skill（共 9 个文件），仅把 `description` 汉化；`wait-what` 内的 `GLOSSARY.md`/`GLOSSARY-MAP.md` 依本库约定改为 `CONTEXT.md`/`CONTEXT-MAP.md`，`THIRD_PARTY_NOTICES.md` 同步登记。
