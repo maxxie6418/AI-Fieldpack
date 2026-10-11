@@ -1,0 +1,4378 @@
+[
+  {
+    "from": 0.2,
+    "to": 2.08,
+    "sid": 1,
+    "location": 2,
+    "content": "随着你发明的机场的落成",
+    "music": 0
+  },
+  {
+    "from": 2.08,
+    "to": 4.38,
+    "sid": 2,
+    "location": 2,
+    "content": "世界各地的飞机逐渐普及开来",
+    "music": 0
+  },
+  {
+    "from": 4.38,
+    "to": 6.74,
+    "sid": 3,
+    "location": 2,
+    "content": "不过天上可没有悬空的马路",
+    "music": 0
+  },
+  {
+    "from": 6.74,
+    "to": 9.129,
+    "sid": 4,
+    "location": 2,
+    "content": "飞机多了自然就会互相抢到",
+    "music": 0
+  },
+  {
+    "from": 9.129,
+    "to": 10.729,
+    "sid": 5,
+    "location": 2,
+    "content": "在地上发生一点小摩擦",
+    "music": 0
+  },
+  {
+    "from": 10.729,
+    "to": 12.349,
+    "sid": 6,
+    "location": 2,
+    "content": "可能靠边停车就能解决",
+    "music": 0
+  },
+  {
+    "from": 12.349,
+    "to": 17.19,
+    "sid": 7,
+    "location": 2,
+    "content": "在天上可能把两块速度极大的大铁坨子撞成压扁的易拉罐了",
+    "music": 0
+  },
+  {
+    "from": 17.19,
+    "to": 19.66,
+    "sid": 8,
+    "location": 2,
+    "content": "所以天上必须要有自己的交警",
+    "music": 0
+  },
+  {
+    "from": 19.66,
+    "to": 21.84,
+    "sid": 9,
+    "location": 2,
+    "content": "既然是为了管制空中的交通的",
+    "music": 0
+  },
+  {
+    "from": 21.84,
+    "to": 23.66,
+    "sid": 10,
+    "location": 2,
+    "content": "就叫做空中交通管制吧",
+    "music": 0
+  },
+  {
+    "from": 23.66,
+    "to": 25.62,
+    "sid": 11,
+    "location": 2,
+    "content": "英文是air traffic control",
+    "music": 0
+  },
+  {
+    "from": 25.62,
+    "to": 27.63,
+    "sid": 12,
+    "location": 2,
+    "content": "所以简称ATC",
+    "music": 0
+  },
+  {
+    "from": 27.63,
+    "to": 30.91,
+    "sid": 13,
+    "location": 2,
+    "content": "当然考虑到火箭飞行兵只能出现在红警里",
+    "music": 0
+  },
+  {
+    "from": 30.91,
+    "to": 34.09,
+    "sid": 14,
+    "location": 2,
+    "content": "你觉得应该不能真的派人飞上天指挥交通",
+    "music": 0
+  },
+  {
+    "from": 34.09,
+    "to": 35.83,
+    "sid": 15,
+    "location": 2,
+    "content": "那也就只能退而求其次",
+    "music": 0
+  },
+  {
+    "from": 35.83,
+    "to": 37.43,
+    "sid": 16,
+    "location": 2,
+    "content": "在地面上管理他们了",
+    "music": 0
+  },
+  {
+    "from": 37.43,
+    "to": 39.23,
+    "sid": 17,
+    "location": 2,
+    "content": "可是这飞机飞得那么高",
+    "music": 0
+  },
+  {
+    "from": 39.23,
+    "to": 41.86,
+    "sid": 18,
+    "location": 2,
+    "content": "你就是拿个喇叭来喊他们也听不着呀",
+    "music": 0
+  },
+  {
+    "from": 41.86,
+    "to": 43.32,
+    "sid": 19,
+    "location": 2,
+    "content": "这就很麻烦了",
+    "music": 0
+  },
+  {
+    "from": 43.32,
+    "to": 45.26,
+    "sid": 20,
+    "location": 2,
+    "content": "不过正好你有点人脉",
+    "music": 0
+  },
+  {
+    "from": 45.26,
+    "to": 47.18,
+    "sid": 21,
+    "location": 2,
+    "content": "认识一个叫麦克斯韦的小子",
+    "music": 0
+  },
+  {
+    "from": 47.18,
+    "to": 48.48,
+    "sid": 22,
+    "location": 2,
+    "content": "他预言了电磁波",
+    "music": 0
+  },
+  {
+    "from": 48.48,
+    "to": 50.84,
+    "sid": 23,
+    "location": 2,
+    "content": "虽然你不大看得懂他的麦克斯韦方程组",
+    "music": 0
+  },
+  {
+    "from": 50.84,
+    "to": 51.7,
+    "sid": 24,
+    "location": 2,
+    "content": "但是你知道",
+    "music": 0
+  },
+  {
+    "from": 51.7,
+    "to": 52.5,
+    "sid": 25,
+    "location": 2,
+    "content": "从此之后",
+    "music": 0
+  },
+  {
+    "from": 52.5,
+    "to": 55.7,
+    "sid": 26,
+    "location": 2,
+    "content": "无线电这种远距离通讯手段正式诞生了",
+    "music": 0
+  },
+  {
+    "from": 55.7,
+    "to": 57.82,
+    "sid": 27,
+    "location": 2,
+    "content": "你选择了适合直射收发的",
+    "music": 0
+  },
+  {
+    "from": 57.82,
+    "to": 62.86,
+    "sid": 28,
+    "location": 2,
+    "content": "118兆赫兹到137兆赫兹左右的甚高频当做载波频率",
+    "music": 0
+  },
+  {
+    "from": 62.86,
+    "to": 64.94,
+    "sid": 29,
+    "location": 2,
+    "content": "用条幅的方式进行调制",
+    "music": 0
+  },
+  {
+    "from": 64.94,
+    "to": 68.75,
+    "sid": 30,
+    "location": 2,
+    "content": "也就是把信号用振幅的方式调制到载波上",
+    "music": 0
+  },
+  {
+    "from": 68.75,
+    "to": 71.67,
+    "sid": 31,
+    "location": 2,
+    "content": "这样就可以在能稳定穿透大气的同时",
+    "music": 0
+  },
+  {
+    "from": 71.67,
+    "to": 75.28,
+    "sid": 32,
+    "location": 2,
+    "content": "允许接收端一次性接收解调多个型号了",
+    "music": 0
+  },
+  {
+    "from": 75.28,
+    "to": 76.72,
+    "sid": 33,
+    "location": 2,
+    "content": "技术上的通话问题",
+    "music": 0
+  },
+  {
+    "from": 76.72,
+    "to": 79.42,
+    "sid": 34,
+    "location": 2,
+    "content": "解决了更麻烦的问题就摆在了你的案头",
+    "music": 0
+  },
+  {
+    "from": 79.42,
+    "to": 80.77,
+    "sid": 35,
+    "location": 2,
+    "content": "该怎么指挥呢",
+    "music": 0
+  },
+  {
+    "from": 80.77,
+    "to": 82.55,
+    "sid": 36,
+    "location": 2,
+    "content": "首先要解决的是谁来管",
+    "music": 0
+  },
+  {
+    "from": 82.55,
+    "to": 84.69,
+    "sid": 37,
+    "location": 2,
+    "content": "由于无线电传播的范围有限",
+    "music": 0
+  },
+  {
+    "from": 84.69,
+    "to": 87.77,
+    "sid": 38,
+    "location": 2,
+    "content": "所以自然而然的也想到了接力的方式",
+    "music": 0
+  },
+  {
+    "from": 87.77,
+    "to": 89.75,
+    "sid": 39,
+    "location": 2,
+    "content": "你在飞机常飞的航路空域",
+    "music": 0
+  },
+  {
+    "from": 89.75,
+    "to": 92.01,
+    "sid": 40,
+    "location": 2,
+    "content": "用一个个信标台接力覆盖起来",
+    "music": 0
+  },
+  {
+    "from": 92.01,
+    "to": 93.59,
+    "sid": 41,
+    "location": 2,
+    "content": "称之为管制空域",
+    "music": 0
+  },
+  {
+    "from": 93.59,
+    "to": 95.99,
+    "sid": 42,
+    "location": 2,
+    "content": "至于平时基本没有飞机飞的空域",
+    "music": 0
+  },
+  {
+    "from": 95.99,
+    "to": 99.13,
+    "sid": 43,
+    "location": 2,
+    "content": "你觉得就没有必要增加成本建设信标台了",
+    "music": 0
+  },
+  {
+    "from": 99.13,
+    "to": 101.78,
+    "sid": 44,
+    "location": 2,
+    "content": "让飞行员们自己保持间隔进行避让吧",
+    "music": 0
+  },
+  {
+    "from": 101.78,
+    "to": 106.81,
+    "sid": 45,
+    "location": 2,
+    "content": "这些没有被管制空域覆盖到的空域就称之为非管制空域吧",
+    "music": 0
+  },
+  {
+    "from": 106.81,
+    "to": 108.21,
+    "sid": 46,
+    "location": 2,
+    "content": "空间的问题解决了",
+    "music": 0
+  },
+  {
+    "from": 108.21,
+    "to": 110.37,
+    "sid": 47,
+    "location": 2,
+    "content": "接下来你要解决的是时间的问题",
+    "music": 0
+  },
+  {
+    "from": 110.37,
+    "to": 113.73,
+    "sid": 48,
+    "location": 2,
+    "content": "一架飞机的飞行全流程可以粗略的分为滑行",
+    "music": 0
+  },
+  {
+    "from": 113.73,
+    "to": 114.539,
+    "sid": 49,
+    "location": 2,
+    "content": "起飞",
+    "music": 0
+  },
+  {
+    "from": 114.539,
+    "to": 115.299,
+    "sid": 50,
+    "location": 2,
+    "content": "离场",
+    "music": 0
+  },
+  {
+    "from": 115.299,
+    "to": 116.019,
+    "sid": 51,
+    "location": 2,
+    "content": "巡航",
+    "music": 0
+  },
+  {
+    "from": 116.019,
+    "to": 117.419,
+    "sid": 52,
+    "location": 2,
+    "content": "进场降落",
+    "music": 0
+  },
+  {
+    "from": 117.419,
+    "to": 118.99,
+    "sid": 53,
+    "location": 2,
+    "content": "滑行七个阶段",
+    "music": 0
+  },
+  {
+    "from": 118.99,
+    "to": 121.19,
+    "sid": 54,
+    "location": 2,
+    "content": "其中除了巡航阶段以外",
+    "music": 0
+  },
+  {
+    "from": 121.19,
+    "to": 123.39,
+    "sid": 55,
+    "location": 2,
+    "content": "其他六个阶段都在机场附近",
+    "music": 0
+  },
+  {
+    "from": 123.39,
+    "to": 126.36,
+    "sid": 56,
+    "location": 2,
+    "content": "而且机场是飞机最密集的地区",
+    "music": 0
+  },
+  {
+    "from": 126.36,
+    "to": 128.1,
+    "sid": 57,
+    "location": 2,
+    "content": "如果像先前那样",
+    "music": 0
+  },
+  {
+    "from": 128.1,
+    "to": 132.38,
+    "sid": 58,
+    "location": 2,
+    "content": "像是每一段航路都只用一个管制站进行简单的覆盖",
+    "music": 0
+  },
+  {
+    "from": 132.38,
+    "to": 135.53,
+    "sid": 59,
+    "location": 2,
+    "content": "那恐怕是要把机场的管制给忙死了",
+    "music": 0
+  },
+  {
+    "from": 135.53,
+    "to": 139.69,
+    "sid": 60,
+    "location": 2,
+    "content": "所以你首先将机场的管制站放在一个非常非常高的高塔上",
+    "music": 0
+  },
+  {
+    "from": 139.69,
+    "to": 142.97,
+    "sid": 61,
+    "location": 2,
+    "content": "这样管制员就可以俯览整个机场的状态了",
+    "music": 0
+  },
+  {
+    "from": 142.97,
+    "to": 144.59,
+    "sid": 62,
+    "location": 2,
+    "content": "你称之为控制塔",
+    "music": 0
+  },
+  {
+    "from": 144.59,
+    "to": 147.81,
+    "sid": 63,
+    "location": 2,
+    "content": "在控制塔内部已将管制员们进行分工",
+    "music": 0
+  },
+  {
+    "from": 147.81,
+    "to": 150.35,
+    "sid": 64,
+    "location": 2,
+    "content": "分为地面与塔台对应的",
+    "music": 0
+  },
+  {
+    "from": 150.35,
+    "to": 153.03,
+    "sid": 65,
+    "location": 2,
+    "content": "你把机场也分为飞行区和地面区",
+    "music": 0
+  },
+  {
+    "from": 153.03,
+    "to": 156.45,
+    "sid": 66,
+    "location": 2,
+    "content": "一般以靠近机坪一侧的跑道等待点为界",
+    "music": 0
+  },
+  {
+    "from": 156.45,
+    "to": 160.19,
+    "sid": 67,
+    "location": 2,
+    "content": "比如图中这个机场这条红线西侧就是地面区",
+    "music": 0
+  },
+  {
+    "from": 160.19,
+    "to": 161.72,
+    "sid": 68,
+    "location": 2,
+    "content": "东侧就是飞行区",
+    "music": 0
+  },
+  {
+    "from": 161.72,
+    "to": 165.36,
+    "sid": 69,
+    "location": 2,
+    "content": "你规定地面负责管理所有的地面区域的飞机",
+    "music": 0
+  },
+  {
+    "from": 165.36,
+    "to": 168.2,
+    "sid": 70,
+    "location": 2,
+    "content": "也就是机坪上和滑行道上滑行的飞机",
+    "music": 0
+  },
+  {
+    "from": 168.2,
+    "to": 170.78,
+    "sid": 71,
+    "location": 2,
+    "content": "而塔台负责管理飞行区的飞机",
+    "music": 0
+  },
+  {
+    "from": 170.78,
+    "to": 173.6,
+    "sid": 72,
+    "location": 2,
+    "content": "也就是起飞降落进离场的飞机",
+    "music": 0
+  },
+  {
+    "from": 173.6,
+    "to": 175.64,
+    "sid": 73,
+    "location": 2,
+    "content": "如果一个机场上的跑道众多",
+    "music": 0
+  },
+  {
+    "from": 175.64,
+    "to": 178.5,
+    "sid": 74,
+    "location": 2,
+    "content": "你也可以将塔台的工作分担给两个岗位",
+    "music": 0
+  },
+  {
+    "from": 178.5,
+    "to": 180.63,
+    "sid": 75,
+    "location": 2,
+    "content": "按照跑道的位置进行划分",
+    "music": 0
+  },
+  {
+    "from": 180.63,
+    "to": 184.89,
+    "sid": 76,
+    "location": 2,
+    "content": "比如图中的所有平行跑道的西侧那一条归西塔台管理",
+    "music": 0
+  },
+  {
+    "from": 184.89,
+    "to": 186.81,
+    "sid": 77,
+    "location": 2,
+    "content": "东侧的归东塔台管理",
+    "music": 0
+  },
+  {
+    "from": 186.81,
+    "to": 188.07,
+    "sid": 78,
+    "location": 2,
+    "content": "这里要澄清一下",
+    "music": 0
+  },
+  {
+    "from": 188.07,
+    "to": 189.61,
+    "sid": 79,
+    "location": 2,
+    "content": "所谓的塔台并不是塔",
+    "music": 0
+  },
+  {
+    "from": 189.61,
+    "to": 191.43,
+    "sid": 80,
+    "location": 2,
+    "content": "控制塔才是真正的塔",
+    "music": 0
+  },
+  {
+    "from": 191.43,
+    "to": 194.98,
+    "sid": 81,
+    "location": 2,
+    "content": "机场的所有管制岗位都在控制塔这座塔上工作",
+    "music": 0
+  },
+  {
+    "from": 194.98,
+    "to": 199.22,
+    "sid": 82,
+    "location": 2,
+    "content": "而拆分出的东西塔台也不是真的建一东一西两座控制塔",
+    "music": 0
+  },
+  {
+    "from": 199.22,
+    "to": 202.86,
+    "sid": 83,
+    "location": 2,
+    "content": "毕竟飞机和双子塔在一起多少有点不吉利",
+    "music": 0
+  },
+  {
+    "from": 203.43,
+    "to": 206.51,
+    "sid": 84,
+    "location": 2,
+    "content": "东西塔台之间只是用频率进行区分",
+    "music": 0
+  },
+  {
+    "from": 206.51,
+    "to": 207.99,
+    "sid": 85,
+    "location": 2,
+    "content": "实际上还是坐在一起",
+    "music": 0
+  },
+  {
+    "from": 207.99,
+    "to": 209.83,
+    "sid": 86,
+    "location": 2,
+    "content": "各位不要搞错了",
+    "music": 0
+  },
+  {
+    "from": 210.4,
+    "to": 214.94,
+    "sid": 87,
+    "location": 2,
+    "content": "事实上很多新手飞行员经常把这里的ground和tower给说错",
+    "music": 0
+  },
+  {
+    "from": 214.94,
+    "to": 216.32,
+    "sid": 88,
+    "location": 2,
+    "content": "一般只要频率对",
+    "music": 0
+  },
+  {
+    "from": 216.32,
+    "to": 217.94,
+    "sid": 89,
+    "location": 2,
+    "content": "其实都不影响管制",
+    "music": 0
+  },
+  {
+    "from": 217.94,
+    "to": 218.72,
+    "sid": 90,
+    "location": 2,
+    "content": "也不会在意",
+    "music": 0
+  },
+  {
+    "from": 218.72,
+    "to": 219.92,
+    "sid": 91,
+    "location": 2,
+    "content": "顶多提醒你一句",
+    "music": 0
+  },
+  {
+    "from": 219.92,
+    "to": 223.34,
+    "sid": 92,
+    "location": 2,
+    "content": "包括我也偶尔会嘴瓢在地边的频率里喊塔台",
+    "music": 0
+  },
+  {
+    "from": 223.34,
+    "to": 225.48,
+    "sid": 93,
+    "location": 2,
+    "content": "而且整个频率的人都能听得到",
+    "music": 0
+  },
+  {
+    "from": 225.48,
+    "to": 228.75,
+    "sid": 94,
+    "location": 2,
+    "content": "所以你也给说错的消息一个撤回键",
+    "music": 0
+  },
+  {
+    "from": 228.75,
+    "to": 232.69,
+    "sid": 95,
+    "location": 2,
+    "content": "只需要在说错之后说一句更正英文correction",
+    "music": 0
+  },
+  {
+    "from": 232.69,
+    "to": 235.22,
+    "sid": 96,
+    "location": 2,
+    "content": "然后接着说正确的信息即可",
+    "music": 0
+  },
+  {
+    "from": 235.22,
+    "to": 239.579,
+    "sid": 97,
+    "location": 2,
+    "content": "至于巡航阶段也设置了管理很大一个区域的管制中心",
+    "music": 0
+  },
+  {
+    "from": 239.579,
+    "to": 241.699,
+    "sid": 98,
+    "location": 2,
+    "content": "整个管制中心共用一个频率",
+    "music": 0
+  },
+  {
+    "from": 241.699,
+    "to": 246.09,
+    "sid": 99,
+    "location": 2,
+    "content": "这样飞行员就不需要在巡航阶段频繁地切换频率了",
+    "music": 0
+  },
+  {
+    "from": 246.09,
+    "to": 248.41,
+    "sid": 100,
+    "location": 2,
+    "content": "管制中心本身不收发无线电",
+    "music": 0
+  },
+  {
+    "from": 248.41,
+    "to": 254.64,
+    "sid": 101,
+    "location": 2,
+    "content": "而是接收各个航路上各个信标台发来的雷达和飞机应答机的信号",
+    "music": 0
+  },
+  {
+    "from": 254.64,
+    "to": 256.44,
+    "sid": 102,
+    "location": 2,
+    "content": "以及无线电通讯的信号",
+    "music": 0
+  },
+  {
+    "from": 256.44,
+    "to": 258.48,
+    "sid": 103,
+    "location": 2,
+    "content": "然后再划分为一个个小区域",
+    "music": 0
+  },
+  {
+    "from": 258.48,
+    "to": 261.549,
+    "sid": 104,
+    "location": 2,
+    "content": "分别交给不同的管制员进行分别的调度",
+    "music": 0
+  },
+  {
+    "from": 261.549,
+    "to": 264.869,
+    "sid": 105,
+    "location": 2,
+    "content": "所以这些管制员被你称作区域调度",
+    "music": 0
+  },
+  {
+    "from": 264.869,
+    "to": 266.4,
+    "sid": 106,
+    "location": 2,
+    "content": "简称曲调",
+    "music": 0
+  },
+  {
+    "from": 266.4,
+    "to": 270.22,
+    "sid": 107,
+    "location": 2,
+    "content": "此外你很明白天气状况对于飞行影响很大",
+    "music": 0
+  },
+  {
+    "from": 270.22,
+    "to": 274.62,
+    "sid": 108,
+    "location": 2,
+    "content": "所以你在每个机场都设置了一个循环播报天气状况的频率",
+    "music": 0
+  },
+  {
+    "from": 274.62,
+    "to": 276.36,
+    "sid": 109,
+    "location": 2,
+    "content": "这个频率只能向外播报",
+    "music": 0
+  },
+  {
+    "from": 276.36,
+    "to": 277.59,
+    "sid": 110,
+    "location": 2,
+    "content": "不能用于通话",
+    "music": 0
+  },
+  {
+    "from": 277.59,
+    "to": 279.47,
+    "sid": 111,
+    "location": 2,
+    "content": "一旦天气有什么大的变化",
+    "music": 0
+  },
+  {
+    "from": 279.47,
+    "to": 281.35,
+    "sid": 112,
+    "location": 2,
+    "content": "就会改变自己播报的内容",
+    "music": 0
+  },
+  {
+    "from": 281.35,
+    "to": 285.25,
+    "sid": 113,
+    "location": 2,
+    "content": "为了方便收听者确认自己正在听的播报有没有变化过",
+    "music": 0
+  },
+  {
+    "from": 285.25,
+    "to": 288.05,
+    "sid": 114,
+    "location": 2,
+    "content": "你给每一次播报都设置了一个字母的代码",
+    "music": 0
+  },
+  {
+    "from": 288.05,
+    "to": 291.16,
+    "sid": 115,
+    "location": 2,
+    "content": "这样只要听到代码和之前的不同",
+    "music": 0
+  },
+  {
+    "from": 291.16,
+    "to": 293.58,
+    "sid": 116,
+    "location": 2,
+    "content": "就能立刻意识到信息更新了",
+    "music": 0
+  },
+  {
+    "from": 293.58,
+    "to": 296.66,
+    "sid": 117,
+    "location": 2,
+    "content": "你把这个播报称之为自动终端情报服务",
+    "music": 0
+  },
+  {
+    "from": 296.66,
+    "to": 299.46,
+    "sid": 118,
+    "location": 2,
+    "content": "英文automatic terminal information service",
+    "music": 0
+  },
+  {
+    "from": 299.46,
+    "to": 301.049,
+    "sid": 119,
+    "location": 2,
+    "content": "简称eighties",
+    "music": 0
+  },
+  {
+    "from": 301.049,
+    "to": 303.45,
+    "sid": 120,
+    "location": 2,
+    "content": "中文则简称通波",
+    "music": 0
+  },
+  {
+    "from": 303.85,
+    "to": 308.39,
+    "sid": 121,
+    "location": 2,
+    "content": "你认为一般情况下通播当中只需要播报一些必要的信息",
+    "music": 0
+  },
+  {
+    "from": 308.39,
+    "to": 310.13,
+    "sid": 122,
+    "location": 2,
+    "content": "比如这次的通波编号",
+    "music": 0
+  },
+  {
+    "from": 310.13,
+    "to": 312.57,
+    "sid": 123,
+    "location": 2,
+    "content": "启用的跑道和对应的塔台频率",
+    "music": 0
+  },
+  {
+    "from": 312.57,
+    "to": 316.71,
+    "sid": 124,
+    "location": 2,
+    "content": "风矿云矿能见度温度和修正海压",
+    "music": 0
+  },
+  {
+    "from": 316.71,
+    "to": 319.79,
+    "sid": 125,
+    "location": 2,
+    "content": "比如通波P跑到35左",
+    "music": 0
+  },
+  {
+    "from": 319.79,
+    "to": 321.49,
+    "sid": 126,
+    "location": 2,
+    "content": "频率123.0",
+    "music": 0
+  },
+  {
+    "from": 321.49,
+    "to": 322.77,
+    "sid": 127,
+    "location": 2,
+    "content": "跑到35右",
+    "music": 0
+  },
+  {
+    "from": 322.77,
+    "to": 324.58,
+    "sid": 128,
+    "location": 2,
+    "content": "频率118.1",
+    "music": 0
+  },
+  {
+    "from": 324.58,
+    "to": 326.18,
+    "sid": 129,
+    "location": 2,
+    "content": "风向320",
+    "music": 0
+  },
+  {
+    "from": 326.18,
+    "to": 327.4,
+    "sid": 130,
+    "location": 2,
+    "content": "风速十节",
+    "music": 0
+  },
+  {
+    "from": 327.4,
+    "to": 328.48,
+    "sid": 131,
+    "location": 2,
+    "content": "侧风五节",
+    "music": 0
+  },
+  {
+    "from": 328.48,
+    "to": 330.58,
+    "sid": 132,
+    "location": 2,
+    "content": "二风云5200英尺",
+    "music": 0
+  },
+  {
+    "from": 330.58,
+    "to": 332.12,
+    "sid": 133,
+    "location": 2,
+    "content": "四风云8000英尺",
+    "music": 0
+  },
+  {
+    "from": 332.12,
+    "to": 333.73,
+    "sid": 134,
+    "location": 2,
+    "content": "能见度大于10km",
+    "music": 0
+  },
+  {
+    "from": 333.73,
+    "to": 334.87,
+    "sid": 135,
+    "location": 2,
+    "content": "温度十度",
+    "music": 0
+  },
+  {
+    "from": 334.87,
+    "to": 337.11,
+    "sid": 136,
+    "location": 2,
+    "content": "修正海压一千零二十七百帕",
+    "music": 0
+  },
+  {
+    "from": 337.11,
+    "to": 340.87,
+    "sid": 137,
+    "location": 2,
+    "content": "通波P所以从飞行员的视角来看",
+    "music": 0
+  },
+  {
+    "from": 340.87,
+    "to": 345.2,
+    "sid": 138,
+    "location": 2,
+    "content": "飞行全程一次要受到起飞机场的地面塔台",
+    "music": 0
+  },
+  {
+    "from": 345.2,
+    "to": 349.6,
+    "sid": 139,
+    "location": 2,
+    "content": "航线经过的各个区域的各个区调目的地机场的塔台",
+    "music": 0
+  },
+  {
+    "from": 349.6,
+    "to": 350.68,
+    "sid": 140,
+    "location": 2,
+    "content": "地面的管制",
+    "music": 0
+  },
+  {
+    "from": 350.68,
+    "to": 353,
+    "sid": 141,
+    "location": 2,
+    "content": "并且在特定的位置听通播",
+    "music": 0
+  },
+  {
+    "from": 353,
+    "to": 355.66,
+    "sid": 142,
+    "location": 2,
+    "content": "这就保证了在飞行的全程过程中",
+    "music": 0
+  },
+  {
+    "from": 355.66,
+    "to": 357.6,
+    "sid": 143,
+    "location": 2,
+    "content": "只要飞机是在管制空域",
+    "music": 0
+  },
+  {
+    "from": 357.6,
+    "to": 360.63,
+    "sid": 144,
+    "location": 2,
+    "content": "就一定有一个确定的管制员可以联络",
+    "music": 0
+  },
+  {
+    "from": 360.63,
+    "to": 362.59,
+    "sid": 145,
+    "location": 2,
+    "content": "但是管制不乐意了",
+    "music": 0
+  },
+  {
+    "from": 362.59,
+    "to": 364.07,
+    "sid": 146,
+    "location": 2,
+    "content": "天上那么多飞机",
+    "music": 0
+  },
+  {
+    "from": 364.07,
+    "to": 365.25,
+    "sid": 147,
+    "location": 2,
+    "content": "他们是方便了",
+    "music": 0
+  },
+  {
+    "from": 365.25,
+    "to": 367.69,
+    "sid": 148,
+    "location": 2,
+    "content": "但是我们听到的是七嘴八舌的动静",
+    "music": 0
+  },
+  {
+    "from": 367.69,
+    "to": 369.13,
+    "sid": 149,
+    "location": 2,
+    "content": "我怎么知道谁对谁",
+    "music": 0
+  },
+  {
+    "from": 369.13,
+    "to": 373.57,
+    "sid": 150,
+    "location": 2,
+    "content": "所以你意识到你必须给每一架飞机起一个独一无二的名字",
+    "music": 0
+  },
+  {
+    "from": 373.57,
+    "to": 377.49,
+    "sid": 151,
+    "location": 2,
+    "content": "你想起echo给美国国家都分配了一个注册号前缀",
+    "music": 0
+  },
+  {
+    "from": 377.49,
+    "to": 380.98,
+    "sid": 152,
+    "location": 2,
+    "content": "比如中国是B澳大利亚是VH之类的",
+    "music": 0
+  },
+  {
+    "from": 380.98,
+    "to": 384.39,
+    "sid": 153,
+    "location": 2,
+    "content": "后面的编号归每个国家各自的管理局进行分配",
+    "music": 0
+  },
+  {
+    "from": 384.39,
+    "to": 387.23,
+    "sid": 154,
+    "location": 2,
+    "content": "这整个编号称之为一架飞机的注册号",
+    "music": 0
+  },
+  {
+    "from": 387.23,
+    "to": 392.25,
+    "sid": 155,
+    "location": 2,
+    "content": "在很多通航小机场大多数都是飞行计划不确定不规律的通航飞机",
+    "music": 0
+  },
+  {
+    "from": 392.25,
+    "to": 395.15,
+    "sid": 156,
+    "location": 2,
+    "content": "所以用注册号当做名字就足够了",
+    "music": 0
+  },
+  {
+    "from": 395.15,
+    "to": 397.49,
+    "sid": 157,
+    "location": 2,
+    "content": "而对于商业运行的大机场",
+    "music": 0
+  },
+  {
+    "from": 397.49,
+    "to": 399.55,
+    "sid": 158,
+    "location": 2,
+    "content": "航线往往是每天固定的",
+    "music": 0
+  },
+  {
+    "from": 399.55,
+    "to": 403.01,
+    "sid": 159,
+    "location": 2,
+    "content": "飞这条航线的飞机本身或许不是同一架",
+    "music": 0
+  },
+  {
+    "from": 403.01,
+    "to": 406.62,
+    "sid": 160,
+    "location": 2,
+    "content": "但是管制更多的是在意这一趟航班的飞行",
+    "music": 0
+  },
+  {
+    "from": 406.62,
+    "to": 410.24,
+    "sid": 161,
+    "location": 2,
+    "content": "所以这些机场往往采用类似航空公司的echo代码",
+    "music": 0
+  },
+  {
+    "from": 410.24,
+    "to": 413.98,
+    "sid": 162,
+    "location": 2,
+    "content": "加公司内部分配的代码组成的代码作为飞机的名字",
+    "music": 0
+  },
+  {
+    "from": 413.98,
+    "to": 417.48,
+    "sid": 163,
+    "location": 2,
+    "content": "比如CCA981读作国航981",
+    "music": 0
+  },
+  {
+    "from": 417.48,
+    "to": 420.04,
+    "sid": 164,
+    "location": 2,
+    "content": "这个名字既然是用来呼叫飞机的",
+    "music": 0
+  },
+  {
+    "from": 420.04,
+    "to": 422.18,
+    "sid": 165,
+    "location": 2,
+    "content": "就称作呼号吧",
+    "music": 0
+  },
+  {
+    "from": 422.48,
+    "to": 423.46,
+    "sid": 166,
+    "location": 2,
+    "content": "这下好了",
+    "music": 0
+  },
+  {
+    "from": 423.46,
+    "to": 425.89,
+    "sid": 167,
+    "location": 2,
+    "content": "问题应该都解决了吗",
+    "music": 0
+  },
+  {
+    "from": 425.89,
+    "to": 429.57,
+    "sid": 168,
+    "location": 2,
+    "content": "没过多久你就收到有投诉说有的空管说允许起飞",
+    "music": 0
+  },
+  {
+    "from": 429.57,
+    "to": 431.21,
+    "sid": 169,
+    "location": 2,
+    "content": "有的空管说等会儿起飞",
+    "music": 0
+  },
+  {
+    "from": 431.21,
+    "to": 432.88,
+    "sid": 170,
+    "location": 2,
+    "content": "有的空管说起飞吧",
+    "music": 0
+  },
+  {
+    "from": 432.88,
+    "to": 434.92,
+    "sid": 171,
+    "location": 2,
+    "content": "大家的用语都非常不规范",
+    "music": 0
+  },
+  {
+    "from": 434.92,
+    "to": 436.39,
+    "sid": 172,
+    "location": 2,
+    "content": "很容易有歧义",
+    "music": 0
+  },
+  {
+    "from": 436.39,
+    "to": 440.55,
+    "sid": 173,
+    "location": 2,
+    "content": "所以你效仿秦始皇书同文车同轨要求以后",
+    "music": 0
+  },
+  {
+    "from": 440.55,
+    "to": 442.28,
+    "sid": 174,
+    "location": 2,
+    "content": "都要按照一个模板来说",
+    "music": 0
+  },
+  {
+    "from": 442.28,
+    "to": 443.6,
+    "sid": 175,
+    "location": 2,
+    "content": "要做到规范化",
+    "music": 0
+  },
+  {
+    "from": 443.6,
+    "to": 445.14,
+    "sid": 176,
+    "location": 2,
+    "content": "就必须要首先规范化",
+    "music": 0
+  },
+  {
+    "from": 445.14,
+    "to": 447.2,
+    "sid": 177,
+    "location": 2,
+    "content": "什么时候应该进行陆空通话",
+    "music": 0
+  },
+  {
+    "from": 447.2,
+    "to": 448.9,
+    "sid": 178,
+    "location": 2,
+    "content": "这可是个大工程",
+    "music": 0
+  },
+  {
+    "from": 448.9,
+    "to": 452.36,
+    "sid": 179,
+    "location": 2,
+    "content": "你决定先从通航机场训练的最常见的项目",
+    "music": 0
+  },
+  {
+    "from": 452.36,
+    "to": 455.2,
+    "sid": 180,
+    "location": 2,
+    "content": "五编和简单的竞技场开始做起",
+    "music": 0
+  },
+  {
+    "from": 455.2,
+    "to": 460.69,
+    "sid": 181,
+    "location": 2,
+    "content": "所谓五边指的就是飞机沿跑道一侧的一个环形轨迹进行飞行",
+    "music": 0
+  },
+  {
+    "from": 460.69,
+    "to": 461.81,
+    "sid": 182,
+    "location": 2,
+    "content": "在这个过程中",
+    "music": 0
+  },
+  {
+    "from": 461.81,
+    "to": 466.21,
+    "sid": 183,
+    "location": 2,
+    "content": "飞行员可以训练起飞爬升转弯平飞下降",
+    "music": 0
+  },
+  {
+    "from": 466.21,
+    "to": 467.94,
+    "sid": 184,
+    "location": 2,
+    "content": "着陆复飞等项目",
+    "music": 0
+  },
+  {
+    "from": 467.94,
+    "to": 471.05,
+    "sid": 185,
+    "location": 2,
+    "content": "而且即使是在正式的商业运行的环境中",
+    "music": 0
+  },
+  {
+    "from": 471.05,
+    "to": 472.23,
+    "sid": 186,
+    "location": 2,
+    "content": "起飞和降落",
+    "music": 0
+  },
+  {
+    "from": 472.23,
+    "to": 474.77,
+    "sid": 187,
+    "location": 2,
+    "content": "也是基本依照五编的流程进行的",
+    "music": 0
+  },
+  {
+    "from": 474.77,
+    "to": 476.53,
+    "sid": 188,
+    "location": 2,
+    "content": "只不过可能只是一个部分",
+    "music": 0
+  },
+  {
+    "from": 476.53,
+    "to": 478.11,
+    "sid": 189,
+    "location": 2,
+    "content": "而不是整个五边",
+    "music": 0
+  },
+  {
+    "from": 478.11,
+    "to": 482.03,
+    "sid": 190,
+    "location": 2,
+    "content": "所以这也是你规定陆空通话的规则的最佳起点",
+    "music": 0
+  },
+  {
+    "from": 482.03,
+    "to": 484.99,
+    "sid": 191,
+    "location": 2,
+    "content": "我们不妨从机屏出发梳理思路",
+    "music": 0
+  },
+  {
+    "from": 484.99,
+    "to": 486.67,
+    "sid": 192,
+    "location": 2,
+    "content": "以穆拉宾机场为例",
+    "music": 0
+  },
+  {
+    "from": 486.67,
+    "to": 489.07,
+    "sid": 193,
+    "location": 2,
+    "content": "首先飞行员做完了各种检查之后",
+    "music": 0
+  },
+  {
+    "from": 489.07,
+    "to": 490.55,
+    "sid": 194,
+    "location": 2,
+    "content": "来到了飞行区的边境",
+    "music": 0
+  },
+  {
+    "from": 490.55,
+    "to": 493.29,
+    "sid": 195,
+    "location": 2,
+    "content": "这里你觉得就得向地面管制申请",
+    "music": 0
+  },
+  {
+    "from": 493.29,
+    "to": 496.07,
+    "sid": 196,
+    "location": 2,
+    "content": "所以你规定既然是第一次和地面交流",
+    "music": 0
+  },
+  {
+    "from": 496.07,
+    "to": 497.9,
+    "sid": 197,
+    "location": 2,
+    "content": "所以飞行员应该这样说",
+    "music": 0
+  },
+  {
+    "from": 497.9,
+    "to": 498.94,
+    "sid": 198,
+    "location": 2,
+    "content": "我在叫谁",
+    "music": 0
+  },
+  {
+    "from": 498.94,
+    "to": 499.78,
+    "sid": 199,
+    "location": 2,
+    "content": "我是谁",
+    "music": 0
+  },
+  {
+    "from": 499.78,
+    "to": 501.14,
+    "sid": 200,
+    "location": 2,
+    "content": "我的机型是什么",
+    "music": 0
+  },
+  {
+    "from": 501.14,
+    "to": 502.1,
+    "sid": 201,
+    "location": 2,
+    "content": "我在哪里",
+    "music": 0
+  },
+  {
+    "from": 502.1,
+    "to": 503.82,
+    "sid": 202,
+    "location": 2,
+    "content": "如果是训练常用的机场",
+    "music": 0
+  },
+  {
+    "from": 503.82,
+    "to": 506.06,
+    "sid": 203,
+    "location": 2,
+    "content": "还可以报告一下是带飞还是单飞",
+    "music": 0
+  },
+  {
+    "from": 506.06,
+    "to": 507.76,
+    "sid": 204,
+    "location": 2,
+    "content": "我的at代码是什么",
+    "music": 0
+  },
+  {
+    "from": 507.76,
+    "to": 509.56,
+    "sid": 205,
+    "location": 2,
+    "content": "我选择要用哪条跑道",
+    "music": 0
+  },
+  {
+    "from": 509.56,
+    "to": 510.8,
+    "sid": 206,
+    "location": 2,
+    "content": "我想怎么离场",
+    "music": 0
+  },
+  {
+    "from": 510.8,
+    "to": 512,
+    "sid": 207,
+    "location": 2,
+    "content": "离场去哪里",
+    "music": 0
+  },
+  {
+    "from": 512,
+    "to": 517.32,
+    "sid": 208,
+    "location": 2,
+    "content": "比如木拉冰地面EUH赛斯纳172男热车评",
+    "music": 0
+  },
+  {
+    "from": 517.32,
+    "to": 521.76,
+    "sid": 209,
+    "location": 2,
+    "content": "带飞通波P跑到三五左三边离场到训练区",
+    "music": 0
+  },
+  {
+    "from": 521.76,
+    "to": 525.96,
+    "sid": 210,
+    "location": 2,
+    "content": "可是有人反映说这个是UUH还是EA7啊",
+    "music": 0
+  },
+  {
+    "from": 525.96,
+    "to": 528.92,
+    "sid": 211,
+    "location": 2,
+    "content": "情报是P还是B或者是D",
+    "music": 0
+  },
+  {
+    "from": 528.92,
+    "to": 534.88,
+    "sid": 212,
+    "location": 2,
+    "content": "你想到以前上学的时候报答案怕分不清B还是D不都是一个用boy代替",
+    "music": 0
+  },
+  {
+    "from": 534.88,
+    "to": 536.4,
+    "sid": 213,
+    "location": 2,
+    "content": "一个用dog代替吗",
+    "music": 0
+  },
+  {
+    "from": 536.4,
+    "to": 538.44,
+    "sid": 214,
+    "location": 2,
+    "content": "那在无线电这种本来就不清楚",
+    "music": 0
+  },
+  {
+    "from": 538.44,
+    "to": 540.85,
+    "sid": 215,
+    "location": 2,
+    "content": "还掺杂着螺旋桨等噪音的环境下",
+    "music": 0
+  },
+  {
+    "from": 540.85,
+    "to": 545.71,
+    "sid": 216,
+    "location": 2,
+    "content": "就得用更清晰的词语代替发音容易混淆的字母数字",
+    "music": 0
+  },
+  {
+    "from": 545.71,
+    "to": 549.329,
+    "sid": 217,
+    "location": 2,
+    "content": "所以你选择了那些不容易读错的单词代替了字母",
+    "music": 0
+  },
+  {
+    "from": 549.329,
+    "to": 551.089,
+    "sid": 218,
+    "location": 2,
+    "content": "比如用alpha代替A",
+    "music": 0
+  },
+  {
+    "from": 551.089,
+    "to": 552.609,
+    "sid": 219,
+    "location": 2,
+    "content": "用bravo代替B",
+    "music": 0
+  },
+  {
+    "from": 552.609,
+    "to": 556.36,
+    "sid": 220,
+    "location": 2,
+    "content": "刚才的EUH则可以读作echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 556.36,
+    "to": 558.99,
+    "sid": 221,
+    "location": 2,
+    "content": "情报P读作情报啪啪",
+    "music": 0
+  },
+  {
+    "from": 558.99,
+    "to": 561.91,
+    "sid": 222,
+    "location": 2,
+    "content": "至于数字中文的发音也得改",
+    "music": 0
+  },
+  {
+    "from": 561.91,
+    "to": 562.99,
+    "sid": 223,
+    "location": 2,
+    "content": "一改为妖",
+    "music": 0
+  },
+  {
+    "from": 562.99,
+    "to": 564.03,
+    "sid": 224,
+    "location": 2,
+    "content": "二改为两",
+    "music": 0
+  },
+  {
+    "from": 564.03,
+    "to": 565.09,
+    "sid": 225,
+    "location": 2,
+    "content": "七改为拐",
+    "music": 0
+  },
+  {
+    "from": 565.09,
+    "to": 566.37,
+    "sid": 226,
+    "location": 2,
+    "content": "零改为动",
+    "music": 0
+  },
+  {
+    "from": 566.37,
+    "to": 568.37,
+    "sid": 227,
+    "location": 2,
+    "content": "英语则把三读作tree",
+    "music": 0
+  },
+  {
+    "from": 568.37,
+    "to": 569.37,
+    "sid": 228,
+    "location": 2,
+    "content": "而非three",
+    "music": 0
+  },
+  {
+    "from": 569.37,
+    "to": 570.97,
+    "sid": 229,
+    "location": 2,
+    "content": "四读作fer",
+    "music": 0
+  },
+  {
+    "from": 570.97,
+    "to": 572.28,
+    "sid": 230,
+    "location": 2,
+    "content": "五读作five",
+    "music": 0
+  },
+  {
+    "from": 572.28,
+    "to": 573.72,
+    "sid": 231,
+    "location": 2,
+    "content": "九读作NINER",
+    "music": 0
+  },
+  {
+    "from": 573.72,
+    "to": 575.14,
+    "sid": 232,
+    "location": 2,
+    "content": "签子是thousand",
+    "music": 0
+  },
+  {
+    "from": 575.14,
+    "to": 577.54,
+    "sid": 233,
+    "location": 2,
+    "content": "小数点读作point或者DECIM",
+    "music": 0
+  },
+  {
+    "from": 577.54,
+    "to": 583.02,
+    "sid": 234,
+    "location": 2,
+    "content": "所以刚才误解的那个EUA7就应该读作one uniform alpha seven",
+    "music": 0
+  },
+  {
+    "from": 583.02,
+    "to": 586.92,
+    "sid": 235,
+    "location": 2,
+    "content": "这样就绝对不会跟uh的echo uniform hotel搞混了",
+    "music": 0
+  },
+  {
+    "from": 586.92,
+    "to": 589.37,
+    "sid": 236,
+    "location": 2,
+    "content": "这里给各位提供了一个完整的表格",
+    "music": 0
+  },
+  {
+    "from": 589.37,
+    "to": 594.28,
+    "sid": 237,
+    "location": 2,
+    "content": "本视频中提到的表格和文件的下载链接都会附在视频简介中",
+    "music": 0
+  },
+  {
+    "from": 594.28,
+    "to": 596.92,
+    "sid": 238,
+    "location": 2,
+    "content": "不过有些特殊的情况倒是不必这样读",
+    "music": 0
+  },
+  {
+    "from": 596.92,
+    "to": 598.64,
+    "sid": 239,
+    "location": 2,
+    "content": "比如机型当中的172",
+    "music": 0
+  },
+  {
+    "from": 598.64,
+    "to": 601.48,
+    "sid": 240,
+    "location": 2,
+    "content": "就按照习惯读作172即可",
+    "music": 0
+  },
+  {
+    "from": 602.2,
+    "to": 605.82,
+    "sid": 241,
+    "location": 2,
+    "content": "当然穆拉宾机场在澳洲这里我们要用英语",
+    "music": 0
+  },
+  {
+    "from": 605.82,
+    "to": 607.2,
+    "sid": 242,
+    "location": 2,
+    "content": "所以我们要说的是",
+    "music": 0
+  },
+  {
+    "from": 607.2,
+    "to": 608.12,
+    "sid": 243,
+    "location": 2,
+    "content": "Robin ground",
+    "music": 0
+  },
+  {
+    "from": 608.12,
+    "to": 609.44,
+    "sid": 244,
+    "location": 2,
+    "content": "Echo uniform hotel says",
+    "music": 0
+  },
+  {
+    "from": 609.44,
+    "to": 611.4,
+    "sid": 245,
+    "location": 2,
+    "content": "No one seven two in southern random bay",
+    "music": 0
+  },
+  {
+    "from": 611.4,
+    "to": 616.78,
+    "sid": 246,
+    "location": 2,
+    "content": "Information papa dual request taxi run with twenty five left dwin departure to training area",
+    "music": 0
+  },
+  {
+    "from": 618.02,
+    "to": 620.16,
+    "sid": 247,
+    "location": 2,
+    "content": "所以先前演示的通波的英语",
+    "music": 0
+  },
+  {
+    "from": 620.16,
+    "to": 620.9,
+    "sid": 248,
+    "location": 2,
+    "content": "也就是",
+    "music": 0
+  },
+  {
+    "from": 620.9,
+    "to": 622.98,
+    "sid": 249,
+    "location": 2,
+    "content": "It is information papa runaway",
+    "music": 0
+  },
+  {
+    "from": 622.98,
+    "to": 624.5,
+    "sid": 250,
+    "location": 2,
+    "content": "Twenty five left frequency",
+    "music": 0
+  },
+  {
+    "from": 624.5,
+    "to": 624.86,
+    "sid": 251,
+    "location": 2,
+    "content": "One two",
+    "music": 0
+  },
+  {
+    "from": 624.86,
+    "to": 625.42,
+    "sid": 252,
+    "location": 2,
+    "content": "Three decimo",
+    "music": 0
+  },
+  {
+    "from": 625.42,
+    "to": 625.98,
+    "sid": 253,
+    "location": 2,
+    "content": "Zero",
+    "music": 0
+  },
+  {
+    "from": 625.98,
+    "to": 627.46,
+    "sid": 254,
+    "location": 2,
+    "content": "Three five ride frequency",
+    "music": 0
+  },
+  {
+    "from": 627.46,
+    "to": 628.02,
+    "sid": 255,
+    "location": 2,
+    "content": "One one eight",
+    "music": 0
+  },
+  {
+    "from": 628.02,
+    "to": 628.34,
+    "sid": 256,
+    "location": 2,
+    "content": "Decimo",
+    "music": 0
+  },
+  {
+    "from": 628.34,
+    "to": 629.22,
+    "sid": 257,
+    "location": 2,
+    "content": "One wind",
+    "music": 0
+  },
+  {
+    "from": 629.22,
+    "to": 630.28,
+    "sid": 258,
+    "location": 2,
+    "content": "Two three zero",
+    "music": 0
+  },
+  {
+    "from": 630.28,
+    "to": 631.32,
+    "sid": 259,
+    "location": 2,
+    "content": "One zero nuts",
+    "music": 0
+  },
+  {
+    "from": 631.32,
+    "to": 632,
+    "sid": 260,
+    "location": 2,
+    "content": "Cross wind",
+    "music": 0
+  },
+  {
+    "from": 632,
+    "to": 634.34,
+    "sid": 261,
+    "location": 2,
+    "content": "Five knots cloud few",
+    "music": 0
+  },
+  {
+    "from": 634.34,
+    "to": 635.24,
+    "sid": 262,
+    "location": 2,
+    "content": "Five thousand",
+    "music": 0
+  },
+  {
+    "from": 635.24,
+    "to": 635.44,
+    "sid": 263,
+    "location": 2,
+    "content": "Two",
+    "music": 0
+  },
+  {
+    "from": 635.44,
+    "to": 636.41,
+    "sid": 264,
+    "location": 2,
+    "content": "Hundred feet",
+    "music": 0
+  },
+  {
+    "from": 636.41,
+    "to": 637.25,
+    "sid": 265,
+    "location": 2,
+    "content": "Scattered",
+    "music": 0
+  },
+  {
+    "from": 637.25,
+    "to": 638.99,
+    "sid": 266,
+    "location": 2,
+    "content": "Eight thousand feet with ability",
+    "music": 0
+  },
+  {
+    "from": 638.99,
+    "to": 640.37,
+    "sid": 267,
+    "location": 2,
+    "content": "Over of ten kilometers",
+    "music": 0
+  },
+  {
+    "from": 640.37,
+    "to": 640.93,
+    "sid": 268,
+    "location": 2,
+    "content": "Temperature",
+    "music": 0
+  },
+  {
+    "from": 640.93,
+    "to": 641.57,
+    "sid": 269,
+    "location": 2,
+    "content": "One zero",
+    "music": 0
+  },
+  {
+    "from": 641.57,
+    "to": 642.01,
+    "sid": 270,
+    "location": 2,
+    "content": "Kilan",
+    "music": 0
+  },
+  {
+    "from": 642.01,
+    "to": 642.17,
+    "sid": 271,
+    "location": 2,
+    "content": "H",
+    "music": 0
+  },
+  {
+    "from": 642.17,
+    "to": 642.65,
+    "sid": 272,
+    "location": 2,
+    "content": "One zero",
+    "music": 0
+  },
+  {
+    "from": 642.65,
+    "to": 642.81,
+    "sid": 273,
+    "location": 2,
+    "content": "Two",
+    "music": 0
+  },
+  {
+    "from": 642.81,
+    "to": 644.63,
+    "sid": 274,
+    "location": 2,
+    "content": "Seven in information pa pa",
+    "music": 0
+  },
+  {
+    "from": 644.63,
+    "to": 648.03,
+    "sid": 275,
+    "location": 2,
+    "content": "并且中文的通波P也要改为通波啪啪",
+    "music": 0
+  },
+  {
+    "from": 648.03,
+    "to": 653.49,
+    "sid": 276,
+    "location": 2,
+    "content": "当然这时候无线电硬件和技术上导致的差音质的短板就体现出来了",
+    "music": 0
+  },
+  {
+    "from": 653.49,
+    "to": 655.45,
+    "sid": 277,
+    "location": 2,
+    "content": "这种一大老长串的英语出来",
+    "music": 0
+  },
+  {
+    "from": 655.45,
+    "to": 657.35,
+    "sid": 278,
+    "location": 2,
+    "content": "加上超绝清朝英式",
+    "music": 0
+  },
+  {
+    "from": 657.35,
+    "to": 658.63,
+    "sid": 279,
+    "location": 2,
+    "content": "其实很难听清",
+    "music": 0
+  },
+  {
+    "from": 658.63,
+    "to": 659.95,
+    "sid": 280,
+    "location": 2,
+    "content": "各位不妨感受一下",
+    "music": 0
+  },
+  {
+    "from": 659.95,
+    "to": 661.93,
+    "sid": 281,
+    "location": 2,
+    "content": "掏出纸笔试试看能不能跟上",
+    "music": 0
+  },
+  {
+    "from": 661.93,
+    "to": 664.82,
+    "sid": 282,
+    "location": 2,
+    "content": "把关键信息记录下来啊",
+    "music": 0
+  },
+  {
+    "from": 667.82,
+    "to": 669.78,
+    "sid": 283,
+    "location": 2,
+    "content": "We're up in tial information november",
+    "music": 0
+  },
+  {
+    "from": 669.78,
+    "to": 672.34,
+    "sid": 284,
+    "location": 2,
+    "content": "For my three five run arrow with a podisease",
+    "music": 0
+  },
+  {
+    "from": 672.34,
+    "to": 673.06,
+    "sid": 285,
+    "location": 2,
+    "content": "C one one",
+    "music": 0
+  },
+  {
+    "from": 673.06,
+    "to": 679.739,
+    "sid": 286,
+    "location": 2,
+    "content": "Eight destment one from my three five left arrivals in depes west c one two three days was there wind",
+    "music": 0
+  },
+  {
+    "from": 679.739,
+    "to": 680.219,
+    "sid": 287,
+    "location": 2,
+    "content": "Three five",
+    "music": 0
+  },
+  {
+    "from": 680.219,
+    "to": 681.559,
+    "sid": 288,
+    "location": 2,
+    "content": "Three degrees at one two unknots",
+    "music": 0
+  },
+  {
+    "from": 681.559,
+    "to": 682.379,
+    "sid": 289,
+    "location": 2,
+    "content": "Actual customers",
+    "music": 0
+  },
+  {
+    "from": 682.379,
+    "to": 684,
+    "sid": 290,
+    "location": 2,
+    "content": "Have one two enough",
+    "music": 0
+  },
+  {
+    "from": 685,
+    "to": 687.62,
+    "sid": 291,
+    "location": 2,
+    "content": "Two two two age one or zero one five",
+    "music": 0
+  },
+  {
+    "from": 687.62,
+    "to": 692.4,
+    "sid": 292,
+    "location": 2,
+    "content": "I first to contact the ground or town at first seas november",
+    "music": 0
+  },
+  {
+    "from": 693.42,
+    "to": 695.12,
+    "sid": 293,
+    "location": 2,
+    "content": "怎么样认输了",
+    "music": 0
+  },
+  {
+    "from": 695.12,
+    "to": 696.1,
+    "sid": 294,
+    "location": 2,
+    "content": "往好处想",
+    "music": 0
+  },
+  {
+    "from": 696.1,
+    "to": 699.26,
+    "sid": 295,
+    "location": 2,
+    "content": "这不是屏幕前绝大多数观众工作的一部分",
+    "music": 0
+  },
+  {
+    "from": 699.26,
+    "to": 700.64,
+    "sid": 296,
+    "location": 2,
+    "content": "但我很负责任的说",
+    "music": 0
+  },
+  {
+    "from": 700.64,
+    "to": 702.62,
+    "sid": 297,
+    "location": 2,
+    "content": "真实情况只会比这更糟糕",
+    "music": 0
+  },
+  {
+    "from": 702.62,
+    "to": 704.92,
+    "sid": 298,
+    "location": 2,
+    "content": "当然其他的通话也没好到哪里去",
+    "music": 0
+  },
+  {
+    "from": 704.92,
+    "to": 708.44,
+    "sid": 299,
+    "location": 2,
+    "content": "所以真正的飞行员和管制都是需要经过严格的训练",
+    "music": 0
+  },
+  {
+    "from": 708.44,
+    "to": 710.7,
+    "sid": 300,
+    "location": 2,
+    "content": "并且对各个环节都极为熟悉",
+    "music": 0
+  },
+  {
+    "from": 710.7,
+    "to": 714.12,
+    "sid": 301,
+    "location": 2,
+    "content": "心里提前要对听到的内容有预期才能听懂",
+    "music": 0
+  },
+  {
+    "from": 714.12,
+    "to": 715.2,
+    "sid": 302,
+    "location": 2,
+    "content": "跟上的",
+    "music": 0
+  },
+  {
+    "from": 715.2,
+    "to": 717.42,
+    "sid": 303,
+    "location": 2,
+    "content": "这时候空管收到了这条指令",
+    "music": 0
+  },
+  {
+    "from": 717.42,
+    "to": 719.5,
+    "sid": 304,
+    "location": 2,
+    "content": "就得立刻往控制塔外面看",
+    "music": 0
+  },
+  {
+    "from": 719.5,
+    "to": 722.03,
+    "sid": 305,
+    "location": 2,
+    "content": "找到飞行员报告的男热车评",
+    "music": 0
+  },
+  {
+    "from": 722.03,
+    "to": 723.55,
+    "sid": 306,
+    "location": 2,
+    "content": "然后如果需要的话",
+    "music": 0
+  },
+  {
+    "from": 723.55,
+    "to": 726.17,
+    "sid": 307,
+    "location": 2,
+    "content": "用望远镜确认一下飞机的注册号",
+    "music": 0
+  },
+  {
+    "from": 726.17,
+    "to": 728.71,
+    "sid": 308,
+    "location": 2,
+    "content": "紧接着观察他要去的跑道口",
+    "music": 0
+  },
+  {
+    "from": 728.71,
+    "to": 730.57,
+    "sid": 309,
+    "location": 2,
+    "content": "看看附近有没有别的飞机",
+    "music": 0
+  },
+  {
+    "from": 730.57,
+    "to": 731.69,
+    "sid": 310,
+    "location": 2,
+    "content": "可能和他冲突",
+    "music": 0
+  },
+  {
+    "from": 731.69,
+    "to": 733.45,
+    "sid": 311,
+    "location": 2,
+    "content": "找到一条不冲突的路线",
+    "music": 0
+  },
+  {
+    "from": 733.45,
+    "to": 735.41,
+    "sid": 312,
+    "location": 2,
+    "content": "然后再反馈给飞行员",
+    "music": 0
+  },
+  {
+    "from": 735.41,
+    "to": 740.47,
+    "sid": 313,
+    "location": 2,
+    "content": "由于频率当中所有的交流都是只要在这个频率下监听的人都能听到的",
+    "music": 0
+  },
+  {
+    "from": 740.47,
+    "to": 744.63,
+    "sid": 314,
+    "location": 2,
+    "content": "所以你规定空管发布的任何指令都必须在开头带上",
+    "music": 0
+  },
+  {
+    "from": 744.63,
+    "to": 745.94,
+    "sid": 315,
+    "location": 2,
+    "content": "是在对谁说",
+    "music": 0
+  },
+  {
+    "from": 745.94,
+    "to": 748.6,
+    "sid": 316,
+    "location": 2,
+    "content": "所以空管的回复应该是对谁说",
+    "music": 0
+  },
+  {
+    "from": 748.6,
+    "to": 750.45,
+    "sid": 317,
+    "location": 2,
+    "content": "怎么滑行跑道多少",
+    "music": 0
+  },
+  {
+    "from": 750.45,
+    "to": 752.93,
+    "sid": 318,
+    "location": 2,
+    "content": "比如在回复刚才的请求的时候",
+    "music": 0
+  },
+  {
+    "from": 752.93,
+    "to": 759.05,
+    "sid": 319,
+    "location": 2,
+    "content": "就可以说echo uniform hotel沿alpha滑行alpha外等候跑到三五左",
+    "music": 0
+  },
+  {
+    "from": 759.05,
+    "to": 761.45,
+    "sid": 320,
+    "location": 2,
+    "content": "英语则是echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 761.45,
+    "to": 765.01,
+    "sid": 321,
+    "location": 2,
+    "content": "taxi via taxi为alpha hotshot of alpha eight runway",
+    "music": 0
+  },
+  {
+    "from": 765.01,
+    "to": 766.11,
+    "sid": 322,
+    "location": 2,
+    "content": "Three five left",
+    "music": 0
+  },
+  {
+    "from": 766.11,
+    "to": 768.59,
+    "sid": 323,
+    "location": 2,
+    "content": "如果正巧没什么空闲的滑行道",
+    "music": 0
+  },
+  {
+    "from": 768.59,
+    "to": 772.31,
+    "sid": 324,
+    "location": 2,
+    "content": "你认为地面也可以只说hold equity form hotel",
+    "music": 0
+  },
+  {
+    "from": 772.31,
+    "to": 774.65,
+    "sid": 325,
+    "location": 2,
+    "content": "或者只说一句equinform hotel",
+    "music": 0
+  },
+  {
+    "from": 774.65,
+    "to": 776.21,
+    "sid": 326,
+    "location": 2,
+    "content": "代表自己收到了消息",
+    "music": 0
+  },
+  {
+    "from": 776.21,
+    "to": 778.17,
+    "sid": 327,
+    "location": 2,
+    "content": "但是没有办法给出路线",
+    "music": 0
+  },
+  {
+    "from": 778.17,
+    "to": 780.84,
+    "sid": 328,
+    "location": 2,
+    "content": "要求echo uniform hotel原地等待",
+    "music": 0
+  },
+  {
+    "from": 780.84,
+    "to": 783.36,
+    "sid": 329,
+    "location": 2,
+    "content": "如果需要飞机给其他飞机让路",
+    "music": 0
+  },
+  {
+    "from": 783.36,
+    "to": 785.43,
+    "sid": 330,
+    "location": 2,
+    "content": "那还可以说给某某飞机让路",
+    "music": 0
+  },
+  {
+    "from": 785.43,
+    "to": 788.61,
+    "sid": 331,
+    "location": 2,
+    "content": "比如给charlie november whisky让路",
+    "music": 0
+  },
+  {
+    "from": 788.61,
+    "to": 791.7,
+    "sid": 332,
+    "location": 2,
+    "content": "英文gave way to charlie november whisky",
+    "music": 0
+  },
+  {
+    "from": 792.02,
+    "to": 794.32,
+    "sid": 333,
+    "location": 2,
+    "content": "然而人非圣贤孰能无过",
+    "music": 0
+  },
+  {
+    "from": 794.32,
+    "to": 797.579,
+    "sid": 334,
+    "location": 2,
+    "content": "可是偏偏在这航空业就得保证万无一失",
+    "music": 0
+  },
+  {
+    "from": 797.579,
+    "to": 801.279,
+    "sid": 335,
+    "location": 2,
+    "content": "所以你还要求飞行员要重复一遍自己听到的关键指令",
+    "music": 0
+  },
+  {
+    "from": 801.279,
+    "to": 802.999,
+    "sid": 336,
+    "location": 2,
+    "content": "加上自己的呼号给管制",
+    "music": 0
+  },
+  {
+    "from": 802.999,
+    "to": 805.019,
+    "sid": 337,
+    "location": 2,
+    "content": "防止自己听错了或者没听到",
+    "music": 0
+  },
+  {
+    "from": 805.019,
+    "to": 806.43,
+    "sid": 338,
+    "location": 2,
+    "content": "你称之为附送",
+    "music": 0
+  },
+  {
+    "from": 806.43,
+    "to": 809.87,
+    "sid": 339,
+    "location": 2,
+    "content": "比如在收到刚刚滑行到阿尔法的指令后",
+    "music": 0
+  },
+  {
+    "from": 809.87,
+    "to": 813.38,
+    "sid": 340,
+    "location": 2,
+    "content": "飞行员就必须附送说沿alpha滑行alpha8",
+    "music": 0
+  },
+  {
+    "from": 813.38,
+    "to": 814.66,
+    "sid": 341,
+    "location": 2,
+    "content": "等待跑到三五左",
+    "music": 0
+  },
+  {
+    "from": 814.66,
+    "to": 817.6,
+    "sid": 342,
+    "location": 2,
+    "content": "equeform hotel英文taxi wild text",
+    "music": 0
+  },
+  {
+    "from": 817.6,
+    "to": 822.02,
+    "sid": 343,
+    "location": 2,
+    "content": "V alpha holding point alpha eight rn with three five left equote from hotel",
+    "music": 0
+  },
+  {
+    "from": 822.02,
+    "to": 825.06,
+    "sid": 344,
+    "location": 2,
+    "content": "假如飞行员把alpha8的八听漏了",
+    "music": 0
+  },
+  {
+    "from": 825.06,
+    "to": 826.88,
+    "sid": 345,
+    "location": 2,
+    "content": "听成了alpha外等待",
+    "music": 0
+  },
+  {
+    "from": 826.88,
+    "to": 830.069,
+    "sid": 346,
+    "location": 2,
+    "content": "那飞行员就会滑到35U跑道上去",
+    "music": 0
+  },
+  {
+    "from": 830.069,
+    "to": 835.1,
+    "sid": 347,
+    "location": 2,
+    "content": "此时飞行员就会附送沿alpha滑行alpha外等待跑到三五左",
+    "music": 0
+  },
+  {
+    "from": 835.1,
+    "to": 836.28,
+    "sid": 348,
+    "location": 2,
+    "content": "Echo 10form hotel",
+    "music": 0
+  },
+  {
+    "from": 836.28,
+    "to": 839.12,
+    "sid": 349,
+    "location": 2,
+    "content": "那么管制就会立刻意识到对方听错了指令",
+    "music": 0
+  },
+  {
+    "from": 839.12,
+    "to": 841.48,
+    "sid": 350,
+    "location": 2,
+    "content": "立刻回复到echo1的fm hotel",
+    "music": 0
+  },
+  {
+    "from": 841.48,
+    "to": 844.34,
+    "sid": 351,
+    "location": 2,
+    "content": "错误alpha8Y等待英文",
+    "music": 0
+  },
+  {
+    "from": 844.34,
+    "to": 845.56,
+    "sid": 352,
+    "location": 2,
+    "content": "Echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 845.56,
+    "to": 848.62,
+    "sid": 353,
+    "location": 2,
+    "content": "Negative hoshort of alpha eight",
+    "music": 0
+  },
+  {
+    "from": 848.62,
+    "to": 850.66,
+    "sid": 354,
+    "location": 2,
+    "content": "此时飞行员必须再附送回去",
+    "music": 0
+  },
+  {
+    "from": 850.66,
+    "to": 852.589,
+    "sid": 355,
+    "location": 2,
+    "content": "直到完全正确为止",
+    "music": 0
+  },
+  {
+    "from": 852.589,
+    "to": 856.289,
+    "sid": 356,
+    "location": 2,
+    "content": "现在飞行员按照管制的要求滑行进入飞行区",
+    "music": 0
+  },
+  {
+    "from": 856.289,
+    "to": 859.31,
+    "sid": 357,
+    "location": 2,
+    "content": "并且沿着收到的路线滑到了指定的等待点",
+    "music": 0
+  },
+  {
+    "from": 859.31,
+    "to": 861.93,
+    "sid": 358,
+    "location": 2,
+    "content": "这里会遇到你曾经发明的城墙线",
+    "music": 0
+  },
+  {
+    "from": 861.93,
+    "to": 864.42,
+    "sid": 359,
+    "location": 2,
+    "content": "也就是A型跑道等待位置标识",
+    "music": 0
+  },
+  {
+    "from": 864.42,
+    "to": 868.06,
+    "sid": 360,
+    "location": 2,
+    "content": "你曾经规定过城墙线实线向虚线一侧穿越",
+    "music": 0
+  },
+  {
+    "from": 868.06,
+    "to": 870.66,
+    "sid": 361,
+    "location": 2,
+    "content": "也就是现在需要向塔台申请",
+    "music": 0
+  },
+  {
+    "from": 870.66,
+    "to": 873.42,
+    "sid": 362,
+    "location": 2,
+    "content": "所以飞行员把频率调整到对应的塔台",
+    "music": 0
+  },
+  {
+    "from": 873.42,
+    "to": 875.26,
+    "sid": 363,
+    "location": 2,
+    "content": "然后申请起飞",
+    "music": 0
+  },
+  {
+    "from": 875.759,
+    "to": 877.239,
+    "sid": 364,
+    "location": 2,
+    "content": "只不过没过多久",
+    "music": 0
+  },
+  {
+    "from": 877.239,
+    "to": 878.919,
+    "sid": 365,
+    "location": 2,
+    "content": "一座机场传来噩耗",
+    "music": 0
+  },
+  {
+    "from": 878.919,
+    "to": 880.21,
+    "sid": 366,
+    "location": 2,
+    "content": "在一个大雾天",
+    "music": 0
+  },
+  {
+    "from": 880.21,
+    "to": 883.33,
+    "sid": 367,
+    "location": 2,
+    "content": "一架飞机在另一架飞机还没脱离跑道的时候",
+    "music": 0
+  },
+  {
+    "from": 883.33,
+    "to": 889.86,
+    "sid": 368,
+    "location": 2,
+    "content": "就把塔台提供了起飞后的航路许可当中的起飞一词理解成了允许起飞",
+    "music": 0
+  },
+  {
+    "from": 889.86,
+    "to": 895.419,
+    "sid": 369,
+    "location": 2,
+    "content": "结果与正在跑道上寻找查理三滑行道的飞机迎面撞上两架飞",
+    "music": 0
+  },
+  {
+    "from": 895.419,
+    "to": 897.639,
+    "sid": 370,
+    "location": 2,
+    "content": "机上总计583人上升",
+    "music": 0
+  },
+  {
+    "from": 897.639,
+    "to": 899.77,
+    "sid": 371,
+    "location": 2,
+    "content": "酿成了史上最大的困难",
+    "music": 0
+  },
+  {
+    "from": 899.77,
+    "to": 902.67,
+    "sid": 372,
+    "location": 2,
+    "content": "因此你严格要求起飞一次",
+    "music": 0
+  },
+  {
+    "from": 902.67,
+    "to": 904.67,
+    "sid": 373,
+    "location": 2,
+    "content": "旨在允许航空器起飞",
+    "music": 0
+  },
+  {
+    "from": 904.67,
+    "to": 907.39,
+    "sid": 374,
+    "location": 2,
+    "content": "取消起飞或中断起飞时使用",
+    "music": 0
+  },
+  {
+    "from": 907.39,
+    "to": 911.57,
+    "sid": 375,
+    "location": 2,
+    "content": "其他情况下应使用离场或离地表达起飞的概念",
+    "music": 0
+  },
+  {
+    "from": 911.57,
+    "to": 914.11,
+    "sid": 376,
+    "location": 2,
+    "content": "所以上面的穆拉宾机场的案例中",
+    "music": 0
+  },
+  {
+    "from": 914.11,
+    "to": 916.01,
+    "sid": 377,
+    "location": 2,
+    "content": "飞行员应该这样发起申请",
+    "music": 0
+  },
+  {
+    "from": 916.01,
+    "to": 917.01,
+    "sid": 378,
+    "location": 2,
+    "content": "穆拉丁塔台",
+    "music": 0
+  },
+  {
+    "from": 917.01,
+    "to": 920.19,
+    "sid": 379,
+    "location": 2,
+    "content": "echo uniform hotel alpha8跑到三五左",
+    "music": 0
+  },
+  {
+    "from": 920.19,
+    "to": 922.11,
+    "sid": 380,
+    "location": 2,
+    "content": "请求三边离场到训练区",
+    "music": 0
+  },
+  {
+    "from": 922.11,
+    "to": 924.55,
+    "sid": 381,
+    "location": 2,
+    "content": "对应的英语则是rubin tower",
+    "music": 0
+  },
+  {
+    "from": 924.55,
+    "to": 926.69,
+    "sid": 382,
+    "location": 2,
+    "content": "Echo uniform hotel offer a runway",
+    "music": 0
+  },
+  {
+    "from": 926.69,
+    "to": 927.49,
+    "sid": 383,
+    "location": 2,
+    "content": "Twenty five left",
+    "music": 0
+  },
+  {
+    "from": 927.49,
+    "to": 930.579,
+    "sid": 384,
+    "location": 2,
+    "content": "Request dwin departure to train area",
+    "music": 0
+  },
+  {
+    "from": 930.899,
+    "to": 934.739,
+    "sid": 385,
+    "location": 2,
+    "content": "现在塔台要决定是否放eq uniform hotel起飞",
+    "music": 0
+  },
+  {
+    "from": 934.739,
+    "to": 936.839,
+    "sid": 386,
+    "location": 2,
+    "content": "如果前后空域都是空的",
+    "music": 0
+  },
+  {
+    "from": 936.839,
+    "to": 938.339,
+    "sid": 387,
+    "location": 2,
+    "content": "跑道上也没有飞机",
+    "music": 0
+  },
+  {
+    "from": 938.339,
+    "to": 941.199,
+    "sid": 388,
+    "location": 2,
+    "content": "也没有正在穿越跑道的飞机或者其他障碍物",
+    "music": 0
+  },
+  {
+    "from": 941.199,
+    "to": 943.359,
+    "sid": 389,
+    "location": 2,
+    "content": "也没有前面飞机留下的尾流",
+    "music": 0
+  },
+  {
+    "from": 943.359,
+    "to": 944.98,
+    "sid": 390,
+    "location": 2,
+    "content": "就可以允许起飞",
+    "music": 0
+  },
+  {
+    "from": 944.98,
+    "to": 947.56,
+    "sid": 391,
+    "location": 2,
+    "content": "这个时候就可以说起飞一词了",
+    "music": 0
+  },
+  {
+    "from": 947.56,
+    "to": 951.02,
+    "sid": 392,
+    "location": 2,
+    "content": "echo uniform hotel跑到三五左可以起飞",
+    "music": 0
+  },
+  {
+    "from": 951.02,
+    "to": 953.08,
+    "sid": 393,
+    "location": 2,
+    "content": "英语是eo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 953.08,
+    "to": 954.74,
+    "sid": 394,
+    "location": 2,
+    "content": "Run with three five left",
+    "music": 0
+  },
+  {
+    "from": 954.74,
+    "to": 956.11,
+    "sid": 395,
+    "location": 2,
+    "content": "Clear for takeoff",
+    "music": 0
+  },
+  {
+    "from": 956.11,
+    "to": 957.65,
+    "sid": 396,
+    "location": 2,
+    "content": "一旦收到这条许可",
+    "music": 0
+  },
+  {
+    "from": 957.65,
+    "to": 959.31,
+    "sid": 397,
+    "location": 2,
+    "content": "飞行员就可以附送跑道",
+    "music": 0
+  },
+  {
+    "from": 959.31,
+    "to": 960.49,
+    "sid": 398,
+    "location": 2,
+    "content": "三五左允许起飞",
+    "music": 0
+  },
+  {
+    "from": 960.49,
+    "to": 966.619,
+    "sid": 399,
+    "location": 2,
+    "content": "echo uniform hotel英语runway处five left cleared for take off acqueform hotel",
+    "music": 0
+  },
+  {
+    "from": 966.619,
+    "to": 969.01,
+    "sid": 400,
+    "location": 2,
+    "content": "并且进入跑道滑跑起飞",
+    "music": 0
+  },
+  {
+    "from": 969.37,
+    "to": 972.79,
+    "sid": 401,
+    "location": 2,
+    "content": "但是如果由于各种原因暂时不能起飞",
+    "music": 0
+  },
+  {
+    "from": 972.79,
+    "to": 976.2,
+    "sid": 402,
+    "location": 2,
+    "content": "你觉得那塔台也该给飞机一个答复",
+    "music": 0
+  },
+  {
+    "from": 976.2,
+    "to": 978.18,
+    "sid": 403,
+    "location": 2,
+    "content": "让飞行员知道自己的申请",
+    "music": 0
+  },
+  {
+    "from": 978.18,
+    "to": 979.02,
+    "sid": 404,
+    "location": 2,
+    "content": "塔台收到了",
+    "music": 0
+  },
+  {
+    "from": 979.02,
+    "to": 980.03,
+    "sid": 405,
+    "location": 2,
+    "content": "要原地等待",
+    "music": 0
+  },
+  {
+    "from": 980.03,
+    "to": 983.55,
+    "sid": 406,
+    "location": 2,
+    "content": "就可以说eq uniform hotel跑到三五左外等待",
+    "music": 0
+  },
+  {
+    "from": 983.55,
+    "to": 985.99,
+    "sid": 407,
+    "location": 2,
+    "content": "或者eq uniform hotel原地等待",
+    "music": 0
+  },
+  {
+    "from": 985.99,
+    "to": 988.23,
+    "sid": 408,
+    "location": 2,
+    "content": "英语分别为echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 988.23,
+    "to": 989.59,
+    "sid": 409,
+    "location": 2,
+    "content": "Host shot of runway tree",
+    "music": 0
+  },
+  {
+    "from": 989.59,
+    "to": 993,
+    "sid": 410,
+    "location": 2,
+    "content": "five left和echo uniform hotel hold position",
+    "music": 0
+  },
+  {
+    "from": 993,
+    "to": 995.64,
+    "sid": 411,
+    "location": 2,
+    "content": "而这条指令不需要飞行员附送",
+    "music": 0
+  },
+  {
+    "from": 995.64,
+    "to": 999.26,
+    "sid": 412,
+    "location": 2,
+    "content": "有的时候是因为前面的飞机的尾流不能起飞",
+    "music": 0
+  },
+  {
+    "from": 999.26,
+    "to": 1001.25,
+    "sid": 413,
+    "location": 2,
+    "content": "而不是后面还有飞机没有降落",
+    "music": 0
+  },
+  {
+    "from": 1001.25,
+    "to": 1003.61,
+    "sid": 414,
+    "location": 2,
+    "content": "那就可以让飞机上跑道先等着",
+    "music": 0
+  },
+  {
+    "from": 1003.61,
+    "to": 1004.89,
+    "sid": 415,
+    "location": 2,
+    "content": "等到允许起飞了",
+    "music": 0
+  },
+  {
+    "from": 1004.89,
+    "to": 1006.07,
+    "sid": 416,
+    "location": 2,
+    "content": "就可以立刻起飞",
+    "music": 0
+  },
+  {
+    "from": 1006.07,
+    "to": 1008.79,
+    "sid": 417,
+    "location": 2,
+    "content": "你把这个进程称之为进跑道等待",
+    "music": 0
+  },
+  {
+    "from": 1008.79,
+    "to": 1015.53,
+    "sid": 418,
+    "location": 2,
+    "content": "比如塔台可以说eq uniform hotel进跑道等待英文eq uniform hotel line up and wait",
+    "music": 0
+  },
+  {
+    "from": 1015.53,
+    "to": 1019.37,
+    "sid": 419,
+    "location": 2,
+    "content": "这时候飞行员就可以附送进跑道等待eq uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1019.37,
+    "to": 1022.42,
+    "sid": 420,
+    "location": 2,
+    "content": "并且进跑道对准中线准备起飞",
+    "music": 0
+  },
+  {
+    "from": 1022.74,
+    "to": 1025.46,
+    "sid": 421,
+    "location": 2,
+    "content": "还有的时候前面的飞机起飞了",
+    "music": 0
+  },
+  {
+    "from": 1025.46,
+    "to": 1026.84,
+    "sid": 422,
+    "location": 2,
+    "content": "后面的还没有落地",
+    "music": 0
+  },
+  {
+    "from": 1026.84,
+    "to": 1028.48,
+    "sid": 423,
+    "location": 2,
+    "content": "正好有个短暂的空档",
+    "music": 0
+  },
+  {
+    "from": 1028.48,
+    "to": 1030.469,
+    "sid": 424,
+    "location": 2,
+    "content": "允许正在等待的飞机起飞",
+    "music": 0
+  },
+  {
+    "from": 1030.469,
+    "to": 1032.829,
+    "sid": 425,
+    "location": 2,
+    "content": "那你就让空管说立即起飞",
+    "music": 0
+  },
+  {
+    "from": 1032.829,
+    "to": 1034.269,
+    "sid": 426,
+    "location": 2,
+    "content": "如果飞机做好了准备",
+    "music": 0
+  },
+  {
+    "from": 1034.269,
+    "to": 1035.589,
+    "sid": 427,
+    "location": 2,
+    "content": "就可以立即起飞",
+    "music": 0
+  },
+  {
+    "from": 1035.589,
+    "to": 1037.289,
+    "sid": 428,
+    "location": 2,
+    "content": "否则就不允许起飞了",
+    "music": 0
+  },
+  {
+    "from": 1037.289,
+    "to": 1040.269,
+    "sid": 429,
+    "location": 2,
+    "content": "这时候如果飞机已经进入跑道空管",
+    "music": 0
+  },
+  {
+    "from": 1040.269,
+    "to": 1042.889,
+    "sid": 430,
+    "location": 2,
+    "content": "可以说echo uniform hotel立即起飞",
+    "music": 0
+  },
+  {
+    "from": 1042.889,
+    "to": 1044.069,
+    "sid": 431,
+    "location": 2,
+    "content": "否则脱离跑道",
+    "music": 0
+  },
+  {
+    "from": 1044.069,
+    "to": 1048.84,
+    "sid": 432,
+    "location": 2,
+    "content": "英文echo uniform hotel take off immediately ovacate runway",
+    "music": 0
+  },
+  {
+    "from": 1048.84,
+    "to": 1050.56,
+    "sid": 433,
+    "location": 2,
+    "content": "如果飞机还没进入",
+    "music": 0
+  },
+  {
+    "from": 1050.56,
+    "to": 1053.54,
+    "sid": 434,
+    "location": 2,
+    "content": "那就可以说i could uniform protel立即起飞",
+    "music": 0
+  },
+  {
+    "from": 1053.54,
+    "to": 1055.8,
+    "sid": 435,
+    "location": 2,
+    "content": "否则跑道外等待英文",
+    "music": 0
+  },
+  {
+    "from": 1055.8,
+    "to": 1058.06,
+    "sid": 436,
+    "location": 2,
+    "content": "Echo uniform d'll take off immediately",
+    "music": 0
+  },
+  {
+    "from": 1058.06,
+    "to": 1060.03,
+    "sid": 437,
+    "location": 2,
+    "content": "A whole shot of runway",
+    "music": 0
+  },
+  {
+    "from": 1060.03,
+    "to": 1062.01,
+    "sid": 438,
+    "location": 2,
+    "content": "飞行员如果可以起飞",
+    "music": 0
+  },
+  {
+    "from": 1062.01,
+    "to": 1063.75,
+    "sid": 439,
+    "location": 2,
+    "content": "就可以附送立即起飞",
+    "music": 0
+  },
+  {
+    "from": 1063.75,
+    "to": 1067,
+    "sid": 440,
+    "location": 2,
+    "content": "echo原来from hotel英文是take off immediately",
+    "music": 0
+  },
+  {
+    "from": 1067,
+    "to": 1068.34,
+    "sid": 441,
+    "location": 2,
+    "content": "Echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1068.34,
+    "to": 1068.98,
+    "sid": 442,
+    "location": 2,
+    "content": "如果不能",
+    "music": 0
+  },
+  {
+    "from": 1068.98,
+    "to": 1069.58,
+    "sid": 443,
+    "location": 2,
+    "content": "那就附送",
+    "music": 0
+  },
+  {
+    "from": 1069.58,
+    "to": 1070.54,
+    "sid": 444,
+    "location": 2,
+    "content": "不能立即起飞",
+    "music": 0
+  },
+  {
+    "from": 1070.54,
+    "to": 1071.76,
+    "sid": 445,
+    "location": 2,
+    "content": "Echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1071.76,
+    "to": 1073.56,
+    "sid": 446,
+    "location": 2,
+    "content": "英文unable to immediate",
+    "music": 0
+  },
+  {
+    "from": 1073.56,
+    "to": 1076.56,
+    "sid": 447,
+    "location": 2,
+    "content": "take off equism hotel即可",
+    "music": 0
+  },
+  {
+    "from": 1076.89,
+    "to": 1078.81,
+    "sid": 448,
+    "location": 2,
+    "content": "现在飞机正常升空了",
+    "music": 0
+  },
+  {
+    "from": 1078.81,
+    "to": 1079.77,
+    "sid": 449,
+    "location": 2,
+    "content": "一旦离场",
+    "music": 0
+  },
+  {
+    "from": 1079.77,
+    "to": 1082.11,
+    "sid": 450,
+    "location": 2,
+    "content": "也就是出了机场管辖的管制区",
+    "music": 0
+  },
+  {
+    "from": 1082.11,
+    "to": 1083.79,
+    "sid": 451,
+    "location": 2,
+    "content": "如果进入了管制空域",
+    "music": 0
+  },
+  {
+    "from": 1083.79,
+    "to": 1086.33,
+    "sid": 452,
+    "location": 2,
+    "content": "就要立刻接入对应的曲调的频率",
+    "music": 0
+  },
+  {
+    "from": 1086.33,
+    "to": 1088.07,
+    "sid": 453,
+    "location": 2,
+    "content": "并且调整应答机编号",
+    "music": 0
+  },
+  {
+    "from": 1088.07,
+    "to": 1089.65,
+    "sid": 454,
+    "location": 2,
+    "content": "接收区掉的指挥",
+    "music": 0
+  },
+  {
+    "from": 1089.65,
+    "to": 1091.69,
+    "sid": 455,
+    "location": 2,
+    "content": "不过在你目前的规划当中",
+    "music": 0
+  },
+  {
+    "from": 1091.69,
+    "to": 1093.95,
+    "sid": 456,
+    "location": 2,
+    "content": "暂时还不用考虑这个问题",
+    "music": 0
+  },
+  {
+    "from": 1093.95,
+    "to": 1096.65,
+    "sid": 457,
+    "location": 2,
+    "content": "暂且当做附近都是非管制空域吧",
+    "music": 0
+  },
+  {
+    "from": 1096.65,
+    "to": 1100.92,
+    "sid": 458,
+    "location": 2,
+    "content": "你应该允许自己把这些复杂的事情交给明天的自己",
+    "music": 0
+  },
+  {
+    "from": 1101.16,
+    "to": 1103.28,
+    "sid": 459,
+    "location": 2,
+    "content": "等到飞机再回到机场的时候",
+    "music": 0
+  },
+  {
+    "from": 1103.28,
+    "to": 1106.44,
+    "sid": 460,
+    "location": 2,
+    "content": "就需要遵循一系列标准离场程序的一个",
+    "music": 0
+  },
+  {
+    "from": 1106.44,
+    "to": 1109.71,
+    "sid": 461,
+    "location": 2,
+    "content": "这些程序往往都会在特定的路径点开始",
+    "music": 0
+  },
+  {
+    "from": 1109.71,
+    "to": 1114.37,
+    "sid": 462,
+    "location": 2,
+    "content": "所以飞行员需要在对应的路径点调整到机场对应的塔台频率",
+    "music": 0
+  },
+  {
+    "from": 1114.37,
+    "to": 1117.85,
+    "sid": 463,
+    "location": 2,
+    "content": "此时是你进场时第一次和塔台对话",
+    "music": 0
+  },
+  {
+    "from": 1117.85,
+    "to": 1120.39,
+    "sid": 464,
+    "location": 2,
+    "content": "所以你要求飞行员要先叫一下塔台",
+    "music": 0
+  },
+  {
+    "from": 1120.39,
+    "to": 1125.46,
+    "sid": 465,
+    "location": 2,
+    "content": "然后汇报自己的呼号机型位置高度和最近一次听到的通波",
+    "music": 0
+  },
+  {
+    "from": 1125.46,
+    "to": 1127.44,
+    "sid": 466,
+    "location": 2,
+    "content": "以方便塔台观察自己",
+    "music": 0
+  },
+  {
+    "from": 1127.44,
+    "to": 1130.27,
+    "sid": 467,
+    "location": 2,
+    "content": "并且给自己安排加入进近五边",
+    "music": 0
+  },
+  {
+    "from": 1130.27,
+    "to": 1134.029,
+    "sid": 468,
+    "location": 2,
+    "content": "于是你给出的格式形似于莫拉冰塔台",
+    "music": 0
+  },
+  {
+    "from": 1134.029,
+    "to": 1135.249,
+    "sid": 469,
+    "location": 2,
+    "content": "Echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1135.249,
+    "to": 1137.169,
+    "sid": 470,
+    "location": 2,
+    "content": "赛斯纳172卡戎",
+    "music": 0
+  },
+  {
+    "from": 1137.169,
+    "to": 1138.829,
+    "sid": 471,
+    "location": 2,
+    "content": "1500英尺通波",
+    "music": 0
+  },
+  {
+    "from": 1138.829,
+    "to": 1139.549,
+    "sid": 472,
+    "location": 2,
+    "content": "Quebec",
+    "music": 0
+  },
+  {
+    "from": 1139.549,
+    "to": 1143.2,
+    "sid": 473,
+    "location": 2,
+    "content": "入行对应的英文是morabin ta",
+    "music": 0
+  },
+  {
+    "from": 1143.2,
+    "to": 1144.48,
+    "sid": 474,
+    "location": 2,
+    "content": "Echo uniform motel says",
+    "music": 0
+  },
+  {
+    "from": 1144.48,
+    "to": 1145.12,
+    "sid": 475,
+    "location": 2,
+    "content": "No one seven",
+    "music": 0
+  },
+  {
+    "from": 1145.12,
+    "to": 1146.28,
+    "sid": 476,
+    "location": 2,
+    "content": "Two kn",
+    "music": 0
+  },
+  {
+    "from": 1146.28,
+    "to": 1146.98,
+    "sid": 477,
+    "location": 2,
+    "content": "One thousand",
+    "music": 0
+  },
+  {
+    "from": 1146.98,
+    "to": 1148.8,
+    "sid": 478,
+    "location": 2,
+    "content": "Five hundred feet information",
+    "music": 0
+  },
+  {
+    "from": 1148.8,
+    "to": 1150.98,
+    "sid": 479,
+    "location": 2,
+    "content": "Quebec in bound",
+    "music": 0
+  },
+  {
+    "from": 1151.26,
+    "to": 1154.12,
+    "sid": 480,
+    "location": 2,
+    "content": "这时候塔台接收到了你的进场通话",
+    "music": 0
+  },
+  {
+    "from": 1154.12,
+    "to": 1156.48,
+    "sid": 481,
+    "location": 2,
+    "content": "如果前面进进的五边允许你加入",
+    "music": 0
+  },
+  {
+    "from": 1156.48,
+    "to": 1157.96,
+    "sid": 482,
+    "location": 2,
+    "content": "就会告诉你加入哪条边",
+    "music": 0
+  },
+  {
+    "from": 1157.96,
+    "to": 1159.28,
+    "sid": 483,
+    "location": 2,
+    "content": "在哪条跑道降落",
+    "music": 0
+  },
+  {
+    "from": 1159.28,
+    "to": 1161.2,
+    "sid": 484,
+    "location": 2,
+    "content": "比如echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1161.2,
+    "to": 1163.32,
+    "sid": 485,
+    "location": 2,
+    "content": "加入五边跑道三五左",
+    "music": 0
+  },
+  {
+    "from": 1163.32,
+    "to": 1165.16,
+    "sid": 486,
+    "location": 2,
+    "content": "英文echo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1165.16,
+    "to": 1167.679,
+    "sid": 487,
+    "location": 2,
+    "content": "join final runway除以five left",
+    "music": 0
+  },
+  {
+    "from": 1167.679,
+    "to": 1171.519,
+    "sid": 488,
+    "location": 2,
+    "content": "听到这里的飞行员需要附送五边跑到三五左",
+    "music": 0
+  },
+  {
+    "from": 1171.519,
+    "to": 1172.92,
+    "sid": 489,
+    "location": 2,
+    "content": "Echo in fm hotel",
+    "music": 0
+  },
+  {
+    "from": 1172.92,
+    "to": 1174.42,
+    "sid": 490,
+    "location": 2,
+    "content": "然后就可以继续下降",
+    "music": 0
+  },
+  {
+    "from": 1174.42,
+    "to": 1175.96,
+    "sid": 491,
+    "location": 2,
+    "content": "进进到对应的五边高度",
+    "music": 0
+  },
+  {
+    "from": 1175.96,
+    "to": 1178.04,
+    "sid": 492,
+    "location": 2,
+    "content": "然后我加入对应的边",
+    "music": 0
+  },
+  {
+    "from": 1178.12,
+    "to": 1179.36,
+    "sid": 493,
+    "location": 2,
+    "content": "一旦进入了边",
+    "music": 0
+  },
+  {
+    "from": 1179.36,
+    "to": 1182.13,
+    "sid": 494,
+    "location": 2,
+    "content": "就可以开始等待塔台给出降落许可了",
+    "music": 0
+  },
+  {
+    "from": 1182.13,
+    "to": 1185.83,
+    "sid": 495,
+    "location": 2,
+    "content": "这时候如果塔台判断允许飞行员降落",
+    "music": 0
+  },
+  {
+    "from": 1185.83,
+    "to": 1187.37,
+    "sid": 496,
+    "location": 2,
+    "content": "就可以直接给出许可",
+    "music": 0
+  },
+  {
+    "from": 1187.37,
+    "to": 1189.41,
+    "sid": 497,
+    "location": 2,
+    "content": "echo uniform hotel可以落地",
+    "music": 0
+  },
+  {
+    "from": 1189.41,
+    "to": 1191.379,
+    "sid": 498,
+    "location": 2,
+    "content": "英文echo uniform hodel",
+    "music": 0
+  },
+  {
+    "from": 1191.379,
+    "to": 1192.339,
+    "sid": 499,
+    "location": 2,
+    "content": "Clear to land und",
+    "music": 0
+  },
+  {
+    "from": 1192.339,
+    "to": 1193.579,
+    "sid": 500,
+    "location": 2,
+    "content": "飞行员附送一下",
+    "music": 0
+  },
+  {
+    "from": 1193.579,
+    "to": 1194.179,
+    "sid": 501,
+    "location": 2,
+    "content": "可以落地",
+    "music": 0
+  },
+  {
+    "from": 1194.179,
+    "to": 1196.33,
+    "sid": 502,
+    "location": 2,
+    "content": "echo uniform hotel就可以了",
+    "music": 0
+  },
+  {
+    "from": 1196.33,
+    "to": 1197.27,
+    "sid": 503,
+    "location": 2,
+    "content": "落地之后",
+    "music": 0
+  },
+  {
+    "from": 1197.27,
+    "to": 1198.73,
+    "sid": 504,
+    "location": 2,
+    "content": "飞机尽快脱离跑道",
+    "music": 0
+  },
+  {
+    "from": 1198.73,
+    "to": 1202.15,
+    "sid": 505,
+    "location": 2,
+    "content": "从虚线一侧穿越城墙线到等待点前等待",
+    "music": 0
+  },
+  {
+    "from": 1202.15,
+    "to": 1204.49,
+    "sid": 506,
+    "location": 2,
+    "content": "这时候飞机已经脱离了飞行区",
+    "music": 0
+  },
+  {
+    "from": 1204.49,
+    "to": 1206.61,
+    "sid": 507,
+    "location": 2,
+    "content": "自然是要切换到地面的频率",
+    "music": 0
+  },
+  {
+    "from": 1206.61,
+    "to": 1209.51,
+    "sid": 508,
+    "location": 2,
+    "content": "所以申请滑入机坪的通话",
+    "music": 0
+  },
+  {
+    "from": 1209.51,
+    "to": 1211.96,
+    "sid": 509,
+    "location": 2,
+    "content": "也要先叫一下地面莫拉兵",
+    "music": 0
+  },
+  {
+    "from": 1211.96,
+    "to": 1213.4,
+    "sid": 510,
+    "location": 2,
+    "content": "地面eo uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1213.4,
+    "to": 1214.58,
+    "sid": 511,
+    "location": 2,
+    "content": "等待点alpha4",
+    "music": 0
+  },
+  {
+    "from": 1214.58,
+    "to": 1215.98,
+    "sid": 512,
+    "location": 2,
+    "content": "申请划入极品",
+    "music": 0
+  },
+  {
+    "from": 1215.98,
+    "to": 1217.78,
+    "sid": 513,
+    "location": 2,
+    "content": "英文morabbin ground",
+    "music": 0
+  },
+  {
+    "from": 1217.78,
+    "to": 1220.06,
+    "sid": 514,
+    "location": 2,
+    "content": "Equuniform motel on alpha forward",
+    "music": 0
+  },
+  {
+    "from": 1220.06,
+    "to": 1222.37,
+    "sid": 515,
+    "location": 2,
+    "content": "Request taxi to april",
+    "music": 0
+  },
+  {
+    "from": 1222.37,
+    "to": 1224.05,
+    "sid": 516,
+    "location": 2,
+    "content": "地面接管这架飞机后",
+    "music": 0
+  },
+  {
+    "from": 1224.05,
+    "to": 1226.12,
+    "sid": 517,
+    "location": 2,
+    "content": "就可以引导飞机滑向极品了",
+    "music": 0
+  },
+  {
+    "from": 1226.12,
+    "to": 1227.52,
+    "sid": 518,
+    "location": 2,
+    "content": "如果路径比较简单",
+    "music": 0
+  },
+  {
+    "from": 1227.52,
+    "to": 1228.88,
+    "sid": 519,
+    "location": 2,
+    "content": "则可以只给出许可",
+    "music": 0
+  },
+  {
+    "from": 1228.88,
+    "to": 1230.26,
+    "sid": 520,
+    "location": 2,
+    "content": "让飞行员自己滑行",
+    "music": 0
+  },
+  {
+    "from": 1230.26,
+    "to": 1231.84,
+    "sid": 521,
+    "location": 2,
+    "content": "比如eq uniform hotel",
+    "music": 0
+  },
+  {
+    "from": 1231.84,
+    "to": 1234.15,
+    "sid": 522,
+    "location": 2,
+    "content": "等待点ROF4滑入机坪",
+    "music": 0
+  },
+  {
+    "from": 1234.15,
+    "to": 1237.09,
+    "sid": 523,
+    "location": 2,
+    "content": "英文echo uniform和tail on alpha forever",
+    "music": 0
+  },
+  {
+    "from": 1237.09,
+    "to": 1238.41,
+    "sid": 524,
+    "location": 2,
+    "content": "Taxi to april",
+    "music": 0
+  },
+  {
+    "from": 1238.41,
+    "to": 1240.31,
+    "sid": 525,
+    "location": 2,
+    "content": "飞行员同样是简单附送一下",
+    "music": 0
+  },
+  {
+    "from": 1240.31,
+    "to": 1241.27,
+    "sid": 526,
+    "location": 2,
+    "content": "就可以滑入机屏",
+    "music": 0
+  },
+  {
+    "from": 1241.27,
+    "to": 1242.889,
+    "sid": 527,
+    "location": 2,
+    "content": "完成这次飞行",
+    "music": 0
+  },
+  {
+    "from": 1242.889,
+    "to": 1247.999,
+    "sid": 528,
+    "location": 2,
+    "content": "现在我不得不恭喜你发明了民航本场陆空通话好了",
+    "music": 0
+  },
+  {
+    "from": 1247.999,
+    "to": 1250.119,
+    "sid": 529,
+    "location": 2,
+    "content": "以上就是本期视频的全部内容了",
+    "music": 0
+  },
+  {
+    "from": 1250.119,
+    "to": 1251.279,
+    "sid": 530,
+    "location": 2,
+    "content": "感谢各位的收看",
+    "music": 0
+  },
+  {
+    "from": 1251.279,
+    "to": 1254.57,
+    "sid": 531,
+    "location": 2,
+    "content": "实际的民航飞行中会出现更多的通话和情况",
+    "music": 0
+  },
+  {
+    "from": 1254.57,
+    "to": 1256.41,
+    "sid": 532,
+    "location": 2,
+    "content": "本视频也只是讲解了一部分",
+    "music": 0
+  },
+  {
+    "from": 1256.41,
+    "to": 1258.83,
+    "sid": 533,
+    "location": 2,
+    "content": "在本场飞行中最常用的陆空通话",
+    "music": 0
+  },
+  {
+    "from": 1258.83,
+    "to": 1261.66,
+    "sid": 534,
+    "location": 2,
+    "content": "也是我日常训练中每天都会用到的对话",
+    "music": 0
+  },
+  {
+    "from": 1261.66,
+    "to": 1265.26,
+    "sid": 535,
+    "location": 2,
+    "content": "所以各位可以搜索实际的相关ATC录音",
+    "music": 0
+  },
+  {
+    "from": 1265.26,
+    "to": 1267.52,
+    "sid": 536,
+    "location": 2,
+    "content": "感受真实的陆空通话的模样",
+    "music": 0
+  },
+  {
+    "from": 1267.52,
+    "to": 1268.96,
+    "sid": 537,
+    "location": 2,
+    "content": "如果你喜欢这期视频的话",
+    "music": 0
+  },
+  {
+    "from": 1268.96,
+    "to": 1269.92,
+    "sid": 538,
+    "location": 2,
+    "content": "还请三连加关注",
+    "music": 0
+  },
+  {
+    "from": 1269.92,
+    "to": 1271.62,
+    "sid": 539,
+    "location": 2,
+    "content": "你的关注是对我最大的支持",
+    "music": 0
+  },
+  {
+    "from": 1271.62,
+    "to": 1273.52,
+    "sid": 540,
+    "location": 2,
+    "content": "本期视频点赞过1000就更新",
+    "music": 0
+  },
+  {
+    "from": 1273.52,
+    "to": 1274.12,
+    "sid": 541,
+    "location": 2,
+    "content": "陆空通话",
+    "music": 0
+  },
+  {
+    "from": 1274.12,
+    "to": 1275.94,
+    "sid": 542,
+    "location": 2,
+    "content": "下一期航线陆空通话",
+    "music": 0
+  },
+  {
+    "from": 1275.94,
+    "to": 1276.7,
+    "sid": 543,
+    "location": 2,
+    "content": "我是夏老许",
+    "music": 0
+  },
+  {
+    "from": 1276.7,
+    "to": 1277.9,
+    "sid": 544,
+    "location": 2,
+    "content": "一个什么都做的up主",
+    "music": 0
+  },
+  {
+    "from": 1277.9,
+    "to": 1278.9,
+    "sid": 545,
+    "location": 2,
+    "content": "那么还是那个老结尾",
+    "music": 0
+  },
+  {
+    "from": 1278.9,
+    "to": 1279.5,
+    "sid": 546,
+    "location": 2,
+    "content": "哔哩哔哩干杯",
+    "music": 0
+  },
+  {
+    "from": 1279.5,
+    "to": 1281.14,
+    "sid": 547,
+    "location": 2,
+    "content": "我们下期视频再见",
+    "music": 0
+  }
+]
