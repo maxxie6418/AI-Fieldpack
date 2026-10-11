@@ -98,8 +98,9 @@
 
 ## 四、收录第三方内容
 
-- 逐条记录来源与许可（作者、URL、许可类型），集中放在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
-- 只收录允许再分发的内容；许可不明时只放链接与说明，不复制原始文件。
+- 逐条记录来源与许可（作者、URL、许可类型），集中放在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。能考证的写实，考证不到的注明「未能考证」，不留空。
+- **默认收录**：除非内容明确声明禁止再分发（专有许可、`All rights reserved`、`do not redistribute` 一类字样），否则不因许可不明而拒绝收录，也不必退化成只放链接。
+- 收录时原样保留内容自带的 `LICENSE` 与版权声明文件，不改写、不删除；并在 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与交付说明里写明版权归属，提醒用户注意署名与使用限制。
 
 ## 五、交付前自检
 
