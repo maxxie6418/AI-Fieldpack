@@ -143,6 +143,22 @@ table.mini tr:last-child td{border-bottom:none}
 .bar .tr i{display:block;height:100%;background:var(--accent);border-radius:999px}
 .bar .tv{font:12px/1 var(--mono);color:var(--ink-3);text-align:right}
 .note{font-size:12.5px;color:var(--ink-3);border-left:2px solid var(--rule);padding-left:10px}
+
+/* ---------- 骨架规格：层归属徽标与校验 ---------- */
+.lay{font:500 11px/1 var(--mono);padding:3px 7px;border-radius:var(--r-s);border:1px solid var(--rule);color:var(--ink-3);white-space:nowrap}
+.lay.base-head{color:var(--accent);border-color:var(--accent)}
+.lay.base-tail{color:var(--ok);border-color:var(--ok)}
+.lay.attr{color:var(--info);border-color:var(--info)}
+.spec{margin-top:12px;padding:10px 13px;background:var(--bg);border:1px solid var(--rule);
+  border-radius:var(--r-m);font-size:12.5px;line-height:1.95;color:var(--ink-3)}
+.spec b{color:var(--ink-2);font-weight:600}
+.spec .ok{color:var(--ok)}
+.spec .bad{color:var(--bad)}
+.spec code{font-size:11.5px;color:var(--ink-2)}
+.spec-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.spec-line strong{color:var(--ink-2)}
+.spec-meta{display:block;color:var(--ink-3);font-size:12px;margin-top:4px}
+.spec-msg{margin:6px 0 0;padding-left:1.1em;color:var(--bad);font-size:12px}
 @media (max-width:700px){
   .two-col{grid-template-columns:1fr}
   .tools input{width:120px}
@@ -243,7 +259,7 @@ const MODULES = [
 {id:'D3',fam:'D',name:'因果链',when:'史实型 / 判断型',what:'把「为什么发生」串成链，区分直接原因、结构性原因与借口。',
  html:`<div class="chain"><span>凡尔赛体系失衡</span><i>→</i><span>经济大萧条</span><i>→</i><span>极端民族主义上台</span><i>→</i><span>扩张政策失控</span><i>→</i><span>全面战争</span></div>`},
 {id:'D4',fam:'D',name:'重要人物与学派',when:'时间性=有强演化史',what:'人物、身份、主要贡献、所属流派；用表格比长篇小传更好查。',
- html:`<table class="mini"><tr><th>人物</th><th>身份</th><th>主张 / 贡献</th></tr><tr><td>卡萨布兰卡式的战略分歧</td><td>—</td><td>—</td></tr><tr><td>戴高乐</td><td>自由法国领袖</td><td>坚持法国独立地位，与美英摩擦不断</td></tr></table>`},
+ html:`<table class="mini"><tr><th>人物</th><th>身份</th><th>主张 / 贡献</th></tr><tr><td>罗斯福</td><td>美国总统</td><td>推动租借法案，使美国成为「民主国家兵工厂」</td></tr><tr><td>戴高乐</td><td>自由法国领袖</td><td>坚持法国独立地位，与美英摩擦不断</td></tr></table>`},
 {id:'D5',fam:'D',name:'流派观点对比',when:'共识度=存在活跃争议',what:'并列不同立场的核心主张与证据，不替读者下结论。',
  html:`<table class="mini"><tr><th>立场</th><th>核心主张</th><th>主要依据</th></tr><tr><td>功能主义解释</td><td>战争源于体系失序</td><td>结构性因素与制度分析</td></tr><tr><td>意图主义解释</td><td>战争源于特定决策者意图</td><td>档案与决策过程记录</td></tr></table>`},
 {id:'D6',fam:'D',name:'里程碑事件卡',when:'史实型',what:'单个事件的标准化卡片：时间、地点、参与方、结果、影响；用于承载不能塞进时间轴的事件。',
@@ -264,6 +280,8 @@ const MODULES = [
  html:`<table class="mini"><tr><th>用途</th><th>工具</th></tr><tr><td>本地编排</td><td>docker compose</td></tr><tr><td>镜像分析</td><td>dive</td></tr><tr><td>清理空间</td><td>docker system prune</td></tr></table>`},
 {id:'E7',fam:'E',name:'速查表',when:'清单型 / 流程型',what:'高频命令或参数的一张表，无解释、只列用法；这是清单型页面的主力模块。',
  html:`<table class="mini"><tr><th>命令</th><th>做什么</th></tr><tr><td><code>docker ps -a</code></td><td>列出所有容器，含已退出</td></tr><tr><td><code>docker logs -f &lt;id&gt;</code></td><td>持续跟踪容器日志</td></tr><tr><td><code>docker exec -it &lt;id&gt; sh</code></td><td>进入运行中的容器</td></tr></table>`},
+{id:'E8',fam:'E',name:'常见误区与陷阱',when:'全类型',what:'针对外行最普遍的误解逐条纠正：常见说法 / 错在哪 / 更准确的理解。与 E4「失败模式」分工不同——E4 管操作出错，这里管认知出错，两者不重复。',
+ html:`<table class="mini"><tr><th>常见说法</th><th>错在哪</th><th>更准确的理解</th></tr><tr><td>「只要少吃就能瘦」</td><td>没问减掉的是什么，也没问能不能持续</td><td>关键是能量缺口与营养密度的平衡；掉肌肉和掉脂肪不是一回事</td></tr><tr><td>「脂肪都不好」</td><td>把种类问题和总量问题混成一个问题</td><td>必需脂肪酸必须摄入，要区分的是脂肪类型与摄入总量</td></tr><tr><td>「天然的总比合成的好」</td><td>把来源当成了效力与安全的依据</td><td>判断依据是剂量与证据强度，与来源天然与否无关</td></tr></table>`},
 
 /* ---------- F 判断与取舍 ---------- */
 {id:'F1',fam:'F',name:'判别标准',when:'判断型',what:'给出可操作的判据与阈值：看到什么算什么，而不是「视情况而定」。判断型的骨架主体。',
@@ -312,6 +330,8 @@ const MODULES = [
  html:`<ul class="bullets"><li>拿一份你常吃的食品标签，算出它提供的一餐里三大营养素比例。</li><li>用 TDEE 公式估算自己的消耗，和一周体重变化对照，看偏差有多大。</li></ul>`},
 {id:'I4',fam:'I',name:'记忆助记',when:'清单型 / 史实型',what:'口诀、数字挂钩、时间线记忆桩；用于必须背下来的密集条目。',
  html:`<div class="mini"><h4>脂溶性维生素</h4><p><strong>A D E K</strong> —— 「A D E K」可谐音记「爱的 K」，四者都需脂肪参与吸收。</p></div>`},
+{id:'I5',fam:'I',name:'学完能做什么',when:'全类型',what:'3–5 条可验证的能力承诺：每条是一个能对外交付的动作，不是「理解了」这种自我感觉。它是深度分层的落点——一页入门与深入掌握看到的能力清单应当不同。',
+ html:`<ul class="bullets"><li>能读懂一份食品标签，说出其中三大营养素各提供多少能量。</li><li>能按自己的体重与活动量，算出每日能量需求的大致区间。</li><li>能判断一条营养学说法属于「已定论 / 仍有争论 / 证据不足」中的哪一类。</li><li>能看出「某食物致癌 / 治病」这类标题缺了哪一环证据。</li></ul>`},
 
 /* ---------- J 元信息与延伸 ---------- */
 {id:'J1',fam:'J',name:'前沿与趋势',when:'全类型',what:'当前正在变化的方向，以及这些变化可能推翻本文哪些结论。',
@@ -342,11 +362,12 @@ const MODULES = [
 const SKELETONS = [
 /* ============ 1. 体系型 ============ */
 {key:'tixi', label:'体系型 · 营养学入门', type:'体系型', title:'营养学入门',
- sub:'骨架主体 = 知识地图 + 术语体系 + 概念依赖顺序。共 19 节；其中「历史脉络」「共识与争议」由属性触发（有强演化史 / 存在活跃争议）。',
+ sub:'骨架主体 = 知识地图 + 术语体系 + 概念依赖顺序。共 20 节。三个层：头部基线 4 节、类型专属 10 节、尾部基线 6 节；其中「历史脉络」「共识与争议」为属性触发。',
+ layers:{head:['A1','A2','A6','A7'], tail:['E8','I1','I5','J9','J10','J5'], attr:{D1:'时间性＝有强演化史', F4:'共识度＝存在活跃争议'}},
  sections:[
  {id:'A1',h:'一句话定位',html:`<p class="ln"><strong>营养学</strong>研究食物中的营养素如何被人体吸收、代谢与利用，以及这种利用与健康、疾病之间的关系。</p>`},
- {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>营养素与健康关系的公认结论</li><li>怎么看懂标签与膳食指南</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>「吃某物治某病」的偏方</li><li>保健品营销话术与个案经验</li></ul></div></div>`},
  {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>能量平衡是体重变化的主变量，其余因素影响的是分布与效率。</li><li>三大宏量营养素供能：碳水 4、蛋白质 4、脂肪 9 kcal·g⁻¹。</li><li>膳食纤维不供能，但显著影响血糖、血脂与肠道菌群。</li></ul>`},
+ {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>营养素与健康关系的公认结论</li><li>怎么看懂标签与膳食指南</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>「吃某物治某病」的偏方</li><li>保健品营销话术与个案经验</li></ul></div></div>`},
  {id:'A7',h:'前置门槛清单',html:`<table class="mini"><tr><th>类别</th><th>硬前置（缺了读不懂）</th><th>软前置（缺了读不深）</th></tr><tr><td>概念</td><td>元素与分子、能量单位、浓度与剂量</td><td>酶与辅酶、代谢通路</td></tr><tr><td>学科</td><td>无——可从零开始</td><td>基础生物化学</td></tr><tr><td>通识</td><td>能读懂「每 100 g 含 X mg」这类标签句式</td><td>食物成分数据的来源与误差</td></tr></table>`},
  {id:'B1',h:'知识地图',html:`<div class="mapbox"><div class="mapcenter">营养学</div><div class="mapring"><span>宏量营养素</span><span>微量营养素</span><span>能量代谢</span><span>膳食模式</span><span>生命周期营养</span><span>营养与疾病</span></div></div>`},
  {id:'B3',h:'概念依赖与学习顺序',html:`<ol class="steps"><li>营养素分类 —— 先建立词汇</li><li>能量与宏量营养素 —— 主干与算术</li><li>维生素与矿物质 —— 调节与缺乏症</li><li>膳食模式与配餐 —— 把知识用起来</li><li>特殊人群与疾病 —— 边界与例外</li></ol>`},
@@ -357,9 +378,10 @@ const SKELETONS = [
  {id:'B4',h:'知识分层',html:`<div class="tiers"><div class="tier"><span class="lv">核心</span><p>能量平衡、三大宏量营养素、常见维生素缺乏症</p></div><div class="tier"><span class="lv">进阶</span><p>代谢通路、血糖响应曲线、蛋白质质量评估</p></div><div class="tier"><span class="lv">专家</span><p>分子营养学、营养素–基因交互、个体化营养</p></div></div>`},
  {id:'D1',h:'历史脉络时间轴 · 属性触发',html:`<ol class="tl"><li><span class="yr">1912</span>维生素概念提出，营养学从「热量学」转向「营养素学」</li><li><span class="yr">1930s</span>必需氨基酸与各类维生素缺乏症被逐个确认</li><li><span class="yr">1977</span>美国膳食目标发布，膳食指南体系成型</li><li><span class="yr">2000s</span>队列研究与营养流行病学成为主流证据来源</li></ol>`},
  {id:'F4',h:'共识与争议 · 属性触发',html:`<table class="mini"><tr><th>结论</th><th>状态</th></tr><tr><td>长期能量摄入超过消耗会导致体重上升</td><td>已定论</td></tr><tr><td>进食时间对代谢的独立影响</td><td>仍有争论</td></tr><tr><td>某类补充剂在普通人群中的长期收益</td><td>证据不足</td></tr></table>`},
- {id:'E4',h:'常见误区',html:`<table class="mini"><tr><th>常见说法</th><th>问题在哪</th></tr><tr><td>「只要少吃就能瘦」</td><td>忽略了营养素密度与可持续性，掉的常是肌肉与水</td></tr><tr><td>「脂肪都不好」</td><td>未区分脂肪类型与总量，必需脂肪酸必须摄入</td></tr></table>`},
  {id:'J7',h:'应用案例',html:`<div class="mini"><h4>案例：把「少吃油」变成可执行的判断</h4><p>不看烹饪用油总量，改看加工食品里被忽略的脂肪来源——多数人超标的不是炒菜，而是零食与饮料。</p></div>`},
+ {id:'E8',h:'常见误区与陷阱',html:`<table class="mini"><tr><th>常见说法</th><th>错在哪</th><th>更准确的理解</th></tr><tr><td>「只要少吃就能瘦」</td><td>忽略了营养素密度与可持续性，掉的常是肌肉与水</td><td>关键是能量缺口与营养密度的平衡，减重先看减掉的是什么</td></tr><tr><td>「脂肪都不好」</td><td>未区分脂肪类型与总量</td><td>必需脂肪酸必须摄入，要比的是种类与总量</td></tr><tr><td>「补充剂可以替代食物」</td><td>忽略了食物基质与成分间的协同</td><td>补充剂补的是缺口，不是替代</td></tr></table>`},
  {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>建立词汇：营养素分类与单位</li><li>掌握主干：能量平衡与三大宏量营养素</li><li>补调节部分：维生素与矿物质</li><li>能读懂指南与标签</li><li>按需进入个体化与疾病营养</li></ol>`},
+ {id:'I5',h:'学完能做什么',html:`<ul class="bullets"><li>能读懂一份食品标签，说出这一份里的三大营养素各提供多少能量。</li><li>能按体重与活动量估算自己的一日能量需求区间，并知道误差有多大。</li><li>能判断一条营养学说法属于已定论、仍有争论还是证据不足。</li><li>能看出「某食物致癌 / 治病」这类说法缺的是哪一环证据。</li></ul>`},
  {id:'J9',h:'相关主题声明',html:`<table class="mini"><tr><th>主题</th><th>关系</th><th>为什么相关</th></tr><tr><td>人体生理学</td><td>前置</td><td>不理解消化吸收就接不住营养素代谢</td></tr><tr><td>食品标签解读</td><td>后继</td><td>读完本页最自然的下一步</td></tr><tr><td>运动营养</td><td>并列</td><td>同层应用分支，可对照读</td></tr><tr><td>流行病学</td><td>跨学科</td><td>提供「膳食—疾病」证据的生成方法</td></tr><tr><td>生酮饮食</td><td>争议</td><td>与本页主流结论存在张力，需带着判断读</td></tr></table>`},
  {id:'J10',h:'延伸问题',html:`<ul class="bullets"><li>同一份食物生吃与熟吃，营养素到底差多少？<span class="note"> → 食品加工与营养素可用性</span></li><li>补充剂能替代食物来源吗？<span class="note"> → 微量营养素与生物利用度</span></li><li>为什么同一份饮食对不同人的血糖影响不同？<span class="note"> → 个体化营养与肠道菌群</span></li></ul>`},
  {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>各国官方膳食指南与膳食参考摄入量</li><li>营养学教科书与系统综述（用于原理部分）</li><li>说明：本文为个人整理，不构成医疗建议</li></ul>`}
@@ -367,9 +389,11 @@ const SKELETONS = [
 
 /* ============ 2. 流程型 ============ */
 {key:'liucheng', label:'流程型 · docker 使用手册', type:'流程型', title:'docker 使用手册',
- sub:'骨架主体 = 步骤序列 + 决策点 + 失败模式；知识地图退化为流程图与决策树。共 16 节。',
+ sub:'骨架主体 = 步骤序列 + 决策点 + 失败模式；知识地图退化为流程图与决策树。共 19 节。三个层：头部基线 4 节、类型专属 9 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A7'], tail:['E8','I1','I5','J9','J10','J5'], attr:{}},
  sections:[
  {id:'A1',h:'一句话定位',html:`<p class="ln"><strong>Docker</strong> 把应用和它的运行环境一起打包成镜像，用容器跑起来，解决「在我机器上能跑」的问题。</p>`},
+ {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>镜像是只读模板，容器是镜像的运行实例，两者不是一回事。</li><li>容器共享宿主机内核，启动快、开销小，但与宿主机的隔离强度低于虚拟机。</li><li>容器里的文件系统随容器销毁而消失，要留住数据必须挂卷。</li><li>镜像层是构建缓存的单位，改动一层会让它之后的所有层失效。</li></ul>`},
  {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>镜像、容器、网络、卷的日常操作</li><li>Dockerfile 的常用写法与排错</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>Kubernetes 等集群编排</li><li>镜像仓库运维与安全加固细节</li></ul></div></div>`},
  {id:'A7',h:'前置门槛清单',html:`<table class="mini"><tr><th>类别</th><th>硬前置（缺了读不懂）</th><th>软前置（缺了读不深）</th></tr><tr><td>概念</td><td>进程与端口、文件路径、环境变量</td><td>Linux 命名空间与 cgroup</td></tr><tr><td>学科</td><td>无——会命令行即可开始</td><td>操作系统与网络基础</td></tr><tr><td>通识</td><td>知道镜像 / 容器 / 仓库是三件不同的事</td><td>了解虚拟化与云服务的常见说法</td></tr><tr><td>工具</td><td>本机可运行 Docker，能用终端与编辑器</td><td>有一个镜像仓库账号</td></tr></table>`},
  {id:'B5',h:'流程图',html:`<div class="flow"><span>写 Dockerfile</span><i>→</i><span>docker build</span><i>→</i><span>docker run</span><i>→</i><span>进容器调试</span><i>→</i><span>push 到仓库</span></div>`},
@@ -380,8 +404,10 @@ const SKELETONS = [
  {id:'E4',h:'失败模式与常见错误',html:`<table class="mini"><tr><th>现象</th><th>原因</th><th>处理</th></tr><tr><td>镜像体积异常大</td><td>构建缓存与源码一起打进了层</td><td>多阶段构建 + .dockerignore</td></tr><tr><td>换台机器就跑不起来</td><td>依赖了宿主机的环境变量或路径</td><td>全部显式声明进镜像</td></tr><tr><td>数据随容器删除而丢失</td><td>没挂载卷</td><td>用 volume 或 bind mount 持久化</td></tr></table>`},
  {id:'E6',h:'工具与资源清单',html:`<table class="mini"><tr><th>用途</th><th>工具</th></tr><tr><td>本地编排</td><td>docker compose</td></tr><tr><td>镜像分层分析</td><td>dive</td></tr><tr><td>图形化管理</td><td>Docker Desktop / lazydocker</td></tr></table>`},
  {id:'G5',h:'常见问题 FAQ',html:`<div class="mini"><h4>容器和虚拟机有什么区别？</h4><p>容器共享宿主机内核，只隔离进程与文件系统；虚拟机各自跑一套内核。因此容器启动快、开销小，但隔离强度更低。</p></div><div class="mini"><h4>改了代码为什么容器里没变？</h4><p>镜像构建时就把代码复制进去了，必须重新 build；开发阶段可以用卷把本地目录挂进去。</p></div>`},
- {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>跑通第一个容器（run / ps / logs）</li><li>会写 Dockerfile 并控制镜像体积</li><li>掌握卷与网络，能持久化数据、互联多容器</li><li>用 compose 编排本地多服务</li><li>理解构建缓存与多阶段构建</li></ol>`},
  {id:'J4',h:'时效与半衰期',html:`<table class="mini"><tr><th>字段</th><th>值</th></tr><tr><td>内容截止</td><td>2026-10（Docker Engine 27.x 前后）</td></tr><tr><td>更新速度</td><td>快：命令稳定，但 compose 与构建特性变化频繁</td></tr><tr><td>需要复核的部分</td><td>compose 文件版本写法、构建器（BuildKit）默认行为</td></tr></table>`},
+ {id:'E8',h:'常见误区与陷阱',html:`<table class="mini"><tr><th>常见说法</th><th>错在哪</th><th>更准确的理解</th></tr><tr><td>「容器就是轻量虚拟机」</td><td>把隔离手段当成了隔离强度</td><td>容器共享宿主内核，隔离来自命名空间与 cgroup，不是硬件虚拟化</td></tr><tr><td>「数据放进容器里就行」</td><td>忽略了容器文件系统随容器销毁</td><td>要留住的数据必须写在卷上</td></tr><tr><td>「镜像越瘦越好」</td><td>忽略了可排错性</td><td>瘦身的前提是还能进容器排查问题，基础镜像按用途选</td></tr></table>`},
+ {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>跑通第一个容器（run / ps / logs）</li><li>会写 Dockerfile 并控制镜像体积</li><li>掌握卷与网络，能持久化数据、互联多容器</li><li>用 compose 编排本地多服务</li><li>理解构建缓存与多阶段构建</li></ol>`},
+ {id:'I5',h:'学完能做什么',html:`<ul class="bullets"><li>能把一个本地项目写成 Dockerfile 并在本机跑起来。</li><li>能判断某份数据该放在卷里还是打进镜像里。</li><li>能读懂一份 compose 文件，并改出自己要的多服务编排。</li><li>能解释镜像体积为什么变大，并定位到是哪一层造成的。</li></ul>`},
  {id:'J9',h:'相关主题声明',html:`<table class="mini"><tr><th>主题</th><th>关系</th><th>为什么相关</th></tr><tr><td>Linux 命令行与权限</td><td>前置</td><td>容器内排错全在命令行里完成</td></tr><tr><td>docker compose 编排</td><td>后继</td><td>单容器跑通后最自然的下一步</td></tr><tr><td>虚拟机与虚拟化</td><td>并列</td><td>另一种隔离方案，可对照理解取舍</td></tr><tr><td>网络基础</td><td>跨学科</td><td>端口映射与容器互联依赖这套概念</td></tr><tr><td>Kubernetes</td><td>后继</td><td>容器规模上去之后必然遇到的问题域</td></tr></table>`},
  {id:'J10',h:'延伸问题',html:`<ul class="bullets"><li>容器里的「隔离」到底隔开了什么？<span class="note"> → Linux 命名空间与 cgroup</span></li><li>不装 Docker 也能跑容器吗？<span class="note"> → containerd / Podman 等运行时</span></li><li>多台机器上的容器怎么统一调度？<span class="note"> → 编排系统</span></li></ul>`},
  {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>Docker 官方文档与 CLI 参考</li><li>说明：命令行为以你本地 <code>docker version</code> 对应的文档为准</li></ul>`}
@@ -389,9 +415,11 @@ const SKELETONS = [
 
 /* ============ 3. 清单型 ============ */
 {key:'qingdan', label:'清单型 · 体检指标参考值', type:'清单型', title:'常用体检指标参考值',
- sub:'骨架主体 = 分类索引 + 条目表 + 别名检索，不需要叙事线。共 17 节。',
+ sub:'骨架主体 = 分类索引 + 条目表 + 别名检索，不需要叙事线。共 21 节。三个层：头部基线 5 节、类型专属 10 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A5','A7'], tail:['E8','I1','I5','J9','J10','J5'], attr:{}},
  sections:[
  {id:'A1',h:'一句话定位',html:`<p class="ln">这一页把常见体检项目、参考区间、单位与主要干扰因素整理成可查的表，用于看懂报告上的数字。</p>`},
+ {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>参考区间来自人群的统计分布，不是健康与生病的分界线，落在区间外不等于有病。</li><li>同一项目在不同实验室、不同检测方法下区间并不相同，横向比较要看各自的区间。</li><li>单项异常的信息量有限，判读要结合组合、趋势与临床表现。</li><li>影响结果的不只是疾病：饮食、运动、采样时间、药物、标本处理都在其中。</li></ul>`},
  {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页能帮你</h5><ul class="bullets"><li>查某个项目的大致参考区间</li><li>知道这个数字受什么影响</li></ul></div><div><h5>这一页不能</h5><ul class="bullets"><li>不能替代医生诊断</li><li>不能只看单个值下结论</li></ul></div></div>`},
  {id:'A5',h:'关键数字面板',html:`<div class="stats"><div class="stat"><b>95%</b><span>参考区间的划定口径，5% 健康人也会落在外面</span></div><div class="stat"><b>2–3 月</b><span>糖化血红蛋白反映的血糖时间跨度</span></div><div class="stat"><b>各自不同</b><span>男 / 女 / 年龄段的区间并不通用</span></div></div>`},
  {id:'A7',h:'前置门槛清单',html:`<table class="mini"><tr><th>类别</th><th>硬前置（缺了读不懂）</th><th>软前置（缺了读不深）</th></tr><tr><td>概念</td><td>理解「参考区间是人群统计范围」，不是健康标准</td><td>均值、标准差与 95% 区间的含义</td></tr><tr><td>学科</td><td>无——能读懂报告单即可</td><td>基础生理学与检验医学常识</td></tr><tr><td>通识</td><td>知道区间由各实验室自行建立</td><td>了解空腹与采样时间会影响结果</td></tr></table>`},
@@ -405,6 +433,9 @@ const SKELETONS = [
  {id:'F3',h:'适用条件与边界',html:`<ul class="bullets"><li><strong>适用</strong>：成年人常规体检报告的初步对照</li><li><strong>不适用</strong>：孕妇、儿童、慢病患者——这些人群的区间另行规定</li></ul>`},
  {id:'G5',h:'常见问题 FAQ',html:`<div class="mini"><h4>参考区间外的值一定有问题吗？</h4><p>不一定。区间按人群 95% 划定，本就允许约 5% 的健康人落在外面；要结合症状、趋势与其他项目看。</p></div><div class="mini"><h4>不同医院的区间为什么不一样？</h4><p>检测方法、仪器与试剂不同，参考区间由各自实验室建立，跨机构比较要看具体区间。</p></div>`},
  {id:'J4',h:'时效与半衰期',html:`<table class="mini"><tr><th>字段</th><th>值</th></tr><tr><td>内容截止</td><td>2026-10</td></tr><tr><td>更新速度</td><td>慢：常用项目区间多年稳定，但检测标准偶有调整</td></tr><tr><td>使用提醒</td><td>以你手上报告单标注的区间为准，本页只作对照</td></tr></table>`},
+ {id:'E8',h:'常见误区与陷阱',html:`<table class="mini"><tr><th>常见说法</th><th>错在哪</th><th>更准确的理解</th></tr><tr><td>「超出参考区间就是有病」</td><td>把统计分布当成了诊断标准</td><td>区间只描述多数人的范围，判读要结合临床表现与复查结果</td></tr><tr><td>「箭头越多问题越大」</td><td>忽略了指标之间的相关性</td><td>要看异常是否集中在同一系统，单项轻度偏移常无意义</td></tr><tr><td>「去年正常今年也该正常」</td><td>忽略了趋势与个体基线</td><td>对同一个人，变化的幅度常比绝对值更有信息量</td></tr></table>`},
+ {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>先认常用项目的单位与含义</li><li>学会查区间与常见干扰因素</li><li>理解成套判读（肝功、血脂、血糖各自成组看）</li><li>能分辨「可以观察」「需要复查」与「需要就医」</li><li>建立自己的历史记录，学会看趋势</li></ol>`},
+ {id:'I5',h:'学完能做什么',html:`<ul class="bullets"><li>拿到一份报告单，能逐项查出一项指标的含义与自己实验室的参考区间。</li><li>能判断某个轻度异常属于可以观察、需要复查还是需要就医。</li><li>能说出影响某项结果的三类常见干扰因素。</li><li>能把自己的历年结果整理成趋势，而不只看单次数值。</li></ul>`},
  {id:'J9',h:'相关主题声明',html:`<table class="mini"><tr><th>主题</th><th>关系</th><th>为什么相关</th></tr><tr><td>生理学基础</td><td>前置</td><td>不知道器官功能就判断不出指标指向</td></tr><tr><td>体检报告解读</td><td>后继</td><td>拿到区间之后要面对的解释问题</td></tr><tr><td>营养与膳食指南</td><td>并列</td><td>同属自我健康管理的相邻页</td></tr><tr><td>检验医学与统计学</td><td>跨学科</td><td>参考区间到底是怎么定出来的</td></tr><tr><td>体检套餐营销</td><td>争议</td><td>「项目越多越好」的说法本身存疑</td></tr></table>`},
  {id:'J10',h:'延伸问题',html:`<ul class="bullets"><li>参考区间为什么各医院不一样？<span class="note"> → 检验方法学与区间建立</span></li><li>单次超标和持续超标，意义差在哪？<span class="note"> → 趋势判读</span></li><li>体检应该查多勤？<span class="note"> → 筛查策略与成本</span></li></ul>`},
  {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>各医院检验科报告单标注区间</li><li>检验医学教科书与卫生行业标准</li><li>说明：本页为个人整理，不构成医疗建议</li></ul>`}
@@ -412,10 +443,12 @@ const SKELETONS = [
 
 /* ============ 4. 判断型 ============ */
 {key:'panduan', label:'判断型 · 投资决策框架', type:'判断型', title:'投资决策框架',
- sub:'骨架主体 = 判别标准 + 反例 + 争议标注 + 适用条件。共 15 节。',
+ sub:'骨架主体 = 判别标准 + 反例 + 争议标注 + 适用条件。共 19 节。三个层：头部基线 4 节、类型专属 9 节、尾部基线 6 节；其中「共识与争议」为属性触发。',
+ layers:{head:['A1','A2','A6','A7'], tail:['E8','I1','I5','J9','J10','J5'], attr:{F4:'共识度＝存在活跃争议'}},
  sections:[
  {id:'A1',h:'一句话定位',html:`<p class="ln">这一页给出一套可以照着走的判断流程：哪些标的有资格进入观察名单，什么条件下才动手，以及什么情况下必须放弃。</p>`},
  {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>先看它值多少钱，再看现在卖多少钱——顺序反了就是猜。</li><li>低估值可能是机会，也可能是结果；判据要比对基本面方向。</li><li>任何框架的失效区都要提前写清楚，否则会在最需要它的时候失灵。</li></ul>`},
+ {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>一套可复述的筛选与决策流程</li><li>判据、阈值，以及它们各自何时失效</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>具体标的的买卖建议</li><li>收益预测与择时技巧</li></ul></div></div>`},
  {id:'A7',h:'前置门槛清单',html:`<table class="mini"><tr><th>类别</th><th>硬前置（缺了读不懂）</th><th>软前置（缺了读不深）</th></tr><tr><td>概念</td><td>会读利润表、资产负债表与现金流量表</td><td>折现、机会成本与风险溢价</td></tr><tr><td>学科</td><td>无——从常识出发也能用</td><td>会计基础与公司财务</td></tr><tr><td>通识</td><td>理解「预期收益与风险是一体的」</td><td>知道市场并不总是有效</td></tr><tr><td>工具</td><td>能查到至少 5 年的公开财务数据</td><td>会做简单表格与历史分位计算</td></tr></table>`},
  {id:'F1',h:'判别标准',html:`<table class="mini"><tr><th>判据</th><th>取值</th><th>结论</th></tr><tr><td>估值分位</td><td>低于近 10 年 30% 分位</td><td>具备进入观察名单的条件</td></tr><tr><td>现金流覆盖</td><td>经营现金流 / 净利润 &lt; 0.7</td><td>利润质量存疑，需核查</td></tr><tr><td>负债结构</td><td>有息负债 / 经营现金流 &gt; 4</td><td>周期下行时风险放大</td></tr></table>`},
  {id:'B6',h:'决策树',html:`<ul class="tree"><li>能说清它靠什么赚钱吗？<ul><li>不能 → 停止，不进入下一步</li><li>能 → 现在的价格低于你的估值吗？<ul><li>否 → 放观察名单</li><li>是 → 基本面在改善还是恶化？<ul><li>恶化 → 这是陷阱，不是机会</li><li>改善 → 进入仓位管理</li></ul></li></ul></li></ul></li></ul>`},
@@ -426,6 +459,9 @@ const SKELETONS = [
  {id:'F5',h:'证据与来源分级',html:`<table class="mini"><tr><th>等级</th><th>来源类型</th></tr><tr><td>A</td><td>可核对的财务报告原始数据</td></tr><tr><td>B</td><td>长期跟踪的行业数据与统计年鉴</td></tr><tr><td>C</td><td>卖方研报与专家访谈</td></tr><tr><td>D</td><td>市场传闻与社群观点，仅供参考</td></tr></table>`},
  {id:'E5',h:'行动触发器',html:`<ul class="bullets"><li>每当看到「历史年化收益」→ 先问：起止时间怎么选的？</li><li>每当想「这次不一样」→ 先问：不一样在哪里，有没有可验证的证据？</li><li>每当听到「大家都这么做」→ 先问：这句话的来源是哪一级？</li></ul>`},
  {id:'I2',h:'自测题库',html:`<div class="mini"><h4>题 1</h4><p>某标的估值分位 15%，但连续三年经营现金流转负。按本页框架，它属于哪一类？</p><p class="note">参考答案：不满足现金流覆盖判据，属于「低估值陷阱」候选，应停止而非进入仓位管理。</p></div>`},
+ {id:'E8',h:'常见误区与陷阱',html:`<table class="mini"><tr><th>常见说法</th><th>错在哪</th><th>更准确的理解</th></tr><tr><td>「跌得多就是便宜」</td><td>把价格变动当成了价值变化</td><td>便宜是相对内在价值说的，先要有估值锚</td></tr><tr><td>「好公司什么价格都能买」</td><td>忽略了买入价对长期回报的决定作用</td><td>好公司买贵了，长期回报同样会平庸</td></tr><tr><td>「这次不一样」</td><td>忽略了判据的可检验性</td><td>除非说清哪个变量变了、原判据为何失效，否则默认它没变</td></tr></table>`},
+ {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>先建立估值锚：这家公司值多少钱，凭什么</li><li>掌握三种常见判据及其适用条件</li><li>练习写失效条件与退出规则</li><li>用小仓位验证流程，而不是验证判断</li><li>复盘误判，区分「判断错」与「流程错」</li></ol>`},
+ {id:'I5',h:'学完能做什么',html:`<ul class="bullets"><li>能对一个陌生标的写出它的估值锚与三条进入判据。</li><li>能在买入之前写出这单的失效条件与退出动作。</li><li>能识别一条投资说法里哪一环是假设、哪一环是事实。</li><li>能复盘一次亏损，判断是判断错了还是流程漏了。</li></ul>`},
  {id:'J9',h:'相关主题声明',html:`<table class="mini"><tr><th>主题</th><th>关系</th><th>为什么相关</th></tr><tr><td>财务报表阅读</td><td>前置</td><td>本页判据全部来自三张表</td></tr><tr><td>仓位与风险管理</td><td>后继</td><td>判断对了还要解决「下多少」</td></tr><tr><td>指数化投资</td><td>并列</td><td>与主动判断构成两条路线，可对照取舍</td></tr><tr><td>行为金融学</td><td>跨学科</td><td>解释框架为什么会被自己违背</td></tr><tr><td>技术分析</td><td>争议</td><td>与本页判据体系不兼容，需明确取舍</td></tr></table>`},
  {id:'J10',h:'延伸问题',html:`<ul class="bullets"><li>同一套判据换个市场还成立吗？<span class="note"> → 市场结构差异</span></li><li>明知框架对，情绪上却做不到怎么办？<span class="note"> → 行为金融与纪律设计</span></li><li>不选个股还能用这套判据吗？<span class="note"> → 指数与资产配置</span></li></ul>`},
  {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>上市公司定期报告与公开财务数据</li><li>统计年鉴与行业长期数据</li><li>说明：本文为个人框架整理，不构成投资建议</li></ul>`}
@@ -433,10 +469,12 @@ const SKELETONS = [
 
 /* ============ 5. 史实型 ============ */
 {key:'shishi', label:'史实型 · 二战史', type:'史实型', title:'第二次世界大战（1939–1945）',
- sub:'骨架主体 = 时间轴 + 因果链 + 分期 + 争议与史料。共 15 节。',
+ sub:'骨架主体 = 时间轴 + 因果链 + 分期 + 争议与史料。共 18 节。三个层：头部基线 4 节、类型专属 8 节、尾部基线 6 节；其中「分期与阶段」「共识与争议」为属性触发。',
+ layers:{head:['A1','A2','A6','A7'], tail:['E8','I1','I5','J9','J10','J5'], attr:{D2:'时间性＝有强演化史', F4:'共识度＝存在活跃争议'}},
  sections:[
  {id:'A1',h:'一句话定位',html:`<p class="ln">这一页按时间与因果梳理二战：它怎么从地区冲突变成全球战争，几个关键转折点如何改变结局，以及哪些结论至今仍有争议。</p>`},
  {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>根源是凡尔赛体系失衡叠加经济大萧条，导火索是 1939 年入侵波兰。</li><li>1941–1942 年三个转折点：莫斯科、中途岛、斯大林格勒。</li><li>战争的结局不只由战场决定，也由工业产能与后勤体系决定。</li></ul>`},
+ {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>战争的时间线、因果链与几个关键转折</li><li>哪些结论已有共识、哪些仍在史学争论中</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>战役的战斗细节与武器参数</li><li>单一国家的纪念性叙事</li></ul></div></div>`},
  {id:'A7',h:'前置门槛清单',html:`<table class="mini"><tr><th>类别</th><th>硬前置（缺了读不懂）</th><th>软前置（缺了读不深）</th></tr><tr><td>概念</td><td>大国、同盟、总动员、闪击战的基本含义</td><td>凡尔赛体系、绥靖政策、总体战</td></tr><tr><td>学科</td><td>无——有兴趣就能读</td><td>世界近现代史与地理常识</td></tr><tr><td>通识</td><td>能在地图上定位欧洲与太平洋主要战场</td><td>知道一战与二战之间的因果联系</td></tr></table>`},
  {id:'B7',h:'时间轴',html:`<ol class="tl"><li><span class="yr">1939</span>德国入侵波兰，欧洲战场开启</li><li><span class="yr">1941</span>巴巴罗萨行动；珍珠港事件，战争全球化</li><li><span class="yr">1942</span>中途岛与斯大林格勒，战局转折</li><li><span class="yr">1944</span>诺曼底登陆，西线重开</li><li><span class="yr">1945</span>德国投降；日本投降，战争结束</li></ol>`},
  {id:'D2',h:'分期与阶段',html:`<div class="grid2"><div class="mini"><h4>1918–1939 战间期</h4><p>凡尔赛体系的裂痕与极权崛起</p></div><div class="mini"><h4>1939–1941 欧洲战争</h4><p>闪击战、不列颠空战、巴巴罗萨</p></div><div class="mini"><h4>1941–1943 全球战争</h4><p>太平洋与北非，同盟国转入反攻</p></div><div class="mini"><h4>1944–1945 结局</h4><p>双线推进，轴心国相继投降</p></div></div>`},
@@ -446,7 +484,9 @@ const SKELETONS = [
  {id:'D5',h:'史学流派对比',html:`<table class="mini"><tr><th>立场</th><th>核心主张</th><th>主要依据</th></tr><tr><td>意图主义</td><td>战争源于特定决策者的扩张意图</td><td>决策过程档案</td></tr><tr><td>功能主义</td><td>战争源于体系失序与国内压力</td><td>结构与经济分析</td></tr><tr><td>修正派</td><td>各方责任被战后叙事重新分配</td><td>多国档案对比</td></tr></table>`},
  {id:'F4',h:'争议与史料',html:`<table class="mini"><tr><th>问题</th><th>状态</th></tr><tr><td>战争爆发的首要责任方</td><td>史学界仍有争论</td></tr><tr><td>原子弹使用的必要性</td><td>长期争议，取决于对日本投降条件的评估</td></tr><tr><td>某战役双方伤亡数字</td><td>各国档案口径不一，只能给区间</td></tr></table>`},
  {id:'J7',h:'影响与遗产',html:`<ul class="bullets"><li>联合国与战后国际秩序的设计，直接回应了战间期国际机制的失效</li><li>殖民体系加速瓦解，两个超级大国格局成型</li><li>技术外溢：雷达、喷气机、计算机与核能的军事起源</li></ul>`},
+ {id:'E8',h:'常见误区与陷阱',html:`<table class="mini"><tr><th>常见说法</th><th>错在哪</th><th>更准确的理解</th></tr><tr><td>「战争是希特勒一个人的决定」</td><td>把结构因素简化成了个人意志</td><td>个人决策重要，但凡尔赛体系、经济危机与绥靖政策构成了他能走的空间</td></tr><tr><td>「原子弹结束了战争」</td><td>把一个因素当成了唯一原因</td><td>苏联参战、日本资源枯竭与原子弹共同作用，各自权重仍有争论</td></tr><tr><td>「起因已经研究清楚了」</td><td>忽略了史料与解释的开放度</td><td>主要轮廓有共识，各环节的权重仍是持续争论的问题</td></tr></table>`},
  {id:'I1',h:'延伸阅读路径',html:`<ol class="steps"><li>先读一份通史性著作，建立时间与地理骨架</li><li>按战场分线深读（东线 / 西线 / 太平洋 / 中国战场）</li><li>再进入专题：经济动员、情报、占领政策</li><li>最后读史学争论，理解「为什么同一件事会有不同结论」</li></ol>`},
+ {id:'I5',h:'学完能做什么',html:`<ul class="bullets"><li>能按时间与因果说出战争从地区冲突扩大为全球战争的关键链条。</li><li>能区分这个题目里哪些结论是共识、哪些是仍在争论的问题。</li><li>能对一条战争起因的解释，指出它偏重哪一类因素。</li><li>能顺着本页的分期，自己找一条线继续深读。</li></ul>`},
  {id:'J9',h:'相关主题声明',html:`<table class="mini"><tr><th>主题</th><th>关系</th><th>为什么相关</th></tr><tr><td>第一次世界大战与战后秩序</td><td>前置</td><td>凡尔赛体系的裂痕是二战的起点</td></tr><tr><td>冷战起源</td><td>后继</td><td>战争尾声直接塑造了战后格局</td></tr><tr><td>太平洋战争</td><td>并列</td><td>同一场战争的不同战场，可平行读</td></tr><tr><td>国际关系理论</td><td>跨学科</td><td>提供「体系为什么会失衡」的解释框架</td></tr><tr><td>战争责任与记忆政治</td><td>争议</td><td>各国叙事差异大，需带着立场意识读</td></tr></table>`},
  {id:'J10',h:'延伸问题',html:`<ul class="bullets"><li>如果 1941 年日本没有南进，战局会怎样？<span class="note"> → 反事实推演与史料边界</span></li><li>经济动员能力为什么能决定胜负？<span class="note"> → 战时经济与工业史</span></li><li>同一场战役，各国伤亡数字为什么对不上？<span class="note"> → 史料与档案方法</span></li></ul>`},
  {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>通史性学术著作与国家档案馆公开资料</li><li>各国官方战史与研究机构出版物</li><li>说明：涉及伤亡与责任判断处均标注争议状态</li></ul>`}
@@ -493,15 +533,50 @@ function renderLib(){
   return html;
 }
 
+function layerOf(s,x){
+  const L = s.layers || {};
+  if((L.head||[]).includes(x.id)) return ['base-head','基线 · 头部'];
+  if((L.tail||[]).includes(x.id)) return ['base-tail','基线 · 尾部'];
+  if(L.attr && L.attr[x.id]) return ['attr','属性触发'];
+  return ['type','类型专属'];
+}
+
+function checkSpec(s){
+  const L = s.layers || { head:[], tail:[], attr:{} };
+  const ids = s.sections.map(x=>x.id);
+  const head = L.head || [], tail = L.tail || [];
+  const msgs = [];
+  if(ids[0] !== 'A1') msgs.push('首个 section 应为 A1');
+  if(head.length && ids.slice(0,head.length).join() !== head.join()) msgs.push(`头部基线未完整占据最前 ${head.length} 节`);
+  if(tail.length && ids.slice(ids.length-tail.length).join() !== tail.join()) msgs.push(`尾部基线未完整占据最后 ${tail.length} 节`);
+  const missing = head.concat(tail).filter(id=>!ids.includes(id));
+  if(missing.length) msgs.push('基线层缺少 ' + missing.join('、'));
+  const attrIds = Object.keys(L.attr||{}).filter(id=>ids.includes(id));
+  const attrMissing = Object.keys(L.attr||{}).filter(id=>!ids.includes(id));
+  return { ok: msgs.length===0, msgs, head, tail, attrIds, attrMissing, total: s.sections.length };
+}
+
 function renderSkeleton(s){
+  const ck = checkSpec(s);
   let html = `<div class="skhead"><div class="sktype">${s.type}</div><h2>${s.title}</h2>
     <p>${s.sub}</p><div class="chips">`;
   html += s.sections.map(x=>`<a class="chip" href="#sk-${s.key}-${x.id}">${x.id} · ${x.h}</a>`).join('');
-  html += `</div></div>`;
+  html += `</div>`;
+
+  const attrTxt = ck.attrIds.map(id=>`${id}（${(s.layers.attr||{})[id]}）`).join('、');
+  html += `<div class="spec ${ck.ok?'ok':'bad'}">
+    <div class="spec-line"><strong>骨架规格校验</strong><span class="${ck.ok?'ok':'bad'}">${ck.ok?'通过':'未通过'}</span>
+      <span class="spec-meta">共 ${ck.total} 节 · 头部基线 ${ck.head.length} 节（${ck.head.join(' ')}） · 尾部基线 ${ck.tail.length} 节（${ck.tail.join(' ')}）</span></div>
+    <div class="spec-meta">属性触发节：${attrTxt || '无'}${ck.attrMissing.length ? '；已声明但未入骨架：' + ck.attrMissing.join('、') : ''}</div>
+    ${ck.msgs.length ? `<ul class="spec-msg">${ck.msgs.map(m=>`<li>${m}</li>`).join('')}</ul>` : ''}
+    <div class="spec-meta">基线层的头部与尾部在每一类骨架中都必须出现且位置固定；类型专属层随知识类型而变；属性触发层由话题属性决定是否出现。</div>
+  </div></div>`;
 
   s.sections.forEach((x,i)=>{
+    const lay = layerOf(s,x);
+    const cond = (s.layers && s.layers.attr) ? s.layers.attr[x.id] : '';
     html += `<section class="sksec" id="sk-${s.key}-${x.id}">
-      <div class="sksec-head"><span class="mid">${x.id}</span><h3>${x.h}</h3><span class="ord">${String(i+1).padStart(2,'0')} / ${String(s.sections.length).padStart(2,'0')}</span></div>
+      <div class="sksec-head"><span class="mid">${x.id}</span><h3>${x.h}</h3><span class="lay ${lay[0]}"${cond?` title="触发条件：${cond}"`:''}>${lay[1]}</span><span class="ord">${String(i+1).padStart(2,'0')} / ${String(s.sections.length).padStart(2,'0')}</span></div>
       <div class="sksec-body">${x.html}</div></section>`;
   });
   return html;
