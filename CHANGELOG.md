@@ -1,11 +1,12 @@
 # Changelog
 
-本文件记录 AI Fieldpack 的变更，格式与时机以本说明为准。日期倒序，最新在最上面；日期作小标题，条目用无序列表并以类型标签开头（`[Added]` `[Changed]` `[Fixed]` `[Removed]` `[Deprecated]` `[Security]`）；同类小事合并成一条，一件事一句话，单句不超过 150 字；有提交的在同一批提交的最后一条记录末尾附 `——commit: <短哈希>`，没有提交则不写；同一天有多批改动时共用一个日期小标题，条目按时间倒序连续排列；跨年后如需区分年份，日期小标题改用 `YYYYMMDD`。
+本文件记录 AI Fieldpack 的变更，格式与时机以本说明为准。日期倒序，最新在最上面；日期作小标题，条目用无序列表并以类型标签开头（`[Added]` `[Changed]` `[Fixed]` `[Removed]` `[Deprecated]` `[Security]`）；同类小事合并成一条，一件事一句话，单句不超过 150 字；条目与它记录的那次改动放进同一个提交，不另开只装本文件的记录提交；同一天有多批改动时共用一个日期小标题，条目按时间倒序连续排列；跨年后如需区分年份，日期小标题改用 `YYYYMMDD`。
 
 结构、成果区定稿或约定本身发生变化时记一条；错别字、措辞、补链接等小修不记。
 
 ## 1011
 
+- [Changed] 按自用定位简化两处约定：CHANGELOG 条目与它记录的改动放进同一个提交，不再另开只装本文件的记录提交，条目末尾也不再标 `——commit:`；第三方登记收缩为只对会随仓库分发的内容按需登记，`AGENTS.md`「四、收录第三方内容」、`THIRD_PARTY_NOTICES.md` 登记规则与 `README.md` 同步，考证以够用为限。
 - [Changed] `_sandbox/` 纳入版本管理：`.gitignore` 去掉该排除项，`AGENTS.md`、`README.md`、`THIRD_PARTY_NOTICES.md` 中「不进版本历史 / 内容不随仓库分发」的表述同步改写；该目录仍是暂存区、不算成果区，其中第三方内容不单独登记。首批入库 106 个文件。——commit: `36a34b3`
 - [Changed] `THIRD_PARTY_NOTICES.md` 登记说明补记 4 件保留收录但已知瑕疵的 skill（`cloudflare-one` 指向缺失技能、`react-native-skills` 漏列 3 条规则、`redis-development` 索引少 5 条、`frontend-skill` 无规则库结构）的具体缺口。——commit: `b54357d`
 - [Removed] 4 个缺上游内容、本地补不了的飞书 skill（`lark-apps`、`lark-doc`、`lark-markdown`、`lark-vc-agent`）退回 `_sandbox/skills/`，成果区 `packs/skills/` 收缩为 48 个包；`THIRD_PARTY_NOTICES.md` 中这四条移出登记表，已考证的上游与许可记入「待办」。
