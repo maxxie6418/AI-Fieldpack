@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="zh-CN" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>知识速查手册 · 模块库与五类样板（原型）</title>
+<style>
+:root{
+  --bg:#ffffff; --bg-2:#f7f7f5; --bg-3:#efefec;
+  --ink:#1a1a1a; --ink-2:#4a4a4a; --ink-3:#8a8a8a;
+  --rule:#e6e6e3; --rule-2:#f1f1ee;
+  --accent:#2563eb; --ok:#15803d; --warn:#b45309; --bad:#b91c1c; --info:#6d28d9;
+  --r-s:4px; --r-m:8px; --r-l:12px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Courier New",monospace;
+}
+[data-mode="dark"]{
+  --bg:#131313; --bg-2:#1b1b1b; --bg-3:#232323;
+  --ink:#ececec; --ink-2:#b0b0b0; --ink-3:#787878;
+  --rule:#2f2f2f; --rule-2:#242424;
+  --accent:#7cb0ff; --ok:#5fd08a; --warn:#f0b45c; --bad:#f08c8c; --info:#b39df5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.75 var(--font);scroll-behavior:smooth}
+h1,h2,h3,h4,h5{margin:0;font-weight:600;line-height:1.4}
+p{margin:.35em 0}
+a{color:var(--accent);text-decoration:none}
+code,.mono{font-family:var(--mono);font-size:.9em}
+
+/* ---------- 外壳 ---------- */
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;
+  padding:0 20px;height:52px;background:var(--bg);border-bottom:1px solid var(--rule)}
+.brand{font-weight:600;font-size:14.5px;letter-spacing:.02em;white-space:nowrap}
+.brand em{font-style:normal;color:var(--ink-3);font-weight:400}
+.tools{margin-left:auto;display:flex;align-items:center;gap:8px}
+.tools input{font:inherit;font-size:13.5px;padding:5px 10px;width:210px;color:var(--ink);
+  background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--r-m)}
+.tools input:focus{outline:none;border-color:var(--accent)}
+.btn{font:inherit;font-size:13.5px;padding:5px 12px;color:var(--ink-2);background:var(--bg);
+  border:1px solid var(--rule);border-radius:var(--r-m);cursor:pointer}
+.btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs{position:sticky;top:52px;z-index:29;display:flex;gap:4px;overflow-x:auto;
+  padding:8px 20px;background:var(--bg-2);border-bottom:1px solid var(--rule)}
+.tab{flex:none;font:inherit;font-size:13.5px;padding:6px 14px;color:var(--ink-2);background:transparent;
+  border:1px solid transparent;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.on{background:var(--bg);border-color:var(--rule);color:var(--ink);font-weight:600}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 96px}
+
+/* ---------- 模块库 ---------- */
+.libbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:22px;
+  padding:14px 16px;background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--r-l)}
+.libbar .lead{width:100%;font-size:13px;color:var(--ink-3);margin-bottom:4px}
+.fam{margin:0 0 34px}
+.fam>h2{display:flex;align-items:center;gap:9px;font-size:15px;padding-bottom:8px;margin-bottom:14px;
+  border-bottom:1px solid var(--rule)}
+.famkey{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  font:600 12px/1 var(--mono);color:var(--bg);background:var(--ink);border-radius:var(--r-s)}
+.fam .cnt{font-size:12px;color:var(--ink-3);font-weight:400}
+.mod{padding:14px 16px;margin-bottom:10px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-l)}
+.mod-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.mid{font:600 11.5px/1 var(--mono);color:var(--accent);background:var(--bg-2);
+  padding:4px 6px;border-radius:var(--r-s);border:1px solid var(--rule)}
+.mod-head h3{font-size:15px}
+.when{margin-left:auto;font-size:12px;color:var(--ink-3)}
+.what{margin:6px 0 10px;font-size:13.5px;color:var(--ink-3)}
+.sample{padding:12px 14px;background:var(--bg-2);border:1px dashed var(--rule);border-radius:var(--r-m)}
+
+/* ---------- 样板页 ---------- */
+.skhead{padding:20px 22px;margin-bottom:24px;background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--r-l)}
+.sktype{display:inline-block;font-size:12px;color:var(--accent);border:1px solid currentColor;
+  border-radius:999px;padding:2px 10px;margin-bottom:8px}
+.skhead h2{font-size:21px}
+.skhead p{color:var(--ink-3);font-size:13.5px}
+.skhead .chips{margin-top:12px}
+.sksec{padding:18px 0 20px;border-top:1px solid var(--rule)}
+.sksec-head{display:flex;align-items:baseline;gap:9px;margin-bottom:12px}
+.sksec-head h3{font-size:16.5px}
+.sksec-head .ord{margin-left:auto;font:400 12px/1 var(--mono);color:var(--ink-3)}
+.sksec-body{font-size:14.5px}
+
+/* ---------- 样例零件 ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:2px 9px;color:var(--ink-2);background:var(--bg);
+  border:1px solid var(--rule);border-radius:999px}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.bullets{margin:.3em 0;padding-left:1.15em;color:var(--ink-2);font-size:14px}
+.bullets li{margin:.28em 0}
+.checklist{list-style:none;margin:.3em 0;padding:0;font-size:14px;color:var(--ink-2)}
+.checklist li{position:relative;padding-left:24px;margin:.32em 0}
+.checklist li::before{content:"";position:absolute;left:0;top:.42em;width:13px;height:13px;
+  border:1.4px solid var(--ink-3);border-radius:3px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.mini{padding:11px 13px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-m)}
+.mini h4{font-size:13.5px;margin-bottom:3px}
+.mini p{font-size:13px;color:var(--ink-3)}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{flex:1 1 150px;padding:11px 13px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-m)}
+.stat b{display:block;font:600 20px/1.2 var(--mono);color:var(--accent)}
+.stat span{font-size:12.5px;color:var(--ink-3)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two-col h5{font-size:13px;color:var(--ink-3);margin-bottom:5px}
+table.mini{width:100%;border-collapse:collapse;font-size:13.5px}
+table.mini th{font-size:12px;font-weight:500;color:var(--ink-3);text-align:left;padding:6px 10px;
+  border-bottom:1px solid var(--rule)}
+table.mini td{padding:7px 10px;border-bottom:1px solid var(--rule-2);color:var(--ink-2);vertical-align:top}
+table.mini tr:last-child td{border-bottom:none}
+.tree,.steps,.tl{margin:.3em 0;padding-left:1.3em;font-size:14px;color:var(--ink-2)}
+.tree li,.steps li{margin:.3em 0}
+.steps li::marker{font-family:var(--mono);color:var(--accent);font-weight:600}
+.tiers{display:grid;gap:8px}
+.tier{display:flex;gap:12px;align-items:baseline;padding:10px 13px;background:var(--bg);
+  border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:var(--r-m)}
+.tier .lv{flex:none;font:600 12px/1.6 var(--mono);color:var(--accent);min-width:38px}
+.tier p{font-size:13.5px;color:var(--ink-2);margin:0}
+.flow,.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px}
+.flow span,.chain span{padding:5px 11px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-m)}
+.flow i,.chain i{color:var(--ink-3);font-style:normal}
+.mapbox{position:relative;padding:26px 18px;text-align:center;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-l)}
+.mapcenter{display:inline-block;padding:8px 20px;font-weight:600;color:var(--bg);background:var(--ink);border-radius:999px}
+.mapring{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:14px}
+.mapring span{font-size:12.5px;padding:4px 11px;color:var(--ink-2);background:var(--bg-2);
+  border:1px solid var(--rule);border-radius:999px}
+.term{padding:12px 14px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-m)}
+.term-h{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.term-h b{font-size:14.5px}
+.term .en{font:12px/1.4 var(--mono);color:var(--ink-3)}
+.term p{font-size:13.5px;color:var(--ink-2);margin:.4em 0 0}
+.term .alias{font-size:12.5px;color:var(--ink-3)}
+.formula{padding:11px 14px;font:14px/1.6 var(--mono);color:var(--ink);
+  background:var(--bg);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:var(--r-m)}
+.tl{list-style:none;padding:0;border-left:2px solid var(--rule);margin-left:6px}
+.tl li{position:relative;padding:0 0 12px 16px;font-size:13.5px}
+.tl li::before{content:"";position:absolute;left:-7px;top:.5em;width:8px;height:8px;
+  background:var(--accent);border-radius:50%}
+.tl .yr{font:600 12px/1.6 var(--mono);color:var(--accent);margin-right:8px}
+.bars{display:grid;gap:7px}
+.bar{display:grid;grid-template-columns:110px 1fr 62px;align-items:center;gap:10px;font-size:13px}
+.bar .tk{color:var(--ink-2)}
+.bar .tr{height:8px;background:var(--bg-3);border-radius:999px;overflow:hidden}
+.bar .tr i{display:block;height:100%;background:var(--accent);border-radius:999px}
+.bar .tv{font:12px/1 var(--mono);color:var(--ink-3);text-align:right}
+.note{font-size:12.5px;color:var(--ink-3);border-left:2px solid var(--rule);padding-left:10px}
+@media (max-width:700px){
+  .two-col{grid-template-columns:1fr}
+  .tools input{width:120px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">知识速查手册 <em>· 原型：全模块 + 五类样板</em></div>
+  <div class="tools">
+    <input id="q" type="search" placeholder="搜索模块（名称 / 编号）">
+    <button class="btn" id="modeBtn">暗色</button>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs"></nav>
+
+<main id="app"></main>
+
+<script>
+/* ============================================================
+   1. 模块族定义
+   ============================================================ */
+const FAMILIES = {
+  A:'定位与概览', B:'结构与地图', C:'概念与术语', D:'叙事与演化', E:'操作与执行',
+  F:'判断与取舍', G:'检索与索引', H:'数据与量化', I:'学习与自测', J:'元信息与延伸'
+};
+const FAM_DESC = {
+  A:'回答「这页是什么、给谁看、要不要读」', B:'回答「知识整体长什么样、我在哪」',
+  C:'最小可复用的知识单元', D:'时间线、人物与因果',
+  E:'把知识变成可执行动作', F:'怎么选、边界在哪、什么算错',
+  G:'让内容找得到', H:'数字与表格承担的部分',
+  I:'检验是否真的学会', J:'来源、时效、下一步去哪'
+};
+
+/* ============================================================
+   2. 模块库（全量，宁可多不可少）
+   ============================================================ */
+const MODULES = [
+/* ---------- A 定位与概览 ---------- */
+{id:'A1',fam:'A',name:'一句话定位',when:'全类型',what:'用一两句说清这页讲什么、解决什么问题。开场第一段，决定读者要不要继续。',
+ html:`<p class="ln"><strong>营养学</strong>研究食物中的营养素如何被人体吸收、代谢与利用，以及这种利用与健康、疾病之间的关系。</p>`},
+{id:'A2',fam:'A',name:'一页纸摘要',when:'全类型',what:'把全页结论压成一屏，能独立阅读；读者只读这一块也应拿到主干。',
+ html:`<ul class="bullets"><li>能量平衡是体重变化的主变量，其余因素影响的是分布与效率。</li><li>三大宏量营养素供能不同：碳水 4 kcal/g、蛋白质 4、脂肪 9。</li><li>膳食纤维不供能，但显著影响血糖、血脂与肠道菌群。</li></ul>`},
+{id:'A3',fam:'A',name:'电梯陈述',when:'全类型',what:'30 秒口述版，用于向别人转述或自检是否真的抓住了主干。',
+ html:`<p class="ln">营养素是身体需要的原料，也是调节开关。缺了会出问题，多了同样会出问题——营养学的核心就是搞清楚「多少算合适」。</p>`},
+{id:'A4',fam:'A',name:'核心要点卡',when:'全类型',what:'3–5 条平级要点，每条一句结论 + 一句支撑；用于替代长段落。',
+ html:`<div class="grid2"><div class="mini"><h4>能量</h4><p>摄入与消耗的差值决定体重方向</p></div><div class="mini"><h4>结构</h4><p>蛋白与脂肪决定身体组成</p></div><div class="mini"><h4>调节</h4><p>维生素与矿物质多以辅酶形式参与</p></div><div class="mini"><h4>时序</h4><p>什么时候吃，影响同一份食物的代谢响应</p></div></div>`},
+{id:'A5',fam:'A',name:'关键数字面板',when:'量化度高的主题',what:'把全页最有用的数字提到显眼位置，避免读者在正文里翻找。',
+ html:`<div class="stats"><div class="stat"><b>4 / 4 / 9</b><span>碳水 / 蛋白 / 脂肪 的 kcal·g⁻¹</span></div><div class="stat"><b>7.0</b><span>酒精 kcal·g⁻¹（常被忽略）</span></div><div class="stat"><b>1.0–1.6</b><span>成人蛋白质 g·kg⁻¹·d⁻¹ 推荐区间</span></div></div>`},
+{id:'A6',fam:'A',name:'边界声明',when:'全类型',what:'明确写出「不是什么」，阻挡最常见的误读；比正面定义更能省下读者的时间。',
+ html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>营养素与健康关系的公认结论</li><li>怎么读懂标签与膳食指南</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>「吃某物治某病」的偏方</li><li>保健品营销话术与个案经验</li></ul></div></div>`},
+{id:'A7',fam:'A',name:'前置门槛清单',when:'领域级入口',what:'列出真正需要的前置知识，跨领域入门最常卡在这里；没有它读者会在半途才发现缺基础。',
+ html:`<ul class="checklist"><li>知道元素、分子、能量单位的基本含义</li><li>能读懂「每 100 g 含 X mg」这类标签句式</li><li>了解人体主要器官的大致功能</li></ul>`},
+{id:'A8',fam:'A',name:'学习成本评估',when:'领域级入口',what:'给出不同目标对应的投入量，让读者自己决定停在哪一层。',
+ html:`<table class="mini"><tr><th>目标</th><th>需要投入</th><th>难度</th></tr><tr><td>看懂食品标签</td><td>1–2 小时</td><td>低</td></tr><tr><td>能自己安排一日饮食</td><td>10–20 小时</td><td>中</td></tr><tr><td>读懂研究结论与指南依据</td><td>100 小时以上</td><td>高</td></tr></table>`},
+
+/* ---------- B 结构与地图 ---------- */
+{id:'B1',fam:'B',name:'知识地图（概念关系图）',when:'体系型',what:'把概念与概念间的关系画出来，回答「这门知识由哪些块组成」。体系型的骨架主体。',
+ html:`<div class="mapbox"><div class="mapcenter">营养学</div><div class="mapring"><span>宏量营养素</span><span>微量营养素</span><span>能量代谢</span><span>膳食模式</span><span>生命周期营养</span><span>营养与疾病</span></div></div>`},
+{id:'B2',fam:'B',name:'知识树（层级大纲）',when:'体系型 / 清单型',what:'用缩进层级表达包含关系，是地图的文字化版本，便于快速扫读与定位。',
+ html:`<ul class="tree"><li>营养素<ul><li>宏量：碳水 · 蛋白质 · 脂肪</li><li>微量：维生素 · 矿物质</li></ul></li><li>能量代谢<ul><li>摄入：食物与吸收率</li><li>消耗：基础代谢 · 体力活动 · 食物热效应</li></ul></li><li>应用：膳食模式 · 特殊人群 · 疾病管理</li></ul>`},
+{id:'B3',fam:'B',name:'概念依赖与学习顺序',when:'体系型',what:'给出「先学什么」的线性顺序；地图只回答「有什么」，回答不了从哪开始。',
+ html:`<ol class="steps"><li>营养素分类 —— 先建立词汇</li><li>能量与宏量营养素 —— 主干与算术</li><li>维生素与矿物质 —— 调节与缺乏症</li><li>膳食模式与配餐 —— 把知识用起来</li><li>特殊人群与疾病 —— 边界与例外</li></ol>`},
+{id:'B4',fam:'B',name:'知识分层',when:'体系型',what:'把内容切成核心 / 进阶 / 专家三层，对应「一页入门 / 全面了解 / 深入掌握」，是深度分层的主要载体。',
+ html:`<div class="tiers"><div class="tier"><span class="lv">核心</span><p>能量平衡、三大宏量营养素、常见维生素缺乏症</p></div><div class="tier"><span class="lv">进阶</span><p>代谢通路、血糖响应曲线、蛋白质质量评估（PDCAAS / DIAAS）</p></div><div class="tier"><span class="lv">专家</span><p>分子营养学、营养素–基因交互、个体化营养与生物标志物</p></div></div>`},
+{id:'B5',fam:'B',name:'流程图',when:'流程型',what:'流程型的地图形态：横向或纵向的步骤链，让读者一眼看到起点与终点。',
+ html:`<div class="flow"><span>写 Dockerfile</span><i>→</i><span>docker build</span><i>→</i><span>docker run</span><i>→</i><span>进入容器调试</span><i>→</i><span>push 到仓库</span></div>`},
+{id:'B6',fam:'B',name:'决策树',when:'流程型 / 判断型',what:'把「看情况」拆成分支；流程型里它代替知识地图，判断型里它是判别标准的图形化。',
+ html:`<ul class="tree"><li>需要把环境隔离起来吗？<ul><li>不需要 → 直接跑在宿主机</li><li>需要 → 是单机还是集群？<ul><li>单机 → docker compose</li><li>集群 → Kubernetes</li></ul></li></ul></li></ul>`},
+{id:'B7',fam:'B',name:'时间轴（地图形态）',when:'史实型',what:'史实型的骨架主体：把时间本身当结构，其他模块围绕它展开。',
+ html:`<ol class="tl"><li><span class="yr">1939</span>德国入侵波兰，欧洲战场开启</li><li><span class="yr">1941</span>巴巴罗萨行动；珍珠港事件，战争全球化</li><li><span class="yr">1942</span>斯大林格勒与中途岛，战局转折</li><li><span class="yr">1944</span>诺曼底登陆，西线重开</li><li><span class="yr">1945</span>德国投降；日本投降，战争结束</li></ol>`},
+{id:'B8',fam:'B',name:'领域分支总览',when:'范围过大的入口',what:'范围过大时的第三种处理：一页学科门类地图 + 各分支入口，每支从简，让读者先看全貌再定点深入。',
+ html:`<div class="grid2"><div class="mini"><h4>结构工程</h4><p>受力与材料 → 从何入门</p></div><div class="mini"><h4>机械工程</h4><p>运动与传动 → 从何入门</p></div><div class="mini"><h4>电子工程</h4><p>电路与信号 → 从何入门</p></div><div class="mini"><h4>工业工程</h4><p>流程与效率 → 从何入门</p></div></div>`},
+
+/* ---------- C 概念与术语 ---------- */
+{id:'C1',fam:'C',name:'核心理论与框架',when:'体系型 / 判断型',what:'给出这一领域最主要的几个模型，每个一段话讲清它解释什么、局限在哪。',
+ html:`<div class="grid2"><div class="mini"><h4>能量平衡模型</h4><p>摄入 − 消耗 = 体重变化方向；解释长期趋势，不解释个体差异。</p></div><div class="mini"><h4>营养密度</h4><p>单位能量所含营养素量；用于比较同类食物，不跨类别比较。</p></div></div>`},
+{id:'C2',fam:'C',name:'术语卡',when:'全类型',what:'字段与句式固定的最小知识单元：名称 / 英文 / 别名 / 一句话定义 / 展开 / 所属主题。每页自包含。',
+ html:`<div class="term"><div class="term-h"><b>基础代谢率</b><span class="en">Basal Metabolic Rate, BMR</span></div><p>静息状态下维持生命所需的最低能量消耗，约占日常总消耗的 60–70%。测量条件严格（隔夜禁食、完全静息）。</p><p class="alias">别名：静息代谢率 · 所属主题：能量代谢</p></div>`},
+{id:'C3',fam:'C',name:'术语索引',when:'清单型 / 体系型',what:'全部术语的索引视图，支持按首字母与类别检索；回答「这门知识一共要认识多少个词」。',
+ html:`<div class="chips"><span class="chip">BMR</span><span class="chip">TDEE</span><span class="chip">GI 升糖指数</span><span class="chip">DIAAS</span><span class="chip">膳食纤维</span><span class="chip">必需氨基酸</span><span class="chip">脂溶性维生素</span><span class="chip">食物热效应</span></div>`},
+{id:'C4',fam:'C',name:'易混淆概念辨析',when:'全类型',what:'成对概念的边界与判别标准。与「常见误区」不同：误区针对外行偏见，辨析针对内部易混点。',
+ html:`<table class="mini"><tr><th>容易混的一对</th><th>怎么分</th></tr><tr><td>BMR vs RMR</td><td>BMR 测量条件更严格、数值更低；RMR 条件宽松，日常估算用 RMR</td></tr><tr><td>升糖指数 GI vs 升糖负荷 GL</td><td>GI 只看速度，GL 把实际摄入量算进去</td></tr><tr><td>缺乏 vs 不足</td><td>缺乏出现临床体征；不足只有生化指标偏低</td></tr></table>`},
+{id:'C5',fam:'C',name:'中英术语对照表',when:'有英文文献的主题',what:'英文名、缩写、常见别名。英文术语是继续检索与追源的主要入口。',
+ html:`<table class="mini"><tr><th>中文</th><th>英文 / 缩写</th><th>常见别名</th></tr><tr><td>基础代谢率</td><td>BMR</td><td>静息代谢率</td></tr><tr><td>膳食纤维</td><td>Dietary fiber</td><td>粗纤维（旧称）</td></tr></table>`},
+{id:'C6',fam:'C',name:'公式与原理',when:'量化度高的主题',what:'把可计算的公式单列，附变量含义与单位；公式混在正文里既难找也难核对。',
+ html:`<div class="formula">TDEE = BMR × 活动系数（1.2 久坐 / 1.55 中等 / 1.725 高强度）</div><p class="note">活动系数是人群均值，个体误差可达 ±15%，只用于起步估算。</p>`},
+{id:'C7',fam:'C',name:'心智模型卡',when:'判断型 / 体系型',what:'可迁移的思考方式，配场景标签；回答「遇到新问题该用什么框架想」。',
+ html:`<div class="mini"><h4>先看分布，再看均值</h4><p>营养素需求随年龄、体重、活动量变化，任何「平均值」都要先问它是对谁的平均。</p></div>`},
+
+/* ---------- D 叙事与演化 ---------- */
+{id:'D1',fam:'D',name:'历史脉络时间轴',when:'时间性=有强演化史',what:'按时间排列的关键节点，每阶段不少于 3 条；回答「这门知识是怎么变成今天这样的」。',
+ html:`<ol class="tl"><li><span class="yr">1912</span>维生素概念提出，营养学从「热量学」转向「营养素学」</li><li><span class="yr">1930s</span>必需氨基酸与维生素缺乏症被逐个确认</li><li><span class="yr">1977</span>美国膳食目标发布，膳食指南体系成型</li><li><span class="yr">2000s</span>营养流行病学与队列研究成为主流证据来源</li></ol>`},
+{id:'D2',fam:'D',name:'分期与阶段',when:'史实型',what:'把连续的时间切成有名字的阶段；没有分期的史实页只是事件罗列。',
+ html:`<div class="grid2"><div class="mini"><h4>1918–1939 战间期</h4><p>凡尔赛体系的裂痕与极权崛起</p></div><div class="mini"><h4>1939–1941 欧洲战争</h4><p>闪击战、不列颠空战、巴巴罗萨</p></div><div class="mini"><h4>1941–1943 全球战争</h4><p>太平洋战场与北非，同盟国转入反攻</p></div><div class="mini"><h4>1944–1945 结局</h4><p>双线推进、德国与日本相继投降</p></div></div>`},
+{id:'D3',fam:'D',name:'因果链',when:'史实型 / 判断型',what:'把「为什么发生」串成链，区分直接原因、结构性原因与借口。',
+ html:`<div class="chain"><span>凡尔赛体系失衡</span><i>→</i><span>经济大萧条</span><i>→</i><span>极端民族主义上台</span><i>→</i><span>扩张政策失控</span><i>→</i><span>全面战争</span></div>`},
+{id:'D4',fam:'D',name:'重要人物与学派',when:'时间性=有强演化史',what:'人物、身份、主要贡献、所属流派；用表格比长篇小传更好查。',
+ html:`<table class="mini"><tr><th>人物</th><th>身份</th><th>主张 / 贡献</th></tr><tr><td>卡萨布兰卡式的战略分歧</td><td>—</td><td>—</td></tr><tr><td>戴高乐</td><td>自由法国领袖</td><td>坚持法国独立地位，与美英摩擦不断</td></tr></table>`},
+{id:'D5',fam:'D',name:'流派观点对比',when:'共识度=存在活跃争议',what:'并列不同立场的核心主张与证据，不替读者下结论。',
+ html:`<table class="mini"><tr><th>立场</th><th>核心主张</th><th>主要依据</th></tr><tr><td>功能主义解释</td><td>战争源于体系失序</td><td>结构性因素与制度分析</td></tr><tr><td>意图主义解释</td><td>战争源于特定决策者意图</td><td>档案与决策过程记录</td></tr></table>`},
+{id:'D6',fam:'D',name:'里程碑事件卡',when:'史实型',what:'单个事件的标准化卡片：时间、地点、参与方、结果、影响；用于承载不能塞进时间轴的事件。',
+ html:`<div class="mini"><h4>斯大林格勒战役（1942.7–1943.2）</h4><p>苏德战场转折点。德军第 6 集团军被围歼，东线主动权转入苏联一侧。</p></div>`},
+
+/* ---------- E 操作与执行 ---------- */
+{id:'E1',fam:'E',name:'步骤流程',when:'流程型',what:'带编号的可执行步骤，每步一个动作 + 一个预期结果；流程型的骨架主体。',
+ html:`<ol class="steps"><li><strong>写 Dockerfile</strong>：从基础镜像开始，逐层加依赖</li><li><strong>构建镜像</strong>：<code>docker build -t name:tag .</code></li><li><strong>运行并验证</strong>：<code>docker run --rm -it name:tag</code></li><li><strong>调试</strong>：进容器看日志、挂载卷复现问题</li></ol>`},
+{id:'E2',fam:'E',name:'判断分支',when:'流程型 / 判断型',what:'流程中途的分岔：满足什么条件走哪条路，走错会怎样。',
+ html:`<ul class="tree"><li>容器起不来，先看什么？<ul><li>日志有报错 → 读最后 20 行</li><li>没有日志 → <code>docker ps -a</code> 看退出码</li></ul></li></ul>`},
+{id:'E3',fam:'E',name:'检查清单',when:'流程型 / 清单型',what:'可以逐条打勾的前置或收尾检查；比正文更能防漏。',
+ html:`<ul class="checklist"><li>基础镜像版本已固定，不用 <code>latest</code></li><li>.dockerignore 已排除 node_modules 与 .git</li><li>镜像内不含密钥，敏感值走环境变量</li><li>已确认容器内的时区与宿主机一致</li></ul>`},
+{id:'E4',fam:'E',name:'失败模式与常见错误',when:'流程型 / 判断型',what:'按严重度列出典型错误：怎么识别、为什么会犯、怎么修。',
+ html:`<table class="mini"><tr><th>现象</th><th>原因</th><th>处理</th></tr><tr><td>镜像体积异常大</td><td>把构建缓存与源码一起打进层</td><td>多阶段构建 + .dockerignore</td></tr><tr><td>换了机器就跑不起来</td><td>依赖宿主机环境变量或路径</td><td>全部显式声明在镜像里</td></tr></table>`},
+{id:'E5',fam:'E',name:'行动触发器',when:'判断型 / 流程型',what:'「每当 X 场景，先问自己 Y」式清单，把知识转成条件反射。',
+ html:`<ul class="bullets"><li>每当想「这个方案更快」→ 先问：快在哪个环节，代价转移到哪去了？</li><li>每当看到「历史年化收益」→ 先问：起止时间怎么选的？</li><li>每当听到「大家都这么做」→ 先问：这句话的证据来自哪里？</li></ul>`},
+{id:'E6',fam:'E',name:'工具与资源清单',when:'流程型 / 清单型',what:'这一领域实际要用到的工具、命令、站点，按用途分组。',
+ html:`<table class="mini"><tr><th>用途</th><th>工具</th></tr><tr><td>本地编排</td><td>docker compose</td></tr><tr><td>镜像分析</td><td>dive</td></tr><tr><td>清理空间</td><td>docker system prune</td></tr></table>`},
+{id:'E7',fam:'E',name:'速查表',when:'清单型 / 流程型',what:'高频命令或参数的一张表，无解释、只列用法；这是清单型页面的主力模块。',
+ html:`<table class="mini"><tr><th>命令</th><th>做什么</th></tr><tr><td><code>docker ps -a</code></td><td>列出所有容器，含已退出</td></tr><tr><td><code>docker logs -f &lt;id&gt;</code></td><td>持续跟踪容器日志</td></tr><tr><td><code>docker exec -it &lt;id&gt; sh</code></td><td>进入运行中的容器</td></tr></table>`},
+
+/* ---------- F 判断与取舍 ---------- */
+{id:'F1',fam:'F',name:'判别标准',when:'判断型',what:'给出可操作的判据与阈值：看到什么算什么，而不是「视情况而定」。判断型的骨架主体。',
+ html:`<table class="mini"><tr><th>判据</th><th>取值</th><th>结论</th></tr><tr><td>估值分位</td><td>低于近 10 年 30% 分位</td><td>具备进入观察名单的条件</td></tr><tr><td>现金流覆盖</td><td>经营现金流 / 净利润 &lt; 0.7</td><td>利润质量存疑，需进一步核查</td></tr></table>`},
+{id:'F2',fam:'F',name:'反例与失败案例',when:'判断型',what:'正例建立认知，反例界定边界；标出「按这套标准也不该做」的情形。',
+ html:`<div class="mini"><h4>低估值陷阱</h4><p>分位低于 20% 但基本面持续恶化时，低估值是结果而不是机会。案例：某行业在需求结构变化后长期停留在低分位。</p></div>`},
+{id:'F3',fam:'F',name:'适用条件与边界',when:'全类型',what:'明确这套知识的适用前提与失效区，避免被误用到不该用的场景。',
+ html:`<ul class="bullets"><li><strong>适用</strong>：流动性较好的公开市场标的、持有期在 3 年以上</li><li><strong>不适用</strong>：无法估值的新兴资产、需要短期择时的资金</li></ul>`},
+{id:'F4',fam:'F',name:'共识与争议分离',when:'共识度=存在活跃争议',what:'把「已定论 / 仍有争论 / 纯推测」分开标注，防止把争议写成结论。',
+ html:`<table class="mini"><tr><th>结论</th><th>状态</th></tr><tr><td>总能量摄入长期超过消耗会导致体重上升</td><td>已定论</td></tr><tr><td>进食时间对代谢的独立影响</td><td>仍有争论</td></tr><tr><td>某类补充剂对普通人群的长期收益</td><td>证据不足</td></tr></table>`},
+{id:'F5',fam:'F',name:'证据与来源分级',when:'需要溯源的主题',what:'标注关键结论的来源类型与强度，让读者知道哪句可信到哪一步。',
+ html:`<table class="mini"><tr><th>等级</th><th>来源类型</th></tr><tr><td>A</td><td>系统综述 / 官方指南</td></tr><tr><td>B</td><td>随机对照试验 / 大样本队列</td></tr><tr><td>C</td><td>观察性研究 / 专家意见</td></tr><tr><td>D</td><td>个案与经验，仅供参考</td></tr></table>`},
+{id:'F6',fam:'F',name:'权衡对比表',when:'判断型',what:'把候选方案按同一组维度并排，显式列出各自代价；判断型的决策载体。',
+ html:`<table class="mini"><tr><th>方案</th><th>成本</th><th>复杂度</th><th>适合</th></tr><tr><td>单机 compose</td><td>低</td><td>低</td><td>个人项目</td></tr><tr><td>Kubernetes</td><td>高</td><td>高</td><td>多团队生产环境</td></tr></table>`},
+
+/* ---------- G 检索与索引 ---------- */
+{id:'G1',fam:'G',name:'分类索引',when:'清单型',what:'把条目按类别铺开并支持筛选；清单型的入口模块。',
+ html:`<div class="chips"><span class="chip">血常规</span><span class="chip">肝功能</span><span class="chip">肾功能</span><span class="chip">血脂</span><span class="chip">血糖</span><span class="chip">甲状腺</span><span class="chip">电解质</span></div>`},
+{id:'G2',fam:'G',name:'条目表',when:'清单型',what:'清单型的骨架主体：每条一行，字段固定，可排序可筛选。',
+ html:`<table class="mini"><tr><th>项目</th><th>参考区间</th><th>单位</th></tr><tr><td>白细胞计数</td><td>3.5–9.5</td><td>10⁹/L</td></tr><tr><td>血红蛋白（男）</td><td>130–175</td><td>g/L</td></tr><tr><td>血红蛋白（女）</td><td>115–150</td><td>g/L</td></tr></table>`},
+{id:'G3',fam:'G',name:'别名与缩写索引',when:'清单型 / 有英文文献',what:'一种东西可能有多个写法，索引负责让任意写法都能命中同一个条目。',
+ html:`<table class="mini"><tr><th>常见写法</th><th>对应条目</th></tr><tr><td>ALT / 谷丙转氨酶 / GPT</td><td>丙氨酸氨基转移酶</td></tr><tr><td>Cr / 肌酐</td><td>血清肌酐</td></tr></table>`},
+{id:'G4',fam:'G',name:'场景索引',when:'全类型',what:'「我遇到 X，该看哪一节」的反向入口，把页面从阅读物变成工具。',
+ html:`<table class="mini"><tr><th>你的处境</th><th>看这里</th></tr><tr><td>报告上有个箭头看不懂</td><td>C4 易混淆辨析 · G2 条目表</td></tr><tr><td>想自己减脂不知从哪开始</td><td>B3 学习顺序 · E1 步骤流程</td></tr></table>`},
+{id:'G5',fam:'G',name:'常见问题 FAQ',when:'全类型',what:'把真实提问收进来，答案默认折叠；FAQ 往往比正文更能暴露理解盲区。',
+ html:`<div class="mini"><h4>参考区间外的值一定有问题吗？</h4><p>不一定。参考区间按人群 95% 区间划定，本就允许 5% 的健康人落在外面；要结合症状与趋势看。</p></div>`},
+{id:'G6',fam:'G',name:'对比表',when:'清单型 / 判断型',what:'把同类条目按统一维度并排，用于回答「这几个有什么区别」。',
+ html:`<table class="mini"><tr><th>指标</th><th>主要反映</th><th>受什么干扰</th></tr><tr><td>空腹血糖</td><td>即时糖代谢</td><td>前一晚饮食与睡眠</td></tr><tr><td>糖化血红蛋白</td><td>近 2–3 个月平均血糖</td><td>贫血、血红蛋白异常</td></tr></table>`},
+
+/* ---------- H 数据与量化 ---------- */
+{id:'H1',fam:'H',name:'数值参考表',when:'量化度=数据参数为主',what:'成组的数值以表格承载；纯文字描述数值既难读也易错。',
+ html:`<table class="mini"><tr><th>项目</th><th>参考下限</th><th>参考上限</th><th>单位</th></tr><tr><td>总胆固醇</td><td>—</td><td>5.2</td><td>mmol/L</td></tr><tr><td>甘油三酯</td><td>—</td><td>1.7</td><td>mmol/L</td></tr><tr><td>HDL-C（男）</td><td>1.0</td><td>—</td><td>mmol/L</td></tr></table>`},
+{id:'H2',fam:'H',name:'参数区间',when:'量化度=数据参数为主',what:'说明某个量的合理波动范围，以及超出范围意味着什么。',
+ html:`<div class="bars"><div class="bar"><span class="tk">久坐</span><span class="tr"><i style="width:26%"></i></span><span class="tv">1.2×</span></div><div class="bar"><span class="tk">中等活动</span><span class="tr"><i style="width:62%"></i></span><span class="tv">1.55×</span></div><div class="bar"><span class="tk">高强度</span><span class="tr"><i style="width:88%"></i></span><span class="tv">1.725×</span></div></div>`},
+{id:'H3',fam:'H',name:'单位换算',when:'量化度=数据参数为主',what:'这一领域里最容易出错的一组换算，列成表随查随用。',
+ html:`<table class="mini"><tr><th>换算</th><th>关系</th></tr><tr><td>mg/dL → mmol/L（胆固醇）</td><td>÷ 38.67</td></tr><tr><td>mg/dL → mmol/L（甘油三酯）</td><td>÷ 88.57</td></tr><tr><td>kcal → kJ</td><td>× 4.184</td></tr></table>`},
+{id:'H4',fam:'H',name:'图表',when:'量化度=数据参数为主',what:'当数量对比或趋势比数字本身更重要时，用图形承载；否则表格更好。',
+ html:`<div class="bars"><div class="bar"><span class="tk">碳水</span><span class="tr"><i style="width:44%"></i></span><span class="tv">4</span></div><div class="bar"><span class="tk">蛋白</span><span class="tr"><i style="width:44%"></i></span><span class="tv">4</span></div><div class="bar"><span class="tk">脂肪</span><span class="tr"><i style="width:100%"></i></span><span class="tv">9</span></div></div><p class="note">单位：kcal·g⁻¹。脂肪是碳水的 2.25 倍。</p>`},
+
+/* ---------- I 学习与自测 ---------- */
+{id:'I1',fam:'I',name:'学习路线图',when:'全类型',what:'分阶段的学习路径，可打勾记录进度；把页面从「读过」变成「学过」。',
+ html:`<ol class="steps"><li>第 1 阶段 · 建立词汇（营养素分类、单位）</li><li>第 2 阶段 · 掌握主干（能量平衡与三大宏量）</li><li>第 3 阶段 · 补调节部分（维生素、矿物质）</li><li>第 4 阶段 · 能读懂指南与标签</li><li>第 5 阶段 · 按需进入个体化与疾病营养</li></ol>`},
+{id:'I2',fam:'I',name:'自测题库',when:'全类型',what:'每模块 3–5 道辨析 / 边界 / 迁移题，答案默认折叠；用于检验是否真的学会。',
+ html:`<div class="mini"><h4>题 1</h4><p>同样是 100 kcal，来自坚果和来自含糖饮料，对身体的影响相同吗？差在哪？</p><p class="note">参考答案：供能相同，但饱腹感、餐后血糖响应与伴随营养素不同——能量相等不等于效果相等。</p></div>`},
+{id:'I3',fam:'I',name:'实践练习',when:'流程型 / 体系型',what:'把知识用出去的最小任务，做完即验证了理解；比自测题更接近真实使用。',
+ html:`<ul class="bullets"><li>拿一份你常吃的食品标签，算出它提供的一餐里三大营养素比例。</li><li>用 TDEE 公式估算自己的消耗，和一周体重变化对照，看偏差有多大。</li></ul>`},
+{id:'I4',fam:'I',name:'记忆助记',when:'清单型 / 史实型',what:'口诀、数字挂钩、时间线记忆桩；用于必须背下来的密集条目。',
+ html:`<div class="mini"><h4>脂溶性维生素</h4><p><strong>A D E K</strong> —— 「A D E K」可谐音记「爱的 K」，四者都需脂肪参与吸收。</p></div>`},
+
+/* ---------- J 元信息与延伸 ---------- */
+{id:'J1',fam:'J',name:'前沿与趋势',when:'全类型',what:'当前正在变化的方向，以及这些变化可能推翻本文哪些结论。',
+ html:`<ul class="bullets"><li>个体化营养：从人群推荐量转向基于生物标志物与基因型的建议</li><li>肠道菌群：从「有益」的笼统说法转向具体菌株与代谢产物研究</li></ul>`},
+{id:'J2',fam:'J',name:'开放问题',when:'共识度=存在活跃争议',what:'这一领域仍未解决的问题清单；它也是后续深入的方向指引。',
+ html:`<ul class="bullets"><li>超加工食品的健康影响中，有多少来自成分、多少来自加工方式本身？</li><li>进食时间窗的独立效应在长期队列中能否被重复验证？</li></ul>`},
+{id:'J3',fam:'J',name:'跟进渠道',when:'全类型',what:'期刊、权威机构、社区、可订阅的更新源；入门之后要知道去哪里继续。',
+ html:`<table class="mini"><tr><th>类型</th><th>渠道</th></tr><tr><td>官方指南</td><td>各国膳食指南与卫生机构发布页</td></tr><tr><td>综述</td><td>Cochrane、PubMed 的 systematic review</td></tr><tr><td>讨论</td><td>专业学会年会与公开课</td></tr></table>`},
+{id:'J4',fam:'J',name:'时效与半衰期',when:'全类型',what:'生成日期、知识截止点、领域更新速度；快变领域与慢变领域不能用同一时效口径。',
+ html:`<table class="mini"><tr><th>字段</th><th>值</th></tr><tr><td>内容截止</td><td>2026-10</td></tr><tr><td>更新速度</td><td>中等：指南 5–10 年一轮，研究结论持续更新</td></tr><tr><td>需要复核的部分</td><td>具体推荐量、前沿与趋势</td></tr></table>`},
+{id:'J5',fam:'J',name:'来源与参考',when:'全类型',what:'列出主要依据，按可信度分组；「完整且细致」必须可追溯。',
+ html:`<ul class="bullets"><li>官方膳食指南与卫生机构发布的参考摄入量</li><li>教科书与系统综述（用于原理部分）</li><li>说明：本文为个人整理，不构成医疗建议</li></ul>`},
+{id:'J6',fam:'J',name:'修订记录',when:'全类型',what:'这页改过什么、什么时候改的；让「持续修订」可被看见。',
+ html:`<table class="mini"><tr><th>日期</th><th>改动</th></tr><tr><td>2026-10-11</td><td>初版</td></tr><tr><td>2026-11-02</td><td>补充糖化血红蛋白条目与换算表</td></tr></table>`},
+{id:'J7',fam:'J',name:'应用案例',when:'全类型',what:'真实场景下这套知识怎么用；正例负责建立直觉。',
+ html:`<div class="mini"><h4>案例：把「少吃油」换成可执行的判断</h4><p>不看烹饪用油总量，改看加工食品里被忽略的脂肪来源——多数人的超标来自零食而非炒菜。</p></div>`},
+{id:'J8',fam:'J',name:'跨学科关联',when:'全类型',what:'这门知识与哪些邻域知识相连，以及相连处能延伸出什么。',
+ html:`<table class="mini"><tr><th>邻域</th><th>连接点</th></tr><tr><td>生理学</td><td>消化吸收与代谢调控</td></tr><tr><td>流行病学</td><td>膳食与疾病的关联证据如何产生</td></tr><tr><td>食品科学</td><td>加工如何改变营养素的可用性</td></tr></table>`},
+{id:'J9',fam:'J',name:'相关主题声明',when:'全类型',what:'页内显式声明前置 / 相关 / 跨学科主题，由读者自行据此索引；不做文件间链接。',
+ html:`<table class="mini"><tr><th>关系</th><th>主题</th></tr><tr><td>前置</td><td>人体生理学基础</td></tr><tr><td>相关</td><td>运动营养、食品标签解读</td></tr><tr><td>延伸</td><td>营养流行病学</td></tr></table>`}
+];
+
+/* ============================================================
+   3. 五类样板（每类一个真实选题）
+   ============================================================ */
+const SKELETONS = [
+/* ============ 1. 体系型 ============ */
+{key:'tixi', label:'体系型 · 营养学入门', type:'体系型', title:'营养学入门',
+ sub:'骨架主体 = 知识地图 + 术语体系 + 概念依赖顺序。共 16 节；其中「历史脉络」「共识与争议」由属性触发（有强演化史 / 存在活跃争议）。',
+ sections:[
+ {id:'A1',h:'一句话定位',html:`<p class="ln"><strong>营养学</strong>研究食物中的营养素如何被人体吸收、代谢与利用，以及这种利用与健康、疾病之间的关系。</p>`},
+ {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>营养素与健康关系的公认结论</li><li>怎么看懂标签与膳食指南</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>「吃某物治某病」的偏方</li><li>保健品营销话术与个案经验</li></ul></div></div>`},
+ {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>能量平衡是体重变化的主变量，其余因素影响的是分布与效率。</li><li>三大宏量营养素供能：碳水 4、蛋白质 4、脂肪 9 kcal·g⁻¹。</li><li>膳食纤维不供能，但显著影响血糖、血脂与肠道菌群。</li></ul>`},
+ {id:'B1',h:'知识地图',html:`<div class="mapbox"><div class="mapcenter">营养学</div><div class="mapring"><span>宏量营养素</span><span>微量营养素</span><span>能量代谢</span><span>膳食模式</span><span>生命周期营养</span><span>营养与疾病</span></div></div>`},
+ {id:'B3',h:'概念依赖与学习顺序',html:`<ol class="steps"><li>营养素分类 —— 先建立词汇</li><li>能量与宏量营养素 —— 主干与算术</li><li>维生素与矿物质 —— 调节与缺乏症</li><li>膳食模式与配餐 —— 把知识用起来</li><li>特殊人群与疾病 —— 边界与例外</li></ol>`},
+ {id:'C1',h:'核心理论与框架',html:`<div class="grid2"><div class="mini"><h4>能量平衡模型</h4><p>摄入 − 消耗 = 体重变化方向。解释长期趋势，不解释个体差异。</p></div><div class="mini"><h4>膳食参考摄入量 DRI</h4><p>由 EAR / RDA / AI / UL 四个值构成的推荐体系，不是「及格线」。</p></div><div class="mini"><h4>营养密度</h4><p>单位能量所含营养素量。用于同类食物比较，不跨类别比较。</p></div></div>`},
+ {id:'C2',h:'术语卡',html:`<div class="term"><div class="term-h"><b>基础代谢率</b><span class="en">Basal Metabolic Rate, BMR</span></div><p>静息状态下维持生命所需的最低能量消耗，约占日常总消耗的 60–70%。测量条件严格：隔夜禁食、完全静息。</p><p class="alias">别名：静息代谢率 · 所属主题：能量代谢</p></div>`},
+ {id:'C4',h:'易混淆概念辨析',html:`<table class="mini"><tr><th>容易混的一对</th><th>怎么分</th></tr><tr><td>BMR vs RMR</td><td>BMR 测量条件更严格、数值更低；日常估算用 RMR</td></tr><tr><td>升糖指数 GI vs 升糖负荷 GL</td><td>GI 只看速度，GL 把实际摄入量算进去</td></tr><tr><td>缺乏 vs 不足</td><td>缺乏出现临床体征；不足只有生化指标偏低</td></tr></table>`},
+ {id:'C5',h:'中英术语对照',html:`<table class="mini"><tr><th>中文</th><th>英文 / 缩写</th><th>常见别名</th></tr><tr><td>基础代谢率</td><td>BMR</td><td>静息代谢率</td></tr><tr><td>膳食纤维</td><td>Dietary fiber</td><td>粗纤维（旧称）</td></tr><tr><td>蛋白质质量</td><td>DIAAS</td><td>—</td></tr></table>`},
+ {id:'B4',h:'知识分层',html:`<div class="tiers"><div class="tier"><span class="lv">核心</span><p>能量平衡、三大宏量营养素、常见维生素缺乏症</p></div><div class="tier"><span class="lv">进阶</span><p>代谢通路、血糖响应曲线、蛋白质质量评估</p></div><div class="tier"><span class="lv">专家</span><p>分子营养学、营养素–基因交互、个体化营养</p></div></div>`},
+ {id:'D1',h:'历史脉络时间轴 · 属性触发',html:`<ol class="tl"><li><span class="yr">1912</span>维生素概念提出，营养学从「热量学」转向「营养素学」</li><li><span class="yr">1930s</span>必需氨基酸与各类维生素缺乏症被逐个确认</li><li><span class="yr">1977</span>美国膳食目标发布，膳食指南体系成型</li><li><span class="yr">2000s</span>队列研究与营养流行病学成为主流证据来源</li></ol>`},
+ {id:'F4',h:'共识与争议 · 属性触发',html:`<table class="mini"><tr><th>结论</th><th>状态</th></tr><tr><td>长期能量摄入超过消耗会导致体重上升</td><td>已定论</td></tr><tr><td>进食时间对代谢的独立影响</td><td>仍有争论</td></tr><tr><td>某类补充剂在普通人群中的长期收益</td><td>证据不足</td></tr></table>`},
+ {id:'E4',h:'常见误区',html:`<table class="mini"><tr><th>常见说法</th><th>问题在哪</th></tr><tr><td>「只要少吃就能瘦」</td><td>忽略了营养素密度与可持续性，掉的常是肌肉与水</td></tr><tr><td>「脂肪都不好」</td><td>未区分脂肪类型与总量，必需脂肪酸必须摄入</td></tr></table>`},
+ {id:'J7',h:'应用案例',html:`<div class="mini"><h4>案例：把「少吃油」变成可执行的判断</h4><p>不看烹饪用油总量，改看加工食品里被忽略的脂肪来源——多数人超标的不是炒菜，而是零食与饮料。</p></div>`},
+ {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>建立词汇：营养素分类与单位</li><li>掌握主干：能量平衡与三大宏量营养素</li><li>补调节部分：维生素与矿物质</li><li>能读懂指南与标签</li><li>按需进入个体化与疾病营养</li></ol>`},
+ {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>各国官方膳食指南与膳食参考摄入量</li><li>营养学教科书与系统综述（用于原理部分）</li><li>说明：本文为个人整理，不构成医疗建议</li></ul>`}
+ ]},
+
+/* ============ 2. 流程型 ============ */
+{key:'liucheng', label:'流程型 · docker 使用手册', type:'流程型', title:'docker 使用手册',
+ sub:'骨架主体 = 步骤序列 + 决策点 + 失败模式；知识地图退化为流程图与决策树。共 14 节。',
+ sections:[
+ {id:'A1',h:'一句话定位',html:`<p class="ln"><strong>Docker</strong> 把应用和它的运行环境一起打包成镜像，用容器跑起来，解决「在我机器上能跑」的问题。</p>`},
+ {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页讲</h5><ul class="bullets"><li>镜像、容器、网络、卷的日常操作</li><li>Dockerfile 的常用写法与排错</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>Kubernetes 等集群编排</li><li>镜像仓库运维与安全加固细节</li></ul></div></div>`},
+ {id:'A7',h:'前置门槛清单',html:`<ul class="checklist"><li>会基本 Linux 命令与文件路径概念</li><li>知道进程、端口、环境变量是什么</li><li>能读懂 Dockerfile 里那行 shell 命令在干什么</li></ul>`},
+ {id:'B5',h:'流程图',html:`<div class="flow"><span>写 Dockerfile</span><i>→</i><span>docker build</span><i>→</i><span>docker run</span><i>→</i><span>进容器调试</span><i>→</i><span>push 到仓库</span></div>`},
+ {id:'E1',h:'步骤流程',html:`<ol class="steps"><li><strong>写 Dockerfile</strong>：固定基础镜像版本，逐层加依赖</li><li><strong>构建镜像</strong>：<code>docker build -t name:tag .</code></li><li><strong>运行并验证</strong>：<code>docker run --rm -it name:tag</code></li><li><strong>调试</strong>：进容器看日志；必要时挂载卷复现问题</li><li><strong>发布</strong>：<code>docker push</code> 到仓库，固定 tag 不用 latest</li></ol>`},
+ {id:'E2',h:'判断分支',html:`<ul class="tree"><li>容器起不来，先看什么？<ul><li>日志有报错 → 读最后 20 行</li><li>没有日志 → <code>docker ps -a</code> 看退出码</li><li>退出码 137 → 多半是被 OOM 杀掉</li></ul></li></ul>`},
+ {id:'E7',h:'速查表',html:`<table class="mini"><tr><th>命令</th><th>做什么</th></tr><tr><td><code>docker ps -a</code></td><td>列出所有容器，含已退出</td></tr><tr><td><code>docker logs -f &lt;id&gt;</code></td><td>持续跟踪容器日志</td></tr><tr><td><code>docker exec -it &lt;id&gt; sh</code></td><td>进入运行中的容器</td></tr><tr><td><code>docker system prune</code></td><td>清理悬空镜像与停止的容器</td></tr></table>`},
+ {id:'E3',h:'检查清单',html:`<ul class="checklist"><li>基础镜像版本已固定，不用 <code>latest</code></li><li>.dockerignore 已排除 node_modules 与 .git</li><li>镜像内不含密钥，敏感值走环境变量</li><li>已确认容器内的时区与宿主机一致</li></ul>`},
+ {id:'E4',h:'失败模式与常见错误',html:`<table class="mini"><tr><th>现象</th><th>原因</th><th>处理</th></tr><tr><td>镜像体积异常大</td><td>构建缓存与源码一起打进了层</td><td>多阶段构建 + .dockerignore</td></tr><tr><td>换台机器就跑不起来</td><td>依赖了宿主机的环境变量或路径</td><td>全部显式声明进镜像</td></tr><tr><td>数据随容器删除而丢失</td><td>没挂载卷</td><td>用 volume 或 bind mount 持久化</td></tr></table>`},
+ {id:'E6',h:'工具与资源清单',html:`<table class="mini"><tr><th>用途</th><th>工具</th></tr><tr><td>本地编排</td><td>docker compose</td></tr><tr><td>镜像分层分析</td><td>dive</td></tr><tr><td>图形化管理</td><td>Docker Desktop / lazydocker</td></tr></table>`},
+ {id:'G5',h:'常见问题 FAQ',html:`<div class="mini"><h4>容器和虚拟机有什么区别？</h4><p>容器共享宿主机内核，只隔离进程与文件系统；虚拟机各自跑一套内核。因此容器启动快、开销小，但隔离强度更低。</p></div><div class="mini"><h4>改了代码为什么容器里没变？</h4><p>镜像构建时就把代码复制进去了，必须重新 build；开发阶段可以用卷把本地目录挂进去。</p></div>`},
+ {id:'I1',h:'学习路线图',html:`<ol class="steps"><li>跑通第一个容器（run / ps / logs）</li><li>会写 Dockerfile 并控制镜像体积</li><li>掌握卷与网络，能持久化数据、互联多容器</li><li>用 compose 编排本地多服务</li><li>理解构建缓存与多阶段构建</li></ol>`},
+ {id:'J4',h:'时效与半衰期',html:`<table class="mini"><tr><th>字段</th><th>值</th></tr><tr><td>内容截止</td><td>2026-10（Docker Engine 27.x 前后）</td></tr><tr><td>更新速度</td><td>快：命令稳定，但 compose 与构建特性变化频繁</td></tr><tr><td>需要复核的部分</td><td>compose 文件版本写法、构建器（BuildKit）默认行为</td></tr></table>`},
+ {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>Docker 官方文档与 CLI 参考</li><li>说明：命令行为以你本地 <code>docker version</code> 对应的文档为准</li></ul>`}
+ ]},
+
+/* ============ 3. 清单型 ============ */
+{key:'qingdan', label:'清单型 · 体检指标参考值', type:'清单型', title:'常用体检指标参考值',
+ sub:'骨架主体 = 分类索引 + 条目表 + 别名检索，不需要叙事线。共 14 节。',
+ sections:[
+ {id:'A1',h:'一句话定位',html:`<p class="ln">这一页把常见体检项目、参考区间、单位与主要干扰因素整理成可查的表，用于看懂报告上的数字。</p>`},
+ {id:'A6',h:'边界声明',html:`<div class="two-col"><div><h5>这一页能帮你</h5><ul class="bullets"><li>查某个项目的大致参考区间</li><li>知道这个数字受什么影响</li></ul></div><div><h5>这一页不能</h5><ul class="bullets"><li>不能替代医生诊断</li><li>不能只看单个值下结论</li></ul></div></div>`},
+ {id:'A5',h:'关键数字面板',html:`<div class="stats"><div class="stat"><b>95%</b><span>参考区间的划定口径，5% 健康人也会落在外面</span></div><div class="stat"><b>2–3 月</b><span>糖化血红蛋白反映的血糖时间跨度</span></div><div class="stat"><b>各自不同</b><span>男 / 女 / 年龄段的区间并不通用</span></div></div>`},
+ {id:'G1',h:'分类索引',html:`<div class="chips"><span class="chip">血常规</span><span class="chip">肝功能</span><span class="chip">肾功能</span><span class="chip">血脂</span><span class="chip">血糖</span><span class="chip">甲状腺</span><span class="chip">电解质</span><span class="chip">尿常规</span></div>`},
+ {id:'G2',h:'条目表',html:`<table class="mini"><tr><th>项目</th><th>参考区间</th><th>单位</th><th>主要干扰</th></tr><tr><td>白细胞计数</td><td>3.5–9.5</td><td>10⁹/L</td><td>感染、应激、剧烈运动</td></tr><tr><td>血红蛋白（男）</td><td>130–175</td><td>g/L</td><td>脱水、吸烟、高原居住</td></tr><tr><td>丙氨酸氨基转移酶</td><td>男 ≤ 50 / 女 ≤ 35</td><td>U/L</td><td>饮酒、熬夜、药物、剧烈运动</td></tr></table>`},
+ {id:'H1',h:'数值参考表',html:`<table class="mini"><tr><th>项目</th><th>下限</th><th>上限</th><th>单位</th></tr><tr><td>总胆固醇</td><td>—</td><td>5.2</td><td>mmol/L</td></tr><tr><td>甘油三酯</td><td>—</td><td>1.7</td><td>mmol/L</td></tr><tr><td>HDL-C（男）</td><td>1.0</td><td>—</td><td>mmol/L</td></tr><tr><td>空腹血糖</td><td>3.9</td><td>6.1</td><td>mmol/L</td></tr></table>`},
+ {id:'H3',h:'单位换算',html:`<table class="mini"><tr><th>换算</th><th>关系</th></tr><tr><td>mg/dL → mmol/L（胆固醇）</td><td>÷ 38.67</td></tr><tr><td>mg/dL → mmol/L（甘油三酯）</td><td>÷ 88.57</td></tr><tr><td>mg/dL → mmol/L（葡萄糖）</td><td>÷ 18.0</td></tr></table>`},
+ {id:'G3',h:'别名与缩写索引',html:`<table class="mini"><tr><th>常见写法</th><th>对应条目</th></tr><tr><td>ALT / 谷丙转氨酶 / GPT</td><td>丙氨酸氨基转移酶</td></tr><tr><td>AST / 谷草转氨酶 / GOT</td><td>天冬氨酸氨基转移酶</td></tr><tr><td>Cr / 肌酐</td><td>血清肌酐</td></tr><tr><td>TG / 甘油三酯</td><td>甘油三酯</td></tr></table>`},
+ {id:'G6',h:'对比表',html:`<table class="mini"><tr><th>指标</th><th>主要反映</th><th>受什么干扰</th></tr><tr><td>空腹血糖</td><td>即时糖代谢</td><td>前一晚饮食与睡眠</td></tr><tr><td>糖化血红蛋白</td><td>近 2–3 个月平均血糖</td><td>贫血、血红蛋白异常</td></tr></table>`},
+ {id:'F1',h:'判别标准',html:`<table class="mini"><tr><th>看到什么</th><th>怎么理解</th></tr><tr><td>轻微超出参考区间</td><td>先看超多少与是否首次出现，再决定是否复查</td></tr><tr><td>多个相关项目同时异常</td><td>比单项超标更值得关注，提示同一系统的问题</td></tr><tr><td>由正常转为持续异常</td><td>趋势比单次值更有意义</td></tr></table>`},
+ {id:'F3',h:'适用条件与边界',html:`<ul class="bullets"><li><strong>适用</strong>：成年人常规体检报告的初步对照</li><li><strong>不适用</strong>：孕妇、儿童、慢病患者——这些人群的区间另行规定</li></ul>`},
+ {id:'G5',h:'常见问题 FAQ',html:`<div class="mini"><h4>参考区间外的值一定有问题吗？</h4><p>不一定。区间按人群 95% 划定，本就允许约 5% 的健康人落在外面；要结合症状、趋势与其他项目看。</p></div><div class="mini"><h4>不同医院的区间为什么不一样？</h4><p>检测方法、仪器与试剂不同，参考区间由各自实验室建立，跨机构比较要看具体区间。</p></div>`},
+ {id:'J4',h:'时效与半衰期',html:`<table class="mini"><tr><th>字段</th><th>值</th></tr><tr><td>内容截止</td><td>2026-10</td></tr><tr><td>更新速度</td><td>慢：常用项目区间多年稳定，但检测标准偶有调整</td></tr><tr><td>使用提醒</td><td>以你手上报告单标注的区间为准，本页只作对照</td></tr></table>`},
+ {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>各医院检验科报告单标注区间</li><li>检验医学教科书与卫生行业标准</li><li>说明：本页为个人整理，不构成医疗建议</li></ul>`}
+ ]},
+
+/* ============ 4. 判断型 ============ */
+{key:'panduan', label:'判断型 · 投资决策框架', type:'判断型', title:'投资决策框架',
+ sub:'骨架主体 = 判别标准 + 反例 + 争议标注 + 适用条件。共 12 节。',
+ sections:[
+ {id:'A1',h:'一句话定位',html:`<p class="ln">这一页给出一套可以照着走的判断流程：哪些标的有资格进入观察名单，什么条件下才动手，以及什么情况下必须放弃。</p>`},
+ {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>先看它值多少钱，再看现在卖多少钱——顺序反了就是猜。</li><li>低估值可能是机会，也可能是结果；判据要比对基本面方向。</li><li>任何框架的失效区都要提前写清楚，否则会在最需要它的时候失灵。</li></ul>`},
+ {id:'F1',h:'判别标准',html:`<table class="mini"><tr><th>判据</th><th>取值</th><th>结论</th></tr><tr><td>估值分位</td><td>低于近 10 年 30% 分位</td><td>具备进入观察名单的条件</td></tr><tr><td>现金流覆盖</td><td>经营现金流 / 净利润 &lt; 0.7</td><td>利润质量存疑，需核查</td></tr><tr><td>负债结构</td><td>有息负债 / 经营现金流 &gt; 4</td><td>周期下行时风险放大</td></tr></table>`},
+ {id:'B6',h:'决策树',html:`<ul class="tree"><li>能说清它靠什么赚钱吗？<ul><li>不能 → 停止，不进入下一步</li><li>能 → 现在的价格低于你的估值吗？<ul><li>否 → 放观察名单</li><li>是 → 基本面在改善还是恶化？<ul><li>恶化 → 这是陷阱，不是机会</li><li>改善 → 进入仓位管理</li></ul></li></ul></li></ul></li></ul>`},
+ {id:'F6',h:'权衡对比表',html:`<table class="mini"><tr><th>做法</th><th>代价</th><th>适合</th></tr><tr><td>集中持有少数标的</td><td>波动大，判断错了没有对冲</td><td>研究深度足够、能承受回撤</td></tr><tr><td>分散持有</td><td>收益被平庸标的拉平</td><td>时间有限、追求稳健</td></tr></table>`},
+ {id:'F2',h:'反例与失败案例',html:`<div class="mini"><h4>低估值陷阱</h4><p>分位低于 20%，但基本面持续恶化时，低估值是结果而不是机会。典型形态：需求结构已变，盈利中枢下移，历史分位不再可比。</p></div>`},
+ {id:'F3',h:'适用条件与边界',html:`<ul class="bullets"><li><strong>适用</strong>：可估值、流动性较好、持有期 3 年以上的公开市场标的</li><li><strong>不适用</strong>：无法估值的新兴资产；期限在一年内、需要择时的资金</li><li><strong>失效信号</strong>：当判断依据从「值多少钱」变成「别人会出多少钱」时，框架已经失效</li></ul>`},
+ {id:'F4',h:'共识与争议分离',html:`<table class="mini"><tr><th>结论</th><th>状态</th></tr><tr><td>长期看价格向价值回归</td><td>已定论</td></tr><tr><td>低估值因子长期超额收益</td><td>仍有争论（不同市场、不同时段结论不一致）</td></tr><tr><td>某类指标能预测短期涨跌</td><td>证据不足</td></tr></table>`},
+ {id:'F5',h:'证据与来源分级',html:`<table class="mini"><tr><th>等级</th><th>来源类型</th></tr><tr><td>A</td><td>可核对的财务报告原始数据</td></tr><tr><td>B</td><td>长期跟踪的行业数据与统计年鉴</td></tr><tr><td>C</td><td>卖方研报与专家访谈</td></tr><tr><td>D</td><td>市场传闻与社群观点，仅供参考</td></tr></table>`},
+ {id:'E5',h:'行动触发器',html:`<ul class="bullets"><li>每当看到「历史年化收益」→ 先问：起止时间怎么选的？</li><li>每当想「这次不一样」→ 先问：不一样在哪里，有没有可验证的证据？</li><li>每当听到「大家都这么做」→ 先问：这句话的来源是哪一级？</li></ul>`},
+ {id:'I2',h:'自测题库',html:`<div class="mini"><h4>题 1</h4><p>某标的估值分位 15%，但连续三年经营现金流转负。按本页框架，它属于哪一类？</p><p class="note">参考答案：不满足现金流覆盖判据，属于「低估值陷阱」候选，应停止而非进入仓位管理。</p></div>`},
+ {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>上市公司定期报告与公开财务数据</li><li>统计年鉴与行业长期数据</li><li>说明：本文为个人框架整理，不构成投资建议</li></ul>`}
+ ]},
+
+/* ============ 5. 史实型 ============ */
+{key:'shishi', label:'史实型 · 二战史', type:'史实型', title:'第二次世界大战（1939–1945）',
+ sub:'骨架主体 = 时间轴 + 因果链 + 分期 + 争议与史料。共 12 节。',
+ sections:[
+ {id:'A1',h:'一句话定位',html:`<p class="ln">这一页按时间与因果梳理二战：它怎么从地区冲突变成全球战争，几个关键转折点如何改变结局，以及哪些结论至今仍有争议。</p>`},
+ {id:'A2',h:'一页纸摘要',html:`<ul class="bullets"><li>根源是凡尔赛体系失衡叠加经济大萧条，导火索是 1939 年入侵波兰。</li><li>1941–1942 年三个转折点：莫斯科、中途岛、斯大林格勒。</li><li>战争的结局不只由战场决定，也由工业产能与后勤体系决定。</li></ul>`},
+ {id:'B7',h:'时间轴',html:`<ol class="tl"><li><span class="yr">1939</span>德国入侵波兰，欧洲战场开启</li><li><span class="yr">1941</span>巴巴罗萨行动；珍珠港事件，战争全球化</li><li><span class="yr">1942</span>中途岛与斯大林格勒，战局转折</li><li><span class="yr">1944</span>诺曼底登陆，西线重开</li><li><span class="yr">1945</span>德国投降；日本投降，战争结束</li></ol>`},
+ {id:'D2',h:'分期与阶段',html:`<div class="grid2"><div class="mini"><h4>1918–1939 战间期</h4><p>凡尔赛体系的裂痕与极权崛起</p></div><div class="mini"><h4>1939–1941 欧洲战争</h4><p>闪击战、不列颠空战、巴巴罗萨</p></div><div class="mini"><h4>1941–1943 全球战争</h4><p>太平洋与北非，同盟国转入反攻</p></div><div class="mini"><h4>1944–1945 结局</h4><p>双线推进，轴心国相继投降</p></div></div>`},
+ {id:'D3',h:'因果链',html:`<div class="chain"><span>凡尔赛体系失衡</span><i>→</i><span>经济大萧条</span><i>→</i><span>极端民族主义上台</span><i>→</i><span>扩张政策失控</span><i>→</i><span>全面战争</span></div><p class="note">链条中每一环都是必要条件而非充分条件；把任一环单拎出来都会变成过度简化。</p>`},
+ {id:'D6',h:'里程碑事件卡',html:`<div class="mini"><h4>斯大林格勒战役（1942.7–1943.2）</h4><p>东线转折点。德军第 6 集团军被围歼，苏联转入战略反攻。</p></div><div class="mini"><h4>诺曼底登陆（1944.6.6）</h4><p>西线第二战场开辟，德国陷入两线作战。</p></div>`},
+ {id:'D4',h:'重要人物与学派',html:`<table class="mini"><tr><th>人物</th><th>身份</th><th>关键作用</th></tr><tr><td>罗斯福</td><td>美国总统</td><td>推动租借法案，使美国成为「民主国家兵工厂」</td></tr><tr><td>丘吉尔</td><td>英国首相</td><td>坚持不媾和，维系西线抵抗意志</td></tr><tr><td>斯大林</td><td>苏联领导人</td><td>承受东线主要压力，主导战后东欧格局</td></tr></table>`},
+ {id:'D5',h:'史学流派对比',html:`<table class="mini"><tr><th>立场</th><th>核心主张</th><th>主要依据</th></tr><tr><td>意图主义</td><td>战争源于特定决策者的扩张意图</td><td>决策过程档案</td></tr><tr><td>功能主义</td><td>战争源于体系失序与国内压力</td><td>结构与经济分析</td></tr><tr><td>修正派</td><td>各方责任被战后叙事重新分配</td><td>多国档案对比</td></tr></table>`},
+ {id:'F4',h:'争议与史料',html:`<table class="mini"><tr><th>问题</th><th>状态</th></tr><tr><td>战争爆发的首要责任方</td><td>史学界仍有争论</td></tr><tr><td>原子弹使用的必要性</td><td>长期争议，取决于对日本投降条件的评估</td></tr><tr><td>某战役双方伤亡数字</td><td>各国档案口径不一，只能给区间</td></tr></table>`},
+ {id:'J7',h:'影响与遗产',html:`<ul class="bullets"><li>联合国与战后国际秩序的设计，直接回应了战间期国际机制的失效</li><li>殖民体系加速瓦解，两个超级大国格局成型</li><li>技术外溢：雷达、喷气机、计算机与核能的军事起源</li></ul>`},
+ {id:'I1',h:'延伸阅读路径',html:`<ol class="steps"><li>先读一份通史性著作，建立时间与地理骨架</li><li>按战场分线深读（东线 / 西线 / 太平洋 / 中国战场）</li><li>再进入专题：经济动员、情报、占领政策</li><li>最后读史学争论，理解「为什么同一件事会有不同结论」</li></ol>`},
+ {id:'J5',h:'来源与参考',html:`<ul class="bullets"><li>通史性学术著作与国家档案馆公开资料</li><li>各国官方战史与研究机构出版物</li><li>说明：涉及伤亡与责任判断处均标注争议状态</li></ul>`}
+ ]}
+];
+
+/* ============================================================
+   4. 渲染
+   ============================================================ */
+const TABS = [{id:'lib',label:'模块库 · 全量 '+MODULES.length+' 个'}]
+  .concat(SKELETONS.map((s,i)=>({id:'sk'+i,label:s.label})));
+
+const state = { tab:'lib', fam:'ALL', q:'' };
+
+function moduleCard(m){
+  return `<article class="mod" id="mod-${m.id}" data-fam="${m.fam}">
+  <div class="mod-head"><span class="mid">${m.id}</span><h3>${m.name}</h3><span class="when">${m.when}</span></div>
+  <p class="what">${m.what}</p>
+  <div class="sample">${m.html}</div>
+</article>`;
+}
+
+function renderLib(){
+  const q = state.q.trim().toLowerCase();
+  let html = `<div class="libbar">
+    <div class="lead">全量模块池，按功能族分组，共 ${MODULES.length} 个。以下每个模块都是一个可复用片段；标出的「适用」表示它最常出现在哪类页面，不代表只能在那一类使用。</div>
+    <button class="btn ${state.fam==='ALL'?'on':''}" data-fam="ALL">全部</button>`;
+  for(const k of Object.keys(FAMILIES)){
+    html += `<button class="btn ${state.fam===k?'on':''}" data-fam="${k}">${k} ${FAMILIES[k]}</button>`;
+  }
+  html += `</div>`;
+
+  let total = 0;
+  for(const k of Object.keys(FAMILIES)){
+    if(state.fam!=='ALL' && state.fam!==k) continue;
+    const list = MODULES.filter(m=>m.fam===k && (!q || (m.id+m.name+m.what).toLowerCase().includes(q)));
+    if(!list.length) continue;
+    total += list.length;
+    html += `<section class="fam"><h2><span class="famkey">${k}</span>${FAMILIES[k]}<span class="cnt">${list.length} 个 · ${FAM_DESC[k]}</span></h2>`;
+    html += list.map(moduleCard).join('');
+    html += `</section>`;
+  }
+  if(!total) html += `<p class="note">没有匹配「${state.q}」的模块。</p>`;
+  return html;
+}
+
+function renderSkeleton(s){
+  let html = `<div class="skhead"><div class="sktype">${s.type}</div><h2>${s.title}</h2>
+    <p>${s.sub}</p><div class="chips">`;
+  html += s.sections.map(x=>`<a class="chip" href="#sk-${s.key}-${x.id}">${x.id} · ${x.h}</a>`).join('');
+  html += `</div></div>`;
+
+  s.sections.forEach((x,i)=>{
+    html += `<section class="sksec" id="sk-${s.key}-${x.id}">
+      <div class="sksec-head"><span class="mid">${x.id}</span><h3>${x.h}</h3><span class="ord">${String(i+1).padStart(2,'0')} / ${String(s.sections.length).padStart(2,'0')}</span></div>
+      <div class="sksec-body">${x.html}</div></section>`;
+  });
+  return html;
+}
+
+function render(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = TABS.map(t=>`<button class="tab ${state.tab===t.id?'on':''}" data-tab="${t.id}">${t.label}</button>`).join('');
+
+  const app = document.getElementById('app');
+  if(state.tab==='lib'){ app.innerHTML = renderLib(); return; }
+  const i = Number(state.tab.slice(2));
+  app.innerHTML = renderSkeleton(SKELETONS[i]);
+}
+
+document.getElementById('tabs').addEventListener('click', e=>{
+  const b = e.target.closest('[data-tab]'); if(!b) return;
+  state.tab = b.dataset.tab;
+  window.scrollTo(0,0);
+  render();
+});
+
+document.getElementById('app').addEventListener('click', e=>{
+  const b = e.target.closest('[data-fam]'); if(!b) return;
+  state.fam = b.dataset.fam; render();
+});
+
+document.getElementById('q').addEventListener('input', e=>{
+  state.q = e.target.value;
+  if(state.tab!=='lib'){ state.tab='lib'; }
+  render();
+});
+
+document.getElementById('modeBtn').addEventListener('click', ()=>{
+  const dark = document.documentElement.dataset.mode === 'dark';
+  document.documentElement.dataset.mode = dark ? 'light' : 'dark';
+  document.getElementById('modeBtn').textContent = dark ? '暗色' : '亮色';
+});
+
+render();
+</script>
+</body>
+</html>
