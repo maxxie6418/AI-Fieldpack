@@ -67,10 +67,13 @@
 | code-review | Matt Pocock，同上 `skills/engineering/code-review/` | MIT | `packs/skills/code-review/` | 按团队标准做代码审查 |
 | diagnosing-bugs | Matt Pocock，同上 `skills/engineering/diagnosing-bugs/` | MIT | `packs/skills/diagnosing-bugs/` | 系统化定位缺陷根因（含人机回环脚本） |
 | domain-modeling | Matt Pocock，同上 `skills/engineering/domain-modeling/` | MIT | `packs/skills/domain-modeling/` | 维护领域术语与 ADR（本地 `CONTEXT-FORMAT.md` 对应上游 `GLOSSARY-FORMAT.md`，文件名被改） |
+| prototype | Matt Pocock，同上 `skills/engineering/prototype/` | MIT | `packs/skills/prototype/` | 用一次性原型回答设计问题（含逻辑/状态与 UI 两条分支文档） |
 | research | Matt Pocock，同上 `skills/engineering/research/` | MIT | `packs/skills/research/` | 做有出处的调研 |
 | setup-matt-pocock-skills | Matt Pocock，同上 `skills/engineering/setup-matt-pocock-skills/` | MIT | `packs/skills/setup-matt-pocock-skills/` | 为项目装配套件（issue tracker、triage 标签、领域文档） |
 | grilling | Matt Pocock，同上 `skills/productivity/grilling/` | MIT | `packs/skills/grilling/` | 对方案做不间断质询以打磨 |
 | teach | Matt Pocock，同上 `skills/productivity/teach/` | MIT | `packs/skills/teach/` | 按用户水平持续教学（含任务、学习记录、词汇表格式） |
+| wait-what | Matt Pocock，同上 `skills/productivity/wait-what/` | MIT | `packs/skills/wait-what/` | 消息没讲清时喊停，要求补背景并用项目术语重述（本地把上游的 `GLOSSARY.md` / `GLOSSARY-MAP.md` 改为 `CONTEXT.md` / `CONTEXT-MAP.md`） |
+| writing-for-agents | Matt Pocock，同上 `skills/productivity/writing-for-agents/` | MIT | `packs/skills/writing-for-agents/` | 撰写供 agent 阅读的文档（skill、`AGENTS.md` / `CLAUDE.md`、靠指针抵达的文档） |
 
 ### 其余来源
 
