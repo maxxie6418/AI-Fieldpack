@@ -265,27 +265,86 @@ p.alias{font-size:var(--f-xs);color:var(--ink-3)}
   background:var(--bg-2);border-bottom:1px solid var(--rule)}
 /* 呈现原型到模块的对照写在模块库页首的图例里；形态索引派生自样例本身，模块不新增字段 */
 
-/* ---------- 形状索引：按呈现原型重新分组（第三个页签） ---------- */
-.shapebar{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
-.shapebar .sc{font-size:var(--f-xs);color:var(--ink-2);background:var(--bg-2);
-  border:1px solid var(--rule);border-radius:var(--r-m);padding:4px 9px}
-.shapebar .sc b{margin-left:4px;color:var(--ink);font-weight:600}
-.warnline{margin:0 0 16px;padding:10px 13px;font-size:var(--f-s);line-height:1.85;color:var(--ink-2);
+/* ---------- 形状索引：按呈现原型重新分组（第三个页签） ----------
+   四层：① 左侧形态类目录（窄屏隐藏）② 页首卡（题头 / 取法与用法 / 形态类分布条兼锚点目录）
+   ③ 同族同形自查行 ④ 每个形态类一节，节内为形态卡网格。
+   形态卡自身三段：卡头 / 真实样例 / 使用模块清单（超过 6 个默认收起），衍生形态压卡底。
+   取色：要读的文字（说明、清单、衍生形态、折叠摘要）一律 --ink / --ink-2；--ink-3 只留给
+   计数与导航标签这类三级读数，与全站既有口径一致。 */
+.shapex{display:grid;grid-template-columns:176px minmax(0,1fr);gap:0 26px;align-items:start}
+.shx-body{min-width:0}
+.shx-nav{position:sticky;top:116px;padding-top:11px;border-top:2px solid var(--ink)}
+.shx-nav-h{font:600 var(--f-xs)/1.6 var(--mono);letter-spacing:.08em;color:var(--ink-3);margin-bottom:6px}
+.shx-nav a{display:flex;align-items:baseline;gap:8px;padding:5px 8px;font-size:var(--f-xs);
+  color:var(--ink-2);border-left:2px solid var(--rule)}
+.shx-nav a:hover{color:var(--accent);border-left-color:var(--accent);background:var(--bg-2)}
+.shx-nav a .n{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shx-nav a .v{margin-left:auto;font:600 var(--f-xs)/1 var(--mono);color:var(--ink-3)}
+.shx-nav a:hover .v{color:var(--accent)}
+
+.shx-top{padding:16px 18px;margin:0 0 20px;background:var(--bg-2);
+  border:1px solid var(--rule);border-radius:var(--r-l)}
+.shx-hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.shx-hd h2{font-size:var(--f-xl)}
+.shx-kicker{flex:none;font-size:var(--f-xs);color:var(--accent);border:1px solid currentColor;
+  border-radius:999px;padding:2px 10px}
+.shx-meta{margin-left:auto;font:400 var(--f-xs)/1.8 var(--mono);color:var(--ink-3)}
+.shx-top .lead{font-size:var(--f-s);line-height:1.9;color:var(--ink-2);margin:9px 0 0}
+.shx-top .lead b{color:var(--ink);font-weight:600}
+/* 分布条：一格一个形态类，格里是名称、模块数与按占比画的比例条；整格是锚点链接 */
+.shapebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:7px;margin:14px 0 0}
+.shapebar .sc{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:1px 8px;padding:7px 10px;
+  font-size:var(--f-xs);color:var(--ink-2);background:var(--bg);
+  border:1px solid var(--rule);border-radius:var(--r-m)}
+.shapebar .sc:hover{border-color:var(--accent);color:var(--accent)}
+.shapebar .sc .v{font:600 var(--f-s)/1 var(--mono);color:var(--ink);text-align:right}
+.shapebar .sc:hover .v{color:var(--accent)}
+.shapebar .sc .tr{grid-column:1/-1;align-self:end;height:4px;margin-top:5px;background:var(--bg-3);
+  border-radius:999px;overflow:hidden}
+.shapebar .sc .tr i{display:block;height:100%;background:var(--accent);border-radius:999px}
+
+.warnline{margin:0 0 24px;padding:10px 13px;font-size:var(--f-s);line-height:1.85;color:var(--ink-2);
   background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 var(--r-m) var(--r-m) 0}
 .warnline.ok{background:var(--ok-bg);border-left-color:var(--ok)}
 .warnline b{color:var(--ink)}
-.sgroup{margin:0 0 20px}
-.sgroup>h3{display:flex;align-items:baseline;gap:8px;margin:0 0 9px;font-size:var(--f-l)}
-.sgroup>h3 .cnt{font-size:var(--f-xs);font-weight:400;color:var(--ink-3)}
-.shapes{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:11px}
-.shape{padding:11px 13px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-m)}
-.shape>.sh{display:flex;align-items:baseline;gap:7px;margin:0 0 8px}
-.shape>.sh b{font-size:var(--f-t)}
+
+/* 形态类一节：节头用「序号徽章 + 类名 + 统计」，与模块库的族头同一套语法 */
+.sgroup{margin:0 0 34px;scroll-margin-top:124px}
+.sgroup>h3{display:flex;align-items:center;gap:9px;margin:0 0 14px;padding-bottom:9px;
+  font-size:var(--f-l);border-bottom:1px solid var(--rule)}
+.sgroup>h3 .skey{flex:none;font:600 11.5px/1 var(--mono);color:var(--accent);
+  background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--r-s);padding:4px 6px}
+.sgroup>h3 .cnt{margin-left:auto;font-size:var(--f-xs);font-weight:400;color:var(--ink-3)}
+
+/* 一个形态占一排，与模块库的模块卡同一节奏：样例按整栏宽度展示，不被压窄、也不触发横向滚动 */
+.shapes{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+/* 卡内三段纵向排布，清单与衍生形态贴底，同排卡片因此等高、卡底对齐 */
+.shape{display:flex;flex-direction:column;background:var(--bg);
+  border:1px solid var(--rule);border-radius:var(--r-l);overflow:hidden}
+.shape>.sh{display:flex;align-items:baseline;gap:8px;padding:12px 15px 0}
+.shape>.sh .sname{font-size:var(--f-t)}
 .shape>.sh .kind{font-size:var(--f-xs);color:var(--ink-3)}
-.shape>.sh .cnt{margin-left:auto;font-size:var(--f-xs);color:var(--ink-3);white-space:nowrap}
-.shape>.sample{margin:0 0 8px}
-.shape .uses{display:flex;flex-wrap:wrap;gap:4px}
-.shape .note{margin:7px 0 0}
+.shape>.sh .cnt{margin-left:auto;font:600 var(--f-xs)/1.7 var(--mono);color:var(--ink-3);white-space:nowrap}
+.shape>.sample{margin:10px 15px 0;overflow-x:auto}
+.shape .note{margin:0;padding:9px 15px;font-size:var(--f-xs);color:var(--ink-2);
+  background:var(--bg-2);border-left:none;border-top:1px solid var(--rule-2)}
+/* 使用模块清单：与卡片其它段用分隔线断开；超过 6 个默认收起，摘要行常显数量 */
+.shape .uses{margin-top:auto;border-top:1px solid var(--rule-2)}
+.shape .uses>summary{display:flex;align-items:center;gap:7px;padding:9px 15px;cursor:pointer;
+  list-style:none;font-size:var(--f-xs);color:var(--ink-2)}
+.shape .uses>summary::-webkit-details-marker{display:none}
+.shape .uses>summary::before{content:"＋";flex:none;font:600 11px/1 var(--mono);color:var(--accent)}
+.shape .uses[open]>summary::before{content:"－"}
+.shape .uses>summary:hover{color:var(--ink);background:var(--bg-2)}
+.shape .uses>.chips{padding:0 15px 13px}
+.shape .uses .chip b{margin-right:5px;font:600 var(--f-xs)/1 var(--mono);color:var(--ink)}
+.shape .uses .chip:hover b{color:var(--accent)}
+
+@media (max-width:980px){
+  .shapex{grid-template-columns:minmax(0,1fr)}
+  .shx-nav{display:none}
+}
 
 /* ---------- 骨架规格：层归属徽标与校验 ---------- */
 .lay{font:500 11px/1 var(--mono);padding:3px 7px;border-radius:var(--r-s);border:1px solid var(--rule);color:var(--ink-3);white-space:nowrap}
@@ -813,31 +872,47 @@ function renderShapeIndex(){
     for(const [sh,ids] of Object.entries(g)) if(ids.length>1) clashes.push(`${k} ${FAMILIES[k]}：${ids.join('、')} 同为「${sh}」`);
   }
   const names = Object.keys(shapes);
-  let html = `<div class="libbar">
-    <div class="lead">按<b>呈现原型</b>重新分组：共 ${rows.length} 个模块、${names.length} 种主形态。主形态取模块样例的第一个元素，<b>一个模块只有一个主形态</b>；同一份样例里出现的其他形态、材质与构件记作<b>衍生形态</b>。形态派生自样例本身、不另设字段，所以这一页与模块库永远同源。</div>
-    <div class="lead">用法：写新模块时先判断信息是什么形状，再到对应主形态下抄同类模块的写法；「同一族内不得有两个模块使用同一呈现原型」这条约束，看下面的自查行即可。</div>
-  </div>
-  <div class="shapebar">${Object.keys(kinds).sort((a,b)=>kinds[b]-kinds[a]).map(k=>`<span class="sc">${k}<b>${kinds[k]}</b></span>`).join('')}</div>`;
+  const order = Object.keys(kinds).sort((a,b)=>kinds[b]-kinds[a]);
+  const top = Math.max(...order.map(k=>kinds[k]));
+  let html = `<div class="shapex">
+  <nav class="shx-nav">
+    <div class="shx-nav-h">形态类 · ${order.length}</div>
+    ${order.map(k=>`<a href="#shx-${k}"><span class="n">${k}</span><span class="v">${kinds[k]}</span></a>`).join('')}
+  </nav>
+  <div class="shx-body">
+  <header class="shx-top">
+    <div class="shx-hd">
+      <span class="shx-kicker">形状索引</span><h2>按呈现原型重新分组</h2>
+      <span class="shx-meta">${rows.length} 模块 · ${names.length} 种主形态 · ${order.length} 个形态类</span>
+    </div>
+    <p class="lead"><b>取法与来源</b>：主形态取模块样例的第一个元素，一个模块只有一个主形态；同一份样例里出现的其他形态、材质与构件记作<b>衍生形态</b>。形态派生自样例本身、不另设字段，所以这一页与模块库永远同源。</p>
+    <p class="lead"><b>怎么用</b>：写新模块时先判断信息是什么形状，再到对应主形态下抄同类模块的写法；「同一族内不得有两个模块使用同一呈现原型」这条约束，看下面的自查行即可。</p>
+    <div class="shapebar">${order.map(k=>`<a class="sc" href="#shx-${k}"><span class="n">${k}</span><span class="v">${kinds[k]}</span><span class="tr"><i style="width:${Math.round(kinds[k]/top*100)}%"></i></span></a>`).join('')}</div>
+  </header>`;
   html += clashes.length
     ? `<div class="warnline"><b>同族内出现同形态（${clashes.length} 处）</b>：${clashes.join('；')}。</div>`
     : `<div class="warnline ok"><b>同族不得同形</b>：未发现同族内主形态重复。</div>`;
-  for(const kind of Object.keys(kinds).sort((a,b)=>kinds[b]-kinds[a])){
+  let seq = 0;
+  for(const kind of order){
     const list = Object.entries(shapes).filter(([n])=>(SHAPE_META[n]||['未归类'])[0]===kind)
       .sort((a,b)=>b[1].length-a[1].length);
-    html += `<section class="sgroup"><h3>${kind}<span class="cnt">${kinds[kind]} 个模块 · ${list.length} 种形态</span></h3><div class="shapes">`;
+    seq++;
+    html += `<section class="sgroup" id="shx-${kind}">
+      <h3><span class="skey">${String(seq).padStart(2,'0')}</span>${kind}<span class="cnt">${kinds[kind]} 个模块 · ${list.length} 种主形态</span></h3>
+      <div class="shapes">`;
     for(const [name, rs] of list){
       const meta = SHAPE_META[name] || ['未归类',''];
       const dv = [...new Set(rs.flatMap(r=>r.s.derived))];
       html += `<article class="shape">
-        <div class="sh"><b>${name}</b><span class="kind">${meta[1]}</span><span class="cnt">${rs.length} 个</span></div>
+        <div class="sh"><h4 class="sname">${name}</h4><span class="kind">${meta[1]}</span><span class="cnt">${rs.length} 个模块</span></div>
         <div class="sample">${rs[0].m.html}</div>
-        <div class="uses">${rs.map(r=>`<span class="chip">${r.m.id} ${r.m.name}</span>`).join('')}</div>
+        <details class="uses"${rs.length>6?'':' open'}><summary>使用该形态的模块<span class="pill neutral">${rs.length}</span></summary><div class="chips">${rs.map(r=>`<span class="chip"><b>${r.m.id}</b>${r.m.name}</span>`).join('')}</div></details>
         ${dv.length?`<p class="note">衍生形态：${dv.join(' · ')}</p>`:''}
       </article>`;
     }
     html += `</div></section>`;
   }
-  return html;
+  return html + `</div></div>`;
 }
 
 function render(){
