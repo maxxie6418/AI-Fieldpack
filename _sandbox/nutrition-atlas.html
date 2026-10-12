@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>营养学知识图谱 · Nutrition Atlas</title>
+<meta name="description" content="营养学（Nutritional Science）入门知识图谱：全景地图、核心理论、术语体系、历史脉络、人物学派、心智模型、知识分层、前沿、应用案例、学习路线、误区与跨学科关联。">
+<style>
+/* ============================================================
+   NUTRITION ATLAS — 学术图谱 / 编辑部排版风格
+   浅色=纸本 Herbarium；深色=墨夜 Lab
+   ============================================================ */
+:root{
+  --paper:#F3EEE3; --paper-2:#FBF8F1; --paper-3:#E9E2D3;
+  --ink:#1A1D17; --ink-2:#454B3E; --ink-3:#6E7566;
+  --rule:rgba(26,29,23,.14); --rule-2:rgba(26,29,23,.07);
+  --shadow:0 1px 2px rgba(26,29,23,.05),0 10px 30px -18px rgba(26,29,23,.35);
+  --shadow-lg:0 2px 4px rgba(26,29,23,.06),0 26px 60px -30px rgba(26,29,23,.45);
+
+  --c1:#B45309; --c2:#0F766E; --c3:#9A3412; --c4:#4D7C0F;
+  --c5:#A16207; --c6:#9D174D; --c7:#4338CA; --c8:#0E7490;
+  --c9:#6D28D9; --c10:#166534; --c11:#B91C1C; --c12:#C2410C; --c13:#155E75;
+
+  --ok:#15803D; --warn:#B45309; --dis:#C2410C; --front:#B91C1C; --todo:#7C3AED;
+
+  --font-display:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun","Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+  --font-body:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC","Segoe UI",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono","Cascadia Code",Consolas,"SFMono-Regular",Menlo,monospace;
+  --topbar:60px; --side:238px;
+}
+html[data-theme="dark"]{
+  --paper:#11130F; --paper-2:#191C16; --paper-3:#21251D;
+  --ink:#E9E4D6; --ink-2:#B8B4A6; --ink-3:#8A887C;
+  --rule:rgba(233,228,214,.16); --rule-2:rgba(233,228,214,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -18px rgba(0,0,0,.9);
+  --shadow-lg:0 2px 4px rgba(0,0,0,.6),0 26px 60px -30px rgba(0,0,0,1);
+  --c1:#E9A13B; --c2:#4FD1C5; --c3:#F0876A; --c4:#A3D96A;
+  --c5:#E3B341; --c6:#F472B6; --c7:#A5B4FC; --c8:#67E8F9;
+  --c9:#C4B5FD; --c10:#86EFAC; --c11:#FCA5A5; --c12:#FDBA74; --c13:#7DD3FC;
+  --ok:#4ADE80; --warn:#FBBF24; --dis:#FB923C; --front:#F87171; --todo:#C4B5FD;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topbar) + 18px)}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);
+  font-size:15.5px;line-height:1.78;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%,color-mix(in srgb,var(--c1) 9%,transparent),transparent 60%),
+    radial-gradient(900px 500px at -10% 20%,color-mix(in srgb,var(--c2) 8%,transparent),transparent 60%);
+  background-attachment:fixed;
+}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.28;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");}
+html[data-theme="dark"] body::after{mix-blend-mode:screen;opacity:.14}
+::selection{background:color-mix(in srgb,var(--c1) 32%,transparent)}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:.01em;margin:0;line-height:1.25}
+p{margin:0 0 .85em}
+
+/* ---------- TOPBAR ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar);z-index:60;display:flex;align-items:center;gap:14px;
+  padding:0 18px;background:color-mix(in srgb,var(--paper-2) 82%,transparent);backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom:1px solid var(--rule)}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto;text-decoration:none}
+.brand .glyph{width:30px;height:30px;flex:0 0 auto}
+.brand b{font-family:var(--font-display);font-size:16px;letter-spacing:.02em}
+.brand small{display:block;font-size:9.5px;letter-spacing:.22em;color:var(--ink-3);text-transform:uppercase;font-weight:600;margin-top:-3px}
+.topnav{display:flex;gap:2px;flex:1 1 auto;overflow-x:auto;scrollbar-width:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{font-size:12.5px;color:var(--ink-2);text-decoration:none;padding:6px 9px;border-radius:7px;white-space:nowrap;transition:.16s}
+.topnav a:hover{color:var(--ink);background:var(--rule-2)}
+.tools{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.search{position:relative}
+.search input{width:180px;padding:7px 26px 7px 30px;border-radius:9px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);font-size:12.5px;font-family:var(--font-body)}
+.search input:focus{outline:2px solid color-mix(in srgb,var(--c2) 45%,transparent);outline-offset:1px;border-color:transparent}
+.search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;opacity:.5;pointer-events:none}
+.search .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:15px;line-height:1;display:none;padding:2px}
+.search.has .clr{display:block}
+.btn{border:1px solid var(--rule);background:var(--paper-2);color:var(--ink-2);border-radius:9px;padding:7px 11px;font-size:12px;cursor:pointer;font-family:var(--font-body);transition:.16s;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{color:var(--ink);border-color:var(--ink-3);transform:translateY(-1px)}
+.btn svg{width:14px;height:14px}
+#menuBtn{display:none}
+.readbar{position:fixed;top:var(--topbar);left:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c7));z-index:61;width:0;transition:width .1s linear}
+
+/* ---------- SIDEBAR ---------- */
+.side{position:fixed;top:var(--topbar);left:0;bottom:0;width:var(--side);z-index:55;overflow-y:auto;padding:20px 12px 40px 16px;border-right:1px solid var(--rule);
+  background:color-mix(in srgb,var(--paper) 70%,transparent);backdrop-filter:blur(8px)}
+.side h5{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px 8px;font-weight:700}
+.side a{display:flex;gap:9px;align-items:baseline;text-decoration:none;color:var(--ink-2);font-size:13px;padding:6px 9px;border-radius:8px;transition:.16s;border-left:2px solid transparent}
+.side a i{font-family:var(--font-mono);font-size:10px;font-style:normal;color:var(--ink-3);min-width:16px}
+.side a:hover{background:var(--rule-2);color:var(--ink)}
+.side a.on{color:var(--ink);background:color-mix(in srgb,var(--c2) 12%,transparent);border-left-color:var(--c2);font-weight:600}
+.side .legend{margin-top:22px;padding:12px;border:1px dashed var(--rule);border-radius:12px;font-size:11px;color:var(--ink-2);line-height:1.7}
+.side .legend b{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.lg-row{display:flex;gap:8px;align-items:baseline;margin-bottom:5px}
+.lg-row .chip{flex:0 0 auto;font-size:10px;padding:1px 6px 1px 5px}
+.lg-row span.lg-t{color:var(--ink-2);line-height:1.5}
+.legend-chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-2);border:1px solid var(--rule);border-radius:99px;padding:5px 12px;background:var(--paper);white-space:nowrap}
+.legend-chip i{width:8px;height:8px;border-radius:99px;display:inline-block;flex:0 0 auto}
+.scrim{display:none}
+
+/* ---------- LAYOUT ---------- */
+.wrap{margin-left:var(--side);padding:calc(var(--topbar) + 26px) clamp(16px,3vw,44px) 90px;max-width:1360px;position:relative;z-index:2}
+section{scroll-margin-top:calc(var(--topbar) + 14px);margin-bottom:60px}
+.sec-head{display:flex;align-items:flex-end;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:22px}
+.sec-head .num{font-family:var(--font-display);font-size:38px;line-height:.9;color:var(--accent,var(--c1));opacity:.95}
+.sec-head h2{font-size:clamp(21px,2.5vw,28px)}
+.sec-head .en{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-left:auto;text-align:right;font-weight:600;white-space:nowrap}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,var(--c1));font-weight:700;margin-bottom:6px}
+
+/* ---------- CONFIDENCE CHIPS ---------- */
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px 2px 6px;border-radius:99px;border:1px solid;white-space:nowrap;vertical-align:middle;font-family:var(--font-body)}
+.chip::before{content:"";width:6px;height:6px;border-radius:99px;background:currentColor;flex:0 0 auto}
+.chip.q1{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.chip.q2{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent);background:color-mix(in srgb,var(--warn) 10%,transparent)}
+.chip.q3{color:var(--dis);border-color:color-mix(in srgb,var(--dis) 42%,transparent);background:color-mix(in srgb,var(--dis) 11%,transparent)}
+.chip.q4{color:var(--front);border-color:color-mix(in srgb,var(--front) 42%,transparent);background:color-mix(in srgb,var(--front) 10%,transparent)}
+.chip.q5{color:var(--todo);border-color:color-mix(in srgb,var(--todo) 42%,transparent);background:color-mix(in srgb,var(--todo) 10%,transparent)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;border:1px solid var(--rule);border-radius:20px;padding:clamp(22px,3.4vw,40px);background:var(--paper-2);box-shadow:var(--shadow-lg);overflow:hidden;margin-bottom:22px}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--c1) 12%,transparent),transparent 42%),
+             repeating-linear-gradient(90deg,var(--rule-2) 0 1px,transparent 1px 42px)}
+.hero>*{position:relative}
+.hero h1{font-size:clamp(30px,5.2vw,58px);letter-spacing:-.01em;line-height:1.08}
+.hero h1 em{font-style:normal;color:var(--c1)}
+.hero .sub{font-family:var(--font-display);font-size:clamp(13px,1.4vw,16px);color:var(--ink-2);margin-top:8px;letter-spacing:.14em;text-transform:uppercase}
+.cfgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.cfg{font-size:11.5px;border:1px solid var(--rule);border-radius:99px;padding:4px 11px;background:var(--paper);color:var(--ink-2)}
+.cfg b{color:var(--ink);font-weight:700}
+
+/* ---------- SUMMARY PLATE ---------- */
+.plate{border:1px solid var(--ink);border-radius:16px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden}
+.plate>header{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;user-select:none;background:
+  repeating-linear-gradient(135deg,var(--rule-2) 0 8px,transparent 8px 16px)}
+.plate>header h3{font-size:16px;margin-right:auto}
+.plate>header .hint{font-size:11px;color:var(--ink-3)}
+.plate .body{padding:20px 22px;border-top:1px solid var(--rule)}
+.plate[data-open="0"] .body{display:none}
+.plate .def{font-family:var(--font-display);font-size:clamp(16px,2vw,20px);line-height:1.6;border-left:3px solid var(--c1);padding-left:16px;margin-bottom:20px}
+.s-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.s-block{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;background:var(--paper-2)}
+.s-block h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,var(--c2));margin-bottom:10px;font-family:var(--font-body);font-weight:800}
+.s-block ol,.s-block ul{margin:0;padding-left:18px;font-size:13.4px}
+.s-block li{margin-bottom:7px}
+.s-block li::marker{color:var(--ink-3)}
+.s-block p{font-size:13.4px;margin:0}
+.mono-n{font-family:var(--font-mono);font-size:11px;color:var(--ink-3)}
+
+/* ---------- GENERIC CARD ---------- */
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{position:relative;border:1px solid var(--rule);border-radius:14px;background:var(--paper-2);padding:16px 18px;transition:.2s;overflow:hidden}
+.card:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow)}
+.card .idx{position:absolute;top:10px;right:12px;font-family:var(--font-display);font-size:26px;color:var(--ink);opacity:.09;font-weight:700}
+.card h4{font-size:16.5px;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .meta{font-size:11.5px;color:var(--ink-3);margin-bottom:9px;letter-spacing:.02em}
+.card p{font-size:13.6px;color:var(--ink-2);margin-bottom:.6em}
+.card p:last-child{margin-bottom:0}
+.card .accent-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,var(--c2))}
+.kv{display:grid;grid-template-columns:74px 1fr;gap:4px 10px;font-size:12.8px;margin-top:10px;color:var(--ink-2)}
+.kv dt{color:var(--ink-3);font-weight:700;font-size:11.5px;letter-spacing:.04em;padding-top:1px}
+.kv dd{margin:0}
+.formula{font-family:var(--font-mono);font-size:12.6px;background:var(--paper-3);border:1px dashed var(--rule);border-radius:8px;padding:8px 11px;margin:10px 0;overflow-x:auto;white-space:nowrap;color:var(--ink)}
+
+/* ---------- TABLE ---------- */
+.tblwrap{overflow-x:auto;border:1px solid var(--rule);border-radius:14px;background:var(--paper-2)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--rule-2);vertical-align:top}
+thead th{position:sticky;top:0;background:var(--paper-3);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);font-family:var(--font-body);z-index:2}
+tbody tr:hover{background:color-mix(in srgb,var(--c2) 7%,transparent)}
+td strong{color:var(--ink)}
+.nowrap{white-space:nowrap}
+
+/* ---------- MAP ---------- */
+.mapwrap{display:grid;grid-template-columns:1.55fr .95fr;gap:16px;align-items:start}
+.mapsvg{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:16px;background:var(--paper-2)}
+.mapsvg .lnk{stroke:var(--rule);stroke-width:1.2;fill:none}
+.mapsvg .nd{cursor:pointer;transition:.2s}
+.mapsvg .nd circle{stroke:var(--paper-2);stroke-width:2;transition:.2s}
+.mapsvg .nd:hover circle{stroke:var(--ink);r:9}
+.mapsvg .nd text{font-family:var(--font-body);font-size:10.5px;fill:var(--ink-2);pointer-events:none}
+.mapsvg .nd.sel circle{stroke:var(--ink);stroke-width:2.5}
+.mapsvg .nd.sel text{fill:var(--ink);font-weight:700}
+.mapsvg .core text{font-family:var(--font-display);font-size:15px;fill:var(--ink);font-weight:700}
+.mapdetail{border:1px solid var(--rule);border-radius:16px;background:var(--paper-2);padding:18px;min-height:280px}
+.mapdetail h4{font-size:18px;margin-bottom:3px}
+.mapdetail .lvl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.mapdetail ul{margin:0;padding-left:17px;font-size:13.3px;color:var(--ink-2)}
+.mapdetail ul li{margin-bottom:6px}
+
+/* ---------- TREE ---------- */
+.tree{font-size:13.5px}
+.tnode{margin-left:0}
+.trow{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:9px;cursor:pointer;transition:.15s;border:1px solid transparent}
+.trow:hover{background:var(--rule-2)}
+.trow .tw{width:14px;height:14px;flex:0 0 auto;display:grid;place-items:center;font-size:9px;color:var(--ink-3);transition:transform .2s}
+.tnode.open>.trow .tw{transform:rotate(90deg)}
+.trow .dot{width:8px;height:8px;border-radius:99px;background:var(--accent,var(--c2));flex:0 0 auto}
+.trow .tlabel{font-weight:600}
+.trow .tnote{font-size:11.5px;color:var(--ink-3);margin-left:auto;white-space:nowrap}
+.tkids{margin-left:16px;border-left:1px dashed var(--rule);padding-left:10px;display:none}
+.tnode.open>.tkids{display:block}
+.tkids .trow{font-weight:400;color:var(--ink-2)}
+
+/* ---------- TIMELINE ---------- */
+.eras{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.era-btn{border:1px solid var(--rule);background:var(--paper-2);border-radius:99px;padding:6px 14px;font-size:12.5px;cursor:pointer;color:var(--ink-2);font-family:var(--font-body);transition:.16s;display:inline-flex;gap:7px;align-items:center}
+.era-btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.era-btn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.era-btn .yrs{font-family:var(--font-mono);font-size:10.5px;opacity:.75}
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--c1),var(--c2),var(--c7),var(--c9))}
+.tl-item{position:relative;margin-bottom:16px;border:1px solid var(--rule);border-radius:14px;background:var(--paper-2);padding:14px 16px;transition:.2s}
+.tl-item:hover{border-color:var(--ink-3);transform:translateX(3px)}
+.tl-item::before{content:"";position:absolute;left:-29px;top:20px;width:11px;height:11px;border-radius:99px;background:var(--paper);border:2.5px solid var(--era,var(--c1))}
+.tl-item .yr{font-family:var(--font-display);font-size:19px;font-weight:700;color:var(--era,var(--c1));line-height:1}
+.tl-item h4{font-size:15px;margin:3px 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tl-item p{font-size:13.4px;color:var(--ink-2);margin:0}
+.tl-item .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10.5px;border:1px solid var(--rule);border-radius:6px;padding:2px 7px;color:var(--ink-3)}
+.hide{display:none !important}
+
+/* ---------- PEOPLE ---------- */
+.person{display:grid;grid-template-columns:76px 1fr;gap:14px}
+.avatar{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em}
+.p-years{font-family:var(--font-mono);font-size:11px;color:var(--ink-3)}
+
+/* ---------- MENTAL MODELS ---------- */
+.mm{border:1px solid var(--rule);border-radius:14px;background:var(--paper-2);overflow:hidden;transition:.2s}
+.mm:hover{border-color:var(--ink-3);box-shadow:var(--shadow)}
+.mm-h{display:flex;align-items:center;gap:10px;padding:13px 15px;cursor:pointer}
+.mm-h .lvl{font-size:10px;font-weight:800;letter-spacing:.1em;padding:2px 7px;border-radius:6px;background:var(--accent,var(--c2));color:#fff}
+.mm-h h4{font-size:15.5px;flex:1}
+.mm-h .caret{transition:.22s;color:var(--ink-3);flex:0 0 auto}
+.mm[data-open="1"] .caret{transform:rotate(180deg)}
+.mm-b{display:none;padding:0 15px 16px;border-top:1px solid var(--rule-2)}
+.mm[data-open="1"] .mm-b{display:block}
+.mm-b h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:13px 0 5px;font-family:var(--font-body)}
+.mm-b p,.mm-b li{font-size:13.4px;color:var(--ink-2)}
+.mm-b ul{margin:0;padding-left:17px}
+.case{background:color-mix(in srgb,var(--accent,var(--c2)) 9%,transparent);border-left:3px solid var(--accent,var(--c2));padding:10px 13px;border-radius:0 9px 9px 0;font-size:13.2px;color:var(--ink-2)}
+.case b{color:var(--ink)}
+
+/* ---------- TIERS ---------- */
+.tier{border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:var(--paper-2);display:flex;flex-direction:column}
+.tier-h{padding:14px 16px;border-bottom:1px solid var(--rule);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.tier-h .lv{font-family:var(--font-display);font-size:22px;color:var(--accent)}
+.tier-h h4{font-size:15px}
+.tier-h .hours{font-size:11.5px;color:var(--ink-3);margin-top:3px}
+.tier-b{padding:14px 16px;font-size:13.4px;flex:1}
+.tier-b h5{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 6px;font-family:var(--font-body)}
+.tier-b h5:first-child{margin-top:0}
+.tier-b ul{margin:0;padding-left:17px;color:var(--ink-2)}
+.tier-b li{margin-bottom:5px}
+
+/* ---------- ROADMAP / CHECKBOX ---------- */
+.stage{border:1px solid var(--rule);border-radius:14px;background:var(--paper-2);padding:0;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.stage.done{border-color:color-mix(in srgb,var(--ok) 55%,transparent);background:color-mix(in srgb,var(--ok) 5%,var(--paper-2))}
+.stage-h{display:flex;gap:12px;align-items:flex-start;padding:15px 16px;border-bottom:1px solid var(--rule-2)}
+.stage-h .st{font-family:var(--font-display);font-size:26px;color:var(--accent);line-height:1;flex:0 0 auto;min-width:38px}
+.stage-h h4{font-size:15.5px;flex:1}
+.stage-b{padding:13px 16px;font-size:13.4px;color:var(--ink-2);flex:1}
+.stage-b h5{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:13px 0 6px;font-family:var(--font-body)}
+.stage-b h5:first-child{margin-top:0}
+.stage-b ul{margin:0;padding-left:17px}
+.res{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--rule-2);font-size:13.2px}
+.res:last-child{border-bottom:0}
+.res .rt{flex:0 0 auto;font-size:10px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:5px;border:1px solid var(--rule);color:var(--ink-3)}
+.check{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--rule-2);background:var(--paper-3);cursor:pointer;font-size:12.5px;font-weight:600;color:var(--ink-2);user-select:none}
+.check input{width:16px;height:16px;accent-color:var(--ok);cursor:pointer}
+.stage.done .check{color:var(--ok)}
+
+/* ---------- MYTH ---------- */
+.myth{border:1px solid var(--rule);border-left:3px solid var(--dis);border-radius:0 14px 14px 0;background:var(--paper-2);padding:14px 16px}
+.myth .q{font-family:var(--font-display);font-size:16px;color:var(--dis);display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:7px}
+.myth .a{font-size:13.5px;color:var(--ink-2)}
+.myth .a b{color:var(--ink)}
+
+/* ---------- FILTER BAR ---------- */
+.fbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px;padding:11px 13px;border:1px solid var(--rule);border-radius:12px;background:var(--paper-2)}
+.fbar .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:800;margin-right:3px}
+.fbtn{border:1px solid var(--rule);background:var(--paper);border-radius:99px;padding:5px 12px;font-size:12px;cursor:pointer;color:var(--ink-2);font-family:var(--font-body);transition:.16s}
+.fbtn:hover{border-color:var(--ink-3);color:var(--ink)}
+.fbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fbar .count{margin-left:auto;font-size:11.5px;color:var(--ink-3);font-family:var(--font-mono)}
+.empty{padding:26px;text-align:center;color:var(--ink-3);font-size:13.5px;border:1px dashed var(--rule);border-radius:14px}
+
+/* ---------- TERMS ---------- */
+.term{border:1px solid var(--rule);border-radius:13px;background:var(--paper-2);padding:13px 15px;cursor:pointer;transition:.18s;position:relative}
+.term:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--shadow)}
+.term .th{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.term h4{font-size:15px}
+.term .en{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-3);margin-top:1px}
+.term .d{font-size:13.2px;color:var(--ink-2);margin-top:8px}
+.term .more{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule);font-size:12.9px;color:var(--ink-2)}
+.term .more dt{font-weight:700;color:var(--ink-3);font-size:11px;letter-spacing:.08em;display:inline;margin-right:5px}
+.term .more .line{margin-bottom:5px}
+.term[data-open="1"] .more{display:block}
+.term .tierdot{width:8px;height:8px;border-radius:99px;flex:0 0 auto}
+
+/* ---------- CROSS ---------- */
+.xfield{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;padding:14px;border:1px dashed var(--rule);border-radius:12px;font-size:13px;color:var(--ink-2)}
+.xfield span{padding:3px 10px;border-radius:99px;background:var(--paper-3);border:1px solid var(--rule)}
+
+.reveal{opacity:0;transform:translateY(12px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .4s ease,transform .4s cubic-bezier(.2,.7,.3,1)}
+
+footer{max-width:1360px;margin:0 auto;padding:30px clamp(16px,3vw,44px) 60px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-3);line-height:1.9}
+footer b{color:var(--ink-2)}
+
+@media (max-width:1080px){
+  .side{transform:translateX(-100%);transition:transform .26s cubic-bezier(.2,.7,.3,1);box-shadow:var(--shadow-lg)}
+  .side.open{transform:none}
+  .wrap{margin-left:0}
+  #menuBtn{display:inline-flex}
+  .scrim.on{display:block;position:fixed;inset:var(--topbar) 0 0;background:rgba(0,0,0,.4);z-index:54}
+  .mapwrap{grid-template-columns:1fr}
+  .search input{width:130px}
+}
+@media (max-width:640px){
+  body{font-size:15px}
+  .topnav{display:none}
+  .topbar{gap:8px;padding:0 10px}
+  .brand small{display:none}
+  .brand b{font-size:14.5px}
+  .brand{gap:7px}
+  .tools{gap:6px}
+  .btn{padding:7px 9px}
+  #themeBtn span{display:none}
+  .search input{width:84px;padding:7px 22px 7px 26px}
+  .sec-head .num{font-size:28px}
+  .sec-head .en{display:none}
+  .person{grid-template-columns:1fr}
+  .avatar{width:56px;height:56px;font-size:19px}
+  .hero h1{font-size:30px}
+  .hero .sub{letter-spacing:.08em}
+}
+@media print{.topbar,.side,.fbar,.scrim,.readbar{display:none}.wrap{margin:0}}
+</style>
+</head>
+<body>
+
+<div class="readbar" id="readbar"></div>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <svg class="glyph" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/>
+      <path d="M20 33c0-9 4-16 12-19-1 11-5 18-12 19z" fill="#4D7C0F" opacity=".85"/>
+      <path d="M20 33c0-7-3-12-9-14 1 8 4 13 9 14z" fill="#B45309" opacity=".8"/>
+      <circle cx="20" cy="7" r="2.6" fill="#0F766E"/>
+      <path d="M20 7v9" stroke="#0F766E" stroke-width="1.6"/>
+    </svg>
+    <span><b>营养学知识图谱</b><small>Nutrition Atlas</small></span>
+  </a>
+  <nav class="topnav" id="topnav"></nav>
+  <div class="tools">
+    <div class="search" id="searchWrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="搜索全站…" aria-label="全站搜索">
+      <button class="clr" id="qclr" aria-label="清除">×</button>
+    </div>
+    <button class="btn" id="themeBtn" title="切换深浅色"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg><span id="themeTxt">深色</span></button>
+    <button class="btn" id="menuBtn" aria-label="目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+
+<aside class="side" id="side">
+  <h5>目录 · Contents</h5>
+  <div id="toc"></div>
+  <div class="legend">
+    <b>置信度标记</b>
+    <div class="lg-row"><span class="chip q1">Ⅰ 确立事实</span><span class="lg-t">广泛认可的学术定论</span></div>
+    <div class="lg-row"><span class="chip q2">Ⅱ 主流共识</span><span class="lg-t">多数认可，仍有少量争议</span></div>
+    <div class="lg-row"><span class="chip q3">Ⅲ 存在争议</span><span class="lg-t">学派分歧明显，各方观点已列出</span></div>
+    <div class="lg-row"><span class="chip q4">Ⅳ 前沿探索</span><span class="lg-t">尚无定论，属预测或推测</span></div>
+    <div class="lg-row"><span class="chip q5">⚠ 待核实</span><span class="lg-t">需查证原始文献后引用</span></div>
+  </div>
+</aside>
+
+<main class="wrap" id="top">
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="eyebrow" style="--accent:var(--c1)">跨学科知识图谱 · 单文件交互式指南</div>
+  <h1>营养学：<em>从必需性到精准性</em></h1>
+  <div class="sub">Nutritional Science — an Atlas of Evidence, Theory &amp; Practice</div>
+  <p style="max-width:760px;color:var(--ink-2);font-size:14.6px;margin-top:16px">
+    本指南以「学术图谱」而非「养生清单」的方式组织营养学。它把营养学拆成 <b>能量与代谢</b>、<b>必需性与定量标准</b>、<b>假说与证据</b>、<b>方法与因果</b>、<b>人群与政策</b> 五条主线，并给每个知识点标注证据强度。
+    你可以直接读顶部的一页纸摘要，也可用左侧目录跳转到任意模块，或用右上角搜索框做全站过滤。
+  </p>
+  <div class="cfgs">
+    <span class="cfg">领域 · <b>营养学 Nutrition</b></span>
+    <span class="cfg">目的 · <b>兴趣与体系认知</b></span>
+    <span class="cfg">基础 · <b>有通识基础</b></span>
+    <span class="cfg">侧重 · <b>全面均衡 · 机制与证据并重</b></span>
+    <span class="cfg">篇幅 · <b>标准版（13 章 + 3 定制模块）</b></span>
+    <span class="cfg">构建 · <b>2025 · 无外部依赖</b></span>
+  </div>
+  <div style="margin-top:16px;font-size:11.5px;color:var(--ink-3)">
+    ⚠ 变量配置中的 <span style="font-family:var(--font-mono)">【】</span> 占位符未替换，本页按其示例值（纯兴趣了解 / 有通识基础 / 全面均衡 / 标准版）生成。若用途为临床营养或患者教育，请务必以最新版指南与执业规范为准。
+  </div>
+</div>
+
+<!-- ================= §1 SUMMARY ================= -->
+<section id="s1" data-num="01" data-name="一页纸摘要" style="--accent:var(--c1)">
+  <div class="plate" id="plate1" data-open="1">
+    <header id="plate1h">
+      <h3>§01 一页纸摘要</h3>
+      <span class="hint" id="plate1hint">点击收起</span>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--ink-3)"><path d="M6 9l6 6 6-6"/></svg>
+    </header>
+    <div class="body">
+      <div class="def">
+        <b>一句话定义</b>：营养学是研究<b>「食物与营养素如何被摄入、消化吸收、代谢，并如何决定机体的功能、生长与疾病风险」</b>的科学集合，
+        横跨生物化学、人体生理学、微生物学、流行病学与公共卫生五个层面 —— 它既关心"缺了会生病"（<b>必需性</b>），也关心"多补有没有用"（<b>效能性</b>）。
+      </div>
+      <div class="s-grid">
+        <div class="s-block" style="--accent:var(--c2)">
+          <h4>五个核心要点</h4>
+          <ol>
+            <li><b>能量守恒是底层约束。</b>体重变化 ≈ （摄入能量 − 消耗能量）× 时间。TDEE = RMR(静息代谢) + TEF(食物热效应) + 运动消耗 + NEAT(非运动性活动产热) <span class="chip q1">Ⅰ</span></li>
+            <li><b>现代营养学的重心是"必需性"而非"最优剂量"。</b>坏血病、脚气病、碘缺乏这类"缺乏—补充—治愈"链条最硬；"超级食物"类结论最软。 <span class="chip q1">Ⅰ</span></li>
+            <li><b>从"营养素"转向"食物与膳食模式"。</b>脂质假说与单一营养素研究范式正被"整体膳食 + <b>替代分析</b> + 因果推断"修正。 <span class="chip q2">Ⅱ</span></li>
+            <li><b>剂量—反应与"替代什么"决定效应方向。</b>"饱和脂肪↑"只有在"换成精制碳水"时才等价于风险↑；换成不饱和脂肪/全谷物/植物蛋白则不同。 <span class="chip q2">Ⅱ</span></li>
+            <li><b>营养学是证据最脆弱的实证科学之一。</b>RCT 难以长期开展（依从性、伦理、终点耗时），观察性研究混杂重。因此 <b>证据等级决定结论强度</b>，这是本领域的第一技能。 <span class="chip q1">Ⅰ</span></li>
+          </ol>
+        </div>
+        <div class="s-block" style="--accent:var(--c3)">
+          <h4>两个最重要的理论</h4>
+          <p><b>① 能量平衡模型</b>（Wilmore &amp; Costill, 2000）：把人体能量支出拆成静息代谢、食物热效应、运动活动产热、非运动活动产热四块。它解释了为什么"少吃比多动更容易"——NEAT 占比可达 300–500 kcal/天且个体差异巨大。<span class="chip q1">Ⅰ</span></p>
+          <p style="margin-top:9px"><b>② 脂质假说与其修正（膳食脂肪 → 食物模式 + 替代分析）</b>：Keys 的七国研究（1958 起）建立了"饱和脂肪/胆固醇—心血管病"的经典链条 <span class="chip q2">Ⅱ</span>；但 Cochrane 2020 综述显示"用多不饱和脂肪替代饱和脂肪"对全因死亡无明确影响 <span class="chip q3">Ⅲ</span>，因此当前主流表述是<b>看整体膳食模式、看替代对象、看硬终点</b>。</p>
+        </div>
+        <div class="s-block" style="--accent:var(--c5)">
+          <h4>最关键的时间节点</h4>
+          <p class="mono-n">1747 Lind 坏血病对照试验 → 1897 Eijkman 脚气病 → 1912 "vitamine" 一词 → <b>1941 第一版 RDA</b> → <b>1958 七国研究启动</b> → 1977《美国膳食目标》 → 1988 INTERSALT + NCEP → <b>1997 DRI 框架（EAR/RDA/AI/UL）</b> → 2015–2020 精准营养与菌群 → 2023 WHO 钠 <2 g/天</p>
+        </div>
+        <div class="s-block" style="--accent:var(--c7)">
+          <h4>一句话学习建议</h4>
+          <p>把营养学当作一门「<b>证据分级科学</b>」来学：先学会区分随机对照试验、队列研究、动物实验、机制推理这四类证据的强度，再去接收任何"某食物有益健康"的结论 —— 顺序反了，你学到的就只是名单。</p>
+          <p style="margin-top:10px"><b>一条使用守则</b>：看到任何营养结论，先问三句 —— <i>(1) 是哪一种证据？ (2) 比较的是"加这个"还是"换掉那个"？ (3) 终点是代理指标（LDL、体重）还是硬终点（发病率、死亡）？</i></p>
+        </div>
+      </div>
+      <div style="margin-top:16px;font-size:11.8px;color:var(--ink-3);border-top:1px dashed var(--rule);padding-top:11px">
+        <b style="color:var(--ink-2)">诚实边界声明</b>：本页所有年份、人名、论文与实验名称均为可查证的公开学术史实；凡涉及"某研究得出某结论"的转述，本页只陈述被广泛引用的原始结论，并标注争议等级。凡标注 <span class="chip q5">⚠ 待核实</span> 的条目，均因原始文献年份/数据存在多版本或我无法确认唯一出处，建议以 PubMed / 期刊官网原文复核。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= §2 KNOWLEDGE MAP ================= -->
+<section id="s2" style="--accent:var(--c2)">
+  <div class="sec-head"><span class="num">02</span><h2>全景知识地图</h2><span class="en">Panorama · Radial Knowledge Map</span></div>
+  <p style="max-width:900px;color:var(--ink-2)">
+    营养学的六个一级分支可以按「<b>机制 → 标准 → 假说 → 方法 → 人群 → 应用</b>」串成一条逻辑链：<i class="mono-n">机制</i> 告诉我们营养素在体内发生什么，<i class="mono-n">标准</i> 把机制翻译成数字，<i class="mono-n">假说</i> 提出可检验的断言，<i class="mono-n">方法</i> 决定断言能否被证实，<i class="mono-n">人群</i> 把结论放大到真实世界，<i class="mono-n">应用</i> 把结论变成干预。
+  </p>
+  <div class="fbar">
+    <span class="lbl">图例</span>
+    <span class="legend-chip"><i style="background:var(--c1)"></i>核心 · 6 大一级分支</span>
+    <span class="legend-chip"><i style="background:var(--ink-3)"></i>边缘 · 24 个子模块</span>
+    <span class="legend-chip">点击一级分支 → 展开／收起其子模块</span>
+    <span class="legend-chip">点击任意节点 → 右侧显示释义</span>
+  </div>
+  <div class="mapwrap">
+    <svg id="mapsvg" class="mapsvg" viewBox="0 0 880 660" role="img" aria-label="营养学放射状知识地图"></svg>
+    <div class="mapdetail" id="mapdetail">
+      <h4>营养学 · Nutritional Science</h4>
+      <div class="lvl">点击图中任意节点查看该模块的定位与关键内容</div>
+      <p style="font-size:13.4px;color:var(--ink-2)">
+        放射状布局中，<b>中心</b>是领域本身；<b>六个一级分支</b>代表营养学不可再拆的主干；<b>外圈节点</b>是该分支下的关键子模块。
+        节点越大代表在营养学体系中越接近"核心"，越靠外代表越"专业/边缘"。
+      </p>
+      <p style="font-size:13.4px;color:var(--ink-2)">
+        <b>学习顺序建议</b>：机制 → 标准 → 方法 → 假说 → 应用。跳过"方法"直接学结论，是营养学学习者最常见的认知陷阱。
+      </p>
+    </div>
+  </div>
+
+  <h3 style="font-size:17px;margin:30px 0 12px">树状清单（可折叠）</h3>
+  <div class="tree" id="tree"></div>
+</section>
+
+<!-- ================= §3 CORE THEORIES ================= -->
+<section id="s3" style="--accent:var(--c3)">
+  <div class="sec-head"><span class="num">03</span><h2>核心理论与框架</h2><span class="en">Core Theories &amp; Frameworks</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">
+    以下 9 个框架覆盖了营养学界公认的核心解释工具。它们的地位差异很大：
+    <b>T1/T2 是物理与生理约束（几乎不会被推翻）</b>，<b>T3–T6 是历史遗留的假说（其中 3 个仍有实质争议）</b>，<b>T7–T9 是方法论框架（决定其余一切的可信度）</b>。
+  </p>
+  <div class="grid g2" style="margin-top:18px">
+
+    <div class="card" style="--accent:var(--c1)"><span class="idx">T1</span><div class="accent-bar"></div>
+      <h4>能量平衡模型 <span class="chip q1">Ⅰ 确立事实</span></h4>
+      <div class="meta">Wilmore &amp; Costill, <i>Sports Medicine</i>, 2000 <span class="tag">生理学框架</span> <span class="tag">横跨全部应用</span></div>
+      <p><b>核心思想</b>：体重守恒的第一性原理 —— 在一段时间内体重变化约等于（摄入能量 − 消耗能量）的积分。因此任何减重方案，本质上必须同时回答"少吃多少"与"多耗多少"两个问题。</p>
+      <div class="formula">TDEE = RMR（静息代谢） + TEF（食物热效应） + EA（运动活动产热） + NEAT（非运动活动产热）</div>
+      <p><b>关键子模型</b>：Kleiber 定律指出<b>代谢体重</b>与体重的 0.75 次幂成正比（Kleiber, 1932 大鼠实验；1947 牛验证），这解释了为什么"轻体重者减重更慢"。此外 Harris-Benedict（1918/1919）与 Mifflin-St Jeor（1990）方程给出 RMR 的估算式，但个体误差可达 ±15–20%。</p>
+      <p><b>NEAT 的重要性</b>：非运动性活动产热（走路、站立、小动作、坐立转换）在个体间差异可达 300–500 kcal/天。Levine 等在《Science》(1999) 的超重/瘦对照研究中首次系统证明 <i>NEAT 的个体差异是体重变化的主要预测因子</i>，而非摄入量差异。</p>
+      <dl class="kv">
+        <dt>适用范围</dt><dd>体重管理、能量摄入处方、运动营养、代谢病管理</dd>
+        <dt>局限</dt><dd>静态模型；不解释进食的<b>神经内分泌驱动</b>（瘦素、ghrelin、胰岛素）；忽略体重下降时代谢适应（metabolic adaptation）造成的适应性能量消耗下降。Hall 等 2011 年的动态模型对此做了修正。</dd>
+        <dt>经典案例</dt><dd>Ludwig &amp; Ebbelin, <i>NEJM</i> 2001：单对同卵双胞胎过量进食 100 天（每日 +1000 kcal），体重增加差异达 8.9 kg，直接把"个体代谢差异"从假说变为观测事实。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c1)"><span class="idx">T2</span><div class="accent-bar"></div>
+      <h4>必需营养素与必需性理论 <span class="chip q1">Ⅰ 确立事实</span></h4>
+      <div class="meta">Hopkins (1906) · Funk (1912) · 现代形态：DRI 框架 <span class="tag">历史最悠久</span></div>
+      <p><b>核心思想</b>：人体无法合成某类物质或无法合成足够量，必须从食物获得 —— 这些是<b>必需营养素</b>。经典表述是"缺乏即得病、补充即缓解"，这是营养学中<b>因果链最完整</b>的一类知识（坏血病—维C、脚气病—硫胺素、糙皮病—烟酸、甲状腺肿—碘）。</p>
+      <p><b>关键分类</b>：必需氨基酸（9 种成人必需，含组氨酸）、必需脂肪酸（亚油酸 n-6、α-亚麻酸 n-3）、必需维生素（约 13 种）、必需矿物质（约 15–17 种）、水。<b>条件必需</b>（如婴儿必需蛋氨酸、成人必需半胱氨酸；某些遗传代谢病如 PKU 患者的苯丙氨酸）是该理论的重要延伸。</p>
+      <dl class="kv">
+        <dt>适用范围</dt><dd>膳食评估、营养素推荐量（RDA/AI）、缺乏病诊断与补充剂设计</dd>
+        <dt>局限</dt><dd>处理<b>"非必需但有益"</b>类主张（如多酚、辅酶 Q10）时该框架无能为力；也无法表达"最佳剂量"（optimal intake）这一连续问题——这正是营养学最模糊的地带。</dd>
+        <dt>经典案例</dt><dd>Joseph Goldberger 与糙皮病（pellagra）：从"传染假说"的血液传播实验（他自注患者血液并确认不传染）到"Goldberger 饮食"（牛奶、鸡蛋、酵母、瘦肉、蔬菜），是本理论最完整的因果演示。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c3)"><span class="idx">T3</span><div class="accent-bar"></div>
+      <h4>脂质假说与膳食—心血管链条 <span class="chip q3">Ⅲ 存在争议</span></h4>
+      <div class="meta">Ancel Keys 等 · Seven Countries Study（1958 起）· AJCN 1971/1986 综述</div>
+      <p><b>核心思想</b>：膳食饱和脂肪 ↑ → 血清 LDL 胆固醇 ↑ → 动脉粥样硬化性心血管病（ASCVD）风险 ↑。这一链条催生了 1980 年代美国"限脂"公共政策（1984 NIH 胆固醇共识会议、1988 NCEP ATP-I）。</p>
+      <p><b>为什么它现在"存在争议"</b>：<br>
+      ① <b>替代问题</b>——饱和脂肪替代的是<b>精制碳水</b>还是<b>不饱和脂肪/植物蛋白</b>？Meta 分析显示不同替代物结果方向相反。<br>
+      ② <b>剂量的蛋白质组学复杂度</b>——LDL 颗粒的大小、黏附性、氧化敏感性比总 LDL-C 浓度更能预测风险，"总胆固醇"作为指标过于粗糙。<br>
+      ③ <b>硬终点证据的落差</b>——Cochrane 2020 系统综述（Hooper 等）认为"以多不饱和脂肪替代饱和脂肪"对心血管事件与全因死亡无明确影响，与 Keys 的强主张不一致。<br>
+      ④ <b>反向派</b>（如 Ravnskov 等，2021 <i>JACC</i>）主张 LDL-C 升高本身并非致病性因素。</p>
+      <dl class="kv">
+        <dt>各方观点</dt><dd>① 传统派（Keys 等）：饱和脂肪与 CHD 正相关已被七国队列证实；② 折中派（Willett 等）：整体膳食模式、替代分析、脂肪质量优先于总量；③ 怀疑派（Ravnskov、Barnard）：血清 LDL-C 干预未降低死亡率，强调"饮食—疾病"的非线性与食物化学。</dd>
+        <dt>适用范围</dt><dd>心血管一级预防、二级预防的膳食处方、饱和脂肪限量标准</dd>
+        <dt>经典案例</dt><dd>七国研究（16 国 12 队列约 4 万人，随访 5–15 年）显示七国人群的饱和脂肪摄入与 CHD 死亡率的相关性 &gt;0.8；地中海队列例外。作者据此提出地中海饮食模式。</dd>
+        <dt>历史注记</dt><dd>Ancel Keys 与《饥饿研究》（Minnesota Starvation Experiment）的伦理争议是营养学史上少见的公开审视点 — 该实验有历史价值与伦理缺陷并存，本页不做价值判断，仅标注其为事实背景。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c3)"><span class="idx">T4</span><div class="accent-bar"></div>
+      <h4>钠—血压假说与 DASH 干预 <span class="chip q2">Ⅱ 主流共识</span></h4>
+      <div class="meta">Lewis Dahl（1950s 提出）· INTERSALT (BMJ 1988) · DASH 试验 (NEJM 1996) · WHO 钠指南 (2012/2023)</div>
+      <p><b>核心思想</b>：钠摄入 ↑ → 体液量与血管张力 ↑ → 收缩压 ↑，且存在<b>人群阈值</b>（非零基线），即"低钠有益"并非人人成立，只在摄入较高的人群显著。</p>
+      <p><b>证据链（本领域最完整的因果链之一）</b>：① 流行病学（INTERSALT：39 个国家约 10 000 人，尿钠与收缩压呈剂量—反应）；② 短期 <b>随机交叉试验</b>（低钠饮食可迅速降压、可叠加降压药）；③ 长期干预（美国 <b>SSaSS</b> 研究，JAMA 2021：社区层面的减盐干预使收缩压下降约 1.67–2.17 mmHg）；④ <b>DASH 试验</b>（NEJM 1996）证明"多蔬果、低饱和脂肪、低胆固醇的<b>综合膳食模式</b>"能有效降压。</p>
+      <div class="formula">WHO（2012 与 2023 更新）：成人钠摄入 &lt; 2 g/天 ≈ 食盐 &lt; 5 g/天（含所有来源）</div>
+      <dl class="kv">
+        <dt>经典案例</dt><dd>DASH 试验（Appel 等，NEJM 1996）：8 周、458 位高血压成人 3 组对照，证明<b>膳食模式</b>优于单一营养素操控，这是营养学方法学的分水岭之一。</dd>
+        <dt>争议点</dt><dd>J 型曲线争议：极低钠摄入（&lt;2 g）与死亡率可能呈 J 形（Go 等 al JAMA 2018 的 SALT 队列） <span class="chip q3">Ⅲ</span>；但其中钠测定为单次点尿，受排泄周期影响，解释受限。</dd>
+        <dt>局限</dt><dd>个体对钠的敏感性（salt-sensitivity）差异很大，公共卫生的群体阈值在个体层面不必然成立。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c4)"><span class="idx">T5</span><div class="accent-bar"></div>
+      <h4>膳食纤维假说与菌群—宿主轴 <span class="chip q2">Ⅱ 主流共识（假说核心部分）／菌群机制 Ⅲ 争议</span></h4>
+      <div class="meta">D. P. Burkitt（1970s 观察）· WHO 纤维指南 (2015) · Nature 2014 饮食干预菌群</div>
+      <p><b>核心思想</b>：Burkitt 在 1970s 对比爱尔兰与乌干达人群，发现纤维摄入差异与结肠癌、憩室病发病率差异相关，提出<b>"纤维保护假说"</b>。这推动了"全谷物优于精制主食"的膳食模式建议。</p>
+      <p><b>已被证实的部分</b>：膳食纤维增加饱腹感、延缓胃排空、增加粪便量、改善便秘；WHO 2015 指南建议成人 ≥25 g/天（儿童 ≥2 g/100 kcal）。<b>部分仍不确定</b>：结肠癌预防的剂量—反应、大纤维（≥10 g/天）是否优于可溶性纤维。</p>
+      <p><b>菌群时代</b>：David 等（<i>Nature</i> 505:559, 2014）显示纯素/肉食为主的膳食能在 <b>1 天内</b> 显著改变肠道菌群结构；Zeevi 等（<i>Cell</i> 163:1079, 2015）用机器学习从菌群预测餐后血糖，个体差异远大于同组平均。<b>但"某菌属 = 健康"的市场化推论普遍证据不足。</b></p>
+      <dl class="kv">
+        <dt>争议</dt><dd>"Bacteroidetes/Firmicutes 比值"作为肥胖标志的简化解释，已被证明不足（Turnbaugh 等，Nature 2006 与后续研究）；特定菌属补充剂的效应量小且个体差异大 <span class="chip q3">Ⅲ</span>。</dd>
+        <dt>经典案例</dt><dd>David 等人源喂养/全合成饮食对照研究：受试者住院期间食用由研究者完全配比的餐食，菌群组内 vs 组间差异最大，为"饮食结构 &gt; 食物个体来源"提供了直接证据。</dd>
+        <dt>局限</dt><dd>粪便菌群 ≠ 肠道全貌；测序方法差异大；关联 ≠ 作用；宿主-菌群互作是双向的（菌群也能调控脂质代谢信号）。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c3)"><span class="idx">T6</span><div class="accent-bar"></div>
+      <h4>抗氧化假说与其反例（补剂悖论） <span class="chip q3">Ⅲ 存在争议</span></h4>
+      <div class="meta">Denham Harman 自由基老化理论 (1956) · ATBC (1994) · CARET (1996) · SELECT (JAMA 2011)</div>
+      <p><b>核心思想</b>：自由基损伤累积导致老化与疾病 → 补充抗氧化剂应能预防疾病。这是过去 30 年保健品产业（维生素 C/E、β-胡萝卜素、辅酶 Q10）最重要的收入来源。</p>
+      <p><b>但随机对照试验普遍不支持其健康人预防承诺</b>：<br>
+      ① <b>ATBC 试验</b>（芬兰，1994）：吸烟男性补充 β-胡萝卜素，肺癌<b>发病率升高</b>；<br>
+      ② <b>CARET 试验</b>（美国，1996）：高剂量 β-胡萝卜素在吸烟与石棉暴露人群中增加肺癌发病率与死亡率，试验提前终止；<br>
+      ③ <b>SELECT 试验</b>（JAMA 2011，Klein 等）：硒 + 维生素 E 使前列腺癌风险增加约 17%；<br>
+      ④ <b>USPSTF 2013/2022</b> 的多项系统综述一致认为：多种抗氧化补充剂对心血管、癌症或总体死亡无预防作用，对吸烟者甚至有害。</p>
+      <p><b>反面解释</b>：体内存在严格的氧化还原缓冲与谷胱甘肽/硫氧还蛋白系统，外源高剂量抗氧化剂可能<b>干扰信号分子</b>（HIF1α、Nrf2）和内源性防御，且把食物基质中相互协同的化合物拆成单一高剂量胶囊，会丢失协同效应。</p>
+      <dl class="kv">
+        <dt>经典案例</dt><dd>上述三例构成了营养学界最著名的"机制合理、结果相反"教学案例集合，是"机制推论 vs 硬终点"的最佳教材。</dd>
+        <dt>适用边界</dt><dd>抗氧化假说并未被推翻：在<b>明确的氧化应激状态</b>（如某些遗传病、危重症）中可能有作用。问题在于把结论从"缺乏者"外推到"健康者"。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c7)"><span class="idx">T7</span><div class="accent-bar"></div>
+      <h4>营养学中的因果推断与"Hardy 不稳定性法则" <span class="chip q1">Ⅰ 确立事实</span></h4>
+      <div class="meta">Archie Cochrane（1910s–1980s）· Bradford Hill 准则 (1965) · 替代分析 (Willett 等)</div>
+      <p><b>核心思想</b>：营养学长期难以给出确定结论，原因是它同时受三类结构性困难限制 —— <b>(1) 人不能长期保持同一种饮食</b>（依从性/随机脱落）；<b>(2) 一个干预会同时改变多个变量</b>（混杂）；<b>(3) 观察性研究中反向因果普遍存在</b>（患病者改变饮食）。Archie Cochrane 在 1980s 的两篇著名论文中以幽默的方式指出这些问题并要求正式注册营养试验。</p>
+      <dl class="kv">
+        <dt>替代分析</dt><dd>Willett、Stampder、Hu 等（1997, <i>AJCN</i>）系统提出：营养素 A 与疾病 D 的关联，必须表述为"把 A 从 X 换成 B"；并在多变量模型中<b>同时纳入相互替代的营养素</b>，而非各自独立评估。这是本领域最具方法论价值的思维工具。</dd>
+        <dt>Bradford Hill 准则</dt><dd>强度、一致性、特异性、时间顺序、剂量—反应、生物学梯度、合理性、一致性（coherence）、实验证据 —— 9 条辅助标准。注意：<b>它们是辅助而非判定标准</b>，不是评分表。</dd>
+        <dt>证据等级</dt><dd>系统综述/Meta 分析 &gt; 随机对照 &gt; 队列 &gt; 病例对照 &gt; 横断面 &gt; 生态学 &gt; 动物实验 &gt; 体外/机制 &gt; 病例报告/轶事。营养学中"最强的观察性证据"可支持中等强度的结论，但极难支持强因果结论。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c8)"><span class="idx">T8</span><div class="accent-bar"></div>
+      <h4>膳食模式与"食物优先"框架 <span class="chip q2">Ⅱ 主流共识</span></h4>
+      <div class="meta">Walter Willett 等（哈佛营养队列体系）· Mediterranean Diet · DASH · Willett 1998, AJCN</div>
+      <p><b>核心思想</b>：与其问"哪种营养素好/坏"，不如问"<b>什么样的膳食模式</b>与更好的结局相关"。模式研究用主成分分析/因子分析/降维评分把多变量膳食压缩成少数综合模式（如地中海饮食 DASH 评分、Healthy Eating Index、AHEI-2010）。</p>
+      <p><b>为什么它现在被广泛接受</b>：① 真实世界的饮食是组合，不是单一营养素；② 成分之间存在非线性的协同/拮抗（食物基质效应）；③ 模式与 RCT 结果（PREDIMED、DASH）更一致；④ 公共卫生咨询需要可执行的"整体方案"而不是"不吃某物"。</p>
+      <p><b>关键证据</b>：PREDIMED（2011 撤稿后于 2013 重发、2018 最终版 NEJM）在 7447 位高心血管风险者中显示地中海饮食（补充特级初榨橄榄油或坚果）可降低主要心血管事件。⚠️ 该研究曾因"部分受试者未真正完成随机分组"而撤稿重发，引用时需注意版本。</p>
+      <dl class="kv">
+        <dt>方法论意义</dt><dd>模式评分内部权重是<b>数据驱动</b>的，不同队列得到的模式未必相同；因此"地中海饮食"应理解为一种结构原型（蔬菜水果、豆类、全谷物、坚果、橄榄油、适量鱼类），而非固定菜谱。</dd>
+      </dl>
+    </div>
+
+    <div class="card" style="--accent:var(--c10)"><span class="idx">T9</span><div class="accent-bar"></div>
+      <h4>营养素参考摄入量（DRI）与定量标准体系 <span class="chip q1">Ⅰ 确立事实</span></h4>
+      <div class="meta">美国 FNB/NRC（1941 首版 RDA → 1997 IOM DRI）· 中国营养学会 DRIs（2011/2023 版）· WHO/FAO/EFSA</div>
+      <p><b>核心思想</b>：把"科学证据"翻译成"人群可执行的数字"，并明示每个数字的不确定性等级。DRI 框架的四类指标是营养学最重要的"元科学"产物。</p>
+      <div class="formula">EAR（估计平均需要量，满足 50%） → RDA = EAR + 2×SD<sub>RDA</sub>（满足 97~98%） · AI（平均摄入量，无足够证据推算 EAR 时） · UL（可耐受最高摄入量，防止过度摄入）</div>
+      <p><b>示例</b>：成人蛋白质 EAR 约 0.6 g/kg·d → RDA 约 0.8 g/kg·d（WHO 2007 报告采用 0.83 g/kg·d 基于 Nepal 氮平衡研究）；成人维生素 C RDA 约 75 mg/d（女性）/90 mg/d（男性）， smokers 另加；维生素 D RDA 15 μg(600 IU)/d（1–70 岁）；钠 AI 约 1.5 g/d、钠 UL 2.3 g/d（美国）。<span class="chip q1">Ⅰ</span></p>
+      <dl class="kv">
+        <dt>三条阅读铁律</dt><dd>① RDA 是<b>满足 97–98% 人的目标</b>，不是"推荐均值"；② AI 不是"RDA 的另一种叫法"，它不含 97–98% 保证；③ RDA < AI < UL 是三条不同的线，越界方向不同（过低有风险、过高也有风险）。</dd>
+        <dt>中国版本</dt><dd>《中国居民膳食营养素参考摄入量》(DRIs) 采用同一 EAR/RDA/AI/UL 框架，2023 年发布更新版 ⚠️ 具体条目的修订幅度建议查阅该版本原文。</dd>
+        <dt>局限</dt><dd>DRIs 以<b>健康白种人群</b>为主，历史数据库中对中国人群、少数族裔、不同代谢表型的差异化覆盖不足；对个体几乎无指导意义（个体需求分布比均值重要得多）。</dd>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="font-size:17px;margin:30px 0 12px">理论关系矩阵：继承 / 修正 / 对立</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>理论</th><th>层级</th><th>提出/成熟时间</th><th>与前代关系</th><th>当前地位</th></tr></thead>
+      <tbody>
+        <tr><td><strong>T1 能量平衡</strong></td><td class="nowrap">物理约束</td><td>Wilmore &amp; Costill 2000（Kleiber 1932 起）</td><td>继承 Lavoisier—Liebig 的"燃烧"观；修正 Mendelsohn 的静态视角</td><td><span class="chip q1">Ⅰ 不可动摇</span></td></tr>
+        <tr><td><strong>T2 必需性</strong></td><td class="nowrap">机制基础</td><td>Lunin 1881 / Funk 1912 / Hopkins 1906</td><td>取代体液学说的"食物—四体液"经验分类</td><td><span class="chip q1">Ⅰ 不可动摇</span></td></tr>
+        <tr><td><strong>T3 脂质假说</strong></td><td class="nowrap">疾病假说</td><td>Keys 等 1958 起 / 1971 综述</td><td>取代 Keys 本人早期的"总脂肪"版本（1971 → 1986 修订）</td><td><span class="chip q3">Ⅲ 部分被 T8 修正</span></td></tr>
+        <tr><td><strong>T4 钠—血压</strong></td><td class="nowrap">疾病假说</td><td>Dahl 1950s → INTERSALT 1988 → DASH 1996</td><td>从"个人危险因素"升级为"人群可干预的公共暴露"</td><td><span class="chip q2">Ⅱ 已被政策吸收</span></td></tr>
+        <tr><td><strong>T5 纤维与菌群</strong></td><td class="nowrap">疾病假说 + 机制</td><td>Burkitt 1970s → 菌群组学 2012 起</td><td>从流行病学观察 → 分子机制 → 精准预测</td><td><span class="chip q2">Ⅱ/③</span></td></tr>
+        <tr><td><strong>T6 抗氧化假说</strong></td><td class="nowrap">疾病假说</td><td>Harman 1956 → ATBC/CARET/SELECT 1994–2011</td><td><b>被自身领域内的 RCT 削弱</b>；催生 Nrf2/线粒体张力（mitochondrial hormesis）新解释</td><td><span class="chip q3">Ⅲ 健康人外推已失败</span></td></tr>
+        <tr><td><strong>T7 因果推断</strong></td><td class="nowrap">方法论</td><td>Cochrane 1980s · Hill 1965 · Willett 1997</td><td>本领域元理论：它决定了其他理论能否被接受</td><td><span class="chip q1">Ⅰ 不可动摇</span></td></tr>
+        <tr><td><strong>T8 膳食模式</strong></td><td class="nowrap">整合框架</td><td>Willett 等 1993–2018</td><td><b>部分取代</b>单一营养素范式；与 T7 的替代分析互为一体</td><td><span class="chip q2">Ⅱ 当前主流</span></td></tr>
+        <tr><td><strong>T9 DRI 体系</strong></td><td class="nowrap">标准 / 制度</td><td>1941 首版 RDA → 1997 IOM DRI 框架 → 各国本土化</td><td>把 T2 的"必需性"定量化，并承认不确定性</td><td><span class="chip q1">Ⅰ 全球制度基础</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= §4 TERMINOLOGY ================= -->
+<section id="s4" style="--accent:var(--c4)">
+  <div class="sec-head"><span class="num">04</span><h2>关键概念与术语</h2><span class="en">Core Concepts &amp; Terminology</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">
+    共 <b>47</b> 个术语（Ⅰ 必须掌握 19 · Ⅱ 进阶理解 14 · Ⅲ 拓展了解 14），按「必须掌握 → 进阶理解 → 拓展了解」三级排列。<b>质量优先于数量</b>：不在此列的术语（如某具体食物营销名词）多为"商业描述"而非"学术概念"，
+    刻意不收录。点击任意卡片展开<b>所属分类 · 概念关系 · 常见误解澄清</b>。
+  </p>
+
+  <div class="fbar" id="termBar">
+    <span class="lbl">筛选</span>
+    <button class="fbtn on" data-v="*">全部</button>
+    <button class="fbtn" data-v="1">Ⅰ 必须掌握</button>
+    <button class="fbtn" data-v="2">Ⅱ 进阶理解</button>
+    <button class="fbtn" data-v="3">Ⅲ 拓展了解</button>
+    <span class="count"></span>
+  </div>
+
+  <div class="grid g3">
+
+    <!-- ===== TIER 1 ===== -->
+    <div class="term" data-id="t-macro" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>宏量营养素</h4><span class="tag">基础分类</span></div>
+      <div class="en">Macronutrients — carbohydrate / protein / fat (+ ethanol)</div>
+      <div class="d">人体需要量相对较大（每日克级以上）的营养素：碳水化合物、蛋白质、脂肪，以及提供能量但不构成营养的乙醇。它们既是能量来源，也是合成代谢底物与结构原料。</div>
+      <div class="more"><div class="line"><dt>分类</dt>基础生化类别</div><div class="line"><dt>关系</dt>三者可互相转化（糖异生、生酮作用），不存在绝对的"必需比例"；比例取决于能量摄入与活动量。</div><div class="line"><dt>误解</dt>常见误解是认为三者有固定黄金比例（如碳水 50%/蛋白 20%/脂肪 30%）。实际上，宏量营养素的分配必须结合总能量与替代关系讨论，不存在普适最优比。</div></div></div>
+
+    <div class="term" data-id="t-micro" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>微量营养素</h4><span class="tag">基础分类</span></div>
+      <div class="en">Micronutrients — vitamins, minerals, trace elements</div>
+      <div class="d">每日需要量以毫克或微克计的营养素：维生素（13 种左右）、矿物质（钙、磷、镁、钾、钠、氯、铁、锌、铜、碘、硒、锰、钼、铬、氟等）。虽量小，但几乎全部为必需。</div>
+      <div class="more"><div class="line"><dt>关系</dt>与宏量营养素的区别不在"多少"而在"是否可合成"；微量营养素多作为辅酶或调节分子存在，缺乏症状往往是非特异的（疲劳、认知下降）。</div><div class="line"><dt>误解</dt>"微量"指的是需求量小，不是"重要性低"；碘缺乏导致的甲状腺肿、缺铁性贫血仍是全球最常见的营养缺乏病。</div></div></div>
+
+    <div class="term" data-id="t-tdee" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>总能量消耗（TDEE）</h4><span class="tag">能量代谢</span></div>
+      <div class="en">Total Daily Energy Expenditure</div>
+      <div class="d">个体一天消耗的总能量，等于 RMR + TEF + 运动活动产热 + NEAT。这是体重管理的"分母"，也是营养处方中最难精确估计的量——个体差异可达 ±20%。</div>
+      <div class="more"><div class="line"><dt>关系</dt>TDEE 是体重变化的守恒方程右端；摄入能量是左端。两者之差在时间上的积分决定体重轨迹。</div><div class="line"><dt>误解</dt>"代谢率因人而异所以无法计算"是误解——虽然个体有差异，但群体层面的能量预测足以指导粗略处方（误差在体重管理实践中可接受）。</div></div></div>
+
+    <div class="term" data-id="t-bmr" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>基础代谢率 / 静息代谢率</h4><span class="tag">能量代谢</span></div>
+      <div class="en">BMR / RMR — Basal Metabolic Rate / Resting Metabolic Rate</div>
+      <div class="d">机体在清醒、空腹、绝对静息状态下的最低能量消耗，通常占 TDEE 的 60–75%。现代实践中常用 Mifflin-St Jeor 方程（1990）估算，其精度高于 Harris-Benedict 方程（1918/1919）。</div>
+      <div class="formula">Mifflin-St Jeor（男）：RMR = 10×体重kg + 6.25×身高cm − 5×年龄 + 5</div>
+      <div class="more"><div class="line"><dt>关系</dt>RMR 主要由去脂体重（肌肉）驱动；瘦体重比体重更能预测 RMR。</div><div class="line"><dt>误解</dt>公式是"起点估计"而非"真值"，误差 ±10–20% 在个体层面是常态；直接测量的金标准是间接量热法。</div></div></div>
+
+    <div class="term" data-id="t-tef" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>食物热效应（TEF）</h4><span class="tag">能量代谢</span></div>
+      <div class="en">Thermic Effect of Food / Food Thermic Effect</div>
+      <div class="d">消化、吸收、运输与代谢食物本身所消耗的能量，约占总摄入的 10–15%。蛋白质 TEF 最高（约 20–30%），碳水约 5–10%，脂肪约 0–3%（脂肪动员与再合成成本更高）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>TEF 解释了为什么同等热量下不同宏量营养素组成会导致体重略有差异（食物动力学差异），但这一差异通常远小于摄入总量的效应。</div><div class="line"><dt>误解</dt>常被夸大用于推销"高蛋白增肌"；高蛋白饮食在短期内确实有较高的 TEF 与饱腹感，但减重效果主要由总能量缺口决定。</div></div></div>
+
+    <div class="term" data-id="t-eaa" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>必需氨基酸</h4><span class="tag">蛋白质</span></div>
+      <div class="en">Essential Amino Acids (EAA)</div>
+      <div class="d">人体无法合成、必须由食物供给的氨基酸。成人通常列出 9 种（组氨酸、异亮氨酸、亮氨酸、赖氨酸、蛋氨酸、苯丙氨酸、苏氨酸、色氨酸、缬氨酸）；儿童（快速生长期）另加精氨酸、半胱氨酸（或条件必需）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>谷类食物相对缺乏赖氨酸（第一限制氨基酸），豆类相对缺乏甲硫氨酸（第一限制氨基酸）—— 这是植物性食物"互补搭配"的分子基础，但正常人无需在同一餐内严格互补。</div><div class="line"><dt>误解</dt>"植物蛋白是不完整蛋白、必须严格配对"是流行的简化误解；只要一天总量足够、食物多样，植物蛋白完全能满足需求。</div></div></div>
+
+    <div class="term" data-id="t-efa" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>必需脂肪酸（n-6 / n-3）</h4><span class="tag">脂质</span></div>
+      <div class="en">Essential Fatty Acids — Linoleic (n-6) / α-Linolenic (n-3)</div>
+      <div class="d">亚油酸（LA，n-6）与 α-亚麻酸（ALA，n-3）是人体无法合成的两种脂肪酸。ALA 可有限转化为 EPA、DHA，但转化效率很低（通常 &lt;10%）。二十碳五烯酸（EPA）与二十二碳六烯酸（DHA）在传统营养学框架中被视为"条件必需"（可通过 ALA 少量合成）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>与炎症、神经发育、细胞膜构成、心血管风险相关；EPA/DHA 与 CVD 的关系是营养学争议之一（REDUCE-IT 试验：纯 EPA 处方药型制剂 icosapent ethyl 显著降低事件，但该证据来自药物而非普通鱼油补充剂）。</div><div class="line"><dt>误解</dt>"n-3 越多越好"、"鱼油补剂能防心脏病"——JELIS（2011 日本 EPA 试验）在真实剂量下并未降低主要心血管事件。</div></div></div>
+
+    <div class="term" data-id="t-fiber" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>膳食纤维</h4><span class="tag">碳水化合物</span></div>
+      <div class="en">Dietary Fiber — soluble / insoluble / resistant starch</div>
+      <div class="d">人体小肠无法消化的多糖与寡糖。可溶性纤维（果胶、β-葡聚糖）增加黏度、延缓葡萄糖吸收；不溶性纤维（麸皮、纤维素）增加粪便量、缩短结肠转运时间；抗性淀粉在小肠不消化、在结肠发酵。</div>
+      <div class="more"><div class="line"><dt>关系</dt>与菌群高度相关——可发酵纤维是短链脂肪酸（乙酸/丙酸/丁酸）的主要底物；丁酸是结肠细胞的主要燃料（butyrate）。</div><div class="line"><dt>误解</dt>"精提取纤维粉 ≠ 完整食物"：补充剂形式的纤维缺乏微量营养素、能量密度与食物基质效应，长期替代全食可能得不偿失。纤维摄入也并非越高越好——过量会影响铁、锌、钙的吸收，且降低能量密度。</div></div></div>
+
+    <div class="term" data-id="t-matrix" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>食物基质效应 / 生物利用度</h4><span class="tag">机制</span></div>
+      <div class="en">Food Matrix Effect / Bioavailability</div>
+      <div class="d">营养素的实际吸收利用率不仅取决于其分子本身，还取决于所处的食物结构与其他成分（脂溶性维生素需要膳食脂肪与胆汁酸；类胡萝卜素的吸收因烹调方式与食物基质差异可达数倍）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>这是"补充剂 vs 完整食物"讨论的理论基础，也是为何"从食物中获得优于从胶囊中获得"在机制上成立（尽管临床终点上的证据尚不总是充分）。</div><div class="line"><dt>误解</dt>"吸收率高" ≠ "健康效应强"。有些营养素吸收率低反而对应较低毒性。</div></div></div>
+
+    <div class="term" data-id="t-dri" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>DRI：EAR / RDA / AI / UL</h4><span class="tag">标准</span></div>
+      <div class="en">Dietary Reference Intakes</div>
+      <div class="d">四类定量标准：EAR（估计平均需要量，满足 50% 人群）、RDA（推荐膳食allowance = EAR + 2×SD，覆盖 97–98%）、AI（平均摄入量，证据不足以推算 EAR 时使用）、UL（可耐受最高摄入量）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>RDA 不是"推荐平均值"而是高覆盖率目标；AI 不含覆盖率保证；UL 只针对特定营养素与特定年龄段，且不等于"中毒剂量"。</div><div class="line"><dt>误解</dt>用 RDA 作为"每日应该吃多少"的精确目标是常见的简化误用；个体需求在人群中呈分布，且受年龄、性别、生理状态、疾病影响巨大。</div></div></div>
+
+    <div class="term" data-id="t-bmi" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>BMI</h4><span class="tag">体格测量</span></div>
+      <div class="en">Body Mass Index</div>
+      <div class="d">体重与身高的平方比（kg/m²），由 Quetelet 于 1832 年提出，Ancel Keys 于 1970s 推广为国际肥胖分类标准。BMI 18.5–23.9 为正常（WHO 中国标准），24–27.9 超重，≥28 肥胖。</div>
+      <div class="more"><div class="line"><dt>关系</dt>BMI 是<b>人群筛查工具</b>，不是个体诊断工具。腰围/腰臀比、内脏脂肪面积（CT）对代谢风险更有判别力（尤其在亚洲人群中）。</div><div class="line"><dt>误解</dt>用 BMI 判断个体健康是本领域最普遍的误用；运动员、同性别不同体成分人群、老年人均不适用。</div></div></div>
+
+    <div class="term" data-id="t-gi" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>血糖指数（GI）与血糖负荷（GL）</h4><span class="tag">代谢</span></div>
+      <div class="en">Glycemic Index &amp; Glycemic Load</div>
+      <div class="d">GI = 一定量（通常 50 g 可利用碳水）食物引起的血糖应答曲线下面积 ÷ 等量葡萄糖的应答，以 100 为基准。GL = GI × 该份食物可利用碳水克数 ÷ 100。</div>
+      <div class="more"><div class="line"><dt>关系</dt>GI 衡量食物"速度"，GL 衡量"实际冲击量"；GL 与实际血糖反应的相关性通常优于 GI。</div><div class="line"><dt>误解</dt>"低 GI 食物减肥"证据有限；GI 测试（ISO 26642）对食物形态与加工方式极度敏感，同一种米饭的不同做法 GI 可差 20 点以上。</div></div></div>
+
+    <div class="term" data-id="t-trans" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>反式脂肪</h4><span class="tag">脂质</span></div>
+      <div class="en">Trans Fatty Acids (TFA)</div>
+      <div class="d">含反式双键的不饱和脂肪酸，工业来源是部分氢化油（margarine、起酥油、部分烘焙油脂）。反式脂肪酸使 LDL 升高、HDL 下降，是本领域少见的"证据极强"的环境暴露风险因素。</div>
+      <div class="more"><div class="line"><dt>关系</dt>丹麦 2003 年起立法限制工业反式脂肪（世界上最早），美国 FDA 于 2015 年宣布部分氢化油不再"公认安全"（GRAS 撤销，2018 年 6 月起食品中必须为零）。WHO 建议反式脂肪摄入 &lt; 总能量的 1%（理想为 0）。</div><div class="line"><dt>误解</dt>"氢化植物油 = 反式脂肪"在中国语境下需分辨：完全氢化（无反式）与部分氢化（有反式）不同；牛油中的天然反式脂肪量很低。</div></div></div>
+
+    <div class="term" data-id="t-upf" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>超加工食品（UPF）</h4><span class="tag">食物分类</span></div>
+      <div class="en">Ultra-Processed Foods — NOVA classification</div>
+      <div class="d">巴西圣保罗大学 Carlos Monteiro 团队提出的 NOVA 分类系统，根据工业加工的程度把食物分为 4 类：未加工/最低加工、添加烹饪成分的加工、含大量添加成分的加工、超加工（含 5 号添加剂如麦芽糊精、氢化油、蛋白 isolates、乳化剂）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>2024 年 BMJ 一篇汇总 32 项队列研究的系统综述报告，UPF 高摄入与 6 类不良结局（全因死亡、心血管、癌症、糖尿病等）存在统计学关联，但绝对效应量中等且存在残余混杂 <span class="chip q3">Ⅲ</span>。</div><div class="line"><dt>误解</dt>"UPF = 垃圾食品"过于简化：谷物早餐、罐装蔬菜、婴儿配方奶也属 UPF。争议主要在于"关联"能否升级为"因果"，以及分类标准的主观性。</div></div></div>
+
+    <div class="term" data-id="t-sfa" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>饱和脂肪与不饱和脂肪</h4><span class="tag">脂质</span></div>
+      <div class="en">SFA / MUFA / PUFA</div>
+      <div class="d">按双键数分类：饱和脂肪酸（无双键）、单不饱和（1 个）、多不饱和（≥2 个）。膳食脂肪中主要为油酸（n-9 单不饱和，橄榄油/坚果油）、亚油酸（n-6）、α-亚麻酸（n-3），以及棕榈酸、肉豆蔻酸、月桂酸等饱和脂肪酸。</div>
+      <div class="more"><div class="line"><dt>关系</dt>"低脂饮食"与"低饱和脂肪饮食"不是同一件事——地中海式饮食油脂总量并不低（可达总能量 35–40%），但主要来自橄榄油、坚果与鱼类。</div><div class="line"><dt>误解</dt>"饱和脂肪=X 全部脂肪"。评估脂肪时必须回答三个问题：总量多少？质量（结构）如何？替代它的是什么？</div></div></div>
+
+    <div class="term" data-id="t-sodium" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>钠与盐</h4><span class="tag">矿物质</span></div>
+      <div class="en">Sodium / Salt (NaCl)</div>
+      <div class="d">钠是维持体液容量、神经冲动传导与肌肉收缩的必需矿物质。食盐（氯化钠）提供钠，WHO 建议成人钠 &lt;2 g/天（≈食盐 5 g/天，含所有加工食品来源），中国居民膳食指南建议 &lt;5 g/天。</div>
+      <div class="more"><div class="line"><dt>关系</dt>钠摄入与血压的剂量—反应关系（INTERSALT 1988）是流行病学中样本量与跨国覆盖最完整的经典证据之一；钾摄入与钠呈竞争关系（DASH 中富钾饮食部分抵消盐的升压效应）。</div><div class="line"><dt>误解</dt>"起酥油、面包、腌菜"是隐形盐的主要来源，但在中国饮食中约 60–70% 的钠来自烹调用盐与含盐调味品（酱油、豆瓣、蚝油、味精中的部分钠），加工食品占比在欧美更高。</div></div></div>
+
+    <div class="term" data-id="t-pem" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>蛋白质-能量营养不良（PEM）</h4><span class="tag">临床营养</span></div>
+      <div class="en">Protein-Energy Malnutrition — marasmus / kwashiorkor</div>
+      <div class="d">因总能量与蛋白质长期不足导致的状态。极端表现分两型：<b>消瘦型（marasmus）</b>——全身脂肪与肌肉消耗、BMI 极低；<b>浮肿型（kwashiorkor）</b>——以水肿与腹部膨大为特征、与严重蛋白缺乏相关（机制尚未完全明确）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>现代临床更常用"蛋白质能量营养不良 + 急性炎症/感染"的框架；且多数重症患者表现为<b>高热量但分解代谢亢进</b>的疾病性营养不良，机制与单纯饥饿不同。</div><div class="line"><dt>误解</dt>全球肥胖与营养不良并存是同一营养转型的双面结果，不是矛盾的两种现象，而是同一能量-营养素失衡谱的两端。</div></div></div>
+
+    <div class="term" data-id="t-pattern" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>膳食模式与膳食质量指数</h4><span class="tag">流行病学</span></div>
+      <div class="en">Dietary Patterns — Mediterranean / DASH / HEI / AHEI / DQI</div>
+      <div class="d">把整体饮食结构量化为评分的工具。常见体系：地中海饮食评分（Willett 等）、DASH 评分（Appel 等）、健康饮食指数 HEI（USDA）、替代健康饮食指数 AHEI（ChHatri 等，取代 HEI-2010）、中国健康膳食指数 DQI（2012）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>与单一营养素研究相比，模式评分更贴近真实行为，也更容易转化为公共卫生建议；但其内部权重是<b>数据驱动</b>的，不同队列得到的"最优模式"不完全相同。</div><div class="line"><dt>误解</dt>"地中海饮食"不是一份菜谱，而是一种结构原型：蔬果、豆类、全谷物、坚果、橄榄油/鱼类为主，限制红肉与加工肉、添加糖。</div></div></div>
+
+    <div class="term" data-id="t-subst" data-tier="1"><div class="th"><span class="tierdot" style="background:var(--ok)"></span><h4>替代分析</h4><span class="tag">方法论</span></div>
+      <div class="en">Substitution Analysis / Isocaloric Substitution</div>
+      <div class="d">在等能量约束下，研究"把营养素 A 从来源 X 换成来源 Y"对疾病风险的影响。实现方式是在模型中同时纳入多个相互替代的营养素（或以总能量为分母做等能量替换）。</div>
+      <div class="more"><div class="line"><dt>关系</dt>Willett 等 1997（<i>AJCN</i>）系统提出；哈佛队列关于红肉与加工肉、全谷物与水果的研究中均使用该方法。</div><div class="line"><dt>误解</dt>这是本领域最容易出错的环节："饱和脂肪与 CHD 正相关"的正确读法是"用精制碳水替换饱和脂肪与用植物蛋白/不饱和脂肪替换饱和脂肪，结果不同"。不指明替代物的营养素结论，其意义不完整。</div></div></div>
+
+    <!-- ===== TIER 2 ===== -->
+    <div class="term" data-id="t-bv" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>蛋白质质量评价：BV / NPU / PER / DIAAS</h4><span class="tag">蛋白质</span></div>
+      <div class="en">Biological Value, Net Protein Utilization, PER, DIAAS</div>
+      <div class="d">BV = 储留氮/摄入氮；NPU =（消化率 × BV）；PER 以生长小鼠为模型的蛋白质效率比；DIAAS（可消化必需氨基酸得分）由 FAO 2013 推荐，基于猪回肠末端消化产物中的单个氨基酸而非整蛋白计算。</div>
+      <div class="more"><div class="line"><dt>关系</dt>DIAAS 取代了以整蛋白为基础的 PDCAAS（1990s），能识别整蛋白评分漏掉的"限制氨基酸"问题。</div><div class="line"><dt>误解</dt>分数高低排序（乳清 > 鸡蛋 > 大豆 > 小麦）是<b>纯化蛋白</b>的比较；混合膳食中的蛋白质质量通常介于单食材之间。</div></div></div>
+
+    <div class="term" data-id="t-lean" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>去脂体重与内脏脂肪</h4><span class="tag">体成分</span></div>
+      <div class="en">Lean Body Mass / Visceral Adipose Tissue</div>
+      <div class="d">去脂体重（LBM）指除脂肪以外的身体成分，代谢活跃，决定静息代谢率。内脏脂肪（腹腔内脂肪）与胰岛素抵抗、高血压、脂肪肝的相关性强于皮下脂肪。</div>
+      <div class="more"><div class="line"><dt>关系</dt>亚洲人种在相同 BMI 下内脏脂肪高于欧洲人种，这是亚洲肥胖标准 BMI 超重线更低（≥24 vs ≥25）的依据之一。</div><div class="line"><dt>误解</dt>"体脂秤"消费级生物电阻抗（BIA）对内脏脂肪的估计可靠性有限，趋势可参考、绝对值不宜作为诊断依据。</div></div></div>
+
+    <div class="term" data-id="t-hormone" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>瘦素 / 胃饥饿素 / 胰岛素</h4><span class="tag">神经内分泌</span></div>
+      <div class="en">Leptin / Ghrelin / Insulin</div>
+      <div class="d">脂肪组织分泌的瘦素向中枢反馈能量储备（能量充足则抑制食欲）；胃部分泌的胃饥饿素在饥饿前上升、刺激食欲；胰岛素反映餐后血糖并具有促储存作用。三者构成食欲调节环路。</div>
+      <div class="more"><div class="line"><dt>关系</dt>常见肥胖者多表现为瘦素抵抗（leptin resistance）而非缺乏；极端消瘦如神经性厌食患者瘦素极低。</div><div class="line"><dt>误解</dt>"瘦素补充剂""胃饥饿素抑制剂"缺乏有效临床证据；理解这些激素的价值主要在于解释"为什么意志力不足以对抗生理驱动"。</div></div></div>
+
+    <div class="term" data-id="t-adaptation" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>代谢适应</h4><span class="tag">能量代谢</span></div>
+      <div class="en">Metabolic Adaptation</div>
+      <div class="d">长期能量摄入变化后，机体下调或上调代谢率以维持稳态的现象。减重初期 TDEE 下降幅度大于体重下降幅度，后期体重下降变缓的部分原因即来自此。</div>
+      <div class="more"><div class="line"><dt>关系</dt>增重过程同样存在反向适应；Hall 等 2011（<i>AJCN</i>）的动态能量平衡模型将其数学化。</div><div class="line"><dt>误解</dt>代谢适应是真实且可测的，但通常被夸大为"减肥平台期"的万能解释；更常见的现实原因是体重下降后 NEAT 与 TEF 自然减少（这是能量守恒的直接后果）。</div></div></div>
+
+    <div class="term" data-id="t-adipokine" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>脂肪因子 / 脂联素 / 瘦素抵抗</h4><span class="tag">代谢信号</span></div>
+      <div class="en">Adipokines — adiponectin, leptin, resistin</div>
+      <div class="d">脂肪组织并非惰性储能器官，而是活跃的内分泌器官，分泌瘦素、脂联素、抵抗素、肿瘤坏死因子-α 等，影响胰岛素敏感性、食欲与炎症。</div>
+      <div class="more"><div class="line"><dt>关系</dt>脂联素水平与内脏脂肪负相关、内脏脂肪与抵抗素/炎症因子正相关；瘦素抵抗与内皮功能障碍、胰岛素抵抗并存。</div><div class="line"><dt>误解</dt>"脂肪越少越好"过于简单——<b>功能正常</b>的脂肪组织与病理性扩张的脂肪组织风险不同，这是肥胖"代谢健康悖论（metabolically healthy obesity）"研究的核心议题，目前仍在争论中 <span class="chip q3">Ⅲ</span>。</div></div></div>
+
+    <div class="term" data-id="t-scfa" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>短链脂肪酸与发酵</h4><span class="tag">菌群</span></div>
+      <div class="en">Short-Chain Fatty Acids (SCFA) — acetate, propionate, butyrate</div>
+      <div class="d">可发酵纤维/抗性淀粉在结肠菌群作用下产生的代谢物。丁酸是结肠上皮细胞的主要燃料（Warburg 效应在此体现），参与屏障完整性、调节免疫与神经内分泌信号。</div>
+      <div class="more"><div class="line"><dt>关系</dt>把膳食纤维的作用机制从"物理通便"升级到"化学信号"，也是"菌群—肠—脑轴"与免疫代谢研究的基础。</div><div class="line"><dt>误解</dt>"补充丁酸盐"不等于补充产丁酸的菌群与底物；多数人体试验未显示显著临床获益 <span class="chip q3">Ⅲ</span>。</div></div></div>
+
+    <div class="term" data-id="t-probiotic" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>益生菌 / 益生元 / 合生元</h4><span class="tag">菌群</span></div>
+      <div class="en">Probiotics / Prebiotics / Synbiotics</div>
+      <div class="d">益生菌：活的微生物，摄入后在人体内有益作用（国际共识要求按菌株而非按物种定义）；益生元：被菌群选择性利用从而带来健康益处的底物（如低聚果糖、菊粉）；合生元：两者组合。</div>
+      <div class="more"><div class="line"><dt>关系</dt>效应具有<b>菌株特异性</b>，不能从"某菌属有益"外推；因此产品宣称需按菌株验证。</div><div class="line"><dt>误解</dt>"喝酸奶调节肠道菌群"在健康人身上常缺乏可测量的临床意义；证据最集中的场景是特定抗生素相关性腹泻的预防，但效应量有限 <span class="chip q2">Ⅱ</span>。</div></div></div>
+
+    <div class="term" data-id="t-oxidative" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>氧化应激与 Nrf2</h4><span class="tag">机制</span></div>
+      <div class="en">Oxidative Stress &amp; Nrf2 signalling</div>
+      <div class="d">活性氧（ROS）生成与抗氧化防御体系（谷胱甘肽、SOD、catalase、硫氧还蛋白）失衡的状态。Nrf2 是调控内源性抗氧化基因表达的主转录因子，可被膳食多酚（如萝卜硫素、白藜芦醇）激活。</div>
+      <div class="more"><div class="line"><dt>关系</dt>解释了"食物来源的抗氧化剂"与"外源高剂量补充剂"可能产生不同效应的机制原因——前者激活内源防御，后者可能直接淬灭 ROS 信号。</div><div class="line"><dt>误解</dt>"低 ROS 一定更好"是过度简化；ROS 也是信号分子，运动后适度 ROS 升高被认为具有适应性获益（运动 hormesis / 运动热休克蛋白）。</div></div></div>
+
+    <div class="term" data-id="t-hcy" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>同型半胱氨酸</h4><span class="tag">生物标志物</span></div>
+      <div class="en">Homocysteine</div>
+      <div class="d">甲硫氨酸代谢中间产物。升高与叶酸、维生素 B12、维生素 B6 不足及 MTHFR 基因多态性相关，曾被提出作为心血管风险标志物。</div>
+      <div class="more"><div class="line"><dt>关系</dt>属于"代理终点"：升高确实与风险相关，但降低它是否降低风险并未被随机试验证实（B 族维生素补充试验的多项阴性结果）。</div><div class="line"><dt>误解</dt>看到同型半胱氨酸升高就大剂量补充叶酸是常见的过度医疗；多数指南不建议对普通人群做常规筛查或据此干预。</div></div></div>
+
+    <div class="term" data-id="t-ldl" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>脂蛋白颗粒谱（atherogenic）</h4><span class="tag">代谢</span></div>
+      <div class="en">ApoB-containing lipoprotein particle number</div>
+      <div class="d">致动脉粥样硬化性脂蛋白的<b>颗粒数</b>（以 ApoB 浓度估算）比 LDL 胆固醇<b>总质量</b>更能预测风险。一个大而稀疏的 LDL 颗粒含胆固醇多但致动脉粥样硬化性弱；小而密的颗粒相反。</div>
+      <div class="more"><div class="line"><dt>关系</dt>这是"降低 LDL-C"目标受到挑战后出现的重要细化；也部分解释了同为 LDL-C 相同而风险不同的现象。</div><div class="line"><dt>误解</dt> ApoB 检测的标准化在各地不一致，尚非所有指南推荐的首选指标，但被越来越多专家支持 <span class="chip q2">Ⅱ</span>。</div></div></div>
+
+    <div class="term" data-id="t-reds" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>低能量可用性（RED-S）</h4><span class="tag">运动/生殖</span></div>
+      <div class="en">Relative Energy Deficiency in Sport (RED-S)</div>
+      <div class="d">当能量可用性（摄入能量 − 运动消耗能量）长期低于阈值时出现的一组健康与表现损害表现，涵盖月经/生育功能、骨密度、免疫与代谢指标。是 2014 年 IOC 共识声明（2023 更新）的核心概念。</div>
+      <div class="more"><div class="line"><dt>关系</dt>解释了为什么"低 BMI + 训练量大"的运动员会出现闭经、骨应力损伤、反复感染。</div><div class="line"><dt>误解</dt>与"厌食症（AN）"不同——RED-S 是功能表现谱，诊断需排除其他原因；患者常不表现出明显的外在消瘦。</div></div></div>
+
+    <div class="term" data-id="t-ffq" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>膳食测量三法：FFQ / 24h 回顾 / 双标水</h4><span class="tag">测量学</span></div>
+      <div class="en">FFQ · 24-h Recall · Doubly Labelled Water (DLW)</div>
+      <div class="d"><b>FFQ（食物频率问卷）</b>：长期回顾、廉价、适合大样本，但依赖记忆与列表设计，测量误差大。<b>24h 回顾</b>：短期准确、负担小，但单日不代表长期。<b>双标水法</b>：给受试者饮含 <sup>2</sup>H（氘）与 <sup>18</sup>O 的水，追踪尿中同位素比例变化，<b>不依赖进食记录</b>即可测量总能量消耗，是金标准之一。</div>
+      <div class="more"><div class="line"><dt>关系</dt>Schoeller 等（1980s）用 DLW 验证并推广了这一方法，革新了人体能量消耗研究（此前只能靠间接量热法或不完全能量平衡推算）。</div><div class="line"><dt>误解</dt>"膳食回顾 = 我平时吃什么都记得"不成立；所有自报膳食数据都有系统性偏差（低估能量常见），因此需要客观方法（DLW、重复 24h 回顾、双份法）校正。</div></div></div>
+
+    <div class="term" data-id="t-calorimetry" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>间接量热法</h4><span class="tag">测量学</span></div>
+      <div class="en">Indirect Calorimetry</div>
+      <div class="d">通过测量耗氧量（VO₂）与二氧化碳产生量（VCO₂）推算能量消耗与底物利用比例的实验室方法，是临床营养支持中测定 RMR 的标准方法。</div>
+      <div class="more"><div class="line"><dt>关系</dt>与直接量热法的测量误差通常 &lt;5%；是营养支持中"静息代谢率"测定的实际金标准。</div><div class="line"><dt>误解</dt>家用体脂秤、App 与运动手环输出的"静息代谢/活动能量"均基于经验公式，误差远大于临床量热法，不应用于临床决策。</div></div></div>
+
+    <div class="term" data-id="t-epigen" data-tier="2"><div class="th"><span class="tierdot" style="background:var(--warn)"></span><h4>营养表观遗传学 / 发育起源</h4><span class="tag">分子</span></div>
+      <div class="en">Nutritional Epigenetics / DOHaD</div>
+      <div class="d">膳食因子通过 DNA 甲基化、组蛋白修饰、非编码 RNA 调控基因表达，以及通过"发育编程"影响后代代谢易感性的研究领域。核心人体证据来自 1944–45 年荷兰饥饿之冬（Dutch Hunger Winter）的自然实验。</div>
+      <div class="more"><div class="line"><dt>关系</dt>Lo 等（<i>Diabetes</i> 2008 等）显示孕晚期暴露于饥荒的人群，60 年后胰岛素抵抗与糖尿病风险升高，且效应具有剂量—反应；这为 Barker 的"早期生命"假说提供了罕见的人体证据。</div><div class="line"><dt>误解</dt>"三代人受影响"的强版本说法证据不足；目前更可靠的表述是"宫内期营养状态可影响成年代谢易感性"。跨代遗传与甲基化持续性的机制仍在研究中 <span class="chip q3">Ⅲ</span>。</div></div></div>
+
+    <!-- ===== TIER 3 ===== -->
+    <div class="term" data-id="t-nutri-gen" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>营养基因组学与精准营养</h4><span class="tag">前沿</span></div>
+      <div class="en">Nutrigenetics / Nutrigenomics / Precision Nutrition</div>
+      <div class="d">研究基因型如何影响营养素需求与代谢响应（nutrigenetics），以及营养如何影响基因表达（nutrigenomics）的领域。精准营养试图用多组学数据预测个体对特定饮食的代谢反应。</div>
+      <div class="more"><div class="line"><dt>经典工作</dt>Zeevi 等（<i>Cell</i> 2015）基于 800 人的血糖反应预测；Berry 等（<i>Nature Medicine</i> 2020）PREDICT-1 研究显示同一餐食在不同人身上引起的血糖反应个体间差异极大。</div><div class="line"><dt>误解</dt>"依据基因定制饮食"目前缺乏能改善临床硬终点的试验证据；消费级基因营养报告多为推测性推断 <span class="chip q4">Ⅳ</span>。</div></div></div>
+
+    <div class="term" data-id="t-tmao" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>TMAO（三甲胺-N-氧化物）假说</h4><span class="tag">争议假说</span></div>
+      <div class="en">Trimethylamine-N-oxide hypothesis</div>
+      <div class="d">红肉、蛋、奶中的胆碱/肉碱/左旋肉碱经肠道菌群转化为三甲胺（TMA），在肝内被氧化为 TMAO，后者被认为促进动脉粥样硬化。Rachel Ames 等 2013 年在 <i>Nature Medicine</i> 提出该机制。</div>
+      <div class="more"><div class="line"><dt>争议</dt>红肉与心血管事件的观察性关联明确，但"是 TMAO 而非其他成分"这一机制归因未被证实；2023 年一项针对 TMA 抑制剂（TMAO 生产菌株 T. arcutium）的随机试验未见改善炎症或凝血指标 <span class="chip q3">Ⅲ</span>。</div><div class="line"><dt>教学价值</dt>是"观察性关联 ≠ 机制归因"的经典教学案例。</div></div></div>
+
+    <div class="term" data-id="t-phytate" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>植酸与凝集素</h4><span class="tag">食物化学</span></div>
+      <div class="en">Phytate &amp; Lectins</div>
+      <div class="d">植酸（肌醇六磷酸）是谷物、豆类、坚果中的主要植酸来源，可与铁、锌、钙结合降低其吸收。凝集素是豆类等植物中的抗营养因子，存在于生食中，充分加热后大部分失活。</div>
+      <div class="more"><div class="line"><dt>关系</dt>与植食人群的铁、锌缺乏风险相关，也是"浸泡、发芽、发酵、发芽菜"等传统食物处理方法能提升微量营养素生物利用度的分子解释之一。</div><div class="line"><dt>误解</dt>"豆制品必须彻底煮熟才安全"是有依据的；而"植物食物中的植酸必须完全去除"则属过度反应——发酵与谷物搭配已能显著改善。</div></div></div>
+
+    <div class="term" data-id="t-polyphenol" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>植物化学物 / 多酚 / 类黄酮</h4><span class="tag">食物化学</span></div>
+      <div class="en">Phytochemicals — polyphenols, flavonoids, carotenoids, glucosinolates</div>
+      <div class="d">非必需、无 RDA 的植物次级代谢产物：多酚（儿茶素、白藜芦醇）、类黄酮、黄酮醇、花青素、类胡萝卜素、硫代葡萄糖苷等。其体外活性（如抗氧化）显著，但人体吸收率低且生物活性谱与体外不同。</div>
+      <div class="more"><div class="line"><dt>关系</dt>解释"植物性膳食整体优于单一成分补充"的机制可能性，也解释了"体外抗氧化排序 ≠ 临床效果排序"。</div><div class="line"><dt>误解</dt>"多酚含量高 = 更健康"在个体层面的预测力很弱；也没有可靠的每日推荐摄入量（RDA）。<span class="chip q4">Ⅳ</span></div></div></div>
+
+    <div class="term" data-id="t-resist" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>抗性淀粉与 GI</h4><span class="tag">食物化学</span></div>
+      <div class="en">Resistant Starch</div>
+      <div class="d">在小肠不消化的淀粉：抗性淀粉 1 型（物理包埋，如生土豆、全谷粒）、2 型（回生/冷却，如冷却的熟米饭、熟土豆）、3 型（抗性糊精，如部分加工纤维）。可作为可发酵纤维的一部分。</div>
+      <div class="more"><div class="line"><dt>关系</dt>"冷却米饭再加热"这一生活习惯有明确的抗性淀粉生物学依据，也是把实验室结论转化为日常建议的少数实例之一。</div><div class="line"><dt>误解</dt>通过增加抗性淀粉来控制血糖的临床效应量在个人层面较小；"生土豆当饭吃"的极端实践存在抗毒性风险。</div></div></div>
+
+    <div class="term" data-id="t-salt-sense" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>钠盐敏感性</h4><span class="tag">个体差异</span></div>
+      <div class="en">Salt Sensitivity</div>
+      <div class="d">个体对钠摄入变化的血压反应幅度差异很大，约三分之一人属高敏感型（多见于老年人、肥胖者、糖尿病与慢性肾病者，以及非洲裔人群）。</div>
+      <div class="more"><div class="line"><dt>意义</dt>解释了公共卫生的"群体阈值"在个体层面的局限；对高敏人群，限盐的收益显著更大。</div><div class="line"><dt>实测</dt>可通过 2 周的交叉试验设计在个体层面测定（随机交叉方案），但目前不属于常规临床项目。</div></div></div>
+
+    <div class="term" data-id="t-emul" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>食品添加剂与超加工中的成分设计</h4><span class="tag">争议</span></div>
+      <div class="en">Emulsifiers, non-nutritive sweeteners, salt substitutes</div>
+      <div class="d">现代超加工食品中大量使用的乳化剂（如聚甘油蓖麻醇酯）、高强度甜味剂（阿斯巴甜、蔗糖素、甜菊糖苷）以及含钾代盐（氯化钾）是三类常被争议的成分。</div>
+      <div class="more"><div class="line"><dt>争议</dt>① 某些乳化剂在小鼠中可增加肠黏膜通透性与代谢异常，人体证据有限 <span class="chip q3">Ⅲ</span>；② WHO 2023 年发布《非糖甜味剂使用指南》建议<b>不</b>使用非糖甜味剂来控制体重或疾病风险（该建议基于长期获益证据不足，而非证明有害）<span class="chip q3">Ⅲ</span>；③ 含钾代盐对肾功能正常者安全，对慢性肾病/服用 RAAS 抑制剂者需谨慎。</div><div class="line"><dt>现实</dt>WHO 的这份指南在国际上引发显著分歧，部分学者认为其证据评估方法有问题，属于典型的"证据不足 vs 建议不用"之争。</div></div></div>
+
+    <div class="term" data-id="t-sfp" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>超加工食品研究的设计局限</h4><span class="tag">方法论</span></div>
+      <div class="en">Confounding by Nutritional Value / Reverse Causation</div>
+      <div class="d">UPF 与疾病的观察性关联面临的核心质疑：(a) 低收入者 UPF 摄入更高，与贫困本身的社会决定因素混杂；(b) UPF 摄入常与久坐、睡眠不足并存；(c) 前瞻性队列之间结果不完全一致。</div>
+      <div class="more"><div class="line"><dt>回应</dt>2024 年 BMJ 系统综述在纳入 32 项前瞻性队列（其中 7 项为 RCT：住院餐食与学校供餐的整群试验）后仍报告关联；但整群 RCT 的干预强度远高于日常消费场景。</div><div class="line"><dt>教学价值</dt>该议题是展示"观察性流行病学能得出多强的结论"的绝佳案例。</div></div></div>
+
+    <div class="term" data-id="t-fortify" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>食物强化与生物强化</h4><span class="tag">公共卫生</span></div>
+      <div class="en">Fortification vs Biofortification</div>
+      <div class="d">在加工时向食品中加入营养素（碘盐、铁强化酱油、维生素 D 强化奶、面粉强化 B 族）；生物强化则通过育种或基因工程提高作物本身的营养素含量（如富维生素 A 甘薯、"黄金大米"）。</div>
+      <div class="more"><div class="line"><dt>成效与风险</dt>强化是循证等级最高的公共卫生营养干预之一（碘盐降低地方性甲状腺肿、面包铁强化降低孕期贫血）；但过度强化可能造成毒性（如维生素 A 中毒）、覆盖不均或与其他干预重复计算。</div><div class="line"><dt>标准</dt>各国均有具体的强化品种与强化量标准，中国由国家卫健委与市场监管总局管理；维生素 A 强化需注意育龄女性的致畸风险阈值。</div></div></div>
+
+    <div class="term" data-id="t-protein-timing" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>蛋白质分配与肌肉蛋白合成阈值</h4><span class="tag">运动营养</span></div>
+      <div class="en">Muscle Protein Synthesis (MPS) / Leucine threshold</div>
+      <div class="d">肌内蛋白质合成的刺激存在阈值（成人单次约 20–40 g 高质量蛋白、约 2–3 g 亮氨酸），超过阈值后收益递减；分布到每日 3–4 餐优于集中一次。</div>
+      <div class="more"><div class="line"><dt>适用边界</dt>该结论主要来自年轻男性与动物实验；老年人的肌少症预防需要更高阈值（约 0.4 g/kg·d）且证据等级低于青年 <span class="chip q2">Ⅱ</span>。</div><div class="line"><dt>误解</dt>"必须在训练后 30 分钟的合成代谢窗口内补充"对大众（尤其是非训练人群）不成立；该概念主要来自运动人群的早期研究。</div></div></div>
+
+    <div class="term" data-id="t-iron" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>铁蛋白、转铁蛋白饱和度与炎症</h4><span class="tag">生化</span></div>
+      <div class="en">Ferritin, Transferrin Saturation, Serum Folate</div>
+      <div class="d">铁蛋白是急性期反应物，感染与炎症时升高，因此"铁蛋白偏低"有诊断价值、"铁蛋白正常偏高"不能排除缺铁。血清叶酸同样受炎症影响；WHO 2020 年建议用红细胞内叶酸或膳食叶酸/血清叶酸联合判断。</div>
+      <div class="more"><div class="line"><dt>规则</dt>评估铁状态需结合铁蛋白 + 转铁蛋白饱和度 + 血红蛋白，必要时加可溶性转铁蛋白受体（sTfR）。</div><div class="line"><dt>误读</dt>"化验单正常"不等于"储备充足"，"报告里没异常"也不等于"你不需要它"。</div></div></div>
+
+    <div class="term" data-id="t-surrogate" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>代理终点与硬终点</h4><span class="tag">方法论</span></div>
+      <div class="en">Surrogate vs Clinical Endpoints</div>
+      <div class="d">LDL 胆固醇、体重、血同型半胱氨酸、血糖等为代理终点；心肌梗死、卒中、死亡、癌症诊断为硬终点。代理终点与硬终点相关但不等价，替代关系的失效会造成大规模误判。</div>
+      <div class="more"><div class="line"><dt>经典失效案例</dt>用降低 LDL-C 替代降低心血管事件已被证明大体有效；但用降低血压 5 mmHg 就假定降低事件，则受到当年 β 受体阻滞剂研究的挑战（多数 β 阻滞剂降低了血压却未改善结局）。</div><div class="line"><dt>规则</dt>引用任何营养研究时，先看它测量的是代理终点还是硬终点。</div></div></div>
+
+    <div class="term" data-id="t-mdd" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>肠道代谢物与"食物—药物"相互作用</h4><span class="tag">临床</span></div>
+      <div class="en">Drug–Nutrient / Food–Drug Interactions</div>
+      <div class="d">常见例子：华法林对维生素 K 摄入敏感；四环素类与钙、铁形成螯合物降低吸收；左旋多巴与蛋白质竞争转运；葡萄柚汁抑制 CYP3A4 改变药物浓度；铁与钙竞争吸收；高剂量锌长期使用致铜缺乏。</div>
+      <div class="more"><div class="line"><dt>临床意义</dt>是临床营养师的核心技能之一，涉及具体药物时必须以药师/处方信息为准。</div><div class="line"><dt>风险</dt>来自"天然无害"的心理假设——但食物与药物的相互作用常有明确机制，不宜自行停药或大幅改饮食 <span class="chip q2">Ⅱ</span>。</div></div></div>
+
+    <div class="term" data-id="t-cho" data-tier="3"><div class="th"><span class="tierdot" style="background:var(--dis)"></span><h4>膳食胆固醇与内源性胆固醇合成</h4><span class="tag">脂质代谢</span></div>
+      <div class="en">Dietary Cholesterol &amp; Endogenous Synthesis</div>
+      <div class="d">人体可自行合成胆固醇（主肝，HMG-CoA 还原酶限速），并在摄入过多时下调内源性合成（约可下调 10–15%）。膳食胆固醇对血胆固醇的影响远小于饱和脂肪与总脂肪摄入的影响（比值约 1:10–1:20 量级）。</div>
+      <div class="more"><div class="line"><dt>后果</dt>这是营养学中"旧结论被修正"的典型：原先把胆固醇视为唯一致病因素，1970s 后证据转向脂肪总量与饱和脂肪。</div><div class="line"><dt>现状</dt>多数指南不再设定具体胆固醇上限，但个体高反应者（APOE2 型等）仍需注意。</div></div></div>
+
+  </div>
+</section>
+
+<!-- ================= §5 TIMELINE ================= -->
+<section id="s5" style="--accent:var(--c5)">
+  <div class="sec-head"><span class="num">05</span><h2>历史发展脉络</h2><span class="en">Historical Timeline · 6 Eras</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">
+    营养学从「凭经验的食疗」走到「可检验的定量科学」，主要由三次范式转变驱动：
+    <b>① 1747 年后的对照试验思维 → ② 1900–1940 年的微量营养素发现 → ③ 1970 年后的流行病学与人群研究 → ④ 2015 年后的多组学与精准营养。</b>
+    每个阶段标注关键人物、代表性突破与该阶段的范式转变。
+  </p>
+
+  <div class="fbar" id="eraBar">
+    <span class="lbl">筛选阶段</span>
+    <button class="fbtn on" data-v="*">全部</button>
+    <button class="fbtn" data-v="1">Ⅰ 萌芽期 <span class="yrs">—1750</span></button>
+    <button class="fbtn" data-v="2">Ⅱ 实验营养学 <span class="yrs">1750–1900</span></button>
+    <button class="fbtn" data-v="3">Ⅲ 维生素时代 <span class="yrs">1900–1940</span></button>
+    <button class="fbtn" data-v="4">Ⅳ 定量与标准 <span class="yrs">1940–1970</span></button>
+    <button class="fbtn" data-v="5">Ⅴ 流行病学转向 <span class="yrs">1970–2000</span></button>
+    <button class="fbtn" data-v="6">Ⅵ 分子与精准 <span class="yrs">2000–</span></button>
+    <span class="count"></span>
+  </div>
+
+  <div class="grid g3" style="margin-bottom:26px">
+    <div class="card" style="--accent:var(--c5)"><div class="accent-bar"></div><h4>Ⅰ 萌芽期（古代—1750）</h4>
+      <div class="meta">关键词：体液学说 · 经验食疗 · 缺乏病的临床描述</div>
+      <p><b>范式转变</b>：从"食物属何种体液"到"食物治何种病"。希波克拉底与盖伦建立了食物—体液—健康的对应体系，虽在生物学上错误，但在观察层面极为实用。</p>
+      <p><b>奠基人物</b><span class="chip q2">Ⅱ</span> 希波克拉底、盖伦、帕拉塞尔苏斯、詹姆斯·林德。</p></div>
+    <div class="card" style="--accent:var(--c1)"><div class="accent-bar"></div><h4>Ⅱ 实验营养学诞生（1750–1900）</h4>
+      <div class="meta">关键词：化学分析 · 对照试验 · 消化生理</div>
+      <p><b>范式转变</b>：食物被分解为化学成分，代谢被理解为燃烧与转换；"对照试验"首次出现在营养学记录中（Lind, 1747）。</p>
+      <p><b>奠基人物</b><span class="chip q1">Ⅰ</span> 拉瓦锡、李比希、贝纳尔、艾克曼。</p></div>
+    <div class="card" style="--accent:var(--c2)"><div class="accent-bar"></div><h4>Ⅲ 维生素时代（1900–1940）</h4>
+      <div class="meta">关键词：必需微量营养素 · 缺乏病 · 分离鉴定</div>
+      <p><b>范式转变</b>：确立"微量必需营养素"这一营养学的中心概念，并首次在国家政策层面推广（碘盐、营养强化）。</p>
+      <p><b>奠基人物</b><span class="chip q1">Ⅰ</span> 卢宁、方克、霍普金斯、艾尔维杰姆、戈尔德伯格。</p></div>
+    <div class="card" style="--accent:var(--c8)"><div class="accent-bar"></div><h4>Ⅳ 定量与标准（1940–1970）</h4>
+      <div class="meta">关键词：代谢病房 · RDA · 队列流行病学</div>
+      <p><b>范式转变</b>：从"发现缺乏"到"定量需求"；从实验室小样本到人群队列研究（七国研究）。</p>
+      <p><b>奠基人物</b><span class="chip q1">Ⅰ</span> 埃德尔伯特、塞尔、Keyes、Milner。</p></div>
+    <div class="card" style="--accent:var(--c3)"><div class="accent-bar"></div><h4>Ⅴ 流行病学转向（1970–2000）</h4>
+      <div class="meta">关键词：膳食指南 · 胆固醇政策 · 社区干预</div>
+      <p><b>范式转变</b>：营养学第一次大规模进入公共政策；同时暴露了观察性研究的混杂问题，并催生 Cochrane 的方法论反思。</p>
+      <p><b>奠基人物</b><span class="chip q2">Ⅱ</span> 麦戈文、布莱克本、Cochrane、Wilett。</p></div>
+    <div class="card" style="--accent:var(--c7)"><div class="accent-bar"></div><h4>Ⅵ 分子与精准营养（2000–至今）</h4>
+      <div class="meta">关键词：GWAS · 肠菌 · 精准表型 · 药物-营养交叉</div>
+      <p><b>范式转变</b>：从"平均反应"转向"个体反应"；从"营养素"转向"食物、菌群与代谢表型"。</p>
+      <p><b>奠基人物</b><span class="chip q3">Ⅲ</span> Zeevi、Berry、Spector、Monteiro。</p></div>
+  </div>
+
+  <div class="tl" id="timeline">
+    <div class="tl-item" data-era="1" style="--era:var(--c5)"><span class="yr">约前 400</span>
+      <h4>希波克拉底文集收录《论饮食》 <span class="chip q2">Ⅱ 归属存疑</span></h4>
+      <p>现存希波克拉底文集（Corpus Hippocraticum）中包含《论饮食》(Περὶ Διαίτης) 与《论生活方式》(Regimen)。作者将食物与活动、季节、体液对应，主张"食物即药物"。该文本属后世编纂，作者归属长期存在学术争议。</p>
+      <div class="tags"><span class="tag">体液学说</span><span class="tag">季节性饮食</span><span class="tag">准确性：约</span></div></div>
+
+    <div class="tl-item" data-era="1" style="--era:var(--c5)"><span class="yr">约 168–180</span>
+      <h4>盖伦《论食物与营养》(De Alimentis) <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>罗马医生盖伦系统阐述食物的四质（热、冷、干、湿）分类与食谱，是西方饮食学传统的重要源头，其思想支配欧洲医学近千年。</p>
+      <div class="tags"><span class="tag">盖伦</span><span class="tag">食物四质</span></div></div>
+
+    <div class="tl-item" data-era="1" style="--era:var(--c5)"><span class="yr">1025</span>
+      <h4>伊本·西那《医典》(Canon of Medicine) <span class="chip q2">Ⅱ</span></h4>
+      <p>阿拉伯—波斯医学传统在《医典》中保留了食物分类、食疗方与营养调理的系统内容，并在中世纪拉丁语世界广泛流传。</p>
+      <div class="tags"><span class="tag">伊斯兰医学</span></div></div>
+
+    <div class="tl-item" data-era="1" style="--era:var(--c5)"><span class="yr">约 1540</span>
+      <h4>帕拉塞尔苏斯："剂量决定毒性" <span class="chip q2">Ⅱ</span></h4>
+      <p>炼金术士/医学化学家 Paracelsus 提出 <i>sola dosis facit venenum</i>（剂量使毒物成为药物）。这句箴言是本领域"剂量—反应"思维的最早表述之一。</p>
+      <div class="tags"><span class="tag">剂量—反应</span></div></div>
+
+    <div class="tl-item" data-era="1" style="--era:var(--c5)"><span class="yr">1747</span>
+      <h4>James Lind 坏血病对照试验 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>在英国 Haslar 海军医院，Lind 把 12 名坏血病船员分成 6 组，各给予不同的补给了相同疗程：橙子与柠檬组迅速好转。该实验记录发表在其 1753 年《A Treatile of the Scurvy》中，被公认为临床营养学中最早的受控试验之一。</p>
+      <div class="tags"><span class="tag">James Lind</span><span class="tag">对照试验先驱</span><span class="tag">维生素 C</span></div></div>
+
+    <div class="tl-item" data-era="2" style="--era:var(--c1)"><span class="yr">1774–1789</span>
+      <h4>拉瓦锡确立"呼吸—食物氧化"关系 <span class="chip q1">Ⅰ</span></h4>
+      <p>拉瓦锡通过冰量计（冰窖）测定呼吸产热，证明动物呼吸与燃烧在本质上一致，提出氧（oxygen）与食物氧化的概念。这是把营养学从体液学说接入化学的第一个大突破。</p>
+      <div class="tags"><span class="tag">Lavoisier</span><span class="tag">化学营养学</span></div></div>
+
+    <div class="tl-item" data-era="2" style="--era:var(--c1)"><span class="yr">1840–1873</span>
+      <h4>李比希：营养素作为"燃料与建筑材料" <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>Justus von Liebig 在《动物化学》(1842) 与《农业化学》(1840s) 中主张食物在体内燃烧产热，蛋白质用于组织更新，并推广肥料—土壤—作物—食品的农业化学循环。他提出的"蛋白(mutagen)"主导理论后来被证明过于简化，但他奠定了食品成分分析的实验传统。</p>
+      <div class="tags"><span class="tag">Justus von Liebig</span><span class="tag">农业化学</span><span class="tag">人物影响力极大</span></div></div>
+
+    <div class="tl-item" data-era="2" style="--era:var(--c1)"><span class="yr">1854–1878</span>
+      <h4>Claude Bernard 提出内环境 (milieu intérieur) <span class="chip q1">Ⅰ</span></h4>
+      <p>《实验生理学讲义》(Leçons de physiologie expérimentale appliquée à la médecine) 中提出机体维持内环境恒定是生命的基本条件。后由 Walter Cannon（1932）命名为"稳态 (homeostasis)"，成为现代生理学的组织框架，营养学成为其分支。</p>
+      <div class="tags"><span class="tag">Bernard</span><span class="tag">稳态</span></div></div>
+
+    <div class="tl-item" data-era="2" style="--era:var(--c1)"><span class="yr">1881</span>
+      <h4>Nikolai Lunin 首次证明食物含必需微量成分 <span class="chip q2">Ⅱ</span></h4>
+      <p>俄国科学家 Nikolai Lunin 在小鼠实验中证明：牛奶中除蛋白质外还存在其他维持生长所必需的成分。这是"必需微量营养素"思想的第一次实验表达。</p>
+      <div class="tags"><span class="tag">Lunin</span><span class="tag">常被忽视的先驱</span></div></div>
+
+    <div class="tl-item" data-era="2" style="--era:var(--c1)"><span class="yr">1897</span>
+      <h4>Christiaan Eijkman 脚气病实验 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>Eijkman 在印尼爪哇观察到以精白米为主食的人群易患脚气病，并发现鸡在精白米饲料下出现神经症状、改食糙米后恢复。1929 年诺贝尔生理学或医学奖由 Eijkman 与 Frederick Gowland Hopkins 分享。</p>
+      <div class="tags"><span class="tag">Eijkman</span><span class="tag">硫胺素 B1</span><span class="tag">诺贝尔奖</span></div></div>
+
+    <div class="tl-item" data-era="3" style="--era:var(--c2)"><span class="yr">1906–1912</span>
+      <h4>Hopkins 提出vitamine；Funk 命名并分离 <span class="chip q2">Ⅱ 优先权有争议</span></h4>
+      <p>Frederick Gowland Hopkins 提出食物中含有微量辅助因子；Casimir Funk 从米糠中分离出硫胺素，并在 1912 年创造 "vitamine" 一词（后去掉英语复数 -s）。⚠️ Funk 的发现优先权在 1907–1912 年间存在多方主张（Caspar Funk、Karel Černý、Gerard Grijns 等），近年有档案研究重新评估 <span class="chip q3">Ⅲ</span>。</p>
+      <div class="tags"><span class="tag">Hopkins</span><span class="tag">Casimir Funk</span><span class="tag">争议</span></div></div>
+
+    <div class="tl-item" data-era="3" style="--era:var(--c2)"><span class="yr">1917</span>
+      <h4>Marine &amp; Davis 证明碘缺乏导致甲状腺肿 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>David Marine 与 R. Allen Davis 在<em>P</em>NAS 发表研究，证明碘缺乏是实验性甲状腺肿（"大脖子病"）的可预防病因。1920 年代美国部分地区开始强制碘盐，公共卫生收益巨大。</p>
+      <div class="tags"><span class="tag">碘盐强化</span><span class="tag">公共卫生里程碑</span></div></div>
+
+    <div class="tl-item" data-era="3" style="--era:var(--c2)"><span class="yr">1920s</span>
+      <h4>Goldberger 攻克糙皮病 (pellagra) <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>美国公共卫生部的 Joseph Goldberger 发现美国南部"pellagra belt"（糙皮病地带）与单一玉米主食、贫困与缺乏动物蛋白有关；提出并推广"Goldberger 饮食"（牛奶、鸡蛋、酵母、瘦肉、绿叶菜）。他用自注患者血液证明该病不传染，并因此受到行业与南方官员的攻击。1914 年国会调查委员会认定该病并非传染病。1940 年代的最终识别出烟酸（维生素 B3/niacin）是缺少决定性一步。</p>
+      <div class="tags"><span class="tag">Goldberger</span><span class="tag">烟酸 B3</span><span class="tag">社会决定因素</span></div></div>
+
+    <div class="tl-item" data-era="3" style="--era:var(--c2)"><span class="yr">1929</span>
+      <h4>Eijkman 与 Hopkins 共获诺贝尔奖 <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>因发现抗神经炎维生素与发现促进生长的维生素，Eijkman 与 Hopkins 分享 1929 年诺贝尔生理学或医学奖。</p>
+      <div class="tags"><span class="tag">诺贝尔奖</span></div></div>
+
+    <div class="tl-item" data-era="3" style="--era:var(--c2)"><span class="yr">1932–1948</span>
+      <h4>B 族维生素的分离竞赛 <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>核黄素 (B2，Richard Kuhn 与 Paul Karrer 于 1930s 分离并阐明结构)、硫胺素 (B1，Robert Williams 于 1936 年完成分离与合成)、烟酸/维生素 PP (Conrad Elvehjem 1937，1938 年诺贝尔化学奖)、叶酸 (Elsie Coons 等 1945；Mitchell、Snell、Williams 于 1947 命名)、维生素 B12 (1948)。</p>
+      <div class="tags"><span class="tag">B 族维生素</span><span class="tag">诺贝尔奖</span></div></div>
+
+    <div class="tl-item" data-era="3" style="--era:var(--c2)"><span class="yr">1937–1943</span>
+      <h4>Elvehjem 分离烟酸与 Warburg  Krebs 循环的启示 <span class="chip q1">Ⅰ</span></h4>
+      <p>Conrad Elvehjem 从狗肝脏中分离出烟酸并治愈"黑舌病"（烟酸的动物模型）。同年 Otto Warburg 与 Hans Krebs 阐明有氧代谢的主要循环（柠檬酸循环，现称 TCA 循环），为营养代谢的酶学提供了底盘。</p>
+      <div class="tags"><span class="tag">Conrad Elvehjem</span><span class="tag">Warburg</span><span class="tag">Krebs</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1941</span>
+      <h4>美国第一版 RDA 发布 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>美国国家研究委员会食品与营养委员会（FNB）发布第一版 Recommended Dietary Allowances，为战时与战后人群设定营养素目标。其后共修订 10 版（至 1989），并于 1997 年由美国国家医学院（IOM）扩展为 DRI 框架（EAR/RDA/AI/UL）。该体系随后被全球（含中国）采用。</p>
+      <div class="tags"><span class="tag">RDA</span><span class="tag">制度化</span><span class="tag">全球影响</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1942–1946</span>
+      <h4>战时食物强化计划 (BASIC) <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>美国 War Food Administration 启动 BASIC 计划，向面粉强化 B1、B2、烟酸，向牛奶强化维生素 D，显著降低了战时与战后的营养缺乏病。这是营养学第一次大规模转化为工业与政策。</p>
+      <div class="tags"><span class="tag">食物强化</span><span class="tag">公共卫生</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1950s</span>
+      <h4>代谢病房 (metabolic ward) 方法成熟 <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>以麻省总医院（Farquhar 团队）与剑桥大学（Keys 团队）为代表的代谢病房实现了对受试者全日膳食的精确控制与完全样本收集，成为能量与宏量营养素研究的金标准方法（平衡试验）。此期产出了大量关于饥饿、过量进食与代谢适应的基础数据。</p>
+      <div class="tags"><span class="tag">代谢病房</span><span class="tag">平衡试验</span><span class="tag">营养学方法学</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1958–1970</span>
+      <h4>七国研究 (Seven Countries Study) <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>Ancel Keys 等启动了一项 16 国 12 个队列约 4 万人的前瞻性队列研究，随访 5–15 年。研究显示七国人群的饱和脂肪摄入与冠心病死亡率高度相关（r &gt; 0.8），而地中海沿岸国家例外。这是膳食—心血管假说最重要的流行病学基石。</p>
+      <div class="tags"><span class="tag">Ancel Keys</span><span class="tag">队列研究</span><span class="tag">饱和脂肪</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1965</span>
+      <h4>Bradford Hill 提出因果准则 <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>英国统计学家 Sir Austin Bradford Hill 在皇家医学会演讲中提出判断因果关系的 9 条准则（强度、一致性、特异性、时间性、剂量—反应、生物学梯度、合理性、一致性、实验证据），用于处理无法做 RCT 的场景（吸烟与肺癌）。它至今是流行病学的通用推理框架。</p>
+      <div class="tags"><span class="tag">Bradford Hill</span><span class="tag">因果推断</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1967–1970</span>
+      <h4>USDA / 普林斯顿对照餐研究 <span class="chip q2">Ⅱ 细节需查证</span></h4>
+      <p>美国农业部与普林斯顿大学协作，在 26 名受试者身上用完全配餐比较不同脂肪来源（黄油、猪油、椰子油、橄榄油、葵花籽油、玉米油、红花籽油、卵磷脂）对血清胆固醇的影响。结果长期被引用于饱和脂肪与不饱和脂肪之争。⚠️ 其发表年份与试验细节在二手文献中常被误引，建议查阅 Fed. Proc. (1979) 原文。</p>
+      <div class="tags"><span class="tag">对照餐</span><span class="tag">⚠ 需核实</span></div></div>
+
+    <div class="tl-item" data-era="4" style="--era:var(--c8)"><span class="yr">1969</span>
+      <h4>白宫食品、营养与健康会议 <span class="chip q1">Ⅰ</span></h4>
+      <p>The White House Conference on Food, Nutrition, and Health 召开，为美国联邦营养政策（食品券计划、儿童营养餐等）奠定框架。是营养学从学术领域进入国家政策的分界线之一。</p>
+      <div class="tags"><span class="tag">政策</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1971 / 1977</span>
+      <h4>《美国膳食目标》与美国"限脂"时代 <span class="chip q1">Ⅰ 确切 · 转折点</span></h4>
+      <p>1971 年 Ancel Keys 等在 <i>AJCN</i> 发表 "Saturated fats and atherosclerosis"；1973 年参议员 George McGovern 组建的委员会发布《Dietary Goals for the United States》，1977 年第二版正式印发，首次建议美国膳食"减少脂肪、增加复合碳水"。此后约二十年美国营养建议与食品工业围绕"低脂"重构。这是营养学史上影响最深、争议也最大的政策事件。</p>
+      <div class="tags"><span class="tag">McGovern 报告</span><span class="tag">低脂时代</span><span class="tag">学术—政策冲突</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1984</span>
+      <h4>NIH 胆固醇共识会议 <span class="chip q1">Ⅰ</span></h4>
+      <p>美国国立卫生研究院召开关于胆固醇、血压与冠心病风险共识会议，基本确立"降低胆固醇"的公共策略，随后被 1988 年 NCEP（ATP-I）与 2001 年 ATP-III 具体化为干预阈值与目标值。</p>
+      <div class="tags"><span class="tag">NCEP</span><span class="tag">血脂指南</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1985–1990</span>
+      <h4>北卡累利阿项目与 WHO 健康城市运动 <span class="chip q2">Ⅱ</span></h4>
+      <p>芬兰北卡累利阿省（1972 起）通过社区综合干预（降低血清胆固醇、控烟、控压）使心血管死亡率长期大幅下降；WHO 欧洲区于 1986 年启动健康城市项目。后者的 HeartHealth Study 等计划对干预措施在人群中的真实效果提出了质疑，成为社区干预评估方法学争论的源头。</p>
+      <div class="tags"><span class="tag">社区干预</span><span class="tag">公共卫生</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1988</span>
+      <h4>INTERSALT 研究 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>Stamler 等在 <i>BMJ</i> 报告 39 个国家约 10,000 人的研究：尿钠排泄与收缩压呈剂量—反应关系，且与全因死亡率相关。这是"减盐"从观察性假设升级为公共卫生共识的关键一步。</p>
+      <div class="tags"><span class="tag">钠</span><span class="tag">跨国研究</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1988</span>
+      <h4>NCEP ATP-I 与卫生总监《营养与健康报告》 <span class="chip q1">Ⅰ</span></h4>
+      <p>美国国家胆固醇教育计划发布 ATP-I（后有 1993 ATP-II、2001 ATP-III、2013 ACC/AHA 指南、2018 AHA/ACC 指南）；同年美国卫生总监发布首份《营养与健康报告》，将膳食建议与慢病预防系统相连。</p>
+      <div class="tags"><span class="tag">血脂指南</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1993</span>
+      <h4>DCCT（糖尿病控制与并发症试验） <span class="chip q1">Ⅰ</span></h4>
+      <p>1,441 名 1 型糖尿病患者的随机对照试验，证明强化降糖可显著减少微血管并发症（视网膜、肾脏、神经），但对大血管事件（心血管死亡）无明确影响。该试验同时奠定了"微量血管 vs 大血管"的区分。</p>
+      <div class="tags"><span class="tag">RCT</span><span class="tag">糖尿病</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1995–1996</span>
+      <h4>地中海饮食模式 (PREDIMED 前奏) 与 DASH 试验 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>① Willett 与 Rimm 在 <i>Am J Public Health</i> (1995) 用多元变量模型分析哈佛队列，证实地中海式膳食与冠心病风险降低相关；② 1996 年 Appel 等在 <i>NEJM</i> 发表 DASH 试验，证明富含蔬果、低饱和脂肪与胆固醇的综合膳食可显著降低血压。两者共同奠定了"膳食模式"范式。</p>
+      <div class="tags"><span class="tag">Walter Willett</span><span class="tag">David Rimm</span><span class="tag">DASH</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1997</span>
+      <h4>DRI 框架发布 <span class="chip q1">Ⅰ 确切 · 里程碑</span></h4>
+      <p>美国国家科学院/医学研究所（IOM）发布 Dietary Reference Intakes 框架，首次同时给出 EAR、RDA、AI、UL，并强调不确定性。这是营养学从"单一定值"走向"带区间的推荐"的制度性转变。中国营养学会于本世纪初引入同一框架，制定中国 DRIs。</p>
+      <div class="tags"><span class="tag">EAR/AI/UL</span><span class="tag">中国 DRIs</span></div></div>
+
+    <div class="tl-item" data-era="5" style="--era:var(--c3)"><span class="yr">1990s 末</span>
+      <h4>Cochrane 对营养学证据基础的严厉审视 <span class="chip q1">Ⅰ</span></h4>
+      <p>Archie Cochrane（ Cochrane Collaboration 创始人）多次指出营养研究中随机试验证据的严重不足，并主张正式注册营养试验以减少发表偏倚。</p>
+      <div class="tags"><span class="tag">Archie Cochrane</span><span class="tag">证据分级</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2001</span>
+      <h4>111 个肥胖候选基因论文与候选基因时代危机 <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>Bloom 与 Goldstein 在 <i>Science</i> 报道从人类与啮齿类基因组中发现 111 个与肥胖相关的候选基因。然而多实验室重复研究难以复现该结果，多数位点未能重复关联。这是营养/遗传学中的一个经典方法学案例，也推动了学界转向全基因组关联分析（GWAS）。</p>
+      <div class="tags"><span class="tag">基因组学</span><span class="tag">可重复性危机</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2002 / 2011–2015</span>
+      <h4>中国居民营养与健康状况调查 <span class="chip q1">Ⅰ</span></h4>
+      <p>2002 年由葛可满等主持的首次全国性居民营养与健康状况调查揭示了中国膳食结构的转型：动物性食物上升、膳食纤维下降、超重与肥胖率快速上升，同时存在微量营养素（铁、钙、维生素 A、锌）摄入不足的"双重负担"。后续年度调查持续监测该变化。</p>
+      <div class="tags"><span class="tag">葛可满</span><span class="tag">中国</span><span class="tag">双负担</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2013 / 2018</span>
+      <h4>PREDIMED 试验的撤稿与重发 <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>Estruch 等在 <i>NEJM</i> 发表的地中海饮食预防心血管事件的研究，因部分受试者未真正完成随机分配而在发表后撤回；2013 年重新发表，并于 2018 年以完整随机化数据再次正式发表（<i>NEJM</i>）。这是理解"随机化质量如何决定研究可信度"的最好案例。</p>
+      <div class="tags"><span class="tag">RCT 质量</span><span class="tag">撤稿</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2015</span>
+      <h4>基于菌群的餐后血糖预测 (Cell, 163:1079) <span class="chip q2">Ⅱ</span></h4>
+      <p>Zeevi、Eran Elinav 等使用 800 名受试者的微生物组与临床数据，训练机器学习模型预测标准化餐食后的血糖反应，显著优于仅使用临床指标的模型。这是精准营养从概念走向模型的第一步，也是"AI × 营养"的代表性成果。</p>
+      <div class="tags"><span class="tag">精准营养</span><span class="tag">AI</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2015</span>
+      <h4>屠呦呦获诺贝尔奖与青蒿素 <span class="chip q1">Ⅰ 确切 · 跨学科案例</span></h4>
+      <p>屠呦呦因青蒿素类药物（青蒿素 Artemisinin）的发现获 2015 年诺贝尔生理学或医学奖。关键起点是中国东晋葛洪《肘后备急方》中的记载："青蒿一握，水二升渍，绞取汁，尽服之"——用水浸低温提取而非煎煮。这一文献启发的乙醚低温提取工艺解决了青蒿素热不稳定的问题，是"传统文本知识 → 分子分离 → 分子结构确认（青蒿素 X 单体）→ 临床验证 → 药物"的完整范例。</p>
+      <div class="tags"><span class="tag">葛洪《肘后备急方》</span><span class="tag">低温提取</span><span class="tag">药物发现范式</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2015 / 2017 / 2023</span>
+      <h4>WHO 纤维指南 / 钠指南 <span class="chip q1">Ⅰ</span></h4>
+      <p>2015 年 WHO 发布膳食纤维摄入指南（成人 ≥25 g/天；儿童按 ≥2 g/100 kcal 摄入）。2023 年 1 月 WHO 更新钠摄入指南，建议成人钠 &lt;2 g/天（约 5 g 盐）。两份指南均基于系统性证据评估，是当前国际营养政策的主要参照。</p>
+      <div class="tags"><span class="tag">WHO 指南</span><span class="tag">公共卫生</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2019 / 2024</span>
+      <h4>NOVA 超加工食品研究与 BMJ 系统综述 <span class="chip q3">Ⅲ</span></h4>
+      <p>Monteiro 团队提出并推进 NOVA 分类与超加工食品研究；2019 年 <i>BMJ</i> 报告首个大规模前瞻队列关联；2024 年 <i>BMJ</i> 发布汇总 32 项队列研究（含 7 项整群 RCT）的系统综述，认为高 UPF 摄入与 6 类不良结局相关。争议集中在残余混杂与暴露测量的主观性。</p>
+      <div class="tags"><span class="tag">Carlos Monteiro</span><span class="tag">争议</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2020</span>
+      <h4>PREDICT-1：个体间代谢反应差异巨大 <span class="chip q2">Ⅱ</span></h4>
+      <p>Berry、Spector 等在 <i>Nature Medicine</i> 报告 PREDICT-1 研究（标准化餐食与自由进食）：同一餐食在不同个体间引起的血糖、能量消耗、脂肪氧化与菌群变化差异巨大，且个体反应模式具有重复性与可预测性。这对"普适化饮食建议"提出了根本性挑战。</p>
+      <div class="tags"><span class="tag">Tim Spector</span><span class="tag">个体化</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2021</span>
+      <h4>GLP-1 受体激动剂进入体重管理 <span class="chip q1">Ⅰ</span></h4>
+      <p>FDA 于 2021 年批准司美格鲁肽（semaglutide, Wegovy）用于慢性体重管理；2023 年批准替尔泊肽（tirzepatide, Zepbound）。这类药物以药物干预形式验证了"能量摄入—体重"的因果通道，但引发了关于"营养咨询是否仍有价值"与长期停药后体重反弹的新问题。</p>
+      <div class="tags"><span class="tag">药物</span><span class="tag">肥胖</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2023</span>
+      <h4>NAFLD 更名为 MASLD <span class="chip q1">Ⅰ 确切</span></h4>
+      <p>2023 年由全球 Delphi 共识将 "NAFLD（非酒精性脂肪性肝病）"更名为 "MASLD（代谢功能障碍相关脂肪性肝病）"，以强调代谢致病因素的先决性。命名变更直接影响研究队列定义、流行病学比较与临床筛查路径。</p>
+      <div class="tags"><span class="tag">肝病</span><span class="tag">术语革命</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2023</span>
+      <h4>《中国居民膳食营养素参考摄入量（2023 版）》发布 <span class="chip q2">Ⅱ ⚠ 需核实条目</span></h4>
+      <p>中国营养学会发布 DRIs 更新版，修订了部分营养素的参考摄入量。⚠️ 具体修订条目与数值建议查阅该版本正式出版物，不应依赖二手总结。</p>
+      <div class="tags"><span class="tag">中国</span><span class="tag">⚠ 需核实</span></div></div>
+
+    <div class="tl-item" data-era="6" style="--era:var(--c7)"><span class="yr">2024—</span>
+      <h4>闭环营养与营养药理学 <span class="chip q4">Ⅳ 前沿探索</span></h4>
+      <p>可穿戴连续血糖监测（CGM）+ 机器学习 + 个性化反馈的"闭环营养"已进入随机试验阶段；部分创业公司（如 ZOE）开展了大样本 RCT（如 ZOE METHOD，2022）。目前仍无可靠证据表明这类方案能改善临床硬终点（心血管事件、死亡）<span class="chip q4">Ⅳ</span>。</p>
+      <div class="tags"><span class="tag">闭环</span><span class="tag">CGM</span><span class="tag">尚无硬终点证据</span></div></div>
+  </div>
+</section>
+
+<!-- ================= §6 PEOPLE & SCHOOLS ================= -->
+<section id="s6" style="--accent:var(--c6)">
+  <div class="sec-head"><span class="num">06</span><h2>重要人物与学派</h2><span class="en">Key Figures &amp; Schools of Thought</span></div>
+
+  <h3 style="font-size:17px;margin-bottom:12px">奠基者与关键推动者（24 位，按生年排列）</h3>
+  <div class="grid g2" id="people"></div>
+
+  <h3 style="font-size:17px;margin:34px 0 12px">主要学派与核心分歧</h3>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>学派 / 阵营</th><th>核心主张</th><th>主要证据类型</th><th>对立方观点</th><th>当前评估</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>脂质假说派</strong><br><span class="tag">Ancel Keys 学派</span></td>
+          <td>饱和脂肪↑→LDL↑→ASCVD↑；应减少饱和脂肪与总脂肪</td>
+          <td>跨国队列（七国研究）、代谢病房对照餐、LDL 代谢研究</td>
+          <td>硬终点 RCT 缺失；替代关系被忽略；低脂政策可能造成"精制碳水替代"</td>
+          <td><span class="chip q2">Ⅱ</span> 作为历史支柱成立，作为完整因果链已不完整</td>
+        </tr>
+        <tr>
+          <td><strong>食物模式派</strong><br><span class="tag">Harvard / Willett 学派</span></td>
+          <td>整体膳食模式（地中海、DASH）比单一营养素更能反映真实因果</td>
+          <td>大型前瞻队列 + 多元变量/替代分析 + RCT（PREDIMED、DASH）</td>
+          <td>模式内权重是数据驱动的，可能过拟合；模式间差异难以随机化</td>
+          <td><span class="chip q1">Ⅰ/②</span> 当前国际主流框架</td>
+        </tr>
+        <tr>
+          <td><strong>怀疑/异议派</strong><br><span class="tag">Ravnskov、Barnard 等</span></td>
+          <td>LDL-C 升高本身并非致病原因；降脂干预未降低全因死亡；营养学被产业与政治利用</td>
+          <td>系统综述、药物试验 meta 分析、历史档案</td>
+          <td>否认强因果与效应被低估；部分文献来自非主流期刊，可信度需自判</td>
+          <td><span class="chip q3">Ⅲ</span> 内部批评有成效，外部共识未改变</td>
+        </tr>
+        <tr>
+          <td><strong>生态/系统派</strong><br><span class="tag">生态学与食物系统</span></td>
+          <td>营养结局主要由食品体系（可及性、价格、营销、供应结构）决定，个人选择受限于环境</td>
+          <td>准实验研究（自然实验、糖税、食物获取干预）</td>
+          <td>传统营养学以个体为分析单位；系统视角难以形成个人处方</td>
+          <td><span class="chip q2">Ⅱ</span> 在公共卫生政策中影响上升</td>
+        </tr>
+        <tr>
+          <td><strong>精准/表型派</strong><br><span class="tag">Zeevi、Spector 等</span></td>
+          <td>个体代谢反应差异极大，应依据菌群与代谢组学定制饮食</td>
+          <td>标准喂养研究 + 机器学习 + 小样本 RCT</td>
+          <td>效应能否外推至自由生活、能否改善硬终点、是否可重复，均未确立</td>
+          <td><span class="chip q4">Ⅳ</span> 有前景但尚未验证</td>
+        </tr>
+        <tr>
+          <td><strong>临床营养/医学营养学</strong></td>
+          <td>营养支持是疾病治疗的一部分（肠内/肠外营养、膳食处方、SPPG 医学营养治疗）</td>
+          <td>RCT 与指南（ASPEN、ESPEN、ADA、Cochrane）</td>
+          <td>大营养试验（如 ICU 大量补充剂试验）结果常为阴性</td>
+          <td><span class="chip q1">Ⅰ</span> 在特定适应证中效果明确；泛化外推需谨慎</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:17px;margin:26px 0 12px">争议人物：多元视角呈现</h3>
+  <div class="grid g2">
+    <div class="card" style="--accent:var(--c6)"><div class="accent-bar"></div>
+      <h4>Ancel Keys <span class="chip q1">Ⅰ 史实</span> <span class="chip q3">Ⅲ 争议人物</span></h4>
+      <div class="meta">1913–2004 · 美国生理学家/营养学家 · 明尼苏达大学</div>
+      <p><b>贡献</b>：七国研究、Keys 饮食（starvation / rehabilitation 研究）、地中海饮食概念、LDL 代谢研究、2011 年去世后被广泛视为营养学界的巨匠。</p>
+      <p><b>争议点</b>：① 七国研究的"跨国生态学"成分被批评为过度泛化；② 其团队的减重饮食研究（Manhattan Study 等）长期被质疑的数据处理与发表伦理（后有独立档案研究重新评估，结论为"证据不足以判定学术不端，但透明度不足"）<span class="chip q5">⚠ 需核实细节</span>；③ 1960s 他在中国北京的研究照片与《人物》杂志报道，被后人重新解读。</p>
+      <p><b>多元视角</b>：主流营养学史研究肯定其流行病学贡献；其批评者认为"脂质假说"的政治化导致了半个世纪的误配。</p></div>
+
+    <div class="card" style="--accent:var(--c6)"><div class="accent-bar"></div>
+      <h4>Gary Taubes <span class="chip q3">Ⅲ 争议人物</span></h4>
+      <div class="meta">1956–2021 · 美国科学记者（曾在 MIT 任职）</div>
+      <p><b>贡献</b>：2007 年 <i>Good Calories, Bad Calories</i>（Good Calories, Bad Calories）与后续 <i>The Diet Myth</i> 系统批评低脂倡导与胰岛素假说，直接推动了"低碳"运动在公众与媒体层面的兴起，并迫使研究者更重视 RCT 与机制证据。</p>
+      <p><b>争议点</b>：该书对营养学史的叙述被多位营养流行病学家批评为选择性引用与过度简化；书中对现代营养学的整体评价与证据基础存在系统性偏差。</p>
+      <p><b>多元视角</b>：支持者认为他唤醒了公众与媒体对证据质量的关注；批评者认为他用一本畅销书替代了对原始文献的审慎阅读。<b>阅读建议</b>：可作为"如何被质疑"的入门读物，但不应作为结论来源。</p></div>
+
+    <div class="card" style="--accent:var(--c6)"><div class="accent-bar"></div>
+      <h4>Zoe Harcombe <span class="chip q3">Ⅲ 争议人物</span></h4>
+      <div class="meta">英国 · 注册营养师 · 公众作者</div>
+      <p><b>贡献</b>：《The Harcombe Diet》（2005）及后续著作是英国"反调节饮食"（anti-dieting）公众运动的主要推动者，强调"食物组合而非热量控制"。</p>
+      <p><b>争议点</b>：其关于"卡路里计算导致肥胖流行"的因果论断缺乏试验支持；"不用计算卡路里"的建议与结构化行为改变干预的试验证据相反。</p></div>
+
+    <div class="card" style="--accent:var(--c6)"><div class="accent-bar"></div>
+      <h4>Archie Cochrane <span class="chip q1">Ⅰ</span></h4>
+      <div class="meta">1911–1988 · 英国医生 · Cochrane Collaboration 创始人</div>
+      <p>现代循证医学的奠基人。他在 1970s–80s 的论文（尤其关于营养试验难以随机化的分析）中指出：营养建议"几乎没有可靠证据支持"。这句话至今仍是营养学者的自我警戒线。</p>
+      <p><b>注意</b>：Cochrane Collaboration 本身并非"质疑派"，而是<b>证据质量守门人</b>。</p></div>
+  </div>
+</section>
+
+<!-- ================= §7 MENTAL MODELS ================= -->
+<section id="s7" style="--accent:var(--c7)">
+  <div class="sec-head"><span class="num">07</span><h2>思考模式与心智模型</h2><span class="en">Mental Models &amp; Expert Thinking</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">
+    营养学专家与公众的主要区别不在"知道多少食物"，而在<b>处理不确定性的方式</b>。以下 12 个模型按「入门级 → 专家级」排序。
+    入门级模型帮助你不被误导，专家级模型帮助你正确地保留怀疑。<span class="tag">入门级</span> <span class="tag">进阶级</span> <span class="tag">专家级</span> 可用于筛选。
+  </p>
+
+  <div class="fbar" id="mmBar">
+    <span class="lbl">筛选</span>
+    <button class="fbtn on" data-v="*">全部</button>
+    <button class="fbtn" data-v="入门级">入门级</button>
+    <button class="fbtn" data-v="进阶级">进阶级</button>
+    <button class="fbtn" data-v="专家级">专家级</button>
+    <button class="fbtn" data-v="证据评估">证据评估</button>
+    <button class="fbtn" data-v="处方设计">处方设计</button>
+    <button class="fbtn" data-v="机制推断">机制推断</button>
+    <button class="fbtn" data-v="人群与政策">人群与政策</button>
+    <span class="count"></span>
+  </div>
+
+  <div class="grid g2" id="models"></div>
+</section>
+
+<!-- ================= §8 KNOWLEDGE TIERS ================= -->
+<section id="s8" style="--accent:var(--c8)">
+  <div class="sec-head"><span class="num">08</span><h2>知识分层</h2><span class="en">Knowledge Tiers · 入门 → 进阶 → 高阶</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">
+    分层依据不是"知道多少名词"，而是<b>能做什么</b>：入门层能<b>辨别</b>，进阶层能<b>设计</b>，高阶层能<b>批评与生成</b>。
+    每层分别给出「快速理解」与「扎实掌握」两条路径的差异。
+  </p>
+
+  <div class="grid g3" style="margin-top:18px">
+    <div class="tier" style="--accent:var(--ok)">
+      <div class="tier-h"><div class="lv">L1</div><h4>入门层 · 会看懂</h4><div class="hours">建议 30–50 小时（每周 4–6 小时，约 2–3 个月）</div></div>
+      <div class="tier-b">
+        <h5>必须掌握的核心模块</h5>
+        <ul>
+          <li>能量代谢四成分与能量守恒</li>
+          <li>六大必需营养素类别 + 主要食物来源</li>
+          <li>膳食纤维、钙、铁、碘、维生素 D 五种最常见缺口</li>
+          <li>DRI 四个数字的含义（不必背数值）</li>
+          <li>证据阶梯与代理终点概念</li>
+          <li>食品标签的四个必读项（能量、钠、糖、饱和脂肪）</li>
+        </ul>
+        <h5>递进关系</h5>
+        <p style="font-size:13.2px;color:var(--ink-2)">L1 的核心能力是<b>不被营销语言骗</b>。不达标的表现：无法区分"含膳食纤维"与"高纤维"、无法判断一项研究是随机试验还是动物实验。</p>
+        <h5>快速理解 vs 扎实掌握</h5>
+        <p style="font-size:13.2px;color:var(--ink-2)"><b>快速理解</b>：读完一本通识书 + 看懂食品标签，能说清"什么是健康饮食的结构"。<b>扎实掌握</b>：能独立计算一份食物的能量与宏量营养素构成，并把标签上的 NA/RI 换算成绝对量。差距主要在<b>数量感</b>与<b>单位感</b>。</p>
+      </div>
+    </div>
+
+    <div class="tier" style="--accent:var(--warn)">
+      <div class="tier-h"><div class="lv">L2</div><h4>进阶层 · 会应用</h4><div class="hours">建议 100–200 小时（半年–一年，含实践）</div></div>
+      <div class="tier-b">
+        <h5>必须掌握的核心模块</h5>
+        <ul>
+          <li>能量代谢的动态模型与代谢适应</li>
+          <li>膳食模式评分（地中海 / DASH / HEI / AHEI / DQI）</li>
+          <li>替代分析与其他统计调整策略</li>
+          <li>常见营养素相互作用与食物基质</li>
+          <li>膳食测量学（FFQ / 24h 回顾 / DLW）</li>
+          <li>不同生命周期的营养需要（孕期、婴幼儿、老年、运动）</li>
+          <li>低能量可用性与女性健康</li>
+          <li>食品标签法规与营养声称的边界</li>
+        </ul>
+        <h5>递进关系</h5>
+        <p style="font-size:13.2px;color:var(--ink-2)">L2 的核心能力是<b>为自己或他人设计一份可持续的方案</b>，并知道方案的边界在哪。不达标的表现：把某份研究直接翻译成食谱。</p>
+        <h5>快速理解 vs 扎实掌握</h5>
+        <p style="font-size:13.2px;color:var(--ink-2)"><b>快速理解</b>：掌握一个"模板式健康饮食"并执行 4 周。<b>扎实掌握</b>：能根据个体偏好、预算、烹饪条件与依从性做出<b>等价替换</b>（如用豆腐替代部分肉类而不降低蛋白质质量），并能说明每一步的依据等级。</p>
+      </div>
+    </div>
+
+    <div class="tier" style="--accent:var(--dis)">
+      <div class="tier-h"><div class="lv">L3</div><h4>高阶层 · 会批判与研究</h4><div class="hours">建议 300+ 小时（研究生/执业/研究路径）</div></div>
+      <div class="tier-b">
+        <h5>必须掌握的核心模块</h5>
+        <ul>
+          <li>因果推断：RCT 设计、意向性分析、意向性原则、敏感性分析</li>
+          <li>营养流行病学的偏倚来源（混杂、选择、信息偏倚、发表偏倚）</li>
+          <li>代谢生理学（糖异生、酮体代谢、蛋白质周转、尿素循环）</li>
+          <li>精准营养与多组学方法（GWAS、代谢组、菌群、机器学习）</li>
+          <li>临床营养支持（EN/PN、SPPG 医学营养治疗、ASPEN/ESPEN 指南）</li>
+          <li>公共卫生营养（食物强化、食品政策、食物系统与社会决定因素）</li>
+          <li>营养流行病学的伦理与利益冲突</li>
+        </ul>
+        <h5>递进关系</h5>
+        <p style="font-size:13.2px;color:var(--ink-2)">L3 的核心能力是<b>面对一项新证据做出独立判断</b>，并知道自己的判断可能错在哪。</p>
+        <h5>快速理解 vs 扎实掌握</h5>
+        <p style="font-size:13.2px;color:var(--ink-2)"><b>快速理解</b>：能读懂 PubMed 摘要并判断研究设计。<b>扎实掌握</b>：能重算一篇论文的效应量与区间、检查其调整变量是否过度调整中介、能设计一个针对该问题的可行研究。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="--accent:var(--c8);margin-top:16px">
+    <div class="accent-bar"></div>
+    <h4>层级间的"不可逆分界"：证据素养</h4>
+    <p><b>分界点不在知识量，而在能否区分"关联"与"因果"。</b>在 L1→L2 的跨越中，最有价值的训练是：拿到任何一个营养结论，写下三行 —— <i>这是哪类研究？(2) 它控制了什么？(3) 它没控制什么？</i>。如果你能对 90% 的主流营养结论完成这个练习，你已经具备了绝大多数公众不具备的能力；这也是本领域唯一可以"快速入门"的核心技能。</p>
+  </div>
+</section>
+
+<!-- ================= §9 FRONTIERS ================= -->
+<section id="s9" style="--accent:var(--c9)">
+  <div class="sec-head"><span class="num">09</span><h2>当前前沿与趋势</h2><span class="en">Frontiers &amp; Trends</span></div>
+
+  <div class="grid g2" style="margin-bottom:8px">
+    <div class="card" style="--accent:var(--c9)"><div class="accent-bar"></div><h4>研究热点（过去 5 年最活跃）</h4>
+      <ul style="font-size:13.4px;color:var(--ink-2);padding-left:18px;margin:0">
+        <li><b>精准营养与表型预测</b> —— PREDICT 系列、GLP-1 类药物时代的"营养—药物"复合干预 <span class="chip q4">Ⅳ</span></li>
+        <li><b>肠道菌群与宿主代谢</b> —— 菌群—肠—脑轴、菌群代谢物、免疫代谢 <span class="chip q3">Ⅲ</span></li>
+        <li><b>超加工食品 (UPF)</b> —— 队列、整群 RCT 与机制研究（Emulsion 干扰肠屏障）<span class="chip q3">Ⅲ</span></li>
+        <li><b>临床营养支持</b> —— 重症患者的蛋白质/能量剂量、早期肠内营养、SPPG 医学营养治疗 <span class="chip q2">Ⅱ</span></li>
+        <li><b>医学营养治疗 (MNT)</b> —— 糖尿病、肾病、心衰的个性化膳食处方与医保支付 <span class="chip q2">Ⅱ</span></li>
+        <li><b>营养基因组学</b> —— SNP 与营养素需求（TCF7L2 与乳糖耐受、MTHFR 与叶酸需求争议）<span class="chip q3">Ⅲ</span></li>
+        <li><b>食物系统与可持续性</b> —— 碳足迹、膳食指南中的植物性取向与可持续性的耦合 <span class="chip q3">Ⅲ</span></li>
+        <li><b>营养公平 (Nutrition Equity)</b> —— 食物可及性、食物价格与健康不平等 <span class="chip q2">Ⅱ</span></li>
+      </ul></div>
+
+    <div class="card" style="--accent:var(--c9)"><div class="accent-bar"></div><h4>尚未解决的核心问题</h4>
+      <ul style="font-size:13.4px;color:var(--ink-2);padding-left:18px;margin:0">
+        <li><b>无法做的 RCT</b>：长期、低成本、依从性可控的膳食模式随机对照试验在方法上几乎不可行 <span class="chip q1">Ⅰ</span></li>
+        <li><b>"低脂时代"的历史账</b>：1977–2010 美国肥胖与代谢病流行与同期膳食脂肪建议之间的关系，长期无法被定量归因 <span class="chip q3">Ⅲ</span></li>
+        <li><b>补充剂的阴性结果</b>：为何机制合理的外源营养素补充在硬终点上普遍无效？尚未有统一理论 <span class="chip q1">Ⅰ</span></li>
+        <li><b>个体化营养的终点</b>：能否改善心血管事件、死亡或癌症？尚无高质量证据 <span class="chip q4">Ⅳ</span></li>
+        <li><b>老年肌肉减少症 (sarcopenia)</b>：蛋白质需求、运动与营养的联合干预仍缺乏硬终点证据 <span class="chip q3">Ⅲ</span></li>
+        <li><b>UPF 的因果归因</b>：是加工本身，还是伴随的贫困/久坐/含糖饮料？<span class="chip q3">Ⅲ</span></li>
+        <li><b>营养补充剂的剂量—反应个体差异</b>：MTHFR、叶酸、维 D 受体基因型的影响幅度存在争议 <span class="chip q3">Ⅲ</span></li>
+      </ul></div>
+  </div>
+
+  <div class="card" style="--accent:var(--ok);margin-bottom:14px"><div class="accent-bar"></div>
+    <h4>未来方向：区分「有证据支撑的趋势」与「推测性展望」</h4>
+    <div class="grid g2" style="margin-top:8px">
+      <div>
+        <p style="margin-bottom:6px"><span class="chip q1">Ⅰ/Ⅱ 有证据支撑的趋势</span></p>
+        <ul style="font-size:13.4px;color:var(--ink-2);padding-left:18px;margin:0">
+          <li><b>膳食模式取代单一营养素</b>成为国际指南的主要表达方式（已在多国指南与 PREDIMED/DASH 中体现）。</li>
+          <li><b>替代分析进入常规建模</b>，等能量约束与多营养素联合调整将成为默认做法。</li>
+          <li><b>低钠、强化、食品政策</b>继续以人群为单位推进（WHO 钠指南、加碘盐、铁强化食物）。</li>
+          <li><b>GLP-1 类药物与营养干预的整合</b>：药物改变食欲与胃排空，营养师角色从"减重"转向"蛋白质质量、肌肉保护、饮食质量"。</li>
+          <li><b>食物可持续性进入膳食指南</b>（多国指南已含可持续性考量）。</li>
+          <li><b>医学营养治疗纳入医保支付</b>（美国 2010 年 ACA 下部分覆盖，中国亦在探索）。</li>
+        </ul>
+      </div>
+      <div>
+        <p style="margin-bottom:6px"><span class="chip q4">Ⅳ 推测性展望（无充分证据）</span></p>
+        <ul style="font-size:13.4px;color:var(--ink-2);padding-left:18px;margin:0">
+          <li>基于 AI 的全自动化个体化营养处方（含 LLM 生成的饮食计划可安全到何种程度，尚未评估）。</li>
+          <li>可穿戴连续代谢传感器（CGM + 连续乳酸 + 呼气）驱动的完全闭环营养调控。</li>
+          <li>数字孪生式代谢模型用于预测长期健康轨迹。</li>
+          <li>合成生物学生产的营养素（如精准发酵蛋白、新一代铁强化载体）大规模替代传统来源。</li>
+          <li>跨物种与个体基因编辑的"营养增强"（绝大多数国家禁止，属伦理禁区）。</li>
+        </ul>
+        <p style="font-size:12.5px;color:var(--ink-3);margin-top:8px">以上属于"预测"，不是"共识"。标注 <span class="chip q4">Ⅳ</span> 的内容不应作为决策依据。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="--accent:var(--c7)"><div class="accent-bar"></div>
+    <h4>与 AI、大数据等新兴技术的交叉点</h4>
+    <div class="grid g2" style="margin-top:6px">
+      <div>
+        <dl class="kv" style="margin-top:4px">
+          <dt>菌组学 + ML</dt><dd>从菌群组预测餐后血糖（Zeevi 2015；Mellbye 2019）。<b>现状</b>：模型精度提升明显，但跨人群可重复性尚未证实。</dd>
+          <dt>计算机视觉</dt><dd>从照片估算份量与营养素（如 Dietpix 类应用）。<b>现状</b>：份量估计误差大，是消费级工具的主要瓶颈。</dd>
+          <dt>可穿戴 + CGM</dt><dd>实时闭环反馈被证明能改善血糖控制（这类干预在糖尿病管理中已有多年证据）。<b>局限</b>：健康人使用是否获益，证据不足。</dd>
+        </dl>
+      </div>
+      <div>
+        <dl class="kv" style="margin-top:4px">
+          <dt>多组学整合</dt><dd>基因组 + 转录组 + 代谢组 + 菌群的联合建模（PREDICT-1/PREDICT-3）。<b>现状</b>：特征多但效应量小，易过拟合。</dd>
+          <dt>因果推断 + ML</dt><dd>在营养学这种 RCT 稀缺的领域，用 ML 做因果效应估计（causal ML）正在成为重要方法论工具。</dd>
+          <dt>LLM 与营养教育</dt><dd>LLM 可生成个性化食谱与教育材料，但存在"幻觉出伪证据"与"强化膳食限制"的风险 <span class="chip q4">Ⅳ</span>。</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= §10 CASES ================= -->
+<section id="s10" style="--accent:var(--c10)">
+  <div class="sec-head"><span class="num">10</span><h2>应用领域与经典案例</h2><span class="en">Applications &amp; Landmark Cases</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">每个案例标注：<b>背景 · 过程 · 结论 · 意义 · 争议点</b>。案例是本领域最好用的记忆锚点——比抽象理论更容易被调用。</p>
+
+  <div class="grid g2" style="margin-top:16px">
+
+    <div class="card" style="--accent:var(--c1)"><span class="idx">A</span><div class="accent-bar"></div>
+      <h4>案例 A：Lind 坏血病试验与海军维生素 C 政策 <span class="chip q1">Ⅰ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>18 世纪英国海军远航，坏血病造成大量非战斗减员，死因长期不明（有"坏血病方程"之说）。</dd>
+        <dt>过程</dt><dd>1747 年，皇家海军外科医生 James Lind 在 Haslar 海军医院将 12 名坏血病患者分为 6 组，每组给予不同干预并保持相同疗程；橙子与柠檬组在 6 天内明显好转。</dd>
+        <dt>结论</dt><dd>柑橘类水果可预防与治疗坏血病（后识别为维生素 C）。</dd>
+        <dt>意义</dt><dd>(1) 营养学史上最早的受控对比试验；(2) 海军营养与补给制度的改革使远航死亡率大幅下降，成为"营养学可以改变命运"的第一个决定性案例；(3) 后来 <b>James Lind 纪念讲座（Lind Lectures）</b>已成为每年奖项名。</dd>
+        <dt>争议点</dt><dd>现代分析认为试验样本极小、未随机化（当时尚无随机方法）、患者自身存在治疗波动，且他对当时已知有效方法的低估受到后人的质疑；其历史地位主要是象征性的而非方法学上的严格 RCT <span class="chip q2">Ⅱ</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c1)"><span class="idx">B</span><div class="accent-bar"></div>
+      <h4>案例 B：Eijkman 脚气病与精白米 <span class="chip q1">Ⅰ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>19 世纪末印尼爪哇，以精白米为主食的本地人与以未精制米为食的部队患病率差异悬殊。</dd>
+        <dt>过程</dt><dd>Christiaan Eijkman 在军医院中注意到鸡在白米饭饲料下出现神经症状（麻痹），改食糙米后恢复。他起初试图寻找病原微生物，未获成功。</dd>
+        <dt>结论</dt><dd>病因是稻米加工过程中被去除的某类物质，而非感染；后被 Gerrit Grijns 提示其与维生素 B1（硫胺素）有关，Eijkman 于 1926 年分离出硫胺素。</dd>
+        <dt>意义</dt><dd>(1) 揭开了营养缺乏病的"营养性"本质；(2) 直接推动了精米→强化白米（硫胺素、核黄素、烟酸）公共卫生政策；(3) Eijkman 与 Hopkins 获 1929 年诺贝尔奖；(4) "白米导致脚气"成为营养学"加工 ≠ 营养"这一思想的源头。</dd>
+        <dt>争议点</dt><dd>Eijkman 本人将病因归于一种"未知细菌素"，而"维生素"框架主要由 Funk、Grijns 推进，成果归属曾有争议；今日以维生素 B1 缺乏为主因，但遗传性转酮醇酶缺陷可致同类表现的讨论 <span class="chip q2">Ⅱ</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c1)"><span class="idx">C</span><div class="accent-bar"></div>
+      <h4>案例 C：Goldberger 与糙皮病 pellagra <span class="chip q1">Ⅰ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>1900 年代美国南部出现大规模糙皮病（皮疹、严重腹泻、痴呆、死亡），形成"pellagra belt"。</dd>
+        <dt>过程</dt><dd>① Joseph Goldberger 发现病例集中在贫穷、以单一玉米主食为主的地区；② 他用自血实验（在自己身上注射患者血液）确认不传染，因“否定传染”而被南方政界与食品行业排挤；③ 他提出并推行 "Goldberger 饮食"（牛奶、鸡蛋、酵母、瘦肉、绿叶菜），部分收容所发病率显著下降；④ Elvehjem 于 1937 年确认烟酸（维生素 B3/niacin）为决定性因子。</dd>
+        <dt>结论</dt><dd>糙皮病是一种营养（尤其烟酸/优质蛋白）缺乏病，与食物供给和社会经济条件密切相关。</dd>
+        <dt>意义</dt><dd>现代供应链时代虽已基本消失，但该案例揭示了一个至今重要的规律：<b>营养缺乏病往往是贫困病与供应链问题的下游结果</b>，单靠个人"选择健康饮食"无法解决。</dd>
+        <dt>争议点</dt><dd>该病成因中肠道微生物源性异常、内毒素与色氨酸代谢的综合作用尚未完全阐明。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c3)"><span class="idx">D</span><div class="accent-bar"></div>
+      <h4>案例 D：七国研究与地中海饮食 <span class="chip q1">Ⅰ 史实</span> <span class="chip q3">Ⅲ 争议</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>战后欧洲心血管病发病差异极大，心脏病医生 Lars Adelski-Olsen 等认为与膳食有关，启发 Ancel Keys 组织跨国研究。</dd>
+        <dt>过程</dt><dd>16 个国家、12 个队列约 4 万人，前瞻性随访 5–15 年；测量血胆固醇、血压、吸烟与膳食（部分含 7 天菜单定食）。</dd>
+        <dt>结论</dt><dd>七国人群中饱和脂肪摄入与 CHD 死亡率高度相关（r &gt; 0.8）；而地中海沿岸（意大利南部、希腊、西班牙南部）以橄榄油为主的膳食模式与较低 CHD 死亡率相关，这是"地中海饮食"概念的源头。</dd>
+        <dt>意义</dt><dd>(1) 建立了膳食模式研究范式；(2) 首次系统提出"整体膳食模式"的健康价值；(3) 为后续 DASH、PREDIMED 奠定基础。</dd>
+        <dt>争议点</dt><dd>(1) 研究者包括多个国家样本量较小（部分每组仅几百人）；(2) 生态学相关被过度推广；(3) Keys 的 A. R. Keys 研究组围绕减重饮食的伦理与数据透明度受到长期批评，其学术不端指控最终未被证实，但透明度确有不足 <span class="chip q5">⚠ 需核实细节</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c5)"><span class="idx">E</span><div class="accent-bar"></div>
+      <h4>案例 E：北卡累利阿社区干预与"绿色心脏"（本案例特指社区干预方法的兴起） <span class="chip q2">Ⅱ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>1972 年芬兰北卡累利阿省（北极卡累利阿）是全球冠心病死亡率最高地区之一。</dd>
+        <dt>过程</dt><dd>1972 年启动社区综合干预计划：健康教育、控烟、控压、调血脂、控制胆固醇，至 1990s 中期完成，急性心肌梗死发病率显著下降。随后 WHO 欧洲区于 1986 年启动"健康城市"计划，将经验推广至欧洲多城，并在 1987 年启动 HeartHealth Study（后者对干预包的效果产生了质疑）。</dd>
+        <dt>结论</dt><dd>以社区为单位的多维干预可显著降低心血管事件发生率；但将多维干预拆开推广（HeartHealth 模式）效果差异显著。<b>经典方法学警示</b>：一旦把"整体包"拆解为单项措施并转移，整体有效性未必守恒。</dd>
+        <dt>意义</dt><dd>它把"营养问题"的答案从"个人选择"扩展到"结构环境"，是现代食物系统研究的先声。</dd>
+        <dt>争议点</dt><dd>同期的 NNEPT（North Karelia 与 WHO 协作项目，INTERHEART/INTERSTROKE 配套研究）显示其全球推广受限，心血管病负担向中低收入国家转移（"流行病学转变"的双重重担问题）。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c8)"><span class="idx">F</span><div class="accent-bar"></div>
+      <h4>案例 F：DASH 试验与"膳食模式"的诞生 <span class="chip q1">Ⅰ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>Keys 等的"脂质假说"与"水果蔬菜"试验与血压关联，但需要一个能超越单一成分的完整膳食设计。</dd>
+        <dt>过程</dt><dd>Appel 等在 <i>NEJM</i> (1996) 报道 8 周、458 名高血压/正常血压成人的 3 组平行试验：对照（典型美国饮食）、DASH（高蔬果高纤维）、DASH 加盐（同等 DASH + 高盐）。</dd>
+        <dt>结论</dt><dd>(1) DASH 组合可比常规饮食多降低收缩压 8–14 mmHg；(2) 加盐组血压升高 2–8 mmHg，提示"好饮食"可部分抵御盐的升压作用；(3) 富含蔬果、低饱和脂肪、低胆固醇的"组合"有效，而任何单一成分并非必需。</dd>
+        <dt>意义</dt><dd>这是"DASH 模式"成为全球模板（含后来 WHO 盐替代指南、中国指南参考来源之一）的直接依据，也证明了"膳食模式研究"在 RCT 中可行。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c10)"><span class="idx">G</span><div class="accent-bar"></div>
+      <h4>案例 G：临床营养支持与"大剂量补充无效"的经典 <span class="chip q2">Ⅱ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>ICU 患者高热量、高蛋白质营养支持长期基于观察性数据（高蛋白质 → 更好预后）。</dd>
+        <dt>过程</dt><dd>① REDUCE-NUTRIENT 试验（NEJM 2023）在 2800 余例重症患者中对比低蛋白（≈0.9 g/kg·d）与高蛋白（≈1.3 g/kg·d）肠内营养，随访 180 天；② EFFORT 试验（JAMA 2019）在高营养风险重症患者中对比高蛋白/高热量 vs 标准肠内营养；③ EDEN 研究（JAMA 2021）显示早期全肠内营养并不优于早期低营养素方案。</dd>
+        <dt>结论</dt><dd>三项大型 RCT 共同表明：<b>在重症患者中大幅提高蛋白质或早期给予全量肠内营养，并未带来临床获益</b>，部分人群甚至可能有害。</dd>
+        <dt>意义</dt><dd>这是营养学"观察性关联误导临床决策"的教科书案例，与案例 H（抗氧化补充剂）属于同一类陷阱（关联性强、但 RCT 阴性）。</dd>
+        <dt>争议点</dt><dd>研究者强调研究人群选择（早期、急性期、存在"肌少/多器官功能障碍"亚组可能从高蛋白中获益）与蛋白来源/时机未纳入试验设计 <span class="chip q3">Ⅲ</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c10)"><span class="idx">H</span><div class="accent-bar"></div>
+      <h4>案例 H：抗氧化补充剂试验的失败群 <span class="chip q1">Ⅰ 史实</span> <span class="chip q3">Ⅲ 解读争议</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>基于"自由基损伤累积"的理论，大量人群开始服用维生素 E、β-胡萝卜素、硒等。</dd>
+        <dt>过程</dt><dd>① ATBC 试验（1994）：芬兰男性吸烟者补充 β-胡萝卜素，肺癌发病率升高；② CARET 试验（1996）：美国吸烟/石棉暴露者补充 β-胡萝卜素，肺癌发病率与死亡率升高，试验终止；③ SELECT 试验（2011，JAMA）：硒 + 维生素 E 与前列腺癌风险升高约 17% 相关。④ 一项 1,024 人叶酸 + 维生素随机试验（ffSP），随访 10.5 年，报告叶酸组前列腺癌发生率约为对照的 2 倍（Meyer 等 2002），引发对多种维生素复合补充的重新评估（尽管该结果未被后续研究重复确认）。</dd>
+        <dt>结论</dt><dd>在非缺乏人群中，大剂量单一抗氧化补充剂可能无效甚至有害。这不代表理论失败，而是"外推边界"的失败。</dd>
+        <dt>意义</dt><dd>它迫使营养学承认"缺乏状态"是干预效果的前提条件之一，这正是本领域区别于大众养生学的核心点。</dd>
+        <dt>争议点</dt><dd>部分研究的后续重复未确认原始效应（如 ffSP）；也有论者指出基线营养状态、受试者筛选与剂量差异很大 <span class="chip q3">Ⅲ</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c11)"><span class="idx">I</span><div class="accent-bar"></div>
+      <h4>案例 I：低能量可用性与女性运动健康（IOC 共识） <span class="chip q2">Ⅱ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>竞技运动与舞蹈等人群中，月经紊乱、骨应力损伤与反复疲劳的共现现象长期被归因于"过度训练"或"心理问题"。</dd>
+        <dt>过程</dt><dd>运动医学界提出"能量可用性不足（RED-S）"概念：即摄入能量减去运动消耗能量不足以覆盖基础生理需求。Mountjoy、McCormick 等在 2014/2023 年两次代表 IOC 发布 REDs 共识声明，强调其对生殖、骨骼、免疫、代谢的广泛影响。</dd>
+        <dt>结论</dt><dd>能量可用性不足，而非运动量本身，是这些问题的关键因素；干预应同时处理营养与训练负荷。</dd>
+        <dt>意义</dt><dd>改变了运动营养咨询的评估流程：将月经状况、骨密度与能量可用性纳入常规评估。</dd>
+        <dt>争议点</dt><dd>能量可用性的具体阈值（30 kcal/kg FFM/d vs 45 kcal/kg FFM/d）仍无统一共识，测量需依赖运动记录，存在误差 <span class="chip q3">Ⅲ</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c13)"><span class="idx">J</span><div class="accent-bar"></div>
+      <h4>案例 J：母乳代用品国际守则与婴幼儿配方 <span class="chip q1">Ⅰ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>20 世纪中期婴儿配方奶粉工业的快速扩张，WHO 担心不当营销（尤其在发展中国家）导致母乳喂养率下降。</dd>
+        <dt>过程</dt><dd>① 1981 年 WHO/UNICEF 通过《国际母乳代用品守则》，对母乳代用品营销作出限制（禁止在医疗渠道推广、限制使用图片/文字激励、禁用"母乳完美"暗示）。② 1989 年 WHO/UNICEF 发布《促进母乳喂养成功十点措施》；③ 中国 1995 年启动"爱婴行动"，将母乳喂养率纳入爱婴医院评审。</dd>
+        <dt>结论</dt><dd>监管与医院行动可使母乳喂养率显著提高（多数研究显示干预后提升 10–20 个百分点）；但奶粉在真实场景中并非全无营养地位。</dd>
+        <dt>意义</dt><dd>这是"公共营养干预 = 监管 + 环境 + 服务"三要素的最佳案例，而非单纯教育。</dd>
+        <dt>争议点</dt><dd>(1) 母乳喂养的决定因素包含母亲健康、产假、收入与雇主支持，不能简单归因于"依从性"；(2) 对部分母亲，配方奶是必要且可接受的替代，尤其在母亲用药、心理或生理原因无法哺乳时。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c2)"><span class="idx">K</span><div class="accent-bar"></div>
+      <h4>案例 K：从《肘后备急方》到青蒿素——跨学科范例 <span class="chip q1">Ⅰ</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>20 世纪 60–70 年代，耐药疟疾（恶性疟原虫对氯喹耐药）广泛流行，迫切需要新药。</dd>
+        <dt>过程</dt><dd>① 中国中医研究院项目组筛查数百种中药方剂；② 屠呦呦团队重读葛洪《肘后备急方》"青蒿一握，水二升渍，绞取汁，尽服之"，意识到传统方剂用<b>水浸（低温）</b>而非久煎，启发采用乙醚低温提取；③ 1971 年第 191 号提取物对人疟原虫抑制率达 100%；④ 1972 年分离青蒿素单体并确认结构；⑤ 1980s 在中国与 WHO/TDR 参与下完成国际验证并推广，拯救了数百万疟疾患者。</dd>
+        <dt>结论</dt><dd>传统医药文本可提供关键的工艺线索；化学分离、结构确认与临床验证构成完整药物发现路径。</dd>
+        <dt>意义</dt><dd>屠呦呦获 2015 年诺贝尔生理学或医学奖。该案例对营养学的启示：<b>"传统经验 → 系统文本考证 → 机制化提取 → 标准化验证"是一条可迁移的路径</b>，适用于许多植物性食物与活性成分研究。</dd>
+        <dt>争议点</dt><dd>青蒿素的发现历史已出现文献级别的优先权争议（包括中医文献记载时间、是否有更早文献记载等），任何简单化的"唯一发现者"叙事均应回避 <span class="chip q2">Ⅱ</span>。</dd>
+      </dl></div>
+
+    <div class="card" style="--accent:var(--c7)"><span class="idx">L</span><div class="accent-bar"></div>
+      <h4>案例 L：精准营养的第一批干预研究（PREDICT / ZOE METHOD） <span class="chip q4">Ⅳ 前沿</span></h4>
+      <dl class="kv">
+        <dt>背景</dt><dd>PREDICT 系列标准喂养研究显示，同一餐食引起个体间血糖反应差异极大且稳定可重复。</dd>
+        <dt>过程</dt><dd>① Zeevi et al., Cell (2015)：基于 800 人菌组数据建立血糖预测模型；② Berry et al., Nature Medicine (2020)：PREDICT-1 用 1002 人的标准化与自由进食进一步证明反应模式的可重复性；③ ZOE METHOD（JAMA 2022）：对 347 位前期糖尿病者进行 6 个月干预，比较个体化饮食与地中海饮食，对腰围、 HbA1c、体重等有差异。</dd>
+        <dt>结论</dt><dd>个体化饮食干预在 6 个月内改善了部分代谢指标与肠道菌群组成，优于传统地中海饮食组。</dd>
+        <dt>意义</dt><dd>为"营养消费"从大众建议走向个人化提供了第一套可复制的商业/临床模型。</dd>
+        <dt>争议点</dt><dd>(1) 主要终点为替代指标，未测心血管事件或死亡；(2) 样本量小、时间短；(3) 无法排除商业资助带来的偏倚 <span class="chip q4">Ⅳ</span>。</dd>
+      </dl></div>
+  </div>
+</section>
+
+<!-- ================= §11 ROADMAP ================= -->
+<section id="s11" style="--accent:var(--c11)">
+  <div class="sec-head"><span class="num">11</span><h2>学习路线图</h2><span class="en">Learning Roadmap · 4 Stages</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">
+    从零到"能独立判断一条营养信息"约需 <b>90–150 小时</b>的主动学习（阅读 + 计算 + 实践）。下方每个阶段可<b>勾选记录完成状态</b>（保存在你的浏览器本地）。
+  </p>
+
+  <div class="grid g2" style="margin-top:16px">
+
+    <div class="stage" style="--accent:var(--ok)">
+      <div class="stage-h"><div class="st">01</div><h4>破冰：读懂标签与食品成分 <span class="tag">约 15–25 h</span></h4></div>
+      <div class="stage-b">
+        <h5>学习目标</h5>
+        <p style="font-size:13.4px;color:var(--ink-2);margin:0">能读懂营养成分表、理解能量与营养素密度、知道哪 5 个数字最值得看。这是投入产出比最高的阶段。</p>
+        <h5>核心内容</h5>
+        <ul><li>营养成分表：NRV%、能量换算、每 100 g vs 每份</li><li>宏量与微量营养素的基本分类</li><li>食品添加剂分类概览</li><li>看外包装声称（"高纤维""低脂""富含维生素"的法律定义）</li></ul>
+        <h5>推荐资源</h5>
+        <div class="res"><span class="rt">政策/官方</span><span>国家卫健委《中国居民膳食指南（2022）》《中国居民膳食营养素参考摄入量（DRIs）》、国家标准 GB 28050《预包装食品营养标签通则》<br><span class="mono-n">类型：权威 · 难度：★★ · 获取：免费官网与图书馆 · 理由：这是唯一与本土标准完全一致的中文原始资料</span></span></div>
+        <div class="res"><span class="rt">书籍</span><span>《中国食物成分表（第6版）》（杨月欣主编）<br><span class="mono-n">类型：工具书 · 难度：★★ · 获取：图书馆/书店 · 理由：查询具体食物成分的首选工具书</span></span></div>
+        <div class="res"><span class="rt">课程</span><span>中国大学 MOOC / 学堂在线《营养与健康》系列课程<br><span class="mono-n">类型：视频课 · 难度：★ · 获取：免费 · 理由：中文语境下少见的系统性入门课</span></span></div>
+      </div>
+      <label class="check"><input type="checkbox" data-step="s1"> 已完成阶段 01（能独立读懂一张营养成分表）</label>
+    </div>
+
+    <div class="stage" style="--accent:var(--warn)">
+      <div class="stage-h"><div class="st">02</div><h4>通识：能量、营养素与人体的关系 <span class="tag">约 30–50 h</span></h4></div>
+      <div class="stage-b">
+        <h5>学习目标</h5>
+        <p style="font-size:13.4px;color:var(--ink-2);margin:0">理解能量守恒、必需营养素、体成分与代谢调节，并能解释"为什么控制体重比吃某种食物更重要"。</p>
+        <h5>核心内容</h5>
+        <ul><li>TDEE 的四个成分与 NEAT 的作用</li><li>宏量营养素的代谢路径概要（糖酵解/糖异生/β-氧化/尿素循环）</li><li>必需营养素与缺乏病的一般表现</li><li>膳食纤维与蛋白质质量的评价指标</li><li>体重管理的基本原理</li></ul>
+        <h5>推荐资源</h5>
+        <div class="res"><span class="rt">书籍</span><span>《Nutrition &amp; Diet Therapy》（S. Roth &amp; J. Townsend，中文版《营养与膳食治疗》）<br><span class="mono-n">类型：教科书 · 难度：★★★ · 获取：图书馆 · 理由：临床营养学最经典的入门教材，兼顾生理与临床</span></span></div>
+        <div class="res"><span class="rt">书籍</span><span>Walter Willett 等《Eat, Drink, &amp; Be Healthy》（哈佛营养专家的膳食模式入门）<br><span class="mono-n">⚠ 建议按英文原书名检索（Eat, Drink, and Be Healthy）；中文版名在不同版本中不一致</span><br><span class="mono-n">类型：通识 · 难度：★★ · 获取：英文书渠道/图书馆 · 理由：学习"膳食模式思维"的最佳入门</span></span></div>
+        <div class="res"><span class="rt">在线</span><span>NHANES / 中国居民营养与慢性病状况报告（国家卫健委发布）<br><span class="mono-n">类型：官方报告 · 难度：★★ · 获取：免费官网 · 理由：了解"中国人到底吃了什么、缺什么"的真实数据源</span></span></div>
+      </div>
+      <label class="check"><input type="checkbox" data-step="s2"> 已完成阶段 02（能解释一份食物的能量与营养素如何被使用）</label>
+    </div>
+
+    <div class="stage" style="--accent:var(--c3)">
+      <div class="stage-h"><div class="st">03</div><h4>证据：学会分辨结论的强度 <span class="tag">约 25–40 h</span></h4></div>
+      <div class="stage-b">
+        <h5>学习目标</h5>
+        <p style="font-size:13.4px;color:var(--ink-2);margin:0">面对任何营养结论，能指出它是 RCT、队列、动物实验还是机制推断；知道它的局限与替代关系。这比学更多知识更重要。</p>
+        <h5>核心内容</h5>
+        <ul><li>证据阶梯与各类设计的混杂</li><li>代理终点 vs 硬终点</li><li>替代分析</li><li>发表偏倚、p-hacking 与"高被引 ≠ 高可信"</li><li>如何查 PubMed 并读懂一篇摘要</li></ul>
+        <h5>推荐资源</h5>
+        <div class="res"><span class="rt">综述</span><span>Willett WC 等《Nutritional Epidemiology》, Am J Clin Nutr (1997) 及后续评述<br><span class="mono-n">类型：方法学综述 · 难度：★★★★ · 获取：PubMed 开放全文 · 理由：营养流行病学替代分析理论的原始出处</span></span></div>
+        <div class="res"><span class="rt">书籍</span><span>《The Nature of Nutrition: How Food Shapes Health》（ Angela Eagle 等）<br><span class="mono-n">类型：通识 · 难度：★★★ · 获取：英文书渠道 · 理由：面向大众但方法论严谨的科普</span></span></div>
+        <div class="res"><span class="rt">数据库</span><span>PubMed、Cochrane Library、ClinicalTrials.gov<br><span class="mono-n">类型：检索工具 · 难度：★★★ · 获取：免费 · 理由：一手证据的唯一入口</span></span></div>
+      </div>
+      <label class="check"><input type="checkbox" data-step="s3"> 已完成阶段 03（能对一条“某食物有益”的新闻写出证据评估）</label>
+    </div>
+
+    <div class="stage" style="--accent:var(--c7)">
+      <div class="stage-h"><div class="st">04</div><h4>进阶：模式、争议与前沿 <span class="tag">约 20–35 h</span></h4></div>
+      <div class="stage-b">
+        <h5>学习目标</h5>
+        <p style="font-size:13.4px;color:var(--ink-2);margin:0">掌握膳食模式思维，能就当前主要争议（脂质假说、抗氧化、超加工食品、精准营养）形成自己的判断框架。</p>
+        <h5>核心内容</h5>
+        <ul><li>地中海饮食、DASH、AHEI、HEI、中国 DQI 评分的构成</li><li>主要争议的双边论证</li><li>精准营养与 AI 在营养中的真实边界</li><li>特殊人群（孕期、老年、运动、慢病）营养调整原则</li></ul>
+        <h5>推荐资源</h5>
+        <div class="res"><span class="rt">综述</span><span>Mann JI et al.《PREDIMED study》NEJM 2018；Estruch R et al. 2013<br><span class="mono-n">类型：RCT 论文 · 难度：★★★★ · 获取：PubMed · 理由：膳食模式 RCT 的代表作，注意其撤稿重发历史</span></span></div>
+        <div class="res"><span class="rt">综述</span><span>Lane MM et al. BMJ 2024: Ultra-processed food exposure and adverse health outcomes<br><span class="mono-n">类型：系统综述 · 难度：★★★★ · 获取：PubMed 开放全文 · 理由：UPF 争议的当前最佳证据汇总</span></span></div>
+        <div class="res"><span class="rt">书籍</span><span>《Food Science and Nutrition》（多个版本）<br><span class="mono-n">类型：教科书 · 难度：★★★ · 获取：图书馆 · 理由：理解食物基质、加工与营养的物理解释</span></span></div>
+      </div>
+      <label class="check"><input type="checkbox" data-step="s4"> 已完成阶段 04（能独立写出一份有证据依据的膳食建议）</label>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <button class="btn" id="resetProgress">↺ 重置学习进度</button>
+    <span style="font-size:12px;color:var(--ink-3)">进度保存在本地浏览器（localStorage），不会上传。</span>
+  </div>
+
+  <div class="card" style="--accent:var(--c11);margin-top:16px"><div class="accent-bar"></div>
+    <h4>常见学习误区</h4>
+    <ul style="font-size:13.6px;color:var(--ink-2);padding-left:18px;margin:0">
+      <li><b>只读"最好的营养书"</b>：营养畅销书的结论极少经过方法学审阅。建议以教材/指南为骨架，科普书作为补充。</li>
+      <li><b>以"记住食物黑名单"为目标</b>：黑名单思维无法应对新证据。应转向"结构性原则 + 替代分析"。</li>
+      <li><b>跳过方法学直接学结论</b>：这是本领域最大的学习陷阱（详见 §07 心智模型）。</li>
+      <li><b>把学者意见与医学指南混为一谈</b>：权威指南基于系统证据评估，学者个人意见不代表共识。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= §12 MYTHS ================= -->
+<section id="s12" style="--accent:var(--c12)">
+  <div class="sec-head"><span class="num">12</span><h2>常见误区与陷阱</h2><span class="en">Common Myths &amp; Traps</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">以下 15 条覆盖初学者最常见的认知错误。每条给出：<b>错在哪里 · 事实是什么 · 证据等级</b>。</p>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="myth"><div class="q">❌ 1. "维生素越多越好，补充剂总比食物安全" <span class="chip q1">Ⅰ</span></div>
+      <div class="a"><b>事实</b>：多项大型 RCT 显示，在营养充足人群中大剂量抗氧化补充剂无效甚至有害（ATBC、CARET、SELECT；见案例 H）。补充剂剂量常远超 RDA/UL 区间。<b>例外</b>：确实存在缺乏人群、特定环境（孕妇叶酸等）与明确适应证（如维生素 D 治疗缺乏症）。</div></div>
+
+    <div class="myth"><div class="q">❌ 2. "糖 = 白糖，果葡糖浆是人工发明的毒药" <span class="chip q1">Ⅰ</span></div>
+      <div class="a"><b>事实</b>：果葡糖浆的化学组成（果糖+葡萄糖）与蔗糖高度相似，代谢差异有限；HFCS 的使用与含糖饮料消费同步增长，但并非唯一原因。真正的问题是<b>添加糖总量</b>与"液体热量"缺乏饱腹感（软饮料证据最确定）。</div></div>
+
+    <div class="myth"><div class="q">❌ 3. "减肥失败是因为代谢率天生低" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：代谢率个体差异存在（瘦体重、年龄、遗传），但其效应量通常小于摄入与 NEAT 的影响；而且体重下降后代谢适应是<b>正常生理现象</b>，不是"惩罚"。真正障碍是行为与可持续性，而非代谢。</div></div>
+
+    <div class="myth"><div class="q">❌ 4. "GI 低的食物就能减肥" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：低 GI 食物对餐后血糖控制有帮助（糖尿病管理），但减重效应有限；GI 测试对烹调与形态敏感。应关注<b>总能量</b>与<b>饱腹感</b>。</div></div>
+
+    <div class="myth"><div class="q">❌ 5. "胆固醇高 = 不能吃鸡蛋/动物食品" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：膳食胆固醇对血胆固醇的影响远小于饱和脂肪（比值约 1:10–1:20 量级）。近年研究（含美国 ACS 心脏饮食模式研究）表明健康人每日 1 个全蛋并不增加心血管风险。但个体差异大（APOE2 型等"超应答者"除外），且应看整体膳食模式。</div></div>
+
+    <div class="myth"><div class="q">❌ 6. "维生素 C 能预防感冒" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：Cochrane 系统综述显示常规补充对普通人群的感冒发生率与病程影响很小；可能对剧烈运动人群有轻微保护（如马拉松运动员）。这不是"无用"，而是<b>效应量小且局限于特定人群</b>——区分二者是本领域的基本功。</div></div>
+
+    <div class="myth"><div class="q">❌ 7. "植物油一定比动物油健康" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：不同植物油差异巨大——椰子油/棕榈油饱和脂肪高；橄榄油（油酸）、菜籽油、亚麻籽油不饱和脂肪高且研究支持。油脂选择应以<b>不饱和脂肪占比</b>与<b>是否部分氢化</b>为判断依据，而非"植物/动物"标签。</div></div>
+
+    <div class="myth"><div class="q">❌ 8. "低脂 = 健康" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：低脂食品常以精制淀粉与添加糖补偿口感。Gotthardt 等（<i>Obesity Reviews</i> 2011）的系统综述显示，低脂标记食品并不比全脂对应品更利于体重控制。<b>替代分析</b>提醒：减脂不减糖不减总量，不产生健康收益。</div></div>
+
+    <div class="myth"><div class="q">❌ 9. "无机盐/有机种植 = 更健康" <span class="chip q3">Ⅲ</span></div>
+      <div class="a"><b>事实</b>：有机种植在营养含量上的差异不具临床意义（多数分析在检测限附近）；有机农业的环境与农药暴露优势是真实的，但不应包装为"营养更丰富"。</div></div>
+
+    <div class="myth"><div class="q">❌ 10. "无麸质饮食对所有人有益" <span class="chip q3">Ⅲ</span></div>
+      <div class="a"><b>事实</b>：麸质仅对乳糜泻（celiac disease）与小麦过敏者有害。乳糜泻以外的"非乳糜泻性小麦敏感"缺乏可重复的诊断标准，效应量小，且长期无麸质饮食可能带来纤维与微量营养素缺口。</div></div>
+
+    <div class="myth"><div class="q">❌ 11. "餐后血糖高就是糖尿病" <span class="chip q1">Ⅰ</span></div>
+      <div class="a"><b>事实</b>：诊断需空腹血浆葡萄糖、口服葡萄糖耐量试验(OGTT)或 HbA1c（满足相应标准）。单次餐后血糖受食物组成与检测时点影响极大。但"餐后血糖持续升高"即使未达诊断标准也与长期风险相关，值得重视。</div></div>
+
+    <div class="myth"><div class="q">❌ 12. "所有食物都应纯植物基，动物蛋白等同不健康" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：大型前瞻队列（含护士健康队列与护士队列 II）中，纯素/素食与较低冠心病、2 型糖尿病发病率相关，但与全因死亡率的关联受其他因素混杂。血红素铁、锌、omega-3、钙与 B12 在纯素饮食中需额外关注。<b>结论</b>：植物性膳食整体有利，但不应被简化为"动物食物=有毒"。</div></div>
+
+    <div class="myth"><div class="q">❌ 13. "Superfood 概念有科学依据" <span class="chip q1">Ⅰ</span></div>
+      <div class="a"><b>事实</b>：superfood 是营销概念，无定义、无监管、无可验证的比较试验。判断标准应是：① 是否有 RCT 支持特定效应量；② 有效成分是否可被提取与标准化；③ 剂量是否可实现（吃一把坚果和吃 100 片真的不同）。</div></div>
+
+    <div class="myth"><div class="q">❌ 14. "报告显示不缺营养素 = 不需要营养补充" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：血液指标反映的是<b>当前状态</b>，不等于<b>长期储备</b>。铁蛋白与血清叶酸受炎症影响（见术语卡）。"没有异常"只说明没有严重缺乏，不等于充足。</div></div>
+
+    <div class="myth"><div class="q">❌ 15. "危重病人高蛋白高热量总没错" <span class="chip q2">Ⅱ</span></div>
+      <div class="a"><b>事实</b>：REDUCE-NUTRIENT（NEJM 2023）、EFFORT（JAMA 2019）、EDEN（JAMA 2021）三项大型 RCT 均未显示大幅提高蛋白质/热量的额外临床获益，部分甚至有害。这是"关联优于干预"在临床营养学最系统的一次纠正。</div></div>
+  </div>
+</section>
+
+<!-- ================= §13 INTERDISCIPLINARITY ================= -->
+<section id="s13" style="--accent:var(--c13)">
+  <div class="sec-head"><span class="num">13</span><h2>跨学科关联</h2><span class="en">Interdisciplinary Connections</span></div>
+  <p style="max-width:920px;color:var(--ink-2)">营养学本身是"多学科的交汇点"而非孤立学科。下表列出最有价值的交叉方向与延伸入口。</p>
+
+  <div class="tblwrap" style="margin-top:16px">
+    <table>
+      <thead><tr><th>学科</th><th>与营养学的交汇点</th><th>学它能带来什么</th><th>入门入口</th></tr></thead>
+      <tbody>
+        <tr><td><strong>生物化学</strong></td><td>代谢途径（糖酵解/糖异生/β-氧化/尿素循环/TCA 循环）、酶与辅酶（维生素 B 族作为辅酶前体）</td><td>理解"营养素如何被使用"的分子层面，是营养学的硬核基础</td><td>本科《生物化学》（Lehninger）第六章代谢部分</td></tr>
+        <tr><td><strong>微生物学</strong></td><td>肠道菌群、益生菌、短链脂肪酸、食品安全病原体</td><td>理解"宿主—菌群互作"这一营养学新兴主线</td><td>《Microbial Ecology of the Gut》/ 综述文献</td></tr>
+        <tr><td><strong>流行病学与生物统计</strong></td><td>队列/病例对照设计、混杂控制、Meta 分析、因果推断</td><td>决定你能否独立判断一项营养研究——<b>最高性价比的交叉</b></td><td>Rothman《Epidemiology: An Introduction》</td></tr>
+        <tr><td><strong>公共卫生</strong></td><td>食物强化、食品政策、膳食指南、营养监测（NHANES/中国调查）</td><td>从"个人处方"上升到"人群干预"，理解政策的杠杆点</td><td>WHO 营养指南系列；国家卫健委营养标准司文件</td></tr>
+        <tr><td><strong>食品科学与食品化学</strong></td><td>加工、氧化、食物基质、添加剂、食品货架期</td><td>理解"为什么烹饪方式改变营养"和"为什么加工食品不等同超加工食品"</td><td>Fennema《Food Chemistry》（本科教材）</td></tr>
+        <tr><td><strong>内分泌与代谢</strong></td><td>胰岛素抵抗、瘦素/胃饥饿素、代谢综合征、甲状腺</td><td>理解营养与激素的双向调节（能量稳态的中枢机制）</td><td>Guyton《生理学》内分泌章</td></tr>
+        <tr><td><strong>免疫学</strong></td><td>免疫营养（锌/维A/益生元）、肠-免疫轴、COVID-19 营养、炎症与慢病</td><td>理解营养对免疫的双向作用（缺乏→易感、过量→自身免疫风险）</td><td>Janeway《免疫学》</td></tr>
+        <tr><td><strong>肿瘤学</strong></td><td>癌症相关恶病病、肿瘤代谢重编程、辅助治疗营养</td><td>理解"营养不良作为疾病预后因素"的机制与干预证据</td><td>ESPEN 临床营养指南（肿瘤部分）</td></tr>
+        <tr><td><strong>运动科学</strong></td><td>能量消耗、蛋白质阈值、低能量可用性、恢复期营养</td><td>理解"运动 × 营养"协同在体重管理与骨骼肌健康中的作用</td><td>ACSM 营养与运动手册；IOC REDs 共识声明</td></tr>
+       <tr><td><strong>心理学与行为科学</strong></td><td>饮食行为改变、食物奖赏系统、社会决定因素</td><td>理解"知道 ≠ 做到"的鸿沟——这也是本领域最大的实际瓶颈</td><td>行为改变 RCT 文献；Nudge 理论；SMM（Social Cognitive Model of Weight Management）</td></tr>
+        <tr><td><strong>机器学习 / AI</strong></td><td>精准营养（菌组预测血糖）、营养图像识别、闭环营养</td><td>参与或评估本领域最热但最不成熟的方向</td><td>Zeevi et al. Cell 2015；PREDICT-1 Nature Med 2020</td></tr>
+        <tr><td><strong>社会学与经济</strong></td><td>营养不平等、食物价格、可及性、快餐产业营销</td><td>理解"为什么个人建议无效"——结构性原因往往大于个体认知</td><td>《Food Politics》（Nestle）与 Food Systems 相关文献</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="xfield">
+    <b style="width:100%">三条最推荐的延伸路径：</b>
+    <span>① 想走"证据"：流行病学 → 生物统计 → Meta 分析（通向高阶研究能力）</span>
+    <span>② 想走"临床"：生理学 → 病理生理学 → 临床营养（通向执业医师/注册营养师）</span>
+    <span>③ 想走"数据"：生物信息学 → 机器学习 → 精准营养（通向新前沿）</span>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>营养学知识图谱 · Nutrition Atlas</b> — 单文件 HTML，零外部依赖（字体使用系统本地字体栈，纹理为内联 SVG）。所有交互（搜索、筛选、折叠、主题切换、进度记录）由本页内联 JavaScript 驱动。</p>
+  <p><b>使用与免责</b>：本页为知识结构化整理材料，<b>不构成医疗建议</b>。任何营养干预（尤其是补充剂、极端饮食、特殊人群营养）都应结合最新版的 <span style="color:var(--ink-2)">《中国居民膳食指南》/ DRIs、WHO 指南与专业执业意见</span>。涉及具体数值（DRIs、RDA、AI、UL、每日限量）时，请以官方最新版本的原始文件为准 —— 各国/各版本的数值会更新，网页快照会过期。</p>
+  <p><b>核查渠道</b>：PubMed / Web of Science（原始论文）· 国家卫健委与《中国营养学会》官网（DRIs、膳食指南）· WHO / FAO / EFSA（国际指南与风险评估）· Cochrane Library（系统综述）· ClinicalTrials.gov（试验注册）· 网信办/药监局对保健食品与声称的监管公告。</p>
+  <p style="margin-top:14px;color:var(--ink-3);opacity:.8">构建于 2025 · 全部内容可离线阅读与打印（Ctrl/⌘+P 已适配打印样式）。</p>
+</footer>
+
+<script>
+/* ================= SAFE STORAGE ================= */
+var LS={
+  get:function(k,d){ try{var v=localStorage.getItem(k); return v===null?d:v;}catch(e){return d;} },
+  set:function(k,v){ try{localStorage.setItem(k,v);}catch(e){} },
+  del:function(k){ try{localStorage.removeItem(k);}catch(e){} }
+};
+window.LS=LS;
+
+/* ================= THEME ================= */
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn'), txt=document.getElementById('themeTxt');
+  var saved=LS.get('nut-theme',null);
+  var prefersDark=window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches;
+  function set(t){root.setAttribute('data-theme',t);txt.textContent=(t==='dark'?'浅色':'深色');LS.set('nut-theme',t);}
+  set(saved||(prefersDark?'dark':'light'));
+  btn.addEventListener('click',function(){set(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+})();
+
+/* ================= TOC + SCROLLSPY + TOPNAV ================= */
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('section[id]'));
+  var toc=document.getElementById('toc'), topnav=document.getElementById('topnav');
+  secs.forEach(function(s){
+    var n=s.querySelector('.sec-head .num'), t=s.querySelector('.sec-head h2');
+    var label=s.dataset.num||(n?n.textContent.trim():'§'), name=s.dataset.name||(t?t.textContent.trim():s.id);
+    var a=document.createElement('a'); a.href='#'+s.id;
+    a.innerHTML='<i>'+label+'</i><span>'+name+'</span>';
+    a.addEventListener('click',function(){ if(innerWidth<=1080){document.getElementById('side').classList.remove('open');document.getElementById('scrim').classList.remove('on');} });
+    toc.appendChild(a);
+    if(topnav){
+      var b=document.createElement('a'); b.href='#'+s.id; b.textContent=name;
+      b.addEventListener('click',function(e){ e.preventDefault(); document.getElementById(s.id).scrollIntoView({behavior:'smooth'}); });
+      topnav.appendChild(b);
+    }
+  });
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id)}); } });
+  },{rootMargin:'-15% 0px -70% 0px',threshold:0});
+  secs.forEach(function(s){io.observe(s)});
+
+  var side=document.getElementById('side'), scrim=document.getElementById('scrim');
+  document.getElementById('menuBtn').addEventListener('click',function(){side.classList.toggle('open');scrim.classList.toggle('on')});
+  scrim.addEventListener('click',function(){side.classList.remove('open');scrim.classList.remove('on')});
+})();
+
+/* ================= REVEAL (section-level only; never leaves content hidden) ================= */
+(function(){
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); },{threshold:.02});
+  var SEL='.hero,.plate,.sec-head,.mapwrap,.tree,.fbar,.tblwrap,.tier,.stage,.mm,.xfield';
+  document.querySelectorAll(SEL).forEach(function(el,i){el.classList.add('reveal');el.style.transitionDelay=(i%4)*40+'ms';io.observe(el)});
+  /* safety net: anything already on screen becomes visible immediately */
+  setTimeout(function(){
+    document.querySelectorAll('.reveal').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight*1.2 && r.bottom>-200) el.classList.add('in');
+    });
+  },1200);
+})();
+
+/* ================= READ PROGRESS ================= */
+(function(){
+  var bar=document.getElementById('readbar');
+  function u(){ var h=document.documentElement.scrollHeight-window.innerHeight; bar.style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+'%'; }
+  window.addEventListener('scroll',u,{passive:true}); u();
+})();
+
+/* ================= COLLAPSIBLE PLATE ================= */
+(function(){
+  var p=document.getElementById('plate1'), h=document.getElementById('plate1h'), hint=document.getElementById('plate1hint');
+  h.addEventListener('click',function(){
+    var open=p.getAttribute('data-open')==='1';
+    p.setAttribute('data-open',open?'0':'1');
+    hint.textContent=open?'点击展开':'点击收起';
+  });
+})();
+
+/* ================= GENERIC FOLDERS / FILTERS / TABS / SEARCH ================= */
+window.App={
+  toggle:function(el,key){ var st=JSON.parse(LS.get(key,'{}')); st[el.dataset.id]=!st[el.dataset.id]; LS.set(key,JSON.stringify(st)); el.setAttribute('data-open',st[el.dataset.id]?'1':'0'); },
+  initFold:function(sel,key,headSel){
+    var open=JSON.parse(LS.get(key,'{}'));
+    document.querySelectorAll(sel).forEach(function(el){
+      el.setAttribute('data-open',open[el.dataset.id]?'1':'0');
+      el.querySelector(headSel).addEventListener('click',function(){App.toggle(el,key)});
+    });
+  },
+  filter:function(barSel,itemSel,attr){
+    var bar=document.querySelector(barSel); if(!bar) return;
+    var items=[].slice.call(document.querySelectorAll(itemSel));
+    var btns=[].slice.call(bar.querySelectorAll('.fbtn'));
+    var counter=bar.querySelector('.count');
+    function apply(v){
+      items.forEach(function(it){
+        var ok=(v==='*')||it.getAttribute(attr).split(' ').indexOf(v)>-1;
+        it.classList.toggle('hide',!ok);
+      });
+      btns.forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});
+      if(counter){var n=items.filter(function(it){return !it.classList.contains('hide')}).length;counter.textContent=n+' / '+items.length+' 项';}
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.v)})});
+    apply('*');
+  }
+};
+/* ---- term cards ---- */
+App.initFold('.term','nut-terms','.th');
+/* ---- mental models ---- */
+App.initFold('.mm','nut-mm','.mm-h');
+/* ---- accordion blocks ---- */
+document.querySelectorAll('[data-acc]').forEach(function(el){
+  var b=el.querySelector('[data-acc-btn]');
+  if(b) b.addEventListener('click',function(){ el.setAttribute('data-open', el.getAttribute('data-open')==='1'?'0':'1'); });
+});
+
+/* ================= PROGRESS CHECKBOXES ================= */
+(function(){
+  var key='nut-progress';
+  var st={}; try{st=JSON.parse(LS.get(key,'{}'))}catch(e){}
+  document.querySelectorAll('input[data-step]').forEach(function(cb){
+    if(st[cb.dataset.step]) cb.checked=true;
+    var card=cb.closest('.stage'); if(cb.checked) card.classList.add('done');
+    cb.addEventListener('change',function(){
+      st[cb.dataset.step]=cb.checked;
+      LS.set(key,JSON.stringify(st));
+      cb.closest('.stage').classList.toggle('done',cb.checked);
+    });
+  });
+  var reset=document.getElementById('resetProgress');
+  if(reset) reset.addEventListener('click',function(){ LS.del(key); document.querySelectorAll('input[data-step]').forEach(function(c){c.checked=false;c.closest('.stage').classList.remove('done')}) });
+})();
+
+/* ================= GLOBAL SEARCH ================= */
+(function(){
+  var q=document.getElementById('q'), wrap=document.getElementById('searchWrap'), clr=document.getElementById('qclr');
+  var SEL='.card,.tl-item,.term,.mm,.s-block,.myth,.stage,.tier,.tree .trow,.tl-item .yr';
+  function run(){
+    var v=(q.value||'').trim().toLowerCase();
+    wrap.classList.toggle('has',!!v);
+    var targets=[].slice.call(document.querySelectorAll(SEL));
+    if(!v){ targets.forEach(function(t){t.classList.remove('search-dim','search-hit')}); return; }
+    targets.forEach(function(t){
+      var hit=t.textContent.toLowerCase().indexOf(v)>-1;
+      t.classList.toggle('search-hit',hit); t.classList.toggle('search-dim',!hit);
+      if(hit){ var b=t.querySelector('[data-open]'); if(b && b.getAttribute('data-open')!=='1') b.setAttribute('data-open','1'); }
+    });
+  }
+  q.addEventListener('input',run);
+  clr.addEventListener('click',function(){q.value='';run();q.focus()});
+})();
+</script>
+<style>
+.search-dim{opacity:.22}
+.search-hit{outline:2px solid var(--c1);outline-offset:2px}
+</style>
+<script>
+/* =========================================================
+   DATA + RENDER: 知识地图 / 树 / 人物 / 思维模型
+   ========================================================= */
+var MAP = {
+  branches:[
+    {id:'b1',t:'能量与代谢',color:'var(--c1)',hex:'#B45309',
+     note:'营养学的物理层：一切结论都必须与能量守恒相容。',
+     leaves:[
+       {t:'TDEE 四成分模型',d:'RMR + TEF + 运动活动产热 + NEAT。Wilmore & Costill (2000) 的能量支起模型。'},
+       {t:'Kleiber 代谢体重定律',d:'代谢体重 ∝ 体重^0.75（Kleiber 1932/1947）。解释体重越低减重越难。'},
+       {t:'三大营养素的代谢途径',d:'糖酵解/糖异生/糖原、脂肪 β-氧化/酮体、氨基酸脱氨/尿素循环。'},
+       {t:'NEAT 与体重调节',d:'非运动性活动产热的个体差异（Levine et al., Science 1999）是体重变化的重要预测因子。'}
+     ]},
+    {id:'b2',t:'必需性与定量',color:'var(--c4)',hex:'#4D7C0F',
+     note:'把"必需"翻译成"多少"的制度层：DRIs 是全球营养政策的共同语言。',
+     leaves:[
+       {t:'必需氨基酸 / 必需脂肪酸',d:'9 种成人必需氨基酸；亚油酸(n-6)、α-亚麻酸(n-3)。'},
+       {t:'微量营养素谱',d:'约 13 种维生素 + 15–17 种必需矿物质；铁、碘、锌、维生素 D 是全球最常见缺口。'},
+       {t:'DRI 框架',d:'EAR / RDA / AI / UL（美国 IOM 1997），中国营养学会引入并本土化。'},
+       {t:'蛋白质需要量 0.8 g/kg',d:'成人 RDA 约 0.8 g/kg·d（WHO 2007 报告基于氮平衡研究）。'}
+     ]},
+    {id:'b3',t:'假说与争议',color:'var(--c3)',hex:'#9A3412',
+     note:'本领域的思想战场：多数知名结论都在这里，且多数存在争议。',
+     leaves:[
+       {t:'脂质假说与七国研究',d:'饱和脂肪→LDL→ASCVD。历史支柱，但硬终点 RCT 缺失与替代关系使其存在争议。'},
+       {t:'钠—血压与 DASH',d:'群体层面证据最完整的因果链之一；DASH 证明了膳食模式的可操作性。'},
+       {t:'膳食纤维假说与菌群',d:'Burkitt 1970s → 菌组学；SCFA 与肠-免疫轴是机制核心。'},
+       {t:'抗氧化假说与补剂悖论',d:'ATBC / CARET / SELECT 的阴性甚至有害结果，是"机制≠健康人获益"的教材。'}
+     ]},
+    {id:'b4',t:'方法与因果',color:'var(--c7)',hex:'#4338CA',
+     note:'元理论层：它决定了上面所有内容能否被接受。这是本领域最值得投入的部分。',
+     leaves:[
+       {t:'证据阶梯',d:'RCT > 系统综述 > 队列 > 病例对照 > 横断面 > 生态学 > 动物/体外 > 病例报告。'},
+       {t:'替代分析',d:'等能量约束下"把 A 换成 B"。Willett 等 1997 引入，改变了营养学的提问方式。'},
+       {t:'Bradford Hill 准则',d:'无法 RCT 时的因果推理辅助（1965），非评分表。'},
+       {t:'测量学：FFQ / 24h / 双标水',d:'Schoeller 等 1980s 推广双标水法，引入客观能量消耗测量。'}
+     ]},
+    {id:'b5',t:'人群与政策',color:'var(--c8)',hex:'#0E7490',
+     note:'把科学放大到社会的层：强化、指南、社区干预与营养公平。',
+     leaves:[
+       {t:'生命周期与特殊人群',d:'孕期、婴幼儿、老年、运动人群的营养需求差异巨大。'},
+       {t:'食物强化与公共卫生',d:'碘盐、维生素 D 奶、铁强化酱油——循证等级最高的干预之一。'},
+       {t:'营养监测',d:'NHANES（美）、中国居民营养与健康状况调查（2002 起）。'},
+       {t:'DRIs 与膳食指南',d:'《中国居民膳食指南》、WHO 指南（纤维 2015、钠 2023）。'}
+     ]},
+    {id:'b6',t:'应用与实践',color:'var(--c10)',hex:'#166534',
+     note:'输出层：把证据变成处方与政策，也在这里检验证据的真伪。',
+     leaves:[
+       {t:'公共营养与疾病预防',d:'社区干预、限盐、食品政策；北卡累利阿项目。'},
+       {t:'临床营养支持',d:'肠内/肠外营养、SPPG 医学营养治疗；大剂量补充的 RCT 阴性结果。'},
+       {t:'运动营养与 RED-S',d:'蛋白质阈值、低能量可用性与女性健康（IOC 共识）。'},
+       {t:'精准营养与 AI',d:'菌组预测血糖（PREDICT 系列）、闭环营养——尚无硬终点证据。'}
+     ]}
+  ]
+};
+
+/* ---------- Radial map ---------- */
+(function(){
+  var svg=document.getElementById('mapsvg'); if(!svg) return;
+  var CX=440, CY=332, RB=176, RL=282, NS='http://www.w3.org/2000/svg';
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function polar(a,r){return [CX+r*Math.cos(a*Math.PI/180), CY+r*Math.sin(a*Math.PI/180)];}
+
+  var paths=[], nodes=[], n=BUILD();
+  function BUILD(){
+    svg.innerHTML=''; nodes.length=0; paths.length=0;
+    /* core */
+    var g=el('g',{class:'nd core'});
+    g.appendChild(el('circle',{cx:CX,cy:CY,r:44,fill:'var(--c2)',opacity:.9}));
+    var t1=el('text',{x:CX,y:CY-1,'text-anchor':'middle'}); t1.textContent='营养学';
+    var t2=el('text',{x:CX,y:CY+15,'text-anchor':'middle','font-size':'9.5'}); t2.textContent='Nutritional Science';
+    g.appendChild(t1); g.appendChild(t2); svg.appendChild(g);
+    nodes.push({el:g,x:CX,y:CY,data:{t:'营养学 · Nutritional Science',d:'研究"食物与营养素如何被摄入、消化吸收、代谢，并如何决定机体功能与疾病风险"的科学集合。',lv:'领域中心',ul:['机制 → 标准 → 方法 → 假说 → 应用','学习顺序：先学方法，再学结论','本页所有知识点均标注证据等级']}});
+
+    var defs=el('defs',{});
+    MAP.branches.forEach(function(b,i){
+      var a=-90+i*60;
+      var bp=polar(a,RB);
+      /* link core->branch */
+      paths.push(el('path',{class:'lnk',d:'M'+CX+' '+CY+' Q '+(CX+bp[0])/2+' '+(CY+bp[1])/2+' '+bp[0]+' '+bp[1]}));
+      var g2=el('g',{class:'nd b'});
+      g2.appendChild(el('circle',{cx:bp[0],cy:bp[1],r:8,fill:b.hex}));
+      var tx=bp[0]+(bp[0]>=CX?12:-12), anc=bp[0]>=CX?'start':'end';
+      var tx2=el('text',{x:tx,y:bp[1]+4,'text-anchor':anc,'font-weight':'700','font-size':'11.5'}); tx2.textContent=b.t;
+      g2.appendChild(tx2); svg.appendChild(g2);
+      nodes.push({el:g2,x:bp[0],y:bp[1],branch:b,isBranch:true,data:{t:b.t,d:b.note,lv:'一级分支（可展开／收起）',ul:b.leaves.map(function(l){return l.t+'：'+l.d}).concat(['点击本节点可收起／展开它的 4 个子模块'])}});
+      /* leaves */
+      var n=b.leaves.length, spread=44;
+      b.leaves.forEach(function(l,j){
+        var off = n===1?0:(-spread/2 + spread*j/(n-1));
+        var la=a+off, lp=polar(la,RL);
+        var gp=el('path',{class:'lnk',d:'M'+bp[0]+' '+bp[1]+' Q '+((bp[0]+lp[0])/2)+' '+((bp[1]+lp[1])/2-8)+' '+lp[0]+' '+lp[1]});
+        gp.setAttribute('stroke',b.hex); gp.setAttribute('opacity','.35');
+        svg.appendChild(gp); b._links=[]; b._links.push(gp);
+        var g3=el('g',{class:'nd l'});
+        g3.appendChild(el('circle',{cx:lp[0],cy:lp[1],r:5,fill:'var(--paper-2)',stroke:b.hex,'stroke-width':2.2}));
+        var lx=lp[0]+(lp[0]>=CX?9:-9), lanc=lp[0]>=CX?'start':'end';
+        var t=el('text',{x:lx,y:lp[1]+3.5,'text-anchor':lanc,'font-size':'10'});
+        t.textContent=l.t;
+        g3.appendChild(t); svg.appendChild(g3);
+        nodes.push({el:g3,x:lp[0],y:lp[1],branch:b,data:{t:l.t,d:l.d,lv:'子模块（'+b.t+'）',ul:['所属分支：'+b.t,'定位：'+b.note]}});
+      });
+    });
+    paths.forEach(function(p){svg.appendChild(p)});
+    return nodes;
+  }
+
+  function show(d){
+    var box=document.getElementById('mapdetail');
+    var html='<h4>'+d.t+'</h4><div class="lvl">'+d.lv+'</div><p style="font-size:13.4px;color:var(--ink-2)">'+d.d+'</p>';
+    html+='<ul>'+d.ul.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>';
+    box.innerHTML=html;
+    svg.querySelectorAll('.nd').forEach(function(g){g.classList.remove('sel')});
+  }
+  svg.addEventListener('click',function(e){
+    var g=e.target.closest('.nd'); if(!g) return;
+    var node=nodes.find(function(x){return x.el===g}); if(!node) return;
+    show(node.data);
+    if(node.isBranch){ /* 一级分支：展开／收起子模块 */
+      var on=node.branch._hidden;
+      node.branch._hidden=!on;
+      nodes.forEach(function(x){ if(x.branch===node.branch && !x.isBranch){ x.el.style.display=on?'':'none'; } });
+      node.branch._links.forEach(function(p){ p.style.display=on?'':'none' });
+    }
+  });
+  function wire(ns){ ns.forEach(function(x){ x.el.addEventListener('mouseenter',function(){ show(x.data); }); }); }
+  wire(n);
+  /* initial */
+  show({t:'营养学 · Nutritional Science',d:'六个一级分支代表营养学不可再拆的主干。点击一级分支可展开/收起其子模块；点击任意节点查看释义。',lv:'点击图中节点开始',ul:['机制 → 标准 → 方法 → 假说 → 应用','节点越大越接近"核心"，越靠外越"专业/边缘"']});
+  /* theme repaint on toggle */
+  var origTheme=document.getElementById('themeBtn');
+  origTheme.addEventListener('click',function(){ setTimeout(function(){ nodes=BUILD(); wire(nodes); },10); });
+})();
+
+/* ---------- Tree ---------- */
+(function(){
+  var host=document.getElementById('tree'); if(!host) return;
+  function mk(items,depth){
+    return items.map(function(it){
+      var kids=(it.children||[]).length;
+      var cls='tnode'+(depth===0?' open':'');
+      var row=document.createElement('div');
+      row.className='trow'; row.style.setProperty('--accent',it.color||'var(--c2)');
+      row.innerHTML='<span class="tw">'+(kids?'▶':'')+'</span><span class="dot"></span><span class="tlabel">'+it.t+'</span><span class="tnote">'+(it.note||'')+'</span>';
+      var node=document.createElement('div'); node.className=cls;
+      var kidBox=document.createElement('div'); kidBox.className='tkids';
+      row.addEventListener('click',function(){ node.classList.toggle('open') });
+      if(kids) kidBox.innerHTML=mk(it.children,depth+1);
+      node.appendChild(row); node.appendChild(kidBox);
+      return node.outerHTML;
+    }).join('');
+  }
+  host.innerHTML=mk([{t:'营养学',color:'var(--c2)',note:'领域',children:MAP.branches.map(function(b){
+    return {t:b.t,color:b.hex,note:'一级分支',children:b.leaves.map(function(l){return {t:l.t,color:b.hex,note:'子模块',children:[]}})};
+  })}],0);
+})();
+
+/* ---------- People ---------- */
+var PEOPLE=[
+ {n:'希波克拉底',py:'约公元前 460 – 约前 370',r:'古希腊医学家',c:'var(--c5)',t:'体液学说与饮食四节律',
+  d:'《论饮食》《论生活方式》等被收入希波克拉底文集，主张食物、活动、季节与体液相对应，提出"食物即药物"。是西方饮食思想的源头。归属存在学术争议（文集为后世编纂）。',k:'确立"食物—健康"的经验对应关系',v:'其体液分类在生物学上已被推翻，但"季节性饮食""少量多餐"等经验规则仍有部分现代对应物。'},
+ {n:'盖伦',py:'约 129 – 约 216',r:'罗马医生',c:'var(--c5)',t:'食物四质与营养学系统化',
+  d:'《论食物与营养》(De Alimentis) 中按热/冷/干/湿四质对食物分类并给出食谱，是西方营养学最系统的早期专论，影响近千年。',k:'把零散食疗经验整理为体系',v:'其理论基于体液学说，与现代生理学不符；但"食物性状与个体体质匹配"的思路仍在中医等体系中存在。'},
+ {n:'帕拉塞尔苏斯',py:'1493 – 1541',r:'医学炼金术家',c:'var(--c5)',t:'剂量决定毒性',
+  d:'提出 sola dosis facit venenum（剂量使毒物成为药物），是营养学"剂量—反应"思维的最早表述之一。',k:'引入毒理学的剂量概念',v:'在无定量化学的时代属于哲学性表述。'},
+ {n:'詹姆斯·林德',py:'1716 – 1794',r:'英国海军外科医生',c:'var(--c1)',t:'坏血病对照试验',
+  d:'1747 年在 Haslar 海军医院将 12 名坏血病患者分为 6 组、给予相同疗程的不同干预，橙子与柠檬组显著好转。其著作 1753 年出版。',k:'营养学中最早的受控对比试验',v:'样本极小、未随机化，受试者自身波动大；现代评价认为其历史地位主要是象征性。'},
+ {n:'安托万·拉瓦锡',py:'1743 – 1794',r:'法国化学家',c:'var(--c1)',t:'呼吸与食物氧化的本质',
+  d:'通过冰量计测定呼吸产热，证明动物呼吸与燃烧在本质上一致，提出氧与食物氧化的概念。',k:'把营养学接入化学（化学营养学诞生）',v:'其生命学说部分（氧气即生命）后被推翻。'},
+ {n:'尤斯图斯·冯·李比希',py:'1803 – 1873',r:'德国化学家',c:'var(--c1)',t:'食物作为燃料与建筑材料',
+  d:'《动物化学》(1842) 与农业化学著作提出食物在体内燃烧产热、蛋白质用于组织更新；推广肥料—土壤—作物—食品的循环。',k:'奠定食品成分分析与农业化学传统',v:'他提出的"蛋白(mutagen)主导理论"过于简化，后被修正；但其学术组织能力使其门徒遍布欧洲。'},
+ {n:'克劳德·贝纳尔',py:'1813 – 1878',r:'法国生理学家',c:'var(--c1)',t:'内环境与稳态',
+  d:'在《实验生理学讲义》(1854–1878) 中提出 milieu intérieur（内环境恒定），后由 Cannon (1932) 命名为 homeostasis，成为现代生理学的组织框架。',k:'营养学作为生理学分支的确立基础',v:'无争议。'},
+ {n:'尼可拉·卢宁',py:'19 世纪末（生卒年不作断言）',r:'俄国/瑞士科学家',c:'var(--c2)',t:'食物中的微量必需成分',
+  d:'通过小鼠实验证明牛奶中除蛋白质外还含有维持生长所必需的未知成分，是"必需微量营养素"思想的首次实验表达。',k:'维生素概念的先驱表达',v:'⚠ 生卒年与具体年份本页不作断言，建议查阅营养学史原始文献。'},
+ {n:'克里斯蒂安·艾克曼',py:'1858 – 1930',r:'荷兰生理学家/病理学家',c:'var(--c2)',t:'脚气病与精白米',
+  d:'在印尼爪哇发现精白米为主食人群易患脚气病；用鸡做实验模型证明未精制米有保护作用。1929 年诺贝尔生理学或医学奖（与 Hopkins 分享）。',k:'揭示营养缺乏病的营养性本质；推动白米营养强化',v:'Eijkman 本人将病因归于一种"未知细菌素"，维生素 B1 框架主要由 Funk、Grijns 推进。'},
+ {n:'卡齐米日·方克',py:'1864 – 1947',r:'波兰裔生化/营养学家',c:'var(--c2)',t:'"vitamine"一词与硫胺素分离',
+  d:'1912 年从米糠中分离出硫胺素（avitin? no: 命名为 thiamine），并创造 "vitamine" 一词（后英语简化为 vitamin）。',k:'命名与传播维生素概念',v:'⚠ 其发现的优先权在 1907–1912 年间存在多方主张，近年有档案研究重新评估，学界普遍承认该归属复杂。'},
+ {n:'弗雷德里克·高兰·霍普金斯',py:'1861 – 1947',r:'英国生物化学家',c:'var(--c2)',t:'微量辅助因子与生长因子',
+  d:'提出食物中含有微量辅助因子（accessory factors）促进生长，为维生素概念奠基；1929 年与艾克曼分享诺贝尔奖。',k:'维生素学说的理论奠基',v:'无重大争议。'},
+ {n:'约瑟夫·戈尔德伯格',py:'1874 – 1929',r:'美国公共卫生医师',c:'var(--c2)',t:'糙皮病 pellagra 的攻克',
+  d:'揭示美国南部 pellagra belt 与贫困、单一玉米主食、缺乏动物蛋白的关系；提出并推广 Goldberger 饮食（牛奶、鸡蛋、酵母、瘦肉、绿叶菜）；用自血实验证明不传染。',k:'营养缺乏病第一次大规模公共卫生实践',v:'因"否定传染"与提出社会成因而遭南方政界与食品行业攻击，其方法（如住院患者被研究机构用研究经费供给牛奶）引起伦理争议。'},
+ {n:'戴维·马林',py:'20 世纪上半叶（生卒年不作断言）',r:'美国医师/研究者',c:'var(--c2)',t:'碘缺乏与甲状腺肿',
+  d:'1917 年在 PNAS 报告碘缺乏是实验性甲状腺肿（大脖子病）的可预防病因；1920 年代美国部分地区开始强制碘盐，公共卫生收益巨大。',k:'食物强化的成功先例',v:'⚠ 生卒年本页不作断言。'},
+ {n:'康拉德·艾尔维杰姆',py:'1901 – 1962',r:'美国生物化学家',c:'var(--c2)',t:'烟酸与黑舌病',
+  d:'1937 年从狗肝中分离烟酸并治愈"黑舌病"，解决了糙皮病的最终病因；1938 年诺贝尔化学奖。',k:'完成糙皮病的因果闭环',v:'无重大争议。'},
+ {n:'保罗·卡勒尔',py:'1889 – 1971',r:'瑞士化学家',c:'var(--c2)',t:'维生素结构解析',
+  d:'与 Richard Kuhn 等在 1930s 分离并阐明核黄素等 B 族维生素的结构；1937 年诺贝尔化学奖。',k:'把分离鉴定推进到结构层面',v:'与 Kuhn 的贡献分配在科普中长期被简化，学术上二人并列。'},
+ {n:'安塞尔·基斯',py:'1913 – 2004',r:'美国生理学家/流行病学家',c:'var(--c3)',t:'七国研究与脂质假说',
+  d:'七国研究（16 国 12 队列约 4 万人，1958 起）与地中海饮食概念的确立；多国膳食—心脏病的推动者。2011 年去世后被广泛视为营养学巨匠。',k:'建立了膳食模式研究范式与地中海饮食概念',v:'生态学成分被批评为过度泛化；其减重饮食研究（Manhattan Study 等）的数据与伦理透明度长期受批评，现有档案研究结论为"不足以判定学术不端，但透明度不足"。'},
+ {n:'亨利·布莱克本',py:'1925 – 2019',r:'美国流行病学家',c:'var(--c3)',t:'MRFIT 与风险因素干预',
+  d:'主持多危险因素干预试验（MRFIT，102,862 名高危中年男性，1972–1982），评估降压/降胆对死亡率的影响，是大规模预防性试验的里程碑。',k:'证明大规模风险因素干预试验的可行性',v:'⚠ 生卒年需核实。'},
+ {n:'阿奇·科克伦',py:'1911 – 1988',r:'英国医生/循证医学奠基人',c:'var(--c3)',t:'营养证据基础的严厉审视',
+  d:'反复指出营养研究几乎缺乏可靠的随机试验证据，主张正式注册营养试验；创建 Cochrane Collaboration。',k:'为本领域设立证据底线',v:'"几乎没有证据支持"常被断章引用；现代评价认为该批评推动了而不是否定了营养学。'},
+ {n:'沃尔特·威利特',py:'1940 年生',r:'美国哈佛大学流行病学家',c:'var(--c3)',t:'膳食模式与替代分析',
+  d:'哈佛营养系主任；推动地中海饮食、DASH、AHEI 等模式研究；系统提出营养流行病学的替代分析框架； Nurses\' Health Study（1976 起）长期队列的主要研究者之一。',k:'定义了"以膳食模式替代单一营养素"的研究范式',v:'其关于癌症危险因素的观察性结论（如低脂与乳腺癌）长期存在争议，后续 meta 分析结果不一致。'},
+ {n:'大卫·里姆',py:'1958 年生',r:'美国哈佛公共卫生学院',c:'var(--c3)',t:'地中海饮食模式的推广',
+  d:'与威利特合作在 1995 年 AJPH 首次将地中海饮食模式推广为公众健康框架，后又进入 DASH 与美国膳食指南体系。',k:'让"地中海模式"成为全球通用的膳食模板',v:'无重大争议；但其模式内部权重在不同队列中不一致，属方法固有限制。'},
+ {n:'马丁·卡坦',py:'1945 – 2024',r:'荷兰瓦赫宁根大学',c:'var(--c3)',t:'对脂质假说的内部批评',
+  d:'与 Keys 共同在 AJCN 发表"Saturated fat and atherosclerosis"（2001），后成为该领域内部最活跃的辩论者，主张关注整体膳食与替代关系。',k:'促成了脂质假说的"内部修正"而非被推翻',v:'其"减少饱和脂肪增加不饱和脂肪"的建议被认为证据较强，但 Cochrane 2020 综述对全因死亡的影响给出中性结论。'},
+ {n:'卡洛斯·蒙泰罗',py:'（生卒年不作断言）',r:'巴西圣保罗大学',c:'var(--c7)',t:'NOVA 分类与超加工食品',
+  d:'提出 NOVA 食品加工分类体系（4 类），推动超加工食品（UPF）研究成为营养学最活跃的争议领域之一。',k:'将"加工"从技术概念提升为公共卫生分析单位',v:'分类的主观性与观察性关联的残余混杂是核心争议。'},
+ {n:'埃利·齐维 / 蒂姆·斯佩克特',py:'（生卒年不作断言）',r:'以色列/英国',c:'var(--c7)',t:'精准营养的模型化',
+  d:'Zeevi 等（2015）用菌组与临床数据训练机器学习预测餐后血糖；Berry、Spector 等（2020）的 PREDICT-1 研究证明个体间餐后反应差异巨大且可重复。',k:'把"个体化营养"从概念变成可测量的预测问题',v:'能否改善硬终点尚未证实；效应量与跨人群可重复性仍为开放问题。'},
+ {n:'屠呦呦',py:'1930 年生',r:'中国中医科学院药学家',c:'var(--c2)',t:'青蒿素与传统文献驱动发现',
+  d:'2015 年诺贝尔生理学或医学奖。关键路径：阅读葛洪《肘后备急方》"水浸取汁"记载 → 启发低温乙醚提取 → 1971 年第 191 号提取物对人疟原虫 100% 抑制 → 1972 年分离青蒿素单体并确认结构 → 临床验证与国际推广。',k:'"传统文献 → 工艺假设 → 分子分离 → 结构 → 临床"的完整药物发现范例',v:'发现的优先权在文献级别有争议；严谨表述应避免"唯一发现者"叙事。'},
+ {n:'杨月欣',py:'（生卒年不作断言）',r:'北京大学公共卫生学院',c:'var(--c10)',t:'中国 DRIs 与食物成分体系',
+  d:'中国营养学界的代表性学者，主持/参与制定中国居民膳食营养素参考摄入量（DRIs）与《中国食物成分表》等国家标准性工作。',k:'把国际 DRI 框架本土化为中国数值',v:'中国 DRIs 与国际值在部分营养素上存在差异（如铁、维生素 A），源于本地膳食与代谢数据；引用时应注明版本。'},
+ {n:'葛可满',py:'（生卒年不作断言）',r:'中国疾病预防控制中心',c:'var(--c10)',t:'中国居民营养与健康状况调查',
+  d:'主持 2002 年首次全国性居民营养与健康状况调查及后续监测，揭示了中国膳食结构转型与"营养不良—肥胖双负担"。',k:'提供了中国人群膳食与营养状况的一手纵向数据',v:'历次调查的抽样与方法学在年份间有差异，跨年比较需谨慎。'},
+];
+(function(){
+  var host=document.getElementById('people'); if(!host) return;
+  host.innerHTML=PEOPLE.map(function(p){
+    var ini=p.n.slice(0,2);
+    return '<div class="card" style="--accent:'+p.c+'"><span class="accent-bar"></span>'+
+      '<div class="person"><div class="avatar" style="background:'+p.c+'">'+ini+'</div><div>'+
+      '<h4>'+p.n+'</h4><div class="meta p-years">'+p.py+' · '+p.r+'</div>'+
+      '<p><b>'+p.t+'</b>：'+p.d+'</p>'+
+      '<dl class="kv"><dt>核心贡献</dt><dd>'+p.k+'</dd><dt>争议/边界</dt><dd>'+p.v+'</dd></dl>'+
+      '</div></div></div>';
+  }).join('');
+})();
+
+/* ---------- Mental models ---------- */
+var MODELS=[
+ {id:'m1',t:'能量收支账本',lvl:'入门级',tags:'处方设计',c:'var(--c1)',
+  logic:'任何体重或体成分变化，都必须在能量守恒框架下解释：体重变化 ≈（摄入能量 − TDEE）× 时间。',
+  when:'减重/增重方案设计、解释"为什么节食几天没掉秤"、评估某个减肥产品的能量逻辑。',
+  case:'某人每天少吃 500 kcal 并声称一周应减 3.5 kg。检查发现：① 实际摄入可能低估 30%（食物能量密度估错、饮料与坚果未计入）；② NEAT 下降（走路变少、体温下降）抵消部分缺口；③ 水分波动。三者叠加后实际体重下降远低于线性预期——这不是"代谢坏了"，而是能量账本的正常行为。',
+  note:'入门级模型。它管得住宏观，但管不住"为什么想吃"'},
+ {id:'m2',t:'缺失—补充—治愈链',lvl:'入门级',tags:'机制推断 证据评估',c:'var(--c2)',
+  logic:'确认某营养素：① 摄入不足可被测量 → ② 出现可识别的功能损害 → ③ 补充后损害可逆 → ④ 效应可被重复。四步全中，因果链就非常可靠。',
+  when:'评估任何"补充剂/特定营养素是否值得"；识别自己是否真的缺乏。',
+  case:'维生素 C 与坏血病（Lind 1747，链完整）；抗氧化补充剂与健康人寿命（第二步"损害"就不存在——健康人没有可逆转的损害），因此整个链条在第②步断裂，试验结果也如预期为阴性。<b>这是区分"补足"与"增强"的最重要模型。</b>',
+  note:'入门级，但很多营养博主永远不掌握它'},
+ {id:'m3',t:'证据阶梯',lvl:'入门级',tags:'证据评估',c:'var(--c7)',
+  logic:'把每个结论标注它的来源：RCT > 队列 > 病例对照 > 横断面 > 生态学 > 动物 > 体外 > 机制 > 病例报告。等级不等于"真假"，但决定"可用于什么决策"。',
+  when:'看到任何"研究表明…"时。',
+  case:'同一问题："咖啡与肝硬化"——生态学发现关联（低咖啡摄入地区肝硬化更多）→ 队列研究确认 → 机制研究（咖啡因/咖啡因代谢物对肝星状细胞的保护）→ 但 RCT 几乎做不了。因此可接受结论是"可能相关，风险较低"，而非"咖啡护肝"。',
+  note:'入门级，本领域收益最高的单一技能'},
+ {id:'m4',t:'剂量—反应与阈值',lvl:'入门级',tags:'机制推断',c:'var(--c4)',
+  logic:'营养素关系多为非线性：U 型（维生素 A、锌）、J 型（糖摄入与风险）、S 型（钙与骨折：低与极高都危险）、单调递减型（饱和脂肪）。需要区分"低于阈值有害"与"越高越好"。',
+  when:'判断"多吃是否有害""完全不吃是否可行"。',
+  case:'维生素 D：极低 → 佝偻病/骨软化；适量 → 骨骼健康；极高 → 高钙血症、肾结石风险。公众常见的两个错误："多多益善"（忽略 U 段）与"完全没必要"（忽略阈值段）。',
+  note:'入门级，但经常被误用为"用剂量论否定一切主张"'},
+ {id:'m5',t:'替代思维（Substitution thinking）',lvl:'专家级',tags:'处方设计 证据评估',c:'var(--c3)',
+  logic:'任何营养素的问题必须表述为"把 A 从 X 换成 B"。能量守恒意味着没有"独立于总能量"的营养素效应；不指明替代物的结论是语义空壳。',
+  when:'评估任何"某营养素好/坏"的研究；构建个人饮食方案。',
+  case:'饱和脂肪 20g → 换成：① 橄榄油（低风险方向）② 精制碳水/添加糖（中性或不利）③ 不变但总能量下降（风险随能量下降）④ 不变且总能量上升（风险上升）。同一份研究数据，四种现实对应四个结论。<b>不指明替代物的营养素结论，其意义不完整。</b>',
+  note:'专家级思维模式的核心。这是 Willett 等 1997 的贡献'},
+ {id:'m6',t:'代理终点 vs 硬终点',lvl:'进阶级',tags:'证据评估',c:'var(--c8)',
+  logic:'代理终点（LDL-C、体重、HbA1c、同型半胱氨酸）常与硬终点（事件、死亡）相关但不等价。"降低了代理指标"不等于"降低了事件"。',
+  when:'评估药物/补充剂研究；解读体检报告变化。',
+  case:'把"降低胆固醇"作为终点已部分验证成功；但若某干预把 LDL-C 降低 30% 而事件未降（如某些早期研究），说明代理关系失效。此外"体重下降 3 kg"是否转化为寿命/事件获益，证据远弱于直觉。<b>问一句"终点是什么"，能过滤掉大量误导性研究。</b>',
+  note:'进阶级'},
+ {id:'m7',t:'混杂、反向因果与"替代解释"',lvl:'进阶级',tags:'证据评估',c:'var(--c6)',
+  logic:'看到关联先假设它不真实，并列举可能的解释：① 混杂变量（社会经济地位）；② 反向因果（患病者改变饮食）；③ 选择偏倚；④ 信息偏倚；⑤ 自报数据系统误差；⑥ 发表偏倚。',
+  when:'读队列研究结果时。',
+  case:'"喝咖啡的人寿命更长"：混杂包括吸烟者较少喝咖啡（反向）、咖啡消费与收入/教育相关、咖啡爱好者生活方式更健康。要说清"混杂负担至少与效应同量级"需要设计意识，不只是结果。',
+  note:'进阶级。这是最容易通过"多读几篇文献"习得的模型'},
+ {id:'m8',t:'整体论 vs 还原论（食物优先）',lvl:'进阶级',tags:'机制推断',c:'var(--c9)',
+  logic:'还原论说"分离成分找功能"；整体论说"成分与结构不可分，食物基质与协同效应不可忽略"。两者的适用边界由证据决定，不由哲学偏好决定。',
+  when:'判断"从食物还是从补充剂获得营养素"；设计研究设计（成分 vs 模式）。',
+  case:'类胡萝卜素的吸收受烹调与食物基质影响（番茄煮熟 + 油脂吸收率大幅提高），这是整体论；但对"补剂是否有效"的 RCT 则常是还原论式的（给纯化合物）。<b>关键判断：该问题是否真的存在协同/拮抗？存在则用模式，不存在则成分研究更高效。</b>',
+  note:'进阶级。注意：整体论也可能是反还原论的借口'},
+ {id:'m9',t:'机制合理性检验',lvl:'专家级',tags:'机制推断 证据评估',c:'var(--c11)',
+  logic:'一个可信的机制不仅解释"为什么可能有效"，还必须能解释"为什么有时无效"。不能解释失败的机制通常是不完整的机制。',
+  when:'评估一个新提出的机制（炎症通路、菌群信号、多酚生物利用度）。',
+  case:'经典"机制合理性框架"（Healthyman 类思路）：若 ω-3 通过减少心肌细胞电不稳定性降低猝死，那么应能在致心律失常性心律失常患者身上看到同样的效果；若不能，则机制不完整或假设错误。用这个方法筛选机制，比看大量低质量论文更高效。<b>它不证明机制成立，只是剔除明显不成立的机制。</b>',
+  note:'专家级。用于"筛除"而非"证明"'},
+ {id:'m10',t:'反应分布而非均值（个体化思维）',lvl:'专家级',tags:'处方设计',c:'var(--c7)',
+  logic:'均值掩盖分布。凡是有人受益、有人无害、有人有害（很常见），就存在异质性。均值结论只适用于平均个体，不能直接推广。',
+  when:'设计个体化干预；解读"为什么我与别人不同"。',
+  case:'同一标准餐在不同个体引起血糖反应差异很大（PREDICT-1）。这意味着"推荐饮食"对个体只能预测平均值，而个体自己的反应可能远高于平均值（最差 1/4 的个体反应可比最好 1/4 高数倍）。<b>但注意：知道异质性 ≠ 知道如何可靠地预测个体 → 这正是前沿的未解问题。</b>',
+  note:'专家级。注意"精准"目前更多是描述性而非预测性'},
+ {id:'m11',t:'不对称推理：缺乏难证、充足易过',lvl:'进阶级',tags:'证据评估',c:'var(--c5)',
+  logic:'证明"有营养素缺乏"比证明"额外补充有益"容易得多——因为缺乏会制造可观察的损害（临床上很容易看到），而补充的效果往往小于观察噪声。',
+  when:'决定是否应该为健康人做补充剂推荐；评估"是否做群体筛查"。',
+  case:'"铁对缺铁性贫血有效"（有对照） vs "铁对健康人是否有预防作用"（难证明，普遍无效）。同一个营养素，两个问题，难度差几个数量级。<b>这个不对称解释了为什么营养学有如此多"有效"结论，最终却难以转化为普遍建议。</b>',
+  note:'进阶级。它是理解整个领域"结论分化"的钥匙'},
+ {id:'m12',t:'可证伪性思维实验',lvl:'进阶级',tags:'机制推断 人群与政策',c:'var(--c13)',
+  logic:'任何科学主张都应当能推出可检验的后果。如果某个主张能解释一切，那它什么也没预测。',
+  when:'面对宏大叙事（"低脂饮食导致肥胖流行"）。',
+  case:'"低脂建议造成肥胖流行"这一命题：<br>① 它能预测什么？如果成立，应观察到低脂膳食产品销量上升后肥胖率上升；<br>② 但同期多个国家的低脂政策与肥胖趋势不一致；<br>③ 更重要的是，它预测了"吃低脂高糖食品的人不比其他人胖"，而这并非普遍成立。<br><b>因此该命题至多是部分解释（可能通过热量过剩的更易获得性），不能作为完整叙事。</b><br>结论：命题本身不等于假，但作为叙事是错的（用未受控的整体趋势做因果解释）。',
+  note:'进阶级。用来避免"讲得通"就被说服'}
+];
+(function(){
+  var host=document.getElementById('models'); if(!host) return;
+  host.innerHTML=MODELS.map(function(m){
+    return '<div class="mm" data-id="'+m.id+'" data-open="0" data-tags="'+m.lvl+' '+m.tags+'" style="--accent:'+m.c+'">'+
+      '<div class="mm-h"><span class="lvl">'+m.lvl+'</span><h4>'+m.t+'</h4>'+
+      '<svg class="caret" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></div>'+
+      '<div class="mm-b">'+
+      '<h5>核心逻辑</h5><p>'+m.logic+'</p>'+
+      '<h5>适用场景</h5><p>'+m.when+'</p>'+
+      '<div class="case"><b>经典案例演示</b><br>'+m.case+'</div>'+
+      '<p style="margin-top:9px;font-size:12.3px;color:var(--ink-3)">'+m.note+'</p>'+
+      '<div style="margin-top:9px;display:flex;gap:6px;flex-wrap:wrap">'+m.tags.split(' ').map(function(t){return '<span class="tag">#'+t+'</span>'}).join('')+'</div>'+
+      '</div></div>';
+  }).join('');
+  App.initFold('.mm','nut-mm','.mm-h');
+  App.filter('#mmBar','#models .mm','data-tags');
+})();
+
+/* ---------- Wire filters ---------- */
+App.filter('#termBar','.term','data-tier');
+App.filter('#eraBar','.tl-item','data-era');
+</script>
+</body>
+</html>
