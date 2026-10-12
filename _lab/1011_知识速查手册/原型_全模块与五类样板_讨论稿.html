@@ -263,7 +263,29 @@ p.alias{font-size:var(--f-xs);color:var(--ink-3)}
 .seq .m.note{font-size:var(--f-xs);color:var(--ink-3);background:var(--bg-2)}
 .seq .ss{padding:4px 12px;font:600 var(--f-xs)/1.8 var(--mono);letter-spacing:.06em;color:var(--accent);
   background:var(--bg-2);border-bottom:1px solid var(--rule)}
-/* 呈现原型到模块的对照写在本文件模块库页首的图例里，模块自身不新增字段 */
+/* 呈现原型到模块的对照写在模块库页首的图例里；形态索引派生自样例本身，模块不新增字段 */
+
+/* ---------- 形状索引：按呈现原型重新分组（第三个页签） ---------- */
+.shapebar{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+.shapebar .sc{font-size:var(--f-xs);color:var(--ink-2);background:var(--bg-2);
+  border:1px solid var(--rule);border-radius:var(--r-m);padding:4px 9px}
+.shapebar .sc b{margin-left:4px;color:var(--ink);font-weight:600}
+.warnline{margin:0 0 16px;padding:10px 13px;font-size:var(--f-s);line-height:1.85;color:var(--ink-2);
+  background:var(--warn-bg);border-left:3px solid var(--warn);border-radius:0 var(--r-m) var(--r-m) 0}
+.warnline.ok{background:var(--ok-bg);border-left-color:var(--ok)}
+.warnline b{color:var(--ink)}
+.sgroup{margin:0 0 20px}
+.sgroup>h3{display:flex;align-items:baseline;gap:8px;margin:0 0 9px;font-size:var(--f-l)}
+.sgroup>h3 .cnt{font-size:var(--f-xs);font-weight:400;color:var(--ink-3)}
+.shapes{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:11px}
+.shape{padding:11px 13px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r-m)}
+.shape>.sh{display:flex;align-items:baseline;gap:7px;margin:0 0 8px}
+.shape>.sh b{font-size:var(--f-t)}
+.shape>.sh .kind{font-size:var(--f-xs);color:var(--ink-3)}
+.shape>.sh .cnt{margin-left:auto;font-size:var(--f-xs);color:var(--ink-3);white-space:nowrap}
+.shape>.sample{margin:0 0 8px}
+.shape .uses{display:flex;flex-wrap:wrap;gap:4px}
+.shape .note{margin:7px 0 0}
 
 /* ---------- 骨架规格：层归属徽标与校验 ---------- */
 .lay{font:500 11px/1 var(--mono);padding:3px 7px;border-radius:var(--r-s);border:1px solid var(--rule);color:var(--ink-3);white-space:nowrap}
@@ -616,9 +638,80 @@ const SKELETONS = [
 ];
 
 /* ============================================================
+   3.5 呈现原型词表：形状索引页签的数据源
+   ------------------------------------------------------------
+   形态直接派生自模块样例的 HTML，不给模块对象加字段——索引与样例
+   永远同源，不会各写一份、各漂各的。取法：
+     主形态 = 样例第一个「带 class 的元素」的标签加首个 class；
+              mat-flat 只是材质，不算形态；mat-float 记作浮结论块；
+              同名 class 按标签分开：table.mini 记表格、div.mini 记卡片；
+     衍生形态 = 同一份样例里出现的其他形态、材质与构件。
+   ============================================================ */
+const SHAPES = {
+  'table.mini':    ['表格',     '表格式',  '行列对照，适合高密度信息与逐项比对'],
+  'div.mini':      ['卡片',     '卡片式',  '单块卡片，装一个条目或一条结论'],
+  'div.mat-float': ['浮结论块', '卡片式',  '浅底加左侧色带，用来突出结论与警示'],
+  'div.grid2':     ['卡片网格', '卡片式',  '多张同构卡片并排，给并列条目'],
+  'ul.bullets':    ['要点列表', '列表式',  '并列要点的短列表'],
+  'div.chips':     ['标签云',   '索引式',  '可检索的标签集合'],
+  'ul.checklist':  ['打勾清单', '清单式',  '可勾选的检查项，用来记录进度'],
+  'ul.tree':       ['层级树',   '层级式',  '用缩进表达从属与包含关系'],
+  'ol.steps':      ['步骤序列', '时序式',  '有先后顺序的步骤或阶段'],
+  'ol.tl':         ['时间轴',   '时序式',  '按时间排列的节点，可分期'],
+  'div.opposed':   ['对置双栏', '对置式',  '两栏对立，下面一行给判定'],
+  'details.fold':  ['折叠问答', '折叠式',  '默认收起，按需展开答案'],
+  'div.term':      ['术语卡',   '专用形态', '名称加英文、别名、定义与展开'],
+  'div.formula':   ['公式块',   '专用形态', '公式加变量说明'],
+  'div.chain':     ['因果链',   '专用形态', '逐环相扣的因果'],
+  'div.flow':      ['流程图',   '专用形态', '节点加连线的路径'],
+  'div.mapbox':    ['知识地图', '专用形态', '中心环绕的概念关系'],
+  'div.tiers':     ['分层塔',   '专用形态', '由下而上的层级'],
+  'div.bars':      ['条形图',   '专用形态', '按长度比大小'],
+  'div.limits':    ['限值条',   '专用形态', '区间端点加单位与备注'],
+  'div.callout':   ['提示条',   '专用形态', '带语气的强调块'],
+  'div.annot':     ['批注',     '专用形态', '正文里逐片段挂注释'],
+  'div.fix':       ['纠错块',   '专用形态', '划去的说法加绿色正解'],
+  'div.stats':     ['数字面板', '专用形态', '几组关键数字并列'],
+  'p.spoken':      ['口述块',   '专用形态', '一句话陈述，放大字号'],
+  'p.ln':          ['单行陈述', '专用形态', '一句话定位'],
+};
+/* class 记号 → 名称；用于识别衍生形态、材质与构件 */
+const TOKENS = {
+  term:'术语卡', 'term-h':'术语卡', formula:'公式块', chain:'因果链', flow:'流程图',
+  mapbox:'知识地图', tiers:'分层塔', bars:'条形图', limits:'限值条', limit:'限值条',
+  callout:'提示条', annot:'批注', an:'批注片段', fix:'纠错块', del:'划去的说法',
+  ins:'正解', stats:'数字面板', spoken:'口述块', ln:'单行陈述', tree:'层级树',
+  steps:'步骤序列', tl:'时间轴', bullets:'要点列表', chips:'标签云',
+  checklist:'打勾清单', fold:'折叠问答', opposed:'对置双栏', verdict:'判定行',
+  grid2:'卡片网格', 'mat-flat':'平材质', 'mat-float':'浮材质',
+  pill:'状态胶囊', scale:'阈值刻度', thrv:'阈值文字', rm:'备注',
+};
+const SHAPE_META = {};
+for(const v of Object.values(SHAPES)) SHAPE_META[v[0]] = [v[1], v[2]];
+
+function shapeOf(m){
+  const h = m.html;
+  const first = h.match(/<([a-z0-9]+)[^>]*class="([^"]+)"/);
+  let primary = '';
+  if(first){
+    const c0 = first[2].trim().split(/\s+/)[0];
+    if(c0 === 'mini') primary = (first[1] === 'table') ? '表格' : '卡片';
+    else if(SHAPES[first[1] + '.' + c0]) primary = SHAPES[first[1] + '.' + c0][0];
+  }
+  const toks = [];
+  for(const mm of h.matchAll(/class="([^"]+)"/g)) toks.push(...mm[1].trim().split(/\s+/));
+  const derived = [];
+  for(const t of new Set(toks)){
+    const name = (t === 'mini') ? (h.includes('table class="mini') ? '表格' : '卡片') : TOKENS[t];
+    if(name && name !== primary && !derived.includes(name)) derived.push(name);
+  }
+  return { primary: primary || '（未登记）', derived, kind: (SHAPE_META[primary] || ['未归类'])[0] };
+}
+
+/* ============================================================
    4. 渲染
    ============================================================ */
-const TABS = [{id:'lib',label:'模块库 · 全量 '+MODULES.length+' 个'}]
+const TABS = [{id:'lib',label:'模块库 · 全量 '+MODULES.length+' 个'},{id:'shape',label:'形状索引'}]
   .concat(SKELETONS.map((s,i)=>({id:'sk'+i,label:s.label})));
 
 const state = { tab:'lib', fam:'ALL', q:'' };
@@ -706,12 +799,54 @@ function renderSkeleton(s){
   return html;
 }
 
+function renderShapeIndex(){
+  const rows = MODULES.map(m=>({ m, s: shapeOf(m) }));
+  const kinds = {}, shapes = {};
+  for(const r of rows){
+    kinds[r.s.kind] = (kinds[r.s.kind] || 0) + 1;
+    (shapes[r.s.primary] = shapes[r.s.primary] || []).push(r);
+  }
+  const clashes = [];
+  for(const k of Object.keys(FAMILIES)){
+    const g = {};
+    for(const r of rows.filter(r=>r.m.fam===k)) (g[r.s.primary] = g[r.s.primary] || []).push(r.m.id);
+    for(const [sh,ids] of Object.entries(g)) if(ids.length>1) clashes.push(`${k} ${FAMILIES[k]}：${ids.join('、')} 同为「${sh}」`);
+  }
+  const names = Object.keys(shapes);
+  let html = `<div class="libbar">
+    <div class="lead">按<b>呈现原型</b>重新分组：共 ${rows.length} 个模块、${names.length} 种主形态。主形态取模块样例的第一个元素，<b>一个模块只有一个主形态</b>；同一份样例里出现的其他形态、材质与构件记作<b>衍生形态</b>。形态派生自样例本身、不另设字段，所以这一页与模块库永远同源。</div>
+    <div class="lead">用法：写新模块时先判断信息是什么形状，再到对应主形态下抄同类模块的写法；「同一族内不得有两个模块使用同一呈现原型」这条约束，看下面的自查行即可。</div>
+  </div>
+  <div class="shapebar">${Object.keys(kinds).sort((a,b)=>kinds[b]-kinds[a]).map(k=>`<span class="sc">${k}<b>${kinds[k]}</b></span>`).join('')}</div>`;
+  html += clashes.length
+    ? `<div class="warnline"><b>同族内出现同形态（${clashes.length} 处）</b>：${clashes.join('；')}。</div>`
+    : `<div class="warnline ok"><b>同族不得同形</b>：未发现同族内主形态重复。</div>`;
+  for(const kind of Object.keys(kinds).sort((a,b)=>kinds[b]-kinds[a])){
+    const list = Object.entries(shapes).filter(([n])=>(SHAPE_META[n]||['未归类'])[0]===kind)
+      .sort((a,b)=>b[1].length-a[1].length);
+    html += `<section class="sgroup"><h3>${kind}<span class="cnt">${kinds[kind]} 个模块 · ${list.length} 种形态</span></h3><div class="shapes">`;
+    for(const [name, rs] of list){
+      const meta = SHAPE_META[name] || ['未归类',''];
+      const dv = [...new Set(rs.flatMap(r=>r.s.derived))];
+      html += `<article class="shape">
+        <div class="sh"><b>${name}</b><span class="kind">${meta[1]}</span><span class="cnt">${rs.length} 个</span></div>
+        <div class="sample">${rs[0].m.html}</div>
+        <div class="uses">${rs.map(r=>`<span class="chip">${r.m.id} ${r.m.name}</span>`).join('')}</div>
+        ${dv.length?`<p class="note">衍生形态：${dv.join(' · ')}</p>`:''}
+      </article>`;
+    }
+    html += `</div></section>`;
+  }
+  return html;
+}
+
 function render(){
   const tabs = document.getElementById('tabs');
   tabs.innerHTML = TABS.map(t=>`<button class="tab ${state.tab===t.id?'on':''}" data-tab="${t.id}">${t.label}</button>`).join('');
 
   const app = document.getElementById('app');
   if(state.tab==='lib'){ app.innerHTML = renderLib(); return; }
+  if(state.tab==='shape'){ app.innerHTML = renderShapeIndex(); return; }
   const i = Number(state.tab.slice(2));
   app.innerHTML = renderSkeleton(SKELETONS[i]);
 }
