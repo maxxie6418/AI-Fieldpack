@@ -165,7 +165,7 @@ table.mini tr:last-child td{border-bottom:none}
 .bar .tv{font:var(--f-xs)/1 var(--mono);color:var(--ink-3);text-align:right}
 .note{font-size:var(--f-xs);color:var(--ink-3);border-left:2px solid var(--rule);padding-left:10px}
 
-/* ---------- 呈现原型：材质三档 + 四类固定形态 ---------- */
+/* ---------- 呈现原型：材质三档 + 八类固定形态 ---------- */
 /* 材质一 · 平：不用外框与底色，只靠分隔线；给高密度表（G2 条目表 / H1 数值参考表 / E7 速查表） */
 .mat-flat{background:transparent;border:none;border-radius:0}
 /* 材质二 · 卡：默认形态（.mini / .term / .stat / .tier），保持现状 */
@@ -218,6 +218,51 @@ p.alias{font-size:var(--f-xs);color:var(--ink-3)}
   border-radius:var(--r-m);font-size:var(--f-l);line-height:1.7;color:var(--ink)}
 .spoken::before{content:"「";position:absolute;left:12px;top:6px;font-size:26px;line-height:1;
   color:var(--accent);opacity:.45}
+/* 提示条：带语气标签的强调块（对应 answer-me-with-html 的 callout）。
+   与 .mat-float 的分工——浮材质装「内容」（摘要、事件卡、案例），提示条装「态度」（适用 / 不适用 / 注意 / 结论） */
+.callout{margin:.4em 0;padding:11px 14px;background:var(--bg-2);border:1px solid var(--rule);
+  border-radius:var(--r-m);font-size:var(--f-m);color:var(--ink-2)}
+.callout>.tag{display:inline-block;margin-bottom:4px;font:600 var(--f-xs)/1 var(--mono);letter-spacing:.08em}
+.callout p{margin:0}
+.callout.info{background:var(--info-bg);border-color:var(--info)} .callout.info>.tag{color:var(--info)}
+.callout.ok{background:var(--ok-bg);border-color:var(--ok)} .callout.ok>.tag{color:var(--ok)}
+.callout.warn{background:var(--warn-bg);border-color:var(--warn)} .callout.warn>.tag{color:var(--warn)}
+.callout.bad{background:var(--bad-bg);border-color:var(--bad)} .callout.bad>.tag{color:var(--bad)}
+/* 批注：正文里就地对片段挂注释（对应 annot）。
+   与 .fix 的分工——纠错是整句替换（划掉原说法、给出正解），批注是同一段话里的逐片段点评 */
+.annot{margin:.35em 0;padding:12px 14px;background:var(--bg-2);border-radius:var(--r-m);
+  font-size:var(--f-m);line-height:2;color:var(--ink-2)}
+.annot p{margin:.3em 0}
+.annot .an{border-bottom:1px dashed var(--accent);cursor:help}
+.annot .an>i{font-style:normal;font-size:var(--f-xs);color:var(--accent);white-space:nowrap}
+.annot .an>i::before{content:"（"} .annot .an>i::after{content:"）"}
+.annot .an.bad{border-bottom-color:var(--bad)} .annot .an.bad>i{color:var(--bad)}
+/* 限值：某个量的合理区间与端点（对应 limits）。
+   与 .bar 的分工——条形图只比大小，限值条还要标区间端点、单位与「超出意味着什么」；
+   与 .scale 的分工——阈值刻度是表格单元格里的紧凑判据，限值是整块的多行数值清单 */
+.limits{display:grid;gap:10px;margin:.35em 0}
+.limit{display:grid;grid-template-columns:104px 1fr auto;gap:10px;align-items:center;font-size:var(--f-s)}
+.limit .tk{color:var(--ink-2)}
+.limit .tr{position:relative;height:9px;background:var(--bg-3);border-radius:999px}
+.limit .tr u{position:absolute;top:0;bottom:0;background:var(--accent);opacity:.35;border-radius:999px}
+.limit .tr i{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--accent);border-radius:1px}
+.limit .tr i.over{background:var(--bad)}
+.limit .tv{font:var(--f-xs)/1 var(--mono);color:var(--ink-3);white-space:nowrap;text-align:right}
+.limit .rm{grid-column:2/4;margin-top:-4px;font-size:var(--f-xs);color:var(--ink-3)}
+/* 时序：多参与方的往返消息与阶段分隔（对应 sequence）。
+   与 .flow 的分工——流程图画的是一条单线路径，时序画的是双方来回；跨机器、跨角色的流程用它才看得出「谁在等谁」 */
+.seq{margin:.4em 0;border:1px solid var(--rule);border-radius:var(--r-m);overflow:hidden;font-size:var(--f-s)}
+.seqhd{display:grid;grid-template-columns:1fr 1fr;background:var(--bg-2);border-bottom:1px solid var(--rule)}
+.seqhd span{padding:7px 12px;text-align:center;font-weight:600}
+.seqhd span+span{border-left:1px solid var(--rule)}
+.seq .m{padding:7px 12px;border-bottom:1px solid var(--rule-2);color:var(--ink-2)}
+.seq .m:last-child{border-bottom:none}
+.seq .m.fwd{text-align:right} .seq .m.fwd::after{content:" →";color:var(--accent)}
+.seq .m.back{text-align:left} .seq .m.back::before{content:"← ";color:var(--ink-3)}
+.seq .m.self{text-align:center;font-style:italic;color:var(--ink-3)}
+.seq .m.note{font-size:var(--f-xs);color:var(--ink-3);background:var(--bg-2)}
+.seq .ss{padding:4px 12px;font:600 var(--f-xs)/1.8 var(--mono);letter-spacing:.06em;color:var(--accent);
+  background:var(--bg-2);border-bottom:1px solid var(--rule)}
 /* 呈现原型到模块的对照写在本文件模块库页首的图例里，模块自身不新增字段 */
 
 /* ---------- 骨架规格：层归属徽标与校验 ---------- */
@@ -364,9 +409,9 @@ const MODULES = [
 {id:'F1',fam:'F',name:'判别标准',when:'判断型',what:'给出可操作的判据与阈值：看到什么算什么，而不是「视情况而定」。判断型的骨架主体。',
  html:`<table class="mini"><tr><th>判据</th><th>阈值刻度</th><th>结论</th></tr><tr><td>估值分位</td><td class="scale-cell"><span class="scale"><u style="left:0;width:30%"></u><i style="left:30%"></i></span><span class="thrv">低于近 10 年 30% 分位</span></td><td><span class="pill ok">进入观察名单</span></td></tr><tr><td>现金流覆盖</td><td class="scale-cell"><span class="scale"><u style="left:47%;width:53%"></u><i style="left:47%"></i></span><span class="thrv">经营现金流 / 净利润 ≥ 0.7</span></td><td><span class="pill warn">利润质量存疑，需核查</span></td></tr></table>`},
 {id:'F2',fam:'F',name:'反例与失败案例',when:'判断型',what:'正例建立认知，反例界定边界；标出「按这套标准也不该做」的情形。',
- html:`<div class="mini"><h4>低估值陷阱</h4><p>分位低于 20% 但基本面持续恶化时，低估值是结果而不是机会。案例：某行业在需求结构变化后长期停留在低分位。</p></div>`},
+ html:`<div class="annot"><p>「分位低于 20%」<span class="an bad">就是便宜<i>分位是历史统计，不是未来收益的保证</i></span>，所以值得买。</p><p>正确读法：<span class="an">先看基本面有没有变化<i>需求结构变了，历史分位就失去可比性</i></span>，再看价格。</p></div>`},
 {id:'F3',fam:'F',name:'适用条件与边界',when:'全类型',what:'明确这套知识的适用前提与失效区，避免被误用到不该用的场景。',
- html:`<ul class="bullets"><li><strong>适用</strong>：流动性较好的公开市场标的、持有期在 3 年以上</li><li><strong>不适用</strong>：无法估值的新兴资产、需要短期择时的资金</li></ul>`},
+ html:`<div class="callout info"><span class="tag">适用</span><p>流动性较好的公开市场标的、持有期在 3 年以上。</p></div><div class="callout warn"><span class="tag">不适用</span><p>无法估值的新兴资产；需要短期择时的资金。</p></div>`},
 {id:'F4',fam:'F',name:'共识与争议分离',when:'共识度=存在活跃争议',what:'把「已定论 / 仍有争论 / 纯推测」分开标注，防止把争议写成结论。',
  html:`<table class="mini"><tr><th>结论</th><th>状态</th></tr><tr><td>总能量摄入长期超过消耗会导致体重上升</td><td><span class="pill ok">已定论</span></td></tr><tr><td>进食时间对代谢的独立影响</td><td><span class="pill warn">仍有争论</span></td></tr><tr><td>某类补充剂对普通人群的长期收益</td><td><span class="pill neutral">证据不足</span></td></tr></table>`},
 {id:'F5',fam:'F',name:'证据与来源分级',when:'需要溯源的主题',what:'标注关键结论的来源类型与强度，让读者知道哪句可信到哪一步。',
@@ -392,7 +437,7 @@ const MODULES = [
 {id:'H1',fam:'H',name:'数值参考表',when:'量化度=数据参数为主',what:'成组的数值以表格承载；纯文字描述数值既难读也易错。',
  html:`<table class="mini mat-flat"><tr><th>项目</th><th>参考下限</th><th>参考上限</th><th>单位</th></tr><tr><td>总胆固醇</td><td>—</td><td>5.2</td><td>mmol/L</td></tr><tr><td>甘油三酯</td><td>—</td><td>1.7</td><td>mmol/L</td></tr><tr><td>HDL-C（男）</td><td>1.0</td><td>—</td><td>mmol/L</td></tr></table>`},
 {id:'H2',fam:'H',name:'参数区间',when:'量化度=数据参数为主',what:'说明某个量的合理波动范围，以及超出范围意味着什么。',
- html:`<div class="bars"><div class="bar"><span class="tk">久坐</span><span class="tr"><i style="width:26%"></i></span><span class="tv">1.2×</span></div><div class="bar"><span class="tk">中等活动</span><span class="tr"><i style="width:62%"></i></span><span class="tv">1.55×</span></div><div class="bar"><span class="tk">高强度</span><span class="tr"><i style="width:88%"></i></span><span class="tv">1.725×</span></div></div>`},
+ html:`<div class="limits"><div class="limit"><span class="tk">碳水供能比</span><span class="tr"><u style="left:50%;width:15%"></u><i style="left:50%"></i><i style="left:65%"></i></span><span class="tv">50 – 65%</span><span class="rm">长期低于下限要留意是不是走了极端低碳水；高于上限多半是精制糖与主食过量。</span></div><div class="limit"><span class="tk">脂肪供能比</span><span class="tr"><u style="left:20%;width:10%"></u><i style="left:20%"></i><i style="left:30%"></i></span><span class="tv">20 – 30%</span><span class="rm">总量落在区间内，也可能因为饱和脂肪过多而不合格——类型要和总量一起看。</span></div><div class="limit"><span class="tk">蛋白质供能比</span><span class="tr"><u style="left:10%;width:10%"></u><i class="over" style="left:10%"></i><i style="left:20%"></i></span><span class="tv">10 – 20%</span><span class="rm">下限是硬约束：低于它通常意味着总摄入不足，或食物结构过于单一。</span></div></div>`},
 {id:'H3',fam:'H',name:'单位换算',when:'量化度=数据参数为主',what:'这一领域里最容易出错的一组换算，列成表随查随用。',
  html:`<table class="mini"><tr><th>换算</th><th>关系</th></tr><tr><td>mg/dL → mmol/L（胆固醇）</td><td>÷ 38.67</td></tr><tr><td>mg/dL → mmol/L（甘油三酯）</td><td>÷ 88.57</td></tr><tr><td>kcal → kJ</td><td>× 4.184</td></tr></table>`},
 {id:'H4',fam:'H',name:'图表',when:'量化度=数据参数为主',what:'当数量对比或趋势比数字本身更重要时，用图形承载；否则表格更好。',
@@ -474,7 +519,7 @@ const SKELETONS = [
  {id:'A6',h:'边界声明',html:`<div class="opposed"><div><h5>这一页讲</h5><ul class="bullets"><li>镜像、容器、网络、卷的日常操作</li><li>Dockerfile 的常用写法与排错</li></ul></div><div><h5>这一页不讲</h5><ul class="bullets"><li>Kubernetes 等集群编排</li><li>镜像仓库运维与安全加固细节</li></ul></div></div>`},
  {id:'A7',h:'前置门槛清单',html:`<table class="mini"><tr><th>类别</th><th>硬前置（缺了读不懂）</th><th>软前置（缺了读不深）</th></tr><tr><td>概念</td><td>进程与端口、文件路径、环境变量</td><td>Linux 命名空间与 cgroup</td></tr><tr><td>学科</td><td>无——会命令行即可开始</td><td>操作系统与网络基础</td></tr><tr><td>通识</td><td>知道镜像 / 容器 / 仓库是三件不同的事</td><td>了解虚拟化与云服务的常见说法</td></tr><tr><td>工具</td><td>本机可运行 Docker，能用终端与编辑器</td><td>有一个镜像仓库账号</td></tr></table>`},
  {id:'B5',h:'流程图',html:`<div class="flow"><span>写 Dockerfile</span><i>→</i><span>docker build</span><i>→</i><span>docker run</span><i>→</i><span>进容器调试</span><i>→</i><span>push 到仓库</span></div>`},
- {id:'E1',h:'步骤流程',html:`<ol class="steps"><li><strong>写 Dockerfile</strong>：固定基础镜像版本，逐层加依赖</li><li><strong>构建镜像</strong>：<code>docker build -t name:tag .</code></li><li><strong>运行并验证</strong>：<code>docker run --rm -it name:tag</code></li><li><strong>调试</strong>：进容器看日志；必要时挂载卷复现问题</li><li><strong>发布</strong>：<code>docker push</code> 到仓库，固定 tag 不用 latest</li></ol>`},
+ {id:'E1',h:'步骤流程',html:`<ol class="steps"><li><strong>写 Dockerfile</strong>：固定基础镜像版本，逐层加依赖</li><li><strong>构建镜像</strong>：<code>docker build -t name:tag .</code></li><li><strong>运行并验证</strong>：<code>docker run --rm -it name:tag</code></li><li><strong>调试</strong>：进容器看日志；必要时挂载卷复现问题</li><li><strong>发布</strong>：<code>docker push</code> 到仓库，固定 tag 不用 latest</li></ol><div class="seq"><div class="seqhd"><span>本地开发机</span><span>镜像仓库 / 运行环境</span></div><div class="m fwd">写好 Dockerfile，<code>docker build</code> 固定基础镜像版本 →</div><div class="m fwd"><code>docker push</code> 推送镜像，tag 固定不用 latest →</div><div class="ss">换一台机器部署</div><div class="m back">← 目标机器 <code>docker pull</code> 拉取同一个 tag</div><div class="m back">← 容器起不来时，回读最后 20 行日志</div><div class="m self">本地挂载卷重跑同一个镜像，先复现再改</div></div>`},
  {id:'E2',h:'判断分支',html:`<ul class="tree"><li>容器起不来，先看什么？<ul><li>日志有报错 → 读最后 20 行</li><li>没有日志 → <code>docker ps -a</code> 看退出码</li><li>退出码 137 → 多半是被 OOM 杀掉</li></ul></li></ul>`},
  {id:'E7',h:'速查表',html:`<table class="mini mat-flat"><tr><th>命令</th><th>做什么</th></tr><tr><td><code>docker ps -a</code></td><td>列出所有容器，含已退出</td></tr><tr><td><code>docker logs -f &lt;id&gt;</code></td><td>持续跟踪容器日志</td></tr><tr><td><code>docker exec -it &lt;id&gt; sh</code></td><td>进入运行中的容器</td></tr><tr><td><code>docker system prune</code></td><td>清理悬空镜像与停止的容器</td></tr></table>`},
  {id:'E3',h:'检查清单',html:`<ul class="checklist"><li>基础镜像版本已固定，不用 <code>latest</code></li><li>.dockerignore 已排除 node_modules 与 .git</li><li>镜像内不含密钥，敏感值走环境变量</li><li>已确认容器内的时区与宿主机一致</li></ul>`},
@@ -530,8 +575,8 @@ const SKELETONS = [
  {id:'F1',h:'判别标准',html:`<table class="mini"><tr><th>判据</th><th>阈值刻度</th><th>结论</th></tr><tr><td>估值分位</td><td class="scale-cell"><span class="scale"><u style="left:0;width:30%"></u><i style="left:30%"></i></span><span class="thrv">低于近 10 年 30% 分位</span></td><td><span class="pill ok">进入观察名单</span></td></tr><tr><td>现金流覆盖</td><td class="scale-cell"><span class="scale"><u style="left:47%;width:53%"></u><i style="left:47%"></i></span><span class="thrv">经营现金流 / 净利润 ≥ 0.7</span></td><td><span class="pill warn">利润质量存疑，需核查</span></td></tr><tr><td>负债结构</td><td class="scale-cell"><span class="scale"><u style="left:0;width:50%"></u><i class="over" style="left:50%"></i></span><span class="thrv">有息负债 / 经营现金流 ≤ 4</span></td><td><span class="pill bad">周期下行时风险放大</span></td></tr></table>`},
  {id:'B6',h:'决策树',html:`<ul class="tree"><li>能说清它靠什么赚钱吗？<ul><li>不能 → 停止，不进入下一步</li><li>能 → 现在的价格低于你的估值吗？<ul><li>否 → 放观察名单</li><li>是 → 基本面在改善还是恶化？<ul><li>恶化 → 这是陷阱，不是机会</li><li>改善 → 进入仓位管理</li></ul></li></ul></li></ul></li></ul>`},
  {id:'F6',h:'权衡对比表',html:`<div class="opposed"><div><h5>集中持有少数标的</h5><p>研究深度足够、能承受回撤时的选择。</p><p class="alias">代价：波动大，判断错了没有对冲。</p></div><div><h5>分散持有</h5><p>时间有限、追求稳健时的选择。</p><p class="alias">代价：收益被平庸标的拉平。</p></div><div class="verdict"><h5>怎么选</h5><p>决定因素是你实际能投入的研究时间，而不是对收益的期望。</p></div></div>`},
- {id:'F2',h:'反例与失败案例',html:`<div class="mini"><h4>低估值陷阱</h4><p>分位低于 20%，但基本面持续恶化时，低估值是结果而不是机会。典型形态：需求结构已变，盈利中枢下移，历史分位不再可比。</p></div>`},
- {id:'F3',h:'适用条件与边界',html:`<ul class="bullets"><li><strong>适用</strong>：可估值、流动性较好、持有期 3 年以上的公开市场标的</li><li><strong>不适用</strong>：无法估值的新兴资产；期限在一年内、需要择时的资金</li><li><strong>失效信号</strong>：当判断依据从「值多少钱」变成「别人会出多少钱」时，框架已经失效</li></ul>`},
+ {id:'F2',h:'反例与失败案例',html:`<div class="annot"><p><span class="an">分位低于 20%<i>近 10 年估值分位，属于统计描述</i></span> 不等于机会。</p><p><span class="an bad">低估值就是买入信号<i>基本面持续恶化时，便宜只会更便宜</i></span>；典型形态是需求结构已变、盈利中枢下移，<span class="an">这时历史分位不再可比<i>参考系本身被换掉了</i></span>。</p></div>`},
+ {id:'F3',h:'适用条件与边界',html:`<div class="callout info"><span class="tag">适用</span><p>可估值、流动性较好、持有期 3 年以上的公开市场标的。</p></div><div class="callout warn"><span class="tag">不适用</span><p>无法估值的新兴资产；期限在一年内、需要择时的资金。</p></div><div class="callout bad"><span class="tag">失效信号</span><p>当判断依据从「值多少钱」变成「别人会出多少钱」时，框架已经失效。</p></div>`},
  {id:'F4',h:'共识与争议分离',html:`<table class="mini"><tr><th>结论</th><th>状态</th></tr><tr><td>长期看价格向价值回归</td><td><span class="pill ok">已定论</span></td></tr><tr><td>低估值因子长期超额收益</td><td><span class="pill warn">仍有争论</span>（不同市场、不同时段结论不一致）</td></tr><tr><td>某类指标能预测短期涨跌</td><td><span class="pill neutral">证据不足</span></td></tr></table>`},
  {id:'F5',h:'证据与来源分级',html:`<table class="mini"><tr><th>等级</th><th>来源类型</th></tr><tr><td><span class="pill grade ok">A</span></td><td>可核对的财务报告原始数据</td></tr><tr><td><span class="pill grade info">B</span></td><td>长期跟踪的行业数据与统计年鉴</td></tr><tr><td><span class="pill grade warn">C</span></td><td>卖方研报与专家访谈</td></tr><tr><td><span class="pill grade neutral">D</span></td><td>市场传闻与社群观点，仅供参考</td></tr></table>`},
  {id:'E5',h:'行动触发器',html:`<ul class="bullets"><li>每当看到「历史年化收益」→ 先问：起止时间怎么选的？</li><li>每当想「这次不一样」→ 先问：不一样在哪里，有没有可验证的证据？</li><li>每当听到「大家都这么做」→ 先问：这句话的来源是哪一级？</li></ul>`},
@@ -590,7 +635,8 @@ function renderLib(){
   const q = state.q.trim().toLowerCase();
   let html = `<div class="libbar">
     <div class="lead">全量模块池，按功能族分组，共 ${MODULES.length} 个。以下每个模块都是一个可复用片段；标出的「适用」表示它最常出现在哪类页面，不代表只能在那一类使用。</div>
-    <div class="lead">呈现原型：<b>材质三档</b>——平（只用分隔线，给高密度表）、卡（默认）、浮（浅底加左侧色带，给结论与警示）；<b>字号分档</b>——12 标签 / 13.5 数据 / 14.5 正文 / 15 卡标题 / 17 节标题与结论 / 20 数字；<b>四类信息有固定形态</b>——对置（两栏加判定行）、阈值（刻度条加阈值线）、纠错（划去的说法加绿色正解）、折叠（默认收起）。同一族内不得有两个模块使用同一呈现原型。</div>
+    <div class="lead">呈现原型：<b>材质三档</b>——平（只用分隔线，给高密度表）、卡（默认）、浮（浅底加左侧色带，给结论与警示）；<b>字号分档</b>——12 标签 / 13.5 数据 / 14.5 正文 / 15 卡标题 / 17 节标题与结论 / 20 数字；<b>八类信息有固定形态</b>——对置（两栏加判定行）、阈值（刻度条加阈值线）、纠错（划去的说法加绿色正解）、折叠（默认收起）、提示条（带语气的强调块）、批注（正文里逐片段挂注释）、限值（区间条加端点与单位）、时序（多参与方的往返消息）。同一族内不得有两个模块使用同一呈现原型。</div>
+    <div class="lead">呈现原型与模块的对照：提示条→F3；批注→F2；限值→H2；时序→E1（牵涉两台以上机器或两个以上角色时）；对置→A6 / C4 / D5 / F6 / G6；阈值→F1；纠错→E8；折叠→G5 / I2。一个模块可以有两种形态，按内容形状切换，不算同族同形。</div>
     <button class="btn ${state.fam==='ALL'?'on':''}" data-fam="ALL">全部</button>`;
   for(const k of Object.keys(FAMILIES)){
     html += `<button class="btn ${state.fam===k?'on':''}" data-fam="${k}">${k} ${FAMILIES[k]}</button>`;
