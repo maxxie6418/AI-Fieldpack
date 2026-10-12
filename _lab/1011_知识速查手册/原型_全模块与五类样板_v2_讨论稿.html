@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="n" data-mode="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>原型 v2 · 契约驱动的模块库与五类骨架</title>
+<style>
+/* ============================================================
+   1. 令牌契约：18 个颜色变量，浅深两态各写全
+   组件样式只读变量，换主题只换变量，不动版面
+   ============================================================ */
+html[data-theme="n"]{ --accent-l:#3b5bdb; --accent-l-bg:#eef1fd; --accent-d:#93a5ff; --accent-d-bg:#1c2340; }
+html[data-theme="a"]{ --accent-l:#0f766e; --accent-l-bg:#e6f4f2; --accent-d:#5eead4; --accent-d-bg:#10231f; }
+html[data-theme="b"]{ --accent-l:#b45309; --accent-l-bg:#fbf1e4; --accent-d:#fbbf24; --accent-d-bg:#2a2110; }
+html[data-theme="c"]{ --accent-l:#4338ca; --accent-l-bg:#eeecfd; --accent-d:#a5b4fc; --accent-d-bg:#1d1f3d; }
+html[data-theme="d"]{ --accent-l:#9d174d; --accent-l-bg:#fbeaf0; --accent-d:#f9a8c4; --accent-d-bg:#2c1420; }
+html[data-theme="e"]{ --accent-l:#166534; --accent-l-bg:#e8f5ec; --accent-d:#86efac; --accent-d-bg:#12251a; }
+
+:root{
+  --bg:#ffffff; --paper:#fcfcfb; --ink:#15171c; --ink-2:#484d57; --ink-3:#7a818d;
+  --line:#e2e4e8; --line-2:#eef0f3; --fill:#f4f5f7;
+  --ok:#15803d; --ok-bg:#eaf6ee; --err:#b91c1c; --err-bg:#fdeeee;
+  --warn:#a16207; --warn-bg:#fbf4e3; --head-bg:#f7f8fa; --head-fg:#15171c;
+  --accent:var(--accent-l); --accent-bg:var(--accent-l-bg);
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Noto Sans Mono CJK SC",monospace;
+  --radius:10px; --radius-sm:6px;
+}
+html[data-mode="dark"]{
+  --bg:#0f1116; --paper:#14171d; --ink:#e7e9ee; --ink-2:#a8adb8; --ink-3:#7c828e;
+  --line:#262a33; --line-2:#1d2129; --fill:#1a1e26;
+  --ok:#4ade80; --ok-bg:#122a1c; --err:#f87171; --err-bg:#2a1616;
+  --warn:#fbbf24; --warn-bg:#2a2110; --head-bg:#171a21; --head-fg:#e7e9ee;
+  --accent:var(--accent-d); --accent-bg:var(--accent-d-bg);
+}
+
+/* ------------------------------------------------------------
+   2. 基础
+   ------------------------------------------------------------ */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5{margin:0;line-height:1.4;font-weight:650}
+p{margin:0 0 10px}
+ul,ol{margin:0;padding-left:1.25em}
+code,.mono{font-family:var(--mono);font-size:.92em}
+a{color:var(--accent)}
+
+/* ------------------------------------------------------------
+   3. 顶栏与页签
+   ------------------------------------------------------------ */
+.top{
+  position:sticky; top:0; z-index:50;
+  background:var(--bg); border-bottom:1px solid var(--line);
+}
+.top-in{
+  max-width:1180px; margin:0 auto; padding:0 22px;
+  display:flex; align-items:center; gap:18px; height:54px;
+}
+.brand{display:flex; align-items:baseline; gap:8px; flex:none}
+.brand b{font-size:15px; letter-spacing:.02em}
+.brand span{font-size:12px; color:var(--ink-3)}
+.tabs{display:flex; gap:2px; flex:1; min-width:0; overflow-x:auto}
+.tab{
+  border:0; background:none; color:var(--ink-2); cursor:pointer;
+  font:inherit; font-size:13.5px; padding:7px 11px; border-radius:var(--radius-sm);
+  white-space:nowrap;
+}
+.tab:hover{background:var(--fill); color:var(--ink)}
+.tab.on{background:var(--accent-bg); color:var(--accent); font-weight:600}
+.ctrl{display:flex; align-items:center; gap:8px; flex:none}
+.ctrl select,.icobtn{
+  font:inherit; font-size:13px; color:var(--ink-2); background:var(--bg);
+  border:1px solid var(--line); border-radius:var(--radius-sm); padding:5px 9px; cursor:pointer;
+}
+.icobtn:hover{background:var(--fill); color:var(--ink)}
+
+main{max-width:1180px; margin:0 auto; padding:26px 22px 80px}
+.lede{color:var(--ink-2); max-width:78ch; margin-bottom:20px}
+.lede strong{color:var(--ink)}
+.h2{font-size:17px; margin:28px 0 12px; padding-bottom:7px; border-bottom:1px solid var(--line)}
+.h3{font-size:14.5px; margin:18px 0 8px; color:var(--ink-2)}
+.foot{max-width:1180px; margin:0 auto; padding:0 22px 40px; color:var(--ink-3); font-size:12.5px}
+
+/* ------------------------------------------------------------
+   4. 通用件
+   ------------------------------------------------------------ */
+.card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+.mini{background:var(--fill); border-radius:var(--radius-sm); padding:10px 12px}
+.mini h4{font-size:13.5px; margin-bottom:3px}
+.mini p{margin:0; font-size:13.5px; color:var(--ink-2)}
+.badge{
+  display:inline-block; font-size:11.5px; line-height:1.6; padding:1px 7px;
+  border-radius:99px; background:var(--fill); color:var(--ink-3);
+}
+.badge.accent{background:var(--accent-bg); color:var(--accent)}
+.badge.ok{background:var(--ok-bg); color:var(--ok)}
+.badge.err{background:var(--err-bg); color:var(--err)}
+.badge.warn{background:var(--warn-bg); color:var(--warn)}
+.mid{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+.note{font-size:13px; color:var(--ink-3); border-left:2px solid var(--line); padding-left:9px; margin:8px 0 0}
+.btn{
+  font:inherit; font-size:13px; background:var(--bg); color:var(--ink-2);
+  border:1px solid var(--line); border-radius:var(--radius-sm); padding:4px 10px; cursor:pointer;
+}
+.btn:hover{background:var(--fill); color:var(--ink)}
+.btn.on{background:var(--accent-bg); border-color:transparent; color:var(--accent); font-weight:600}
+
+/* 表格 */
+table.tbl{width:100%; border-collapse:collapse; font-size:13.5px; margin:2px 0}
+table.tbl th,table.tbl td{
+  text-align:left; padding:6px 9px; border-bottom:1px solid var(--line-2); vertical-align:top;
+}
+table.tbl th{background:var(--head-bg); color:var(--head-fg); font-weight:600; font-size:12.5px; white-space:nowrap}
+table.tbl tr:last-child td{border-bottom:0}
+
+/* ------------------------------------------------------------
+   5. 形状层：每个形状一套明显不同的外观
+   ------------------------------------------------------------ */
+.s{margin:0}
+.s-lead{font-size:16px; line-height:1.7}
+.s-lead strong{color:var(--accent)}
+.s-bullets{padding-left:0; list-style:none}
+.s-bullets li{position:relative; padding-left:16px; margin-bottom:6px}
+.s-bullets li::before{content:""; position:absolute; left:2px; top:.72em; width:5px; height:5px; border-radius:50%; background:var(--accent)}
+.s-cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:10px}
+.s-card{background:var(--fill); border-radius:var(--radius-sm); padding:10px 12px; border-top:2px solid var(--accent)}
+.s-card h4{font-size:13.5px; margin-bottom:3px}
+.s-card p{margin:0; font-size:13px; color:var(--ink-2)}
+.s-stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+.s-stat{background:var(--accent-bg); border-radius:var(--radius-sm); padding:11px 13px}
+.s-stat b{display:block; font-size:21px; line-height:1.25; color:var(--accent); font-variant-numeric:tabular-nums}
+.s-stat span{font-size:12.5px; color:var(--ink-2)}
+.s-twocol{display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden}
+.s-twocol>div{padding:11px 13px}
+.s-twocol>div+div{border-left:1px solid var(--line)}
+.s-twocol h5{font-size:12.5px; color:var(--ink-3); margin-bottom:6px; text-transform:none}
+.s-twocol ul{padding-left:0; list-style:none; margin:0}
+.s-twocol li{position:relative; padding-left:14px; font-size:13.5px; margin-bottom:4px}
+.s-twocol li::before{content:"—"; position:absolute; left:0; color:var(--accent)}
+.s-tree{list-style:none; padding-left:0}
+.s-tree ul{list-style:none; padding-left:18px; border-left:1px solid var(--line); margin:3px 0}
+.s-tree li{position:relative; padding-left:12px; margin:3px 0; font-size:13.5px}
+.s-tree li::before{content:""; position:absolute; left:0; top:.75em; width:7px; height:1px; background:var(--line)}
+.s-steps{list-style:none; counter-reset:st; padding-left:0}
+.s-steps li{counter-increment:st; position:relative; padding-left:38px; margin-bottom:10px}
+.s-steps li::before{
+  content:counter(st,decimal-leading-zero); position:absolute; left:0; top:1px;
+  font-family:var(--mono); font-size:12px; color:var(--accent);
+  background:var(--accent-bg); border-radius:var(--radius-sm); padding:1px 6px;
+}
+.s-steps b{font-weight:600}
+.s-flow{display:flex; flex-wrap:wrap; align-items:center; gap:7px}
+.s-flow span{background:var(--fill); border-radius:99px; padding:4px 12px; font-size:13px}
+.s-flow i{color:var(--ink-3); font-style:normal; font-size:12px}
+.s-chain{display:flex; flex-wrap:wrap; align-items:center; gap:7px}
+.s-chain span{background:var(--accent-bg); color:var(--accent); border-radius:var(--radius-sm); padding:3px 10px; font-size:13px}
+.s-chain i{color:var(--ink-3); font-style:normal}
+.s-map{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+.s-map .hub{
+  flex:none; width:96px; height:96px; border-radius:50%; background:var(--accent-bg);
+  color:var(--accent); display:grid; place-items:center; font-weight:650; text-align:center; padding:8px;
+}
+.s-map .ring{display:flex; flex-wrap:wrap; gap:6px; max-width:560px}
+.s-map .ring span{border:1px solid var(--line); border-radius:99px; padding:3px 11px; font-size:13px; background:var(--paper)}
+.s-timeline{list-style:none; padding-left:0; border-left:2px solid var(--line); margin-left:4px}
+.s-timeline li{position:relative; padding:0 0 14px 20px}
+.s-timeline li::before{content:""; position:absolute; left:-6px; top:.45em; width:9px; height:9px; border-radius:50%; background:var(--accent); border:2px solid var(--bg)}
+.s-timeline .yr{display:block; font-family:var(--mono); font-size:12.5px; color:var(--accent); font-weight:600}
+.s-tiers{display:grid; gap:8px}
+.s-tier{display:flex; gap:12px; align-items:flex-start; background:var(--fill); border-radius:var(--radius-sm); padding:9px 13px; border-left:3px solid var(--accent)}
+.s-tier .lv{flex:none; width:44px; font-size:12.5px; color:var(--accent); font-weight:600}
+.s-tier p{margin:0; font-size:13.5px}
+.s-terms{display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:10px}
+.s-term{border:1px solid var(--line); border-radius:var(--radius-sm); padding:10px 12px; background:var(--paper)}
+.s-term b{font-size:14px}
+.s-term .en{display:block; font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin:1px 0 5px}
+.s-term p{margin:0 0 5px; font-size:13px; color:var(--ink-2)}
+.s-term .alias{font-size:12px; color:var(--ink-3)}
+.s-formula{
+  font-family:var(--mono); font-size:14px; background:var(--fill); border-radius:var(--radius-sm);
+  padding:12px 14px; border-left:3px solid var(--accent); overflow-x:auto;
+}
+.s-chips{display:flex; flex-wrap:wrap; gap:6px}
+.s-chips span{border:1px solid var(--line); border-radius:99px; padding:2px 11px; font-size:13px; background:var(--paper)}
+.s-checklist{list-style:none; padding-left:0}
+.s-checklist li{position:relative; padding-left:24px; margin-bottom:6px; font-size:13.5px}
+.s-checklist li::before{
+  content:""; position:absolute; left:0; top:.28em; width:12px; height:12px;
+  border:1.5px solid var(--line); border-radius:3px; background:var(--bg);
+}
+.s-bars{display:grid; gap:7px}
+.s-bar{display:flex; align-items:center; gap:9px; font-size:13px}
+.s-bar .tk{flex:none; width:88px; color:var(--ink-2)}
+.s-bar .tr{flex:1; height:9px; background:var(--fill); border-radius:99px; overflow:hidden; min-width:60px}
+.s-bar .tr i{display:block; height:100%; background:var(--accent); border-radius:99px}
+.s-bar .tv{flex:none; font-family:var(--mono); font-size:12.5px; color:var(--ink-2); min-width:44px; text-align:right}
+.s-qa{border:1px solid var(--line); border-radius:var(--radius-sm); overflow:hidden; margin-bottom:8px}
+.s-qa summary{padding:9px 13px; font-size:13.5px; cursor:pointer; background:var(--paper); font-weight:600}
+.s-qa summary::marker{color:var(--accent)}
+.s-qa div{padding:9px 13px; border-top:1px solid var(--line-2); font-size:13.5px; color:var(--ink-2)}
+.s-note{background:var(--warn-bg); color:var(--warn); border-radius:var(--radius-sm); padding:9px 13px; font-size:13.5px}
+.s-note.info{background:var(--accent-bg); color:var(--accent)}
+.s-kv{width:100%; border-collapse:collapse; font-size:13.5px}
+.s-kv th{text-align:left; width:130px; padding:6px 10px 6px 0; color:var(--ink-3); font-weight:500; border-bottom:1px solid var(--line-2)}
+.s-kv td{padding:6px 0; border-bottom:1px solid var(--line-2)}
+.s-kv tr:last-child th,.s-kv tr:last-child td{border-bottom:0}
+
+/* ------------------------------------------------------------
+   6. 契约库
+   ------------------------------------------------------------ */
+.libbar{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:14px}
+.libbar input[type=search]{
+  font:inherit; font-size:13px; padding:5px 10px; border:1px solid var(--line);
+  border-radius:var(--radius-sm); background:var(--bg); color:var(--ink); min-width:190px;
+}
+.mod{border:1px solid var(--line); border-radius:var(--radius); margin-bottom:9px; overflow:hidden; background:var(--paper)}
+.mod-head{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; padding:11px 14px 7px}
+.mod-head h3{font-size:14.5px}
+.kvline{display:flex; flex-wrap:wrap; gap:6px 14px; padding:0 14px 10px; font-size:12.5px; color:var(--ink-3)}
+.kvline b{color:var(--ink-2); font-weight:600}
+.mod-foot{display:flex; gap:8px; padding:0 14px 11px}
+.mod-body{border-top:1px solid var(--line-2); padding:12px 14px; display:none}
+.mod.open .mod-body{display:block}
+.draft{
+  font-family:var(--mono); font-size:12.5px; background:var(--fill); color:var(--ink-2);
+  border-radius:var(--radius-sm); padding:10px 12px; white-space:pre-wrap; margin:9px 0 0; overflow-x:auto;
+}
+.subttl{font-size:12.5px; color:var(--ink-3); margin:0 0 6px}
+
+/* ------------------------------------------------------------
+   7. 形状层页
+   ------------------------------------------------------------ */
+.shape-box{border:1px solid var(--line); border-radius:var(--radius); margin-bottom:11px; background:var(--paper)}
+.shape-h{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; padding:11px 14px}
+.shape-h code{font-size:13px; color:var(--accent); font-weight:600}
+.shape-h .use{font-size:12.5px; color:var(--ink-3)}
+.shape-b{padding:0 14px 14px}
+.shape-b .split{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr); gap:14px; align-items:start}
+@media (max-width:860px){.shape-b .split{grid-template-columns:1fr}}
+
+/* ------------------------------------------------------------
+   8. 骨架页
+   ------------------------------------------------------------ */
+.skbar{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:14px}
+.skbar .sep{width:1px; height:20px; background:var(--line); margin:0 4px}
+.skhead{border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px; background:var(--paper); margin-bottom:14px}
+.skhead h2{font-size:17px; margin-bottom:5px}
+.skhead .sub{color:var(--ink-2); font-size:13.5px; margin-bottom:9px}
+.spec{background:var(--fill); border-radius:var(--radius-sm); padding:10px 12px; font-size:12.5px}
+.spec-line{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:5px}
+.spec-line strong{color:var(--ink-2); font-weight:600}
+.spec-msg{margin:5px 0 0; padding-left:1.1em; color:var(--err); font-size:12.5px}
+.spec-meta{display:block; color:var(--ink-3); margin-top:5px}
+.sksec{border:1px solid var(--line); border-radius:var(--radius); margin-bottom:8px; overflow:hidden; background:var(--paper)}
+.sksec-head{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; padding:10px 14px 8px}
+.sksec-head h3{font-size:14px}
+.lay{font-size:11px; padding:1px 7px; border-radius:99px; background:var(--fill); color:var(--ink-3)}
+.lay.base-head{background:var(--accent-bg); color:var(--accent)}
+.lay.base-tail{background:var(--ok-bg); color:var(--ok)}
+.lay.attr{background:var(--warn-bg); color:var(--warn)}
+.sksec-body{padding:2px 14px 13px}
+.sksec-draft{display:none; margin:0 14px 13px; font-family:var(--mono); font-size:12.5px; background:var(--fill); color:var(--ink-2); border-radius:var(--radius-sm); padding:10px 12px; white-space:pre-wrap}
+.sksec.show-draft .sksec-draft{display:block}
+.sksec.show-draft .sksec-body{display:none}
+.missing{border:1px dashed var(--line); border-radius:var(--radius-sm); padding:9px 12px; font-size:13px; color:var(--ink-3)}
+
+/* ------------------------------------------------------------
+   9. 校验器
+   ------------------------------------------------------------ */
+textarea.draft-input{
+  width:100%; min-height:190px; font-family:var(--mono); font-size:12.5px; line-height:1.7;
+  background:var(--fill); color:var(--ink); border:1px solid var(--line); border-radius:var(--radius);
+  padding:12px; resize:vertical;
+}
+.report{border:1px solid var(--line); border-radius:var(--radius); padding:12px 14px; background:var(--paper); margin-top:12px}
+.report .ln{font-family:var(--mono); font-size:12.5px; margin:0 0 4px; color:var(--err)}
+.report .ln.ok{color:var(--ok)}
+.report .fix{
+  font-family:var(--mono); font-size:12px; background:var(--ok-bg); color:var(--ok);
+  border-radius:var(--radius-sm); padding:7px 10px; white-space:pre-wrap; margin:6px 0 10px;
+}
+.presets{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px}
+
+@media (max-width:700px){
+  .top-in{height:auto; flex-wrap:wrap; padding:9px 14px; gap:9px}
+  main{padding:18px 14px 60px}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .s-twocol{grid-template-columns:1fr}
+  .s-twocol>div+div{border-left:0; border-top:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand"><b>原型 v2</b><span>契约 · 形状 · 骨架</span></div>
+    <nav class="tabs" id="tabs"></nav>
+    <div class="ctrl">
+      <select id="themeSel" title="主题槽位"></select>
+      <button class="icobtn" id="modeBtn" title="切换明暗">◐</button>
+    </div>
+  </div>
+</header>
+<main id="view"></main>
+<footer class="foot">
+  原型 v2 · 契约驱动的模块库与五类骨架。本页自身即由「内容契约 + 形状渲染器」生成；页面末尾内嵌生成它的内容草稿。
+</footer>
+<textarea id="am-source" hidden readonly aria-hidden="true"></textarea>
+<script>
+/* ============================================================
+   2. 模块契约：每个模块只声明「写什么」，不声明「长什么样」
+   字段：id / fam / name / shape（交给哪个形状渲染器）
+        use（用途） / trigger（触发条件） / fields（必含字段）
+        min（数量下限） / tier（首次出现的深度档）
+   ============================================================ */
+const FAMILIES = {A:'定位与概览',B:'结构与地图',C:'概念与术语',D:'叙事与演化',E:'操作与执行',F:'判断与取舍',G:'检索与索引',H:'数据与量化',I:'学习与自测',J:'元信息与延伸'};
+const TIERS = {1:'一页入门',2:'全面了解',3:'深入掌握'};
+
+const MODULES = [
+/* ---------- A 定位与概览 ---------- */
+{id:'A1',fam:'A',name:'一句话定位',shape:'lead',tier:1,min:'1 句，≤60 字',fields:'主体名 + 它解决什么问题',trigger:'全类型 · 必须；且固定为全页第一节',use:'用一两句说清这页讲什么、解决什么问题。开场第一段，决定读者要不要继续。'},
+{id:'A2',fam:'A',name:'一页纸摘要',shape:'bullets',tier:1,min:'3–5 条',fields:'每条一句结论，≤30 字，不带支撑句',trigger:'全类型 · 必须；紧接 A1，与 A1 相邻',use:'把全页结论压成一屏，能独立阅读；只读这一块也应拿到主干。'},
+{id:'A3',fam:'A',name:'电梯陈述',shape:'lead',tier:2,min:'1 段，≤120 字',fields:'一段可口头复述的连贯表述',trigger:'听众非本人时使用（分享、转述、自检）；个人自用页可省',use:'30 秒口述版，用于向别人转述或自检是否真的抓住了主干。'},
+{id:'A4',fam:'A',name:'核心要点卡',shape:'cards',tier:1,min:'3–5 张',fields:'每张一个小标题 + 一句支撑',trigger:'要点彼此平级、且每条需要一句支撑时使用；与 A2 分工：A2 是结论，这里是要点的分层展开',use:'3–5 条平级要点，每条一句结论 + 一句支撑；用于替代长段落。'},
+{id:'A5',fam:'A',name:'关键数字面板',shape:'stats',tier:2,min:'3 项',fields:'数值 + 单位 + 一句话说明',trigger:'量化度＝数据参数为主 · 必须；纯定性主题不出现',use:'把全页最有用的数字提到显眼位置，避免读者在正文里翻找。'},
+{id:'A6',fam:'A',name:'边界声明',shape:'twocol',tier:1,min:'两侧各 ≥2 条',fields:'「讲什么 / 不讲什么」两栏，各 ≥2 条具体项',trigger:'全类型 · 必须；与 A1、A2 同属头部基线',use:'明确写出「不是什么」，阻挡最常见的误读；比正面定义更能省下读者的时间。'},
+{id:'A7',fam:'A',name:'前置门槛清单',shape:'table',tier:1,min:'≥3 类',fields:'概念 / 学科 / 通识 / 工具四类，各分硬前置与软前置',trigger:'全类型 · 必须；跨领域入门最常卡在这里',use:'列出入门真正需要的前置，区分「缺了读不懂」的硬前置与「缺了读不深」的软前置。'},
+{id:'A8',fam:'A',name:'学习成本评估',shape:'table',tier:2,min:'≥3 档目标',fields:'目标 + 投入量 + 难度',trigger:'领域级入口页使用；单点速查页可省',use:'给出不同目标对应的投入量，让读者自己决定停在哪一层。'},
+/* ---------- B 结构与地图 ---------- */
+{id:'B1',fam:'B',name:'知识地图（概念关系图）',shape:'map',tier:1,min:'5–9 支',fields:'中心主题 + 各分支名称',trigger:'体系型 · 必须，作为骨架主体；其他类型用各自的等价形态（B5 流程图 / B7 时间轴 / G1 分类索引）',use:'把概念与概念间的关系画出来，回答「这门知识由哪些块组成」。'},
+{id:'B2',fam:'B',name:'知识树（层级大纲）',shape:'tree',tier:2,min:'≥3 层或 ≥8 节点',fields:'缩进层级表达的包含关系',trigger:'结构层级明确时使用；与 B1 同时出现时，这里是文字化版本',use:'用缩进层级表达包含关系，是地图的文字化版本，便于快速扫读与定位。'},
+{id:'B3',fam:'B',name:'概念依赖与学习顺序',shape:'steps',tier:2,min:'4–6 步',fields:'每一步一个阶段名 + 这一步解决什么',trigger:'体系型 · 必须；地图只回答「有什么」，回答不了从哪开始',use:'给出「先学什么」的线性顺序。'},
+{id:'B4',fam:'B',name:'知识分层',shape:'tiers',tier:1,min:'3 层',fields:'核心 / 进阶 / 专家三层，各 1–2 句',trigger:'全类型 · 必须；深度三档切换的落点',use:'把内容切成核心 / 进阶 / 专家三层，对应「一页入门 / 全面了解 / 深入掌握」。'},
+{id:'B5',fam:'B',name:'流程图',shape:'flow',tier:1,min:'≥4 环',fields:'完整链路：起点 → 终点',trigger:'流程型 · 必须，作为地图形态；判断型可用 B6 代替',use:'流程型的地图形态：让读者一眼看到起点与终点。'},
+{id:'B6',fam:'B',name:'决策树',shape:'tree',tier:1,min:'≥2 层分支',fields:'每个分支：条件 + 走向 + 走错的后果',trigger:'流程型 / 判断型 · 必须',use:'把「看情况」拆成分支；流程型里代替知识地图，判断型里是判别标准的图形化。'},
+{id:'B7',fam:'B',name:'时间轴（地图形态）',shape:'timeline',tier:1,min:'≥5 节点',fields:'年份 + 一句话事件',trigger:'史实型 · 必须，作为骨架主体；时间性强的体系型亦触发',use:'史实型的骨架主体：把时间本身当结构，其他模块围绕它展开。'},
+{id:'B8',fam:'B',name:'领域分支总览',shape:'cards',tier:2,min:'≥4 支',fields:'每支一句「从何入门」',trigger:'范围过大的入口页使用；单主题页不出现',use:'范围过大时的第三种处理：一页学科门类地图 + 各分支入口。'},
+/* ---------- C 概念与术语 ---------- */
+{id:'C1',fam:'C',name:'核心理论与框架',shape:'cards',tier:1,min:'≥3 个模型',fields:'每个模型：解释什么 + 局限在哪',trigger:'体系型 / 判断型 · 必须',use:'给出这一领域最主要的几个模型，每个一段话讲清它解释什么、局限在哪。'},
+{id:'C2',fam:'C',name:'术语卡',shape:'terms',tier:1,min:'≥12 张',fields:'名称 / 英文 / 别名 / 一句话定义 / 展开 / 所属主题（六项固定）',trigger:'全类型 · 必须；每页自包含，同一术语在各页各自附卡',use:'字段与句式固定的最小知识单元。'},
+{id:'C3',fam:'C',name:'术语索引',shape:'chips',tier:2,min:'覆盖本页全部术语',fields:'术语名，按首字母或类别排列',trigger:'术语 ≥12 张时使用；术语少则并入 C2',use:'全部术语的索引视图，回答「这门知识一共要认识多少个词」。'},
+{id:'C4',fam:'C',name:'易混淆概念辨析',shape:'table',tier:2,min:'≥3 对',fields:'成对概念 + 判别标准',trigger:'全类型 · 存在内部易混点时必须；与 E8 分工：E8 针对外行偏见，这里针对内部易混',use:'成对概念的边界与判别标准。'},
+{id:'C5',fam:'C',name:'中英术语对照表',shape:'table',tier:2,min:'≥10 行',fields:'中文 / 英文或缩写 / 常见别名',trigger:'有英文文献的主题 · 必须',use:'英文术语是继续检索与追源的主要入口。'},
+{id:'C6',fam:'C',name:'公式与原理',shape:'formula',tier:3,min:'≥1 式',fields:'公式 + 变量含义与单位 + 误差说明',trigger:'量化度＝数据参数为主 · 必须；无公式主题不出现',use:'把可计算的公式单列，附变量含义与单位。'},
+{id:'C7',fam:'C',name:'心智模型卡',shape:'cards',tier:3,min:'≥2 张',fields:'模型名 + 适用场景标签 + 一句话用法',trigger:'判断型 / 体系型 · 深层内容需要时使用；这是相对旧提示词最容易漏掉的一类',use:'可迁移的思考方式，配场景标签；回答「遇到新问题该用什么框架想」。'},
+/* ---------- D 叙事与演化 ---------- */
+{id:'D1',fam:'D',name:'历史脉络时间轴',shape:'timeline',tier:2,min:'每阶段 ≥3 条',fields:'年份 + 事件 + 它改变了什么',trigger:'时间性＝有强演化史 · 必须；否则整节不出现',use:'按时间排列的关键节点，回答「这门知识是怎么变成今天这样的」。'},
+{id:'D2',fam:'D',name:'分期与阶段',shape:'cards',tier:1,min:'≥3 期',fields:'阶段名 + 起止时间 + 一句话特征',trigger:'史实型 · 必须；分期是史实型结构与 B7 并列的主干',use:'把连续的时间切成有名字的阶段；没有分期的史实页只是事件罗列。'},
+{id:'D3',fam:'D',name:'因果链',shape:'chain',tier:2,min:'≥4 环',fields:'链条 + 标注「必要条件 / 充分条件」',trigger:'史实型 / 判断型 · 必须；单列事件不足以解释成因时',use:'把「为什么发生」串成链，区分直接原因、结构性原因与借口。'},
+{id:'D4',fam:'D',name:'重要人物与学派',shape:'table',tier:2,min:'≥10 位（浅主题 ≥5）',fields:'人物 / 身份 / 主张或贡献 / 所属流派',trigger:'时间性＝有强演化史 · 必须',use:'用表格比长篇小传更好查。'},
+{id:'D5',fam:'D',name:'流派观点对比',shape:'table',tier:3,min:'≥2 派',fields:'立场 + 核心主张 + 主要依据',trigger:'共识度＝存在活跃争议 · 必须',use:'并列不同立场的核心主张与证据，不替读者下结论。'},
+{id:'D6',fam:'D',name:'里程碑事件卡',shape:'cards',tier:2,min:'≥3 张',fields:'时间 / 地点 / 参与方 / 结果 / 影响（五字段固定）',trigger:'史实型 · 必须；用于承载塞不进时间轴的事件',use:'单个事件的标准化卡片。'},
+/* ---------- E 操作与执行 ---------- */
+{id:'E1',fam:'E',name:'步骤流程',shape:'steps',tier:1,min:'≥4 步',fields:'每步：一个动作 + 一个预期结果',trigger:'流程型 · 必须，作为骨架主体',use:'带编号的可执行步骤。'},
+{id:'E2',fam:'E',name:'判断分支',shape:'tree',tier:2,min:'≥2 个分支',fields:'条件 + 走向 + 走错的后果',trigger:'流程型 / 判断型 · 必须；流程中途存在分岔时',use:'流程中途的分岔：满足什么条件走哪条路，走错会怎样。'},
+{id:'E3',fam:'E',name:'检查清单',shape:'checklist',tier:1,min:'≥5 条',fields:'每条一个可判定真假的检查项',trigger:'流程型 / 清单型 · 必须；可勾选状态需持久化',use:'可以逐条打勾的前置或收尾检查；比正文更能防漏。'},
+{id:'E4',fam:'E',name:'失败模式与常见错误',shape:'table',tier:2,min:'≥5 条',fields:'现象 / 原因 / 处理 / 严重度',trigger:'流程型 / 判断型 · 必须；与 E8 分工：这里管操作出错，E8 管认知出错',use:'按严重度列出典型错误：怎么识别、为什么会犯、怎么修。'},
+{id:'E5',fam:'E',name:'行动触发器',shape:'bullets',tier:2,min:'≥3 条',fields:'句式固定：每当 X → 先问 Y',trigger:'判断型 / 流程型 · 必须；把知识转成条件反射',use:'「每当 X 场景，先问自己 Y」式清单。'},
+{id:'E6',fam:'E',name:'工具与资源清单',shape:'table',tier:3,min:'≥5 项',fields:'用途 / 工具名 / 获取方式',trigger:'流程型 / 清单型 · 工具是执行前提时使用',use:'这一领域实际要用到的工具、命令、站点，按用途分组。'},
+{id:'E7',fam:'E',name:'速查表',shape:'table',tier:1,min:'≥8 行',fields:'命令或参数 / 做什么 / 常见坑',trigger:'清单型 / 流程型 · 必须，是清单型的主力模块',use:'高频命令或参数的一张表，无解释、只列用法。'},
+{id:'E8',fam:'E',name:'常见误区与陷阱',shape:'table',tier:1,min:'≥5 条',fields:'常见说法 / 错在哪 / 更准确的理解（三列固定）',trigger:'全类型 · 必须，且为尾部基线首节',use:'针对外行最普遍的误解逐条纠正。'},
+/* ---------- F 判断与取舍 ---------- */
+{id:'F1',fam:'F',name:'判别标准',shape:'table',tier:1,min:'≥4 条判据',fields:'判据 / 取值或阈值 / 结论 / 阈值出处',trigger:'判断型 / 清单型 · 必须，是判断型的骨架主体',use:'给出可操作的判据与阈值：看到什么算什么，而不是「视情况而定」。'},
+{id:'F2',fam:'F',name:'反例与失败案例',shape:'cards',tier:2,min:'≥2 例',fields:'案例 + 按本页标准为何不该做',trigger:'判断型 · 必须；正例建立认知，反例界定边界',use:'标出「按这套标准也不该做」的情形。'},
+{id:'F3',fam:'F',name:'适用条件与边界',shape:'twocol',tier:2,min:'两侧各 ≥2 条',fields:'适用 / 不适用 / 失效信号 / 误判代价与可逆性',trigger:'全类型 · 必须；判断型额外要求写出退出成本',use:'明确这套知识的适用前提与失效区，避免被误用到不该用的场景。'},
+{id:'F4',fam:'F',name:'共识与争议分离',shape:'table',tier:2,min:'≥3 条',fields:'结论 / 状态（已定论 / 仍有争论 / 证据不足）',trigger:'共识度＝存在活跃争议 · 必须；无争议则整节不出现',use:'把三态分开标注，防止把争议写成结论。'},
+{id:'F5',fam:'F',name:'证据与来源分级',shape:'table',tier:2,min:'≥4 级',fields:'等级 / 来源类型 / 本例中的具体来源',trigger:'需要溯源的主题 · 必须',use:'标注关键结论的来源类型与强度，让读者知道哪句可信到哪一步。'},
+{id:'F6',fam:'F',name:'权衡对比表',shape:'table',tier:1,min:'≥2 方案 × ≥4 维度',fields:'方案 / 各维度取值 / 显式列出的代价',trigger:'判断型 · 必须，判断型的决策载体',use:'把候选方案按同一组维度并排，显式列出各自代价。'},
+/* ---------- G 检索与索引 ---------- */
+{id:'G1',fam:'G',name:'分类索引',shape:'chips',tier:1,min:'≥5 类',fields:'类名 + 该类条目数',trigger:'清单型 · 必须，是清单型的入口模块',use:'把条目按类别铺开并支持筛选。'},
+{id:'G2',fam:'G',name:'条目表',shape:'table',tier:1,min:'≥30 行',fields:'每条一行，字段固定，可排序可筛选',trigger:'清单型 · 必须，是清单型的骨架主体',use:'清单型的骨架主体。'},
+{id:'G3',fam:'G',name:'别名与缩写索引',shape:'table',tier:2,min:'≥10 行',fields:'常见写法 / 对应条目',trigger:'清单型 / 有英文文献 · 同一事物有多种写法时',use:'让任意写法都能命中同一个条目。'},
+{id:'G4',fam:'G',name:'场景索引',shape:'table',tier:2,min:'≥5 行',fields:'你的处境 / 看哪一节',trigger:'全类型 · 页面节数 ≥15 时使用',use:'「我遇到 X，该看哪一节」的反向入口，把页面从阅读物变成工具。'},
+{id:'G5',fam:'G',name:'常见问题 FAQ',shape:'qa',tier:1,min:'≥3 问',fields:'问题 + 答案，答案默认折叠',trigger:'全类型 · 必须；FAQ 往往比正文更能暴露理解盲区',use:'把真实提问收进来。'},
+{id:'G6',fam:'G',name:'对比表',shape:'table',tier:2,min:'≥3 维度',fields:'同类条目按统一维度并排',trigger:'清单型 / 判断型 · 存在易混同类项时',use:'用于回答「这几个有什么区别」。'},
+/* ---------- H 数据与量化 ---------- */
+{id:'H1',fam:'H',name:'数值参考表',shape:'table',tier:1,min:'≥10 行',fields:'项目 / 下限 / 上限 / 单位 / 数据来源',trigger:'量化度＝数据参数为主 · 必须',use:'成组的数值以表格承载；纯文字描述数值既难读也易错。'},
+{id:'H2',fam:'H',name:'参数区间',shape:'bars',tier:2,min:'≥3 档',fields:'档位 + 数值 + 超出范围意味着什么',trigger:'量化度＝数据参数为主 · 量的合理波动范围需要说明时',use:'说明某个量的合理波动范围，以及超出范围意味着什么。'},
+{id:'H3',fam:'H',name:'单位换算',shape:'table',tier:2,min:'≥5 组',fields:'换算关系 + 适用于哪个项目',trigger:'量化度＝数据参数为主 · 存在多套单位时必须',use:'这一领域里最容易出错的一组换算，列成表随查随用。'},
+{id:'H4',fam:'H',name:'图表',shape:'bars',tier:3,min:'≥1 图 + 图注',fields:'图 + 图注（数据口径与来源）',trigger:'数量对比或趋势比数字本身更重要时使用；否则用表格',use:'当数量对比或趋势比数字本身更重要时，用图形承载。'},
+/* ---------- I 学习与自测 ---------- */
+{id:'I1',fam:'I',name:'学习路线图',shape:'steps',tier:1,min:'≥4 阶段',fields:'每阶段：学什么 + 达到什么状态',trigger:'全类型 · 必须，且为尾部基线第二节',use:'分阶段的学习路径，可打勾记录进度；把页面从「读过」变成「学过」。'},
+{id:'I2',fam:'I',name:'自测题库',shape:'qa',tier:2,min:'每模块 3–5 题',fields:'题面 + 参考答案 + 它考的是哪一类（辨析 / 边界 / 迁移）',trigger:'全类型 · 必须；答案默认折叠',use:'用于检验是否真的学会。'},
+{id:'I3',fam:'I',name:'实践练习',shape:'bullets',tier:2,min:'≥2 个任务',fields:'任务 + 完成标准',trigger:'流程型 / 体系型 · 知识可被动手验证时使用',use:'把知识用出去的最小任务，做完即验证了理解。'},
+{id:'I4',fam:'I',name:'记忆助记',shape:'note',tier:3,min:'≥1 个记忆桩',fields:'助记方式 + 它挂钩的内容',trigger:'清单型 / 史实型 · 存在必须背下来的密集条目时',use:'口诀、数字挂钩、时间线记忆桩。'},
+{id:'I5',fam:'I',name:'学完能做什么',shape:'bullets',tier:1,min:'3–5 条',fields:'每条是一个能对外交付的动作，不是「理解了」',trigger:'全类型 · 必须，且为尾部基线第三节；深度三档下清单应不同',use:'可验证的能力承诺，是深度分层的出口。'},
+/* ---------- J 元信息与延伸 ---------- */
+{id:'J1',fam:'J',name:'前沿与趋势',shape:'bullets',tier:3,min:'≥2 条',fields:'方向 + 它可能推翻本文哪一条结论',trigger:'快变领域必须；稳定领域可省',use:'当前正在变化的方向，以及这些变化可能推翻本文哪些结论。'},
+{id:'J2',fam:'J',name:'开放问题',shape:'bullets',tier:3,min:'≥2 条',fields:'问题 + 为什么至今没有答案',trigger:'共识度＝存在活跃争议 · 必须',use:'这一领域仍未解决的问题清单；它也是后续深入的方向指引。'},
+{id:'J3',fam:'J',name:'跟进渠道',shape:'table',tier:2,min:'≥3 类',fields:'类型 / 渠道 / 更新频率',trigger:'全类型 · 必须；入门之后要知道去哪里继续',use:'期刊、权威机构、社区、可订阅的更新源。'},
+{id:'J4',fam:'J',name:'时效与半衰期',shape:'kv',tier:1,min:'≥3 字段',fields:'内容截止 / 更新速度 / 需要复核的部分',trigger:'全类型 · 必须；快变与慢变领域不能用同一时效口径',use:'生成日期、知识截止点、领域更新速度。'},
+{id:'J5',fam:'J',name:'来源与参考',shape:'bullets',tier:1,min:'≥3 条来源',fields:'来源 + 访问日期 + 分级（A–D）',trigger:'全类型 · 必须，且为全页最后一节',use:'列出主要依据，按可信度分组；「完整且细致」必须可追溯。'},
+{id:'J6',fam:'J',name:'修订记录',shape:'table',tier:2,min:'≥1 行',fields:'日期 / 改动 / 改动人',trigger:'全类型 · 第二版起必须；首版可省',use:'这页改过什么、什么时候改的；让「持续修订」可被看见。'},
+{id:'J7',fam:'J',name:'应用案例',shape:'cards',tier:2,min:'≥2 例',fields:'场景 + 这套知识在其中怎么用',trigger:'全类型 · 必须；正例负责建立直觉',use:'真实场景下这套知识怎么用。'},
+{id:'J8',fam:'J',name:'跨学科关联',shape:'table',tier:3,min:'≥3 邻域',fields:'邻域 / 连接点 / 相连处能延伸出什么',trigger:'全类型 · 页面宣称「完整」时必须',use:'这门知识与哪些邻域知识相连。'},
+{id:'J9',fam:'J',name:'相关主题声明',shape:'table',tier:1,min:'≥3 主题',fields:'主题 / 关系（前置・后继・并列・跨学科・争议）/ 一句话理由',trigger:'全类型 · 必须，且为尾部基线第四节；不做文件间链接',use:'页内显式声明本主题与其他主题的关系，由读者自行索引。'},
+{id:'J10',fam:'J',name:'延伸问题',shape:'bullets',tier:2,min:'≥3 条',fields:'问题 + 指向的方向（每条都应有答案，只是超出本页）',trigger:'全类型 · 必须，且为尾部基线第五节',use:'读完这一页后自然会产生、但本页没有展开的问题，用作继续深入的钩子。'}
+];
+/* ============================================================
+   3. 形状层：68 个模块收敛到 21 个形状渲染器
+   每个形状 = 一个内置 demo（样张即文档即测试）
+   render(d) 是纯函数：结构化数据 → HTML，不认识样式切换与主题
+   ============================================================ */
+const SHAPES = {
+lead:{label:'引导句',syntax:'{text:"……（可含 &lt;strong&gt;）"}',
+  demo:{text:'<strong>营养学</strong>研究食物中的营养素如何被人体吸收、代谢与利用，以及这种利用与健康、疾病之间的关系。'},
+  render(d){return `<p class="s s-lead">${d.text}</p>`}},
+
+bullets:{label:'要点列表',syntax:'["第 1 条（≤30 字）","第 2 条",……]',
+  demo:['能量平衡是体重变化的主变量，其余因素影响的是分布与效率。','三大宏量营养素供能不同：碳水 4、蛋白质 4、脂肪 9 kcal·g⁻¹。','膳食纤维不供能，但显著影响血糖、血脂与肠道菌群。'],
+  render(d){return `<ul class="s s-bullets">${d.map(x=>`<li>${x}</li>`).join('')}</ul>`}},
+
+cards:{label:'卡片网格',syntax:'[{h:"小标题",p:"一句支撑"},……]',
+  demo:[{h:'能量平衡模型',p:'摄入 − 消耗 = 体重变化方向。解释长期趋势，不解释个体差异。'},{h:'膳食参考摄入量 DRI',p:'由 EAR / RDA / AI / UL 四个值构成，不是「及格线」。'},{h:'营养密度',p:'单位能量所含营养素量。用于同类食物比较，不跨类别比较。'}],
+  render(d){return `<div class="s s-cards">${d.map(c=>`<div class="s-card"><h4>${c.h}</h4><p>${c.p}</p></div>`).join('')}</div>`}},
+
+stats:{label:'数字面板',syntax:'[{v:"4 / 4 / 9",l:"碳水 / 蛋白 / 脂肪 kcal·g⁻¹"},……]',
+  demo:[{v:'4 / 4 / 9',l:'碳水 / 蛋白 / 脂肪 的 kcal·g⁻¹'},{v:'7.0',l:'酒精 kcal·g⁻¹（常被忽略）'},{v:'1.0–1.6',l:'成人蛋白质 g·kg⁻¹·d⁻¹ 推荐区间'}],
+  render(d){return `<div class="s s-stats">${d.map(s=>`<div class="s-stat"><b>${s.v}</b><span>${s.l}</span></div>`).join('')}</div>`}},
+
+twocol:{label:'双栏对照',syntax:'[{h:"这一页讲",items:[……]},{h:"这一页不讲",items:[……]}]',
+  demo:[{h:'这一页讲',items:['营养素与健康关系的公认结论','怎么看懂标签与膳食指南']},{h:'这一页不讲',items:['「吃某物治某病」的偏方','保健品营销话术与个案经验']}],
+  render(d){return `<div class="s s-twocol">${d.map(c=>`<div><h5>${c.h}</h5><ul>${c.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('')}</div>`}},
+
+table:{label:'表格',syntax:'{cols:["列 1","列 2"],rows:[["值","值"],……],note:"可选脚注"}',
+  demo:{cols:['容易混的一对','怎么分'],rows:[['BMR vs RMR','BMR 测量条件更严格、数值更低；日常估算用 RMR'],['升糖指数 GI vs 升糖负荷 GL','GI 只看速度，GL 把实际摄入量算进去'],['缺乏 vs 不足','缺乏出现临床体征；不足只有生化指标偏低']]},
+  render(d){return `<table class="tbl"><tr>${d.cols.map(c=>`<th>${c}</th>`).join('')}</tr>${d.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table>${d.note?`<p class="note">${d.note}</p>`:''}`}},
+
+tree:{label:'层级树 / 决策树',syntax:'[{t:"根节点",c:[{t:"分支",c:[……]}]}]',
+  demo:[{t:'需要把环境隔离起来吗？',c:[{t:'不需要 → 直接跑在宿主机'},{t:'需要 → 是单机还是集群？',c:[{t:'单机 → docker compose'},{t:'集群 → Kubernetes'}]}]}],
+  render(d){const walk=(a)=>`<ul>${a.map(n=>`<li>${n.t}${n.c?walk(n.c):''}</li>`).join('')}</ul>`;return `<ul class="s s-tree">${d.map(n=>`<li>${n.t}${n.c?walk(n.c):''}</li>`).join('')}</ul>`}},
+
+steps:{label:'编号步骤',syntax:'[{t:"步骤名",d:"做什么 + 预期结果"}]',
+  demo:[{t:'写 Dockerfile',d:'固定基础镜像版本，逐层加依赖'},{t:'构建镜像',d:'docker build -t name:tag .'},{t:'运行并验证',d:'docker run --rm -it name:tag'},{t:'调试',d:'进容器看日志；必要时挂载卷复现问题'}],
+  render(d){return `<ol class="s s-steps">${d.map(s=>`<li><b>${s.t}</b>${s.d?'：'+s.d:''}</li>`).join('')}</ol>`}},
+
+flow:{label:'流程链',syntax:'["起点","第二环",……,"终点"]',
+  demo:['写 Dockerfile','docker build','docker run','进容器调试','push 到仓库'],
+  render(d){return `<div class="s s-flow">${d.map((x,i)=>`${i?'<i>→</i>':''}<span>${x}</span>`).join('')}</div>`}},
+
+chain:{label:'因果链',syntax:'["因 1","因 2",……,"结果"]',
+  demo:['凡尔赛体系失衡','经济大萧条','极端民族主义上台','扩张政策失控','全面战争'],
+  render(d){return `<div class="s s-chain">${d.map((x,i)=>`${i?'<i>→</i>':''}<span>${x}</span>`).join('')}</div>`}},
+
+map:{label:'知识地图',syntax:'{center:"中心主题",ring:["分支 1",……]}',
+  demo:{center:'营养学',ring:['宏量营养素','微量营养素','能量代谢','膳食模式','生命周期营养','营养与疾病','食品与加工','营养流行病学']},
+  render(d){return `<div class="s s-map"><div class="hub">${d.center}</div><div class="ring">${d.ring.map(r=>`<span>${r}</span>`).join('')}</div></div>`}},
+
+timeline:{label:'时间轴',syntax:'[{yr:"1941",t:"发生了什么 + 改变了什么"}]',
+  demo:[{yr:'1939',t:'德国入侵波兰，欧洲战场开启'},{yr:'1941',t:'巴巴罗萨行动；珍珠港事件，战争全球化'},{yr:'1942',t:'中途岛与斯大林格勒，战局转折'},{yr:'1944',t:'诺曼底登陆，西线重开'},{yr:'1945',t:'德国投降；日本投降，战争结束'}],
+  render(d){return `<ol class="s s-timeline">${d.map(t=>`<li><span class="yr">${t.yr}</span>${t.t}</li>`).join('')}</ol>`}},
+
+tiers:{label:'分层视图',syntax:'[{lv:"核心",p:"这一层包含什么"},{lv:"进阶",p:"……"},{lv:"专家",p:"……"}]',
+  demo:[{lv:'核心',p:'能量平衡、三大宏量营养素、常见维生素缺乏症'},{lv:'进阶',p:'代谢通路、血糖响应曲线、蛋白质质量评估（PDCAAS / DIAAS）'},{lv:'专家',p:'分子营养学、营养素–基因交互、个体化营养与生物标志物'}],
+  render(d){return `<div class="s s-tiers">${d.map(t=>`<div class="s-tier"><span class="lv">${t.lv}</span><p>${t.p}</p></div>`).join('')}</div>`}},
+
+terms:{label:'术语卡',syntax:'[{n:"名称",en:"English",d:"一句话定义 + 展开",alias:"别名",topic:"所属主题"}]',
+  demo:[{n:'基础代谢率',en:'Basal Metabolic Rate, BMR',d:'静息状态下维持生命所需的最低能量消耗，约占日常总消耗的 60–70%。测量条件严格：隔夜禁食、完全静息。',alias:'静息代谢率',topic:'能量代谢'},{n:'膳食纤维',en:'Dietary fiber',d:'不能被人体消化酶分解的碳水化合物总称，分可溶与不可溶两类，影响血糖、血脂与肠道菌群。',alias:'粗纤维（旧称）',topic:'营养素分类'}],
+  render(d){return `<div class="s s-terms">${d.map(t=>`<div class="s-term"><b>${t.n}</b><span class="en">${t.en||'—'}</span><p>${t.d}</p><p class="alias">别名：${t.alias||'—'} · 所属主题：${t.topic||'—'}</p></div>`).join('')}</div>`}},
+
+formula:{label:'公式块',syntax:'{f:"公式",note:"变量含义、单位与误差"}',
+  demo:{f:'TDEE = BMR × 活动系数（1.2 久坐 / 1.55 中等 / 1.725 高强度）',note:'活动系数是人群均值，个体误差可达 ±15%，只用于起步估算。'},
+  render(d){return `<div class="s s-formula">${d.f}</div>${d.note?`<p class="note">${d.note}</p>`:''}`}},
+
+chips:{label:'标签云 / 索引',syntax:'["条目 1","条目 2",……]',
+  demo:['血常规','肝功能','肾功能','血脂','血糖','甲状腺','电解质','尿常规'],
+  render(d){return `<div class="s s-chips">${d.map(x=>`<span>${x}</span>`).join('')}</div>`}},
+
+checklist:{label:'勾选清单',syntax:'["可判定真假的检查项",……]',
+  demo:['基础镜像版本已固定，不用 latest','.dockerignore 已排除 node_modules 与 .git','镜像内不含密钥，敏感值走环境变量','已确认容器内的时区与宿主机一致'],
+  render(d){return `<ul class="s s-checklist">${d.map(x=>`<li>${x}</li>`).join('')}</ul>`}},
+
+bars:{label:'条形对比',syntax:'[{k:"档位",v:62,txt:"1.55×"}]',
+  demo:[{k:'久坐',v:26,txt:'1.2×'},{k:'中等活动',v:62,txt:'1.55×'},{k:'高强度',v:88,txt:'1.725×'}],
+  render(d){return `<div class="s s-bars">${d.map(b=>`<div class="s-bar"><span class="tk">${b.k}</span><span class="tr"><i style="width:${b.v}%"></i></span><span class="tv">${b.txt}</span></div>`).join('')}</div>`}},
+
+qa:{label:'折叠问答',syntax:'[{q:"问题",a:"答案（默认折叠）"}]',
+  demo:[{q:'容器和虚拟机有什么区别？',a:'容器共享宿主机内核，只隔离进程与文件系统；虚拟机各自跑一套内核。因此容器启动快、开销小，但隔离强度更低。'},{q:'改了代码为什么容器里没变？',a:'镜像构建时就把代码复制进去了，必须重新 build；开发阶段可以用卷把本地目录挂进去。'}],
+  render(d){return d.map(x=>`<details class="s-qa"><summary>${x.q}</summary><div>${x.a}</div></details>`).join('')}},
+
+note:{label:'提示条',syntax:'{text:"……",info:true}',
+  demo:{text:'脂溶性维生素 A D E K —— 四者都需脂肪参与吸收。'},
+  render(d){return `<div class="s s-note${d.info?' info':''}">${d.text}</div>`}},
+
+kv:{label:'键值表',syntax:'[{k:"字段",v:"值"}]',
+  demo:[{k:'内容截止',v:'2026-10（Docker Engine 27.x 前后）'},{k:'更新速度',v:'快：命令稳定，但 compose 与构建特性变化频繁'},{k:'需要复核的部分',v:'compose 文件版本写法、构建器（BuildKit）默认行为'}],
+  render(d){return `<table class="s-kv">${d.map(x=>`<tr><th>${x.k}</th><td>${x.v}</td></tr>`).join('')}</table>`}}
+};
+const shapeOf = id => (MODULES.find(m=>m.id===id)||{}).shape;
+/* ============================================================
+   4. 五类骨架：只有节序与内容数据，没有一节手写外观
+   每节 = {id, h?, d}；d 交给 shapeOf(id) 对应的形状渲染
+   ============================================================ */
+const SKELETONS = [
+/* ---------- 1 · 体系型 ---------- */
+{key:'tixi',label:'体系型 · 营养学',type:'体系型',title:'营养学入门',theme:'a',
+ sub:'骨架主体 = 知识地图 + 术语体系 + 概念依赖顺序。共 20 节：头部基线 4 节、类型专属 10 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A7'],tail:['E8','I1','I5','J9','J10','J5'],attr:{D1:'时间性＝有强演化史',F4:'共识度＝存在活跃争议'}},
+ sections:[
+ {id:'A1',h:'一句话定位',d:{text:'<strong>营养学</strong>研究食物中的营养素如何被人体吸收、代谢与利用，以及这种利用与健康、疾病之间的关系。'}},
+ {id:'A2',h:'一页纸摘要',d:['能量平衡是体重变化的主变量，其余因素影响的是分布与效率。','三大宏量营养素供能：碳水 4、蛋白质 4、脂肪 9 kcal·g⁻¹。','膳食纤维不供能，但显著影响血糖、血脂与肠道菌群。']},
+ {id:'A6',h:'边界声明',d:[{h:'这一页讲',items:['营养素与健康关系的公认结论','怎么看懂标签与膳食指南']},{h:'这一页不讲',items:['「吃某物治某病」的偏方','保健品营销话术与个案经验']}]},
+ {id:'A7',h:'前置门槛清单',d:{cols:['类别','硬前置（缺了读不懂）','软前置（缺了读不深）'],rows:[['概念','元素与分子、能量单位、浓度与剂量','酶与辅酶、代谢通路'],['学科','无——可从零开始','基础生物化学'],['通识','能读懂「每 100 g 含 X mg」这类标签句式','食物成分数据的来源与误差'],['工具','会查食物成分表','会用记录类 App 做饮食日志']]}},
+ {id:'B1',h:'知识地图',d:{center:'营养学',ring:['宏量营养素','微量营养素','能量代谢','膳食模式','生命周期营养','营养与疾病','食品与加工','营养流行病学']}},
+ {id:'B3',h:'概念依赖与学习顺序',d:[{t:'营养素分类',d:'先建立词汇'},{t:'能量与宏量营养素',d:'主干与算术'},{t:'维生素与矿物质',d:'调节与缺乏症'},{t:'膳食模式与配餐',d:'把知识用起来'},{t:'特殊人群与疾病',d:'边界与例外'}]},
+ {id:'C1',h:'核心理论与框架',d:[{h:'能量平衡模型',p:'摄入 − 消耗 = 体重变化方向。解释长期趋势，不解释个体差异。'},{h:'膳食参考摄入量 DRI',p:'由 EAR / RDA / AI / UL 四个值构成的推荐体系，不是「及格线」。'},{h:'营养密度',p:'单位能量所含营养素量。用于同类食物比较，不跨类别比较。'}]},
+ {id:'C2',h:'术语卡',d:[{n:'基础代谢率',en:'Basal Metabolic Rate, BMR',d:'静息状态下维持生命所需的最低能量消耗，约占日常总消耗的 60–70%。测量条件严格：隔夜禁食、完全静息。',alias:'静息代谢率',topic:'能量代谢'},{n:'膳食纤维',en:'Dietary fiber',d:'不能被人体消化酶分解的碳水化合物总称，分可溶与不可溶两类，影响血糖、血脂与肠道菌群。',alias:'粗纤维（旧称）',topic:'营养素分类'},{n:'蛋白质质量',en:'DIAAS',d:'以回肠末端氨基酸消化率为基础的蛋白质质量评分，取代此前的 PDCAAS。',alias:'—',topic:'蛋白质'}]},
+ {id:'C4',h:'易混淆概念辨析',d:{cols:['容易混的一对','怎么分'],rows:[['BMR vs RMR','BMR 测量条件更严格、数值更低；日常估算用 RMR'],['升糖指数 GI vs 升糖负荷 GL','GI 只看速度，GL 把实际摄入量算进去'],['缺乏 vs 不足','缺乏出现临床体征；不足只有生化指标偏低']]}},
+ {id:'C5',h:'中英术语对照',d:{cols:['中文','英文 / 缩写','常见别名'],rows:[['基础代谢率','BMR','静息代谢率'],['膳食纤维','Dietary fiber','粗纤维（旧称）'],['蛋白质质量','DIAAS','—'],['食物热效应','TEF','食物特殊动力作用']]}},
+ {id:'B4',h:'知识分层',d:[{lv:'核心',p:'能量平衡、三大宏量营养素、常见维生素缺乏症'},{lv:'进阶',p:'代谢通路、血糖响应曲线、蛋白质质量评估（PDCAAS / DIAAS）'},{lv:'专家',p:'分子营养学、营养素–基因交互、个体化营养与生物标志物'}]},
+ {id:'D1',h:'历史脉络时间轴',d:[{yr:'1912',t:'维生素概念提出，营养学从「热量学」转向「营养素学」'},{yr:'1930s',t:'必需氨基酸与各类维生素缺乏症被逐个确认'},{yr:'1977',t:'美国膳食目标发布，膳食指南体系成型'},{yr:'2000s',t:'队列研究与营养流行病学成为主流证据来源'}]},
+ {id:'F4',h:'共识与争议',d:{cols:['结论','状态'],rows:[['长期能量摄入超过消耗会导致体重上升','已定论'],['进食时间对代谢的独立影响','仍有争论'],['某类补充剂在普通人群中的长期收益','证据不足']]}},
+ {id:'J7',h:'应用案例',d:[{h:'把「少吃油」变成可执行的判断',p:'不看烹饪用油总量，改看加工食品里被忽略的脂肪来源——多数人超标的不是炒菜，而是零食与饮料。'},{h:'把「多吃蛋白质」拆成可核对的动作',p:'按体重算出目标克数，再落到具体食物上，而不是笼统「多吃点肉蛋奶」。'}]},
+ {id:'E8',h:'常见误区与陷阱',d:{cols:['常见说法','错在哪','更准确的理解'],rows:[['「只要少吃就能瘦」','忽略了营养素密度与可持续性，掉的常是肌肉与水','关键是能量缺口与营养密度的平衡，先看减掉的是什么'],['「脂肪都不好」','未区分脂肪类型与总量','必需脂肪酸必须摄入，要比的是种类与总量'],['「补充剂可以替代食物」','忽略了食物基质与成分间的协同','补充剂补的是缺口，不是替代'],['「天然的总比合成的好」','把来源当成了效力与安全的依据','判断依据是剂量与证据强度，与来源无关']]}},
+ {id:'I1',h:'学习路线图',d:[{t:'建立词汇',d:'营养素分类与单位'},{t:'掌握主干',d:'能量平衡与三大宏量营养素'},{t:'补调节部分',d:'维生素与矿物质'},{t:'能读懂指南与标签',d:'把知识接回日常'},{t:'按需深入',d:'个体化与疾病营养'}]},
+ {id:'I5',h:'学完能做什么',d:['能读懂一份食品标签，说出这一份里的三大营养素各提供多少能量。','能按体重与活动量估算自己的一日能量需求区间，并知道误差有多大。','能判断一条营养学说法属于已定论、仍有争论还是证据不足。','能看出「某食物致癌 / 治病」这类说法缺的是哪一环证据。']},
+ {id:'J9',h:'相关主题声明',d:{cols:['主题','关系','为什么相关'],rows:[['人体生理学','前置','不理解消化吸收就接不住营养素代谢'],['食品标签解读','后继','读完本页最自然的下一步'],['运动营养','并列','同层应用分支，可对照读'],['流行病学','跨学科','提供「膳食—疾病」证据的生成方法'],['生酮饮食','争议','与本页主流结论存在张力，需带着判断读']]}},
+ {id:'J10',h:'延伸问题',d:['同一份食物生吃与熟吃，营养素到底差多少？<span class="note">→ 食品加工与营养素可用性</span>','补充剂能替代食物来源吗？<span class="note">→ 微量营养素与生物利用度</span>','为什么同一份饮食对不同人的血糖影响不同？<span class="note">→ 个体化营养与肠道菌群</span>']},
+ {id:'J5',h:'来源与参考',d:['各国官方膳食指南与膳食参考摄入量（A 级）','营养学教科书与系统综述，用于原理部分（B 级）','说明：本文为个人整理，不构成医疗建议']}
+ ]},
+
+/* ---------- 2 · 流程型 ---------- */
+{key:'liucheng',label:'流程型 · docker 使用手册',type:'流程型',title:'docker 使用手册',theme:'b',
+ sub:'骨架主体 = 步骤序列 + 决策点 + 失败模式；知识地图退化为流程图与决策树。共 19 节：头部基线 4 节、类型专属 9 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A7'],tail:['E8','I1','I5','J9','J10','J5'],attr:{}},
+ sections:[
+ {id:'A1',h:'一句话定位',d:{text:'<strong>Docker</strong> 把应用和它的运行环境一起打包成镜像，用容器跑起来，解决「在我机器上能跑」的问题。'}},
+ {id:'A2',h:'一页纸摘要',d:['镜像是只读模板，容器是镜像的运行实例，两者不是一回事。','容器共享宿主机内核，启动快、开销小，但与宿主机的隔离强度低于虚拟机。','容器里的文件系统随容器销毁而消失，要留住数据必须挂卷。','镜像层是构建缓存的单位，改动一层会让它之后的所有层失效。']},
+ {id:'A6',h:'边界声明',d:[{h:'这一页讲',items:['镜像、容器、网络、卷的日常操作','Dockerfile 的常用写法与排错']},{h:'这一页不讲',items:['Kubernetes 等集群编排','镜像仓库运维与安全加固细节']}]},
+ {id:'A7',h:'前置门槛清单',d:{cols:['类别','硬前置（缺了读不懂）','软前置（缺了读不深）'],rows:[['概念','进程与端口、文件路径、环境变量','Linux 命名空间与 cgroup'],['学科','无——会命令行即可开始','操作系统与网络基础'],['通识','知道镜像 / 容器 / 仓库是三件不同的事','了解虚拟化与云服务的常见说法'],['工具','本机可运行 Docker，能用终端与编辑器','有一个镜像仓库账号']]}},
+ {id:'B5',h:'流程图',d:['写 Dockerfile','docker build','docker run','进容器调试','push 到仓库']},
+ {id:'E1',h:'步骤流程',d:[{t:'写 Dockerfile',d:'固定基础镜像版本，逐层加依赖'},{t:'构建镜像',d:'docker build -t name:tag .'},{t:'运行并验证',d:'docker run --rm -it name:tag'},{t:'调试',d:'进容器看日志；必要时挂载卷复现问题'},{t:'发布',d:'docker push 到仓库，固定 tag 不用 latest'}]},
+ {id:'E2',h:'判断分支',d:[{t:'容器起不来，先看什么？',c:[{t:'日志有报错 → 读最后 20 行'},{t:'没有日志 → docker ps -a 看退出码'},{t:'退出码 137 → 多半是被 OOM 杀掉'}]},{t:'改了代码容器里没变？',c:[{t:'生产镜像 → 必须重新 build'},{t:'开发阶段 → 用卷把本地目录挂进去'}]}]},
+ {id:'E7',h:'速查表',d:{cols:['命令','做什么','常见坑'],rows:[['docker ps -a','列出所有容器，含已退出','只看运行中会误判为「没启动」'],['docker logs -f &lt;id&gt;','持续跟踪容器日志','日志在容器重建后丢失'],['docker exec -it &lt;id&gt; sh','进入运行中的容器','镜像里没有 sh 时用不了'],['docker system prune','清理悬空镜像与停止的容器','不加 -a 不会删除未使用的镜像']]}},
+ {id:'E3',h:'检查清单',d:['基础镜像版本已固定，不用 latest','.dockerignore 已排除 node_modules 与 .git','镜像内不含密钥，敏感值走环境变量','已确认容器内的时区与宿主机一致','确认数据写在卷上，而不是容器文件系统里']},
+ {id:'E4',h:'失败模式与常见错误',d:{cols:['现象','原因','处理','严重度'],rows:[['镜像体积异常大','构建缓存与源码一起打进了层','多阶段构建 + .dockerignore','中'],['换台机器就跑不起来','依赖了宿主机的环境变量或路径','全部显式声明进镜像','高'],['数据随容器删除而丢失','没挂载卷','用 volume 或 bind mount 持久化','高'],['构建非常慢','每层都在重装依赖，缓存全失效','把依赖安装与源码复制拆成两层','低']]}},
+ {id:'E6',h:'工具与资源清单',d:{cols:['用途','工具','获取方式'],rows:[['本地编排','docker compose','随 Docker Desktop 提供'],['镜像分层分析','dive','GitHub 开源'],['图形化管理','Docker Desktop / lazydocker','官方安装包 / GitHub 开源']]}},
+ {id:'G5',h:'常见问题 FAQ',d:[{q:'容器和虚拟机有什么区别？',a:'容器共享宿主机内核，只隔离进程与文件系统；虚拟机各自跑一套内核。因此容器启动快、开销小，但隔离强度更低。'},{q:'改了代码为什么容器里没变？',a:'镜像构建时就把代码复制进去了，必须重新 build；开发阶段可以用卷把本地目录挂进去。'},{q:'一个容器只跑一个进程吗？',a:'推荐如此，但不是强制。多进程会让日志、重启与信号处理变复杂，通常拆成多个容器更省事。'}]},
+ {id:'J4',h:'时效与半衰期',d:[{k:'内容截止',v:'2026-10（Docker Engine 27.x 前后）'},{k:'更新速度',v:'快：命令稳定，但 compose 与构建特性变化频繁'},{k:'需要复核的部分',v:'compose 文件版本写法、构建器（BuildKit）默认行为'}]},
+ {id:'E8',h:'常见误区与陷阱',d:{cols:['常见说法','错在哪','更准确的理解'],rows:[['「容器就是轻量虚拟机」','把隔离手段当成了隔离强度','容器共享宿主内核，隔离来自命名空间与 cgroup，不是硬件虚拟化'],['「数据放进容器里就行」','忽略了容器文件系统随容器销毁','要留住的数据必须写在卷上'],['「镜像越瘦越好」','忽略了可排错性','瘦身的前提是还能进容器排查问题，基础镜像按用途选'],['「latest 挺好用」','忽略了可复现性','latest 会随仓库变化，生产环境必须固定版本或摘要']]}},
+ {id:'I1',h:'学习路线图',d:[{t:'跑通第一个容器',d:'run / ps / logs'},{t:'会写 Dockerfile',d:'能控制镜像体积'},{t:'掌握卷与网络',d:'能持久化数据、互联多容器'},{t:'用 compose 编排',d:'一个文件起多服务'},{t:'理解构建缓存',d:'会做多阶段构建'}]},
+ {id:'I5',h:'学完能做什么',d:['能把一个本地项目写成 Dockerfile 并在本机跑起来。','能判断某份数据该放在卷里还是打进镜像里。','能读懂一份 compose 文件，并改出自己要的多服务编排。','能解释镜像体积为什么变大，并定位到是哪一层造成的。']},
+ {id:'J9',h:'相关主题声明',d:{cols:['主题','关系','为什么相关'],rows:[['Linux 命令行与权限','前置','容器内排错全在命令行里完成'],['docker compose 编排','后继','单容器跑通后最自然的下一步'],['虚拟机与虚拟化','并列','另一种隔离方案，可对照理解取舍'],['网络基础','跨学科','端口映射与容器互联依赖这套概念'],['Kubernetes','后继','容器规模上去之后必然遇到的问题域']]}},
+ {id:'J10',h:'延伸问题',d:['容器里的「隔离」到底隔开了什么？<span class="note">→ Linux 命名空间与 cgroup</span>','不装 Docker 也能跑容器吗？<span class="note">→ containerd / Podman 等运行时</span>','多台机器上的容器怎么统一调度？<span class="note">→ 编排系统</span>']},
+ {id:'J5',h:'来源与参考',d:['Docker 官方文档与 CLI 参考（A 级）','说明：命令行为以你本地 <code>docker version</code> 对应的文档为准']}
+ ]},
+
+/* ---------- 3 · 清单型 ---------- */
+{key:'qingdan',label:'清单型 · 体检指标参考值',type:'清单型',title:'常用体检指标参考值',theme:'c',
+ sub:'骨架主体 = 分类索引 + 条目表 + 别名检索，不需要叙事线。共 21 节：头部基线 5 节、类型专属 10 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A5','A7'],tail:['E8','I1','I5','J9','J10','J5'],attr:{}},
+ sections:[
+ {id:'A1',h:'一句话定位',d:{text:'这一页把常见体检项目、参考区间、单位与主要干扰因素整理成可查的表，用来读懂报告单上的数字。'}},
+ {id:'A2',h:'一页纸摘要',d:['参考区间来自人群的统计分布，不是健康与生病的分界线，落在区间外不等于有病。','同一项目在不同实验室、不同检测方法下区间并不相同，横向比较要看各自的区间。','单项异常的信息量有限，判读要结合组合、趋势与临床表现。','影响结果的不只是疾病：饮食、运动、采样时间、药物、标本处理都在其中。']},
+ {id:'A6',h:'边界声明',d:[{h:'这一页能帮你',items:['查某个项目的大致参考区间','知道这个数字受什么影响']},{h:'这一页不能',items:['不能替代医生诊断','不能只看单个值下结论']}]},
+ {id:'A5',h:'关键数字面板',d:[{v:'95%',l:'参考区间的划定口径，5% 健康人也会落在外面'},{v:'2–3 月',l:'糖化血红蛋白反映的血糖时间跨度'},{v:'各自不同',l:'男 / 女 / 年龄段的区间并不通用'}]},
+ {id:'A7',h:'前置门槛清单',d:{cols:['类别','硬前置（缺了读不懂）','软前置（缺了读不深）'],rows:[['概念','理解「参考区间是人群统计范围」，不是健康标准','均值、标准差与 95% 区间的含义'],['学科','无——能读懂报告单即可','基础生理学与检验医学常识'],['通识','知道区间由各实验室自行建立','了解空腹与采样时间会影响结果']]}},
+ {id:'G1',h:'分类索引',d:['血常规','肝功能','肾功能','血脂','血糖','甲状腺','电解质','尿常规']},
+ {id:'G2',h:'条目表',d:{cols:['项目','参考区间','单位','主要干扰'],rows:[['白细胞计数','3.5–9.5','10⁹/L','感染、应激、剧烈运动'],['血红蛋白（男）','130–175','g/L','脱水、吸烟、高原居住'],['血红蛋白（女）','115–150','g/L','同上'],['丙氨酸氨基转移酶','男 ≤ 50 / 女 ≤ 35','U/L','饮酒、熬夜、药物、剧烈运动'],['血清肌酐（男）','57–97','μmol/L','肌肉量、蛋白摄入'],['空腹血糖','3.9–6.1','mmol/L','前一晚饮食与睡眠']],note:'条目表是清单型的骨架主体，完整版应 ≥30 行并按类别分组；此处为原型节选。'}},
+ {id:'H1',h:'数值参考表',d:{cols:['项目','下限','上限','单位'],rows:[['总胆固醇','—','5.2','mmol/L'],['甘油三酯','—','1.7','mmol/L'],['HDL-C（男）','1.0','—','mmol/L'],['空腹血糖','3.9','6.1','mmol/L']]}},
+ {id:'H3',h:'单位换算',d:{cols:['换算','关系'],rows:[['mg/dL → mmol/L（胆固醇）','÷ 38.67'],['mg/dL → mmol/L（甘油三酯）','÷ 88.57'],['mg/dL → mmol/L（葡萄糖）','÷ 18.0']]}},
+ {id:'G3',h:'别名与缩写索引',d:{cols:['常见写法','对应条目'],rows:[['ALT / 谷丙转氨酶 / GPT','丙氨酸氨基转移酶'],['AST / 谷草转氨酶 / GOT','天冬氨酸氨基转移酶'],['Cr / 肌酐','血清肌酐'],['TG / 甘油三酯','甘油三酯']]}},
+ {id:'G6',h:'对比表',d:{cols:['指标','主要反映','受什么干扰'],rows:[['空腹血糖','即时糖代谢','前一晚饮食与睡眠'],['糖化血红蛋白','近 2–3 个月平均血糖','贫血、血红蛋白异常']]}},
+ {id:'F1',h:'判别标准',d:{cols:['看到什么','怎么理解'],rows:[['轻微超出参考区间','先看超多少与是否首次出现，再决定是否复查'],['多个相关项目同时异常','比单项超标更值得关注，提示同一系统的问题'],['由正常转为持续异常','趋势比单次值更有意义']]}},
+ {id:'F3',h:'适用条件与边界',d:[{h:'适用',items:['成年人常规体检报告的初步对照','理解单项指标的大致含义']},{h:'不适用',items:['孕妇、儿童、慢病患者——这些人群的区间另行规定','用本页数字替代临床诊断']}]},
+ {id:'G5',h:'常见问题 FAQ',d:[{q:'参考区间外的值一定有问题吗？',a:'不一定。区间按人群 95% 划定，本就允许约 5% 的健康人落在外面；要结合症状、趋势与其他项目看。'},{q:'不同医院的区间为什么不一样？',a:'检测方法、仪器与试剂不同，参考区间由各自实验室建立，跨机构比较要看具体区间。'},{q:'多久查一次比较合适？',a:'取决于年龄、既往结果与风险因素，没有统一周期；连续两次都异常比单次异常更值得处理。'}]},
+ {id:'J4',h:'时效与半衰期',d:[{k:'内容截止',v:'2026-10'},{k:'更新速度',v:'慢：常用项目区间多年稳定，但检测标准偶有调整'},{k:'使用提醒',v:'以你手上报告单标注的区间为准，本页只作对照'}]},
+ {id:'E8',h:'常见误区与陷阱',d:{cols:['常见说法','错在哪','更准确的理解'],rows:[['「超出参考区间就是有病」','把统计分布当成了诊断标准','区间只描述多数人的范围，判读要结合临床表现与复查结果'],['「箭头越多问题越大」','忽略了指标之间的相关性','要看异常是否集中在同一系统，单项轻度偏移常无意义'],['「去年正常今年也该正常」','忽略了趋势与个体基线','对同一个人，变化的幅度常比绝对值更有信息量']]}},
+ {id:'I1',h:'学习路线图',d:[{t:'先认单位与含义',d:'知道每项测的是什么'},{t:'学会查区间与干扰',d:'知道哪些因素会污染结果'},{t:'理解成套判读',d:'肝功、血脂、血糖各自成组看'},{t:'分辨处置层级',d:'可以观察 / 需要复查 / 需要就医'},{t:'建立个人趋势',d:'把历年结果连起来看'}]},
+ {id:'I5',h:'学完能做什么',d:['拿到一份报告单，能逐项查出一项指标的含义与自己实验室的参考区间。','能判断某个轻度异常属于可以观察、需要复查还是需要就医。','能说出影响某项结果的三类常见干扰因素。','能把自己的历年结果整理成趋势，而不只看单次数值。']},
+ {id:'J9',h:'相关主题声明',d:{cols:['主题','关系','为什么相关'],rows:[['生理学基础','前置','不知道器官功能就判断不出指标指向'],['体检报告解读','后继','拿到区间之后要面对的解释问题'],['营养与膳食指南','并列','同属自我健康管理的相邻页'],['检验医学与统计学','跨学科','参考区间到底是怎么定出来的'],['体检套餐营销','争议','「项目越多越好」的说法本身存疑']]}},
+ {id:'J10',h:'延伸问题',d:['参考区间为什么各医院不一样？<span class="note">→ 检验方法学与区间建立</span>','单次超标和持续超标，意义差在哪？<span class="note">→ 趋势判读</span>','体检应该查多勤？<span class="note">→ 筛查策略与成本</span>']},
+ {id:'J5',h:'来源与参考',d:['各医院检验科报告单标注区间（A 级）','检验医学教科书与卫生行业标准（B 级）','说明：本页为个人整理，不构成医疗建议']}
+ ]},
+
+/* ---------- 4 · 判断型 ---------- */
+{key:'panduan',label:'判断型 · 投资决策框架',type:'判断型',title:'投资决策框架',theme:'d',
+ sub:'骨架主体 = 判别标准 + 反例 + 争议标注 + 适用条件。共 19 节：头部基线 4 节、类型专属 9 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A7'],tail:['E8','I1','I5','J9','J10','J5'],attr:{F4:'共识度＝存在活跃争议'}},
+ sections:[
+ {id:'A1',h:'一句话定位',d:{text:'这一页给出一套可以照着走的判断流程：哪些标的有资格进入观察名单，什么条件下才动手，以及什么情况下必须放弃。'}},
+ {id:'A2',h:'一页纸摘要',d:['先看它值多少钱，再看现在卖多少钱——顺序反了就是猜。','低估值可能是机会，也可能是结果；判据要比对基本面方向。','任何框架的失效区都要提前写清楚，否则会在最需要它的时候失灵。']},
+ {id:'A6',h:'边界声明',d:[{h:'这一页讲',items:['一套可复述的筛选与决策流程','判据、阈值，以及它们各自何时失效']},{h:'这一页不讲',items:['具体标的的买卖建议','收益预测与择时技巧']}]},
+ {id:'A7',h:'前置门槛清单',d:{cols:['类别','硬前置（缺了读不懂）','软前置（缺了读不深）'],rows:[['概念','会读利润表、资产负债表与现金流量表','折现、机会成本与风险溢价'],['学科','无——从常识出发也能用','会计基础与公司财务'],['通识','理解「预期收益与风险是一体的」','知道市场并不总是有效'],['工具','能查到至少 5 年的公开财务数据','会做简单表格与历史分位计算']]}},
+ {id:'F1',h:'判别标准',d:{cols:['判据','取值','结论','阈值出处'],rows:[['估值分位','低于近 10 年 30% 分位','具备进入观察名单的条件','自定，需回测验证'],['现金流覆盖','经营现金流 / 净利润 &lt; 0.7','利润质量存疑，需核查','会计常识区间'],['负债结构','有息负债 / 经营现金流 &gt; 4','周期下行时风险放大','行业经验值'],['基本面方向','营收与毛利连续两期下滑','低估值不构成机会','本页 F2 反例']]}},
+ {id:'B6',h:'决策树',d:[{t:'能说清它靠什么赚钱吗？',c:[{t:'不能 → 停止，不进入下一步'},{t:'能 → 现在的价格低于你的估值吗？',c:[{t:'否 → 放观察名单'},{t:'是 → 基本面在改善还是恶化？',c:[{t:'恶化 → 这是陷阱，不是机会'},{t:'改善 → 进入仓位管理'}]}]}]}]},
+ {id:'F6',h:'权衡对比表',d:{cols:['做法','代价','适合'],rows:[['集中持有少数标的','波动大，判断错了没有对冲','研究深度足够、能承受回撤'],['分散持有','收益被平庸标的拉平','时间有限、追求稳健']]}},
+ {id:'F2',h:'反例与失败案例',d:[{h:'低估值陷阱',p:'分位低于 20%，但基本面持续恶化时，低估值是结果而不是机会。典型形态：需求结构已变，盈利中枢下移，历史分位不再可比。'},{h:'好公司买贵了',p:'公司质地无可挑剔，但买入价已透支未来数年增长，长期回报同样平庸——判断对与买得对是两件事。'}]},
+ {id:'F3',h:'适用条件与边界',d:[{h:'适用',items:['可估值、流动性较好、持有期 3 年以上的公开市场标的','能拿到连续多年公开财务数据的行业']},{h:'不适用 / 失效信号',items:['无法估值的新兴资产；期限一年内、需要择时的资金','当判断依据从「值多少钱」变成「别人会出多少钱」时，框架已经失效（误判代价高、退出成本大）']}]},
+ {id:'F4',h:'共识与争议',d:{cols:['结论','状态'],rows:[['长期看价格向价值回归','已定论'],['低估值因子长期超额收益','仍有争论（不同市场、不同时段结论不一致）'],['某类指标能预测短期涨跌','证据不足']]}},
+ {id:'F5',h:'证据与来源分级',d:{cols:['等级','来源类型','本例中的具体来源'],rows:[['A','可核对的原始数据','上市公司定期报告'],['B','长期跟踪的行业数据','统计年鉴与行业数据库'],['C','卖方研报与专家访谈','需标注立场与利益关系'],['D','市场传闻与社群观点','仅供参考，不作为判据']]}},
+ {id:'E5',h:'行动触发器',d:['每当看到「历史年化收益」→ 先问：起止时间怎么选的？','每当想「这次不一样」→ 先问：不一样在哪里，有没有可验证的证据？','每当听到「大家都这么做」→ 先问：这句话的来源是哪一级？']},
+ {id:'I2',h:'自测题库',d:[{q:'某标的估值分位 15%，但连续三年经营现金流转负。按本页框架，它属于哪一类？',a:'不满足现金流覆盖判据，属于「低估值陷阱」候选，应停止而非进入仓位管理。'},{q:'一家好公司的股价跌了 40%，可以直接买吗？',a:'不能。价格下跌本身不构成判据，要先问估值锚是否变化、基本面方向如何，再决定进入哪一步。'}]},
+ {id:'E8',h:'常见误区与陷阱',d:{cols:['常见说法','错在哪','更准确的理解'],rows:[['「跌得多就是便宜」','把价格变动当成了价值变化','便宜是相对内在价值说的，先要有估值锚'],['「好公司什么价格都能买」','忽略了买入价对长期回报的决定作用','好公司买贵了，长期回报同样会平庸'],['「这次不一样」','忽略了判据的可检验性','除非说清哪个变量变了、原判据为何失效，否则默认它没变']]}},
+ {id:'I1',h:'学习路线图',d:[{t:'建立估值锚',d:'这家公司值多少钱，凭什么'},{t:'掌握三种常见判据',d:'以及它们各自的适用条件'},{t:'练习写失效条件',d:'在买入之前就写好退出规则'},{t:'用小仓位验证流程',d:'验证的是流程，不是判断'},{t:'复盘误判',d:'区分「判断错」与「流程错」'}]},
+ {id:'I5',h:'学完能做什么',d:['能对一个陌生标的写出它的估值锚与三条进入判据。','能在买入之前写出这单的失效条件与退出动作。','能识别一条投资说法里哪一环是假设、哪一环是事实。','能复盘一次亏损，判断是判断错了还是流程漏了。']},
+ {id:'J9',h:'相关主题声明',d:{cols:['主题','关系','为什么相关'],rows:[['财务报表阅读','前置','本页判据全部来自三张表'],['仓位与风险管理','后继','判断对了还要解决「下多少」'],['指数化投资','并列','与主动判断构成两条路线，可对照取舍'],['行为金融学','跨学科','解释框架为什么会被自己违背'],['技术分析','争议','与本页判据体系不兼容，需明确取舍']]}},
+ {id:'J10',h:'延伸问题',d:['同一套判据换个市场还成立吗？<span class="note">→ 市场结构差异</span>','明知框架对，情绪上却做不到怎么办？<span class="note">→ 行为金融与纪律设计</span>','不选个股还能用这套判据吗？<span class="note">→ 指数与资产配置</span>']},
+ {id:'J5',h:'来源与参考',d:['上市公司定期报告与公开财务数据（A 级）','统计年鉴与行业长期数据（B 级）','说明：本文为个人框架整理，不构成投资建议']}
+ ]},
+
+/* ---------- 5 · 史实型 ---------- */
+{key:'shishi',label:'史实型 · 二战史',type:'史实型',title:'第二次世界大战（1939–1945）',theme:'e',
+ sub:'骨架主体 = 时间轴 + 因果链 + 分期 + 争议与史料。共 18 节：头部基线 4 节、类型专属 8 节、尾部基线 6 节。',
+ layers:{head:['A1','A2','A6','A7'],tail:['E8','I1','I5','J9','J10','J5'],attr:{D2:'时间性＝有强演化史',F4:'共识度＝存在活跃争议'}},
+ sections:[
+ {id:'A1',h:'一句话定位',d:{text:'这一页按时间与因果梳理二战：它怎么从地区冲突变成全球战争，几个关键转折点如何改变结局，以及哪些结论至今仍有争议。'}},
+ {id:'A2',h:'一页纸摘要',d:['根源是凡尔赛体系失衡叠加经济大萧条，导火索是 1939 年入侵波兰。','1941–1942 年三个转折点：莫斯科、中途岛、斯大林格勒。','战争的结局不只由战场决定，也由工业产能与后勤体系决定。']},
+ {id:'A6',h:'边界声明',d:[{h:'这一页讲',items:['战争的时间线、因果链与几个关键转折','哪些结论已有共识、哪些仍在史学争论中']},{h:'这一页不讲',items:['战役的战斗细节与武器参数','单一国家的纪念性叙事']}]},
+ {id:'A7',h:'前置门槛清单',d:{cols:['类别','硬前置（缺了读不懂）','软前置（缺了读不深）'],rows:[['概念','大国、同盟、总动员、闪击战的基本含义','凡尔赛体系、绥靖政策、总体战'],['学科','无——有兴趣就能读','世界近现代史与地理常识'],['通识','能在地图上定位欧洲与太平洋主要战场','知道一战与二战之间的因果联系']]}},
+ {id:'B7',h:'时间轴',d:[{yr:'1939',t:'德国入侵波兰，欧洲战场开启'},{yr:'1941',t:'巴巴罗萨行动；珍珠港事件，战争全球化'},{yr:'1942',t:'中途岛与斯大林格勒，战局转折'},{yr:'1944',t:'诺曼底登陆，西线重开'},{yr:'1945',t:'德国投降；日本投降，战争结束'}]},
+ {id:'D2',h:'分期与阶段',d:[{h:'1918–1939 战间期',p:'凡尔赛体系的裂痕与极权崛起'},{h:'1939–1941 欧洲战争',p:'闪击战、不列颠空战、巴巴罗萨'},{h:'1941–1943 全球战争',p:'太平洋与北非，同盟国转入反攻'},{h:'1944–1945 结局',p:'双线推进，轴心国相继投降'}]},
+ {id:'D3',h:'因果链',d:['凡尔赛体系失衡','经济大萧条','极端民族主义上台','扩张政策失控','全面战争']},
+ {id:'D6',h:'里程碑事件卡',d:[{h:'斯大林格勒战役（1942.7–1943.2）',p:'东线转折点。德军第 6 集团军被围歼，苏联转入战略反攻。'},{h:'诺曼底登陆（1944.6.6）',p:'西线第二战场开辟，德国陷入两线作战。'},{h:'中途岛海战（1942.6）',p:'太平洋战场转折点，日本海军航空兵主力被消耗。'}]},
+ {id:'D4',h:'重要人物与学派',d:{cols:['人物','身份','关键作用'],rows:[['罗斯福','美国总统','推动租借法案，使美国成为「民主国家兵工厂」'],['丘吉尔','英国首相','坚持不媾和，维系西线抵抗意志'],['斯大林','苏联领导人','承受东线主要压力，主导战后东欧格局'],['图灵','密码学家','破译恩尼格玛，缩短大西洋战场进程']]}},
+ {id:'D5',h:'史学流派对比',d:{cols:['立场','核心主张','主要依据'],rows:[['意图主义','战争源于特定决策者的扩张意图','决策过程档案'],['功能主义','战争源于体系失序与国内压力','结构与经济分析'],['修正派','各方责任被战后叙事重新分配','多国档案对比']]}},
+ {id:'F4',h:'争议与史料',d:{cols:['问题','状态'],rows:[['战争爆发的首要责任方','史学界仍有争论'],['原子弹使用的必要性','长期争议，取决于对日本投降条件的评估'],['某战役双方伤亡数字','各国档案口径不一，只能给区间']]}},
+ {id:'J7',h:'影响与遗产',d:[{h:'国际秩序的重建',p:'联合国与战后国际机制的设计，直接回应了战间期国际机制的失效。'},{h:'殖民体系与两极格局',p:'殖民体系加速瓦解，两个超级大国格局成型，冷战随之开启。'},{h:'技术外溢',p:'雷达、喷气机、计算机与核能的军事起源，深刻改变了战后民用技术路线。'}]},
+ {id:'E8',h:'常见误区与陷阱',d:{cols:['常见说法','错在哪','更准确的理解'],rows:[['「战争是希特勒一个人的决定」','把结构因素简化成了个人意志','个人决策重要，但凡尔赛体系、经济危机与绥靖政策构成了他能走的空间'],['「原子弹结束了战争」','把一个因素当成了唯一原因','苏联参战、日本资源枯竭与原子弹共同作用，各自权重仍有争论'],['「起因已经研究清楚了」','忽略了史料与解释的开放度','主要轮廓有共识，各环节的权重仍是持续争论的问题']]}},
+ {id:'I1',h:'延伸阅读路径',d:[{t:'建立骨架',d:'先读一份通史性著作，掌握时间与地理'},{t:'按战场分线深读',d:'东线 / 西线 / 太平洋 / 中国战场'},{t:'进入专题',d:'经济动员、情报、占领政策'},{t:'读史学争论',d:'理解为什么同一件事会有不同结论'}]},
+ {id:'I5',h:'学完能做什么',d:['能按时间与因果说出战争从地区冲突扩大为全球战争的关键链条。','能区分这个题目里哪些结论是共识、哪些是仍在争论的问题。','能对一条战争起因的解释，指出它偏重哪一类因素。','能顺着本页的分期，自己找一条线继续深读。']},
+ {id:'J9',h:'相关主题声明',d:{cols:['主题','关系','为什么相关'],rows:[['第一次世界大战与战后秩序','前置','凡尔赛体系的裂痕是二战的起点'],['冷战起源','后继','战争尾声直接塑造了战后格局'],['太平洋战争','并列','同一场战争的不同战场，可平行读'],['国际关系理论','跨学科','提供「体系为什么会失衡」的解释框架'],['战争责任与记忆政治','争议','各国叙事差异大，需带着立场意识读']]}},
+ {id:'J10',h:'延伸问题',d:['如果 1941 年日本没有南进，战局会怎样？<span class="note">→ 反事实推演与史料边界</span>','经济动员能力为什么能决定胜负？<span class="note">→ 战时经济与工业史</span>','同一场战役，各国伤亡数字为什么对不上？<span class="note">→ 史料与档案方法</span>']},
+ {id:'J5',h:'来源与参考',d:['通史性学术著作与国家档案馆公开资料（A 级）','各国官方战史与研究机构出版物（B 级）','说明：涉及伤亡与责任判断处均标注争议状态']}
+ ]}
+];
+/* ============================================================
+   5. 渲染与校验
+   ============================================================ */
+const TABS = [
+  {id:'diff',label:'01 对照 · v1→v2'},
+  {id:'lib',label:'02 契约库 · 68'},
+  {id:'shape',label:'03 形状层 · 21'},
+  {id:'sk',label:'04 五类骨架'},
+  {id:'lint',label:'05 校验器'}
+];
+const THEMES = {n:'中性（默认）',a:'槽位 a · 体系型',b:'槽位 b · 流程型',c:'槽位 c · 清单型',d:'槽位 d · 判断型',e:'槽位 e · 史实型'};
+const state = {tab:'diff',fam:'ALL',q:'',sk:0,depth:3,open:{}};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const M = id => MODULES.find(m=>m.id===id) || {id,h:'未知模块',shape:'bullets',name:'未知模块',tier:1,min:'—',trigger:'—',fields:'—',use:'—',fam:'?'};
+const minNum = s => { const m=String(s).match(/\d+/); return m?parseInt(m[0],10):0; };
+const countItems = d => Array.isArray(d) ? d.length : (d && d.rows ? d.rows.length : 1);
+const isHead = (s,id) => s.layers.head.indexOf(id)>=0;
+const isTail = (s,id) => s.layers.tail.indexOf(id)>=0;
+function layerOf(s,id){
+  if(isHead(s,id)) return ['base-head','基线 · 头部'];
+  if(isTail(s,id)) return ['base-tail','基线 · 尾部'];
+  if(s.layers.attr[id]) return ['attr','属性触发'];
+  return ['','类型专属'];
+}
+function checkSpec(s){
+  const ids = s.sections.map(x=>x.id), msgs=[];
+  if(ids[0]!=='A1') msgs.push('首节不是 A1（当前为 '+ids[0]+'）——头部基线必须由 A1 打头。');
+  const head = s.layers.head, tail = s.layers.tail;
+  if(JSON.stringify(ids.slice(0,head.length))!==JSON.stringify(head))
+    msgs.push('头部基线未占据最前 '+head.length+' 位：应为 '+head.join(' → ')+'。');
+  if(JSON.stringify(ids.slice(-tail.length))!==JSON.stringify(tail))
+    msgs.push('尾部基线未占据最后 '+tail.length+' 位：应为 '+tail.join(' → ')+'。');
+  const all = new Set(ids);
+  const miss = head.concat(tail).filter(x=>!all.has(x));
+  if(miss.length) msgs.push('头部/尾部基线缺节：'+miss.join('、')+'。');
+  const dup = ids.filter((x,i)=>ids.indexOf(x)!==i);
+  if(dup.length) msgs.push('重复节：'+[...new Set(dup)].join('、')+'。');
+  return {ok:msgs.length===0,msgs,head,tail,total:ids.length,
+    attr:Object.keys(s.layers.attr), typeCnt:ids.length-head.length-tail.length};
+}
+
+/* ---------- 01 对照 ---------- */
+function renderDiff(){
+  const rows = [
+    ['内容与外观','揉在同一段 HTML 里，68 个模块各自定义长相','模块只声明「写什么」，外观交给 21 个形状渲染器'],
+    ['模块的形态','一段写死的手写 HTML 样例','契约对象：用途 / 触发条件 / 必含字段 / 数量下限 / 深度档 / 形状'],
+    ['样式雷同','不同含义的内容共用「标题 + 段落 + 小表」同一副面孔','每种信息形状有专属外观：时间轴竖轴、术语卡网格、判据表带阈值列、决策树带分支线'],
+    ['样例能不能当真','样例只是示意，浅显也没人发现','样例即最小可用示例，形状层里每个渲染器自带 demo，样张即文档即测试'],
+    ['主题','一套固定配色，改色要动 200+ 处 inline style','18 个颜色变量契约，浅深两态各写全；换主题只换变量'],
+    ['主题与类型','无绑定','五类各绑一个主题槽位（a–e），可手动更换；一页一外观'],
+    ['深度分层','写在文档里，页面无载体','每节带深度档，可切「一页入门 / 全面了解 / 深入掌握」三档视图'],
+    ['属性触发','文档里的承诺','layers.attr 声明触发条件，节头显示触发徽标'],
+    ['基线层','名义存在，骨架里没有','头部 4–5 节 + 尾部 6 节由 layers 声明，页面自动校验位置与完整性'],
+    ['写错了怎么办','靠人眼核对','校验器给出 行号 + 模块 + 原因 + 正确写法，重试有上限'],
+    ['单文件改一处','16 万字符全文重写','页面末尾内嵌生成它的内容草稿，可反读'],
+    ['节序索引','导航卡 / 顶栏 / 侧栏三处硬编码','全部由 sections 生成，改节数不用同步三处']
+  ];
+  return `<p class="lede">同一件事（模块池 + 五类骨架），两种做法。下面每一条都是 v1 原型里实际存在的做法与 v2 的改法。</p>
+  <table class="tbl"><tr><th style="width:110px">维度</th><th>v1 · 手写样例</th><th>v2 · 契约 + 形状</th></tr>
+  ${rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table>
+  <h2 class="h2">v2 的三层结构</h2>
+  <div class="grid3">
+    <div class="mini"><h4>① 内容契约层</h4><p>68 条模块契约。只写「什么条件下必须出现、必须含哪些字段、至少几条」。不描述外观。</p></div>
+    <div class="mini"><h4>② 形状渲染层</h4><p>21 个渲染器，输入结构化数据、输出 HTML。只读主题变量，不认识模块名。</p></div>
+    <div class="mini"><h4>③ 骨架层</h4><p>五类各一份节序 + 每节的数据。基线层、属性触发、深度档由 <code>layers</code> 声明并自动校验。</p></div>
+  </div>
+  <p class="note">68 → 21 是关键：模块数量还在增加，但只要信息形状没有新增，外观就不会新增一套。</p>`;
+}
+
+/* ---------- 02 契约库 ---------- */
+function moduleCard(m){
+  const s = SHAPES[m.shape], open = state.open[m.id];
+  return `<article class="mod${open?' open':''}" data-id="${m.id}">
+  <div class="mod-head"><span class="mid">${m.id}</span><h3>${m.name}</h3>
+    <span class="badge accent">${s?s.label:'—'}</span>
+    <span class="badge">${TIERS[m.tier]}</span></div>
+  <div class="kvline"><span><b>用途</b> ${m.use}</span></div>
+  <div class="kvline"><span><b>触发</b> ${m.trigger}</span></div>
+  <div class="kvline"><span><b>必含</b> ${m.fields}</span><span><b>下限</b> ${m.min}</span><span><b>形状</b> <code>${m.shape}</code></span></div>
+  <div class="mod-foot"><button class="btn" data-toggle="${m.id}">${open?'收起':'展开渲染与草稿'}</button></div>
+  <div class="mod-body">
+    <p class="subttl">渲染结果（由 <code>${m.shape}</code> 渲染器生成）</p>
+    ${s?s.render(s.demo):'—'}
+    <p class="subttl" style="margin-top:12px">生成它的内容草稿</p>
+    <pre class="draft">${esc(draftOf(m))}</pre>
+  </div></article>`;
+}
+function draftOf(m){
+  const s = SHAPES[m.shape];
+  return `## ${m.id} ${m.name}\n# shape: ${m.shape}（${s?s.label:'—'}）  下限：${m.min}\n# 必含：${m.fields}\n# 触发：${m.trigger}\n# 数据语法：${s?s.syntax:''}`;
+}
+function renderLib(){
+  const q = state.q.trim().toLowerCase();
+  const list = MODULES.filter(m=>(state.fam==='ALL'||m.fam===state.fam) &&
+    (!q || (m.id+m.name+m.use+m.trigger+m.fields).toLowerCase().includes(q)));
+  let bar = `<div class="libbar">
+    <button class="btn ${state.fam==='ALL'?'on':''}" data-fam="ALL">全部 ${MODULES.length}</button>`;
+  for(const k of Object.keys(FAMILIES))
+    bar += `<button class="btn ${state.fam===k?'on':''}" data-fam="${k}">${k} ${FAMILIES[k]}</button>`;
+  bar += `<input type="search" id="q" placeholder="搜索模块…" value="${esc(state.q)}"></div>`;
+  return `<p class="lede">模块池是备选库，不是必用清单。每一条只声明「写什么」，展开可见它由哪个形状渲染成什么样。</p>
+  ${bar}<p class="note" style="margin-bottom:12px">命中 ${list.length} 条。</p>
+  ${list.map(moduleCard).join('')}`;
+}
+
+/* ---------- 03 形状层 ---------- */
+function renderShape(){
+  const used = {};
+  MODULES.forEach(m=>{ (used[m.shape] = used[m.shape]||[]).push(m.id); });
+  const items = Object.keys(SHAPES).map(k=>{
+    const s = SHAPES[k], ids = used[k]||[];
+    return `<section class="shape-box">
+    <div class="shape-h"><code>${k}</code><b>${s.label}</b>
+      <span class="use">被 ${ids.length} 个模块使用 · ${ids.join(' ')}</span></div>
+    <div class="shape-b"><div class="split">
+      <div><p class="subttl">数据语法</p><pre class="draft">${esc(s.syntax)}</pre></div>
+      <div><p class="subttl">渲染结果（下例即该形状的最小可用示例）</p>${s.render(s.demo)}</div>
+    </div></div></section>`;
+  }).join('');
+  return `<p class="lede">${Object.keys(SHAPES).length} 个形状渲染器，承接 ${MODULES.length} 个模块的全部外观。新增模块只要落在已有形状上，就不需要写任何 CSS。</p>${items}`;
+}
+
+/* ---------- 04 五类骨架 ---------- */
+function renderSk(){
+  const s = SKELETONS[state.sk], spec = checkSpec(s);
+  let bar = `<div class="skbar">`;
+  SKELETONS.forEach((x,i)=>{ bar += `<button class="btn ${i===state.sk?'on':''}" data-sk="${i}">${x.label}</button>`; });
+  bar += `<span class="sep"></span><span class="subttl" style="margin:0">深度</span>`;
+  [1,2,3].forEach(d=>{ bar += `<button class="btn ${state.depth===d?'on':''}" data-depth="${d}">${TIERS[d]}</button>`; });
+  bar += `<span class="sep"></span><span class="subttl" style="margin:0">主题</span>`;
+  ['n','a','b','c','d','e'].forEach(t=>{ bar += `<button class="btn ${document.documentElement.dataset.theme===t?'on':''}" data-theme="${t}">${t}</button>`; });
+  bar += `</div>`;
+  const shown = s.sections.filter(x=>isHead(s,x.id)||isTail(s,x.id)||M(x.id).tier<=state.depth);
+  const hidden = s.sections.length - shown.length;
+  const secs = shown.map(x=>{
+    const m = M(x.id), lay = layerOf(s,x.id), sh = SHAPES[m.shape], open = state.open['sec-'+x.id];
+    return `<article class="sksec${open?' show-draft':''}">
+    <div class="sksec-head">
+      <span class="lay ${lay[0]}" title="${s.layers.attr[x.id]?'触发条件：'+s.layers.attr[x.id]:'基线层：'+lay[1]}">${lay[1]}</span>
+      <span class="mid">${x.id}</span><h3>${x.h||m.name}</h3>
+      <span class="badge accent">${m.shape}</span><span class="badge">${TIERS[m.tier]}</span>
+      <span class="badge">下限 ${m.min}</span>
+      <button class="btn" data-toggle="sec-${x.id}" style="margin-left:auto">${open?'看渲染':'看草稿'}</button>
+    </div>
+    <div class="sksec-body">${sh?sh.render(x.d):'—'}</div>
+    <pre class="sksec-draft">## ${x.id} ${x.h||m.name}\n# shape: ${m.shape}  下限：${m.min}\n# 必含：${m.fields}\n${esc(JSON.stringify(x.d,null,1))}</pre>
+  </article>`;
+  }).join('');
+  return `${bar}
+  <div class="skhead">
+    <h2>${s.title}</h2>
+    <p class="sub">${s.sub}　默认主题槽位：<b>${s.theme}</b></p>
+    <div class="spec">
+      <div class="spec-line"><strong>骨架规格校验</strong>
+        <span class="badge ${spec.ok?'ok':'err'}">${spec.ok?'通过':'未通过'}</span>
+        <span>共 ${spec.total} 节（头部 ${spec.head.length} · 类型专属 ${spec.typeCnt} · 尾部 ${spec.tail.length}）</span></div>
+      <div class="spec-line"><strong>头部基线</strong> ${spec.head.map(x=>`<code>${x}</code>`).join(' → ')}</div>
+      <div class="spec-line"><strong>尾部基线</strong> ${spec.tail.map(x=>`<code>${x}</code>`).join(' → ')}</div>
+      <div class="spec-line"><strong>属性触发</strong> ${spec.attr.length?spec.attr.map(x=>`<code>${x}</code>（${s.layers.attr[x]}）`).join('　'):'—'}</div>
+      ${spec.msgs.map(m=>`<p class="spec-msg">✗ ${m}</p>`).join('')}
+      <span class="spec-meta">当前深度档「${TIERS[state.depth]}」显示 ${shown.length} 节${hidden>0?`，另有 ${hidden} 节属于更深的档位`:'；基线层在任何档位都保留'}。</span>
+    </div>
+  </div>${secs}`;
+}
+
+/* ---------- 05 校验器 ---------- */
+const PRESETS = {
+  ok:`## A1 一句话定位
+营养学研究食物中的营养素如何被人体吸收、代谢与利用。
+
+## A2 一页纸摘要
+- 能量平衡是体重变化的主变量。
+- 三大宏量营养素供能不同。
+- 膳食纤维不供能但影响血糖血脂。
+
+## E8 常见误区与陷阱
+- 「只要少吃就能瘦」| 忽略营养素密度 | 关键是能量缺口与营养密度的平衡
+- 「脂肪都不好」| 未区分类型与总量 | 必需脂肪酸必须摄入
+- 「补充剂可以替代食物」| 忽略食物基质 | 补充剂补的是缺口
+
+## I1 学习路线图
+- 建立词汇
+- 掌握主干
+- 补调节部分
+- 能读懂指南与标签
+
+## I5 学完能做什么
+- 能读懂一份食品标签。
+- 能估算自己的一日能量需求区间。
+- 能判断一条说法属于已定论还是仍有争论。`,
+  few:`## A1 一句话定位
+营养学研究食物中的营养素如何被人体吸收、代谢与利用。
+
+## A2 一页纸摘要
+- 能量平衡是体重变化的主变量。
+- 三大宏量营养素供能不同。`,
+  unknown:`## A1 一句话定位
+营养学研究食物中的营养素如何被人体吸收、代谢与利用。
+
+## A2 一页纸摘要
+- 能量平衡是体重变化的主变量。
+- 三大宏量营养素供能不同。
+- 膳食纤维不供能但影响血糖血脂。
+
+## X9 记忆卡片
+- 这一节引用了模块池里不存在的模块。`,
+  order:`## A2 一页纸摘要
+- 能量平衡是体重变化的主变量。
+- 三大宏量营养素供能不同。
+- 膳食纤维不供能但影响血糖血脂。
+
+## A1 一句话定位
+营养学研究食物中的营养素如何被人体吸收、代谢与利用。`
+};
+function lintDraft(text){
+  const lines = text.split('\n'), secs = [];
+  lines.forEach((ln,i)=>{
+    const m = ln.match(/^##\s+(\S+)\s*(.*)$/);
+    if(m) secs.push({line:i+1,id:m[1],title:m[2].trim(),items:[]});
+    else if(secs.length && /^\s*-\s+/.test(ln)) secs[secs.length-1].items.push(ln.replace(/^\s*-\s+/,''));
+  });
+  const errs = [];
+  secs.forEach(s=>{
+    const mod = MODULES.find(x=>x.id===s.id);
+    if(!mod){
+      errs.push({line:s.line,id:s.id,name:s.title,
+        msg:`模块池中不存在 ID「${s.id}」`,
+        fix:`可用的 ID 形如 A1 A2 A6 B1 C2 E8 I1 I5 J5，请核对模块池。`});
+      return;
+    }
+    const need = minNum(mod.min), got = s.items.length;
+    if(need && got < need && ['bullets','chips','checklist','terms','cards','qa','steps','timeline'].indexOf(mod.shape)>=0)
+      errs.push({line:s.line,id:s.id,name:mod.name,
+        msg:`条目数 ${got}，低于下限 ${mod.min}`,
+        fix:`## ${s.id} ${mod.name}\n` + Array.from({length:need},(_,i)=>`- ${['第 '+(i+1)+' 条结论','示例条目'][i%2]||'条目'}`).join('\n')});
+  });
+  const ids = secs.map(s=>s.id);
+  if(ids.length){
+    if(ids[0]!=='A1')
+      errs.push({line:secs[0].line,id:secs[0].id,name:secs[0].title,
+        msg:'首节必须是一句话定位 A1，头部基线由它打头',
+        fix:`## A1 一句话定位\n这一页讲什么、解决什么问题。`});
+    const tail = ['E8','I1','I5','J9','J10','J5'], present = ids.filter(x=>tail.indexOf(x)>=0);
+    const sorted = present.slice().sort((a,b)=>tail.indexOf(a)-tail.indexOf(b));
+    if(present.join('|')!==sorted.join('|'))
+      errs.push({line:secs[present.length?ids.indexOf(present[0]):0].line,id:'—',name:'尾部基线',
+        msg:'尾部基线顺序错：应为 '+tail.join(' → '),
+        fix:`尾部基线固定顺序：\n${tail.join('\n')}`});
+  }
+  return {secs,errs};
+}
+function renderLint(){
+  return `<p class="lede">校验器不做审稿，只做契约核对：ID 是否存在、必含字段与数量下限是否满足、基线层位置与顺序是否正确。错误按「行号 + 模块 + 原因 + 正确写法」返回。</p>
+  <div class="presets">
+    <button class="btn" data-preset="ok">载入：正确样板</button>
+    <button class="btn" data-preset="few">载入：条目数不足</button>
+    <button class="btn" data-preset="unknown">载入：未知模块</button>
+    <button class="btn" data-preset="order">载入：基线层顺序错</button>
+  </div>
+  <textarea class="draft-input" id="lintIn" spellcheck="false">${esc(PRESETS.ok)}</textarea>
+  <p style="margin:10px 0"><button class="btn on" id="lintRun">运行校验</button></p>
+  <div class="report" id="lintOut"></div>`;
+}
+function runLint(){
+  const r = lintDraft($('lintIn').value);
+  if(!r.errs.length){
+    $('lintOut').innerHTML = `<p class="ln ok">✓ 检查通过 · ${r.secs.length} 节 · 未发现契约违规</p>`;
+    return;
+  }
+  $('lintOut').innerHTML = r.errs.map(e=>
+    `<p class="ln">✗ L${e.line} [${e.id} ${e.name}] ${e.msg}</p><pre class="fix">Correct example:\n${esc(e.fix)}</pre>`
+  ).join('') + `<p class="ln ok">✓ 其余 ${r.secs.length} 节通过</p>`;
+}
+
+/* ---------- 壳 ---------- */
+function render(){
+  $('tabs').innerHTML = TABS.map(t=>`<button class="tab ${state.tab===t.id?'on':''}" data-tab="${t.id}">${t.label}</button>`).join('');
+  const v = $('view');
+  if(state.tab==='diff') v.innerHTML = renderDiff();
+  else if(state.tab==='lib') v.innerHTML = renderLib();
+  else if(state.tab==='shape') v.innerHTML = renderShape();
+  else if(state.tab==='sk') v.innerHTML = renderSk();
+  else { v.innerHTML = renderLint(); }
+}
+document.addEventListener('click', e=>{
+  const t = e.target.closest('[data-tab],[data-fam],[data-toggle],[data-sk],[data-depth],[data-theme],[data-preset],#lintRun');
+  if(!t) return;
+  if(t.dataset.tab){ state.tab=t.dataset.tab; render(); return; }
+  if(t.dataset.fam){ state.fam=t.dataset.fam; render(); return; }
+  if(t.dataset.sk){ state.sk=+t.dataset.sk; render(); return; }
+  if(t.dataset.depth){ state.depth=+t.dataset.depth; render(); return; }
+  if(t.dataset.theme){ document.documentElement.dataset.theme=t.dataset.theme; render(); return; }
+  if(t.dataset.preset){ $('lintIn').value = PRESETS[t.dataset.preset]; runLint(); return; }
+  if(t.id==='lintRun'){ runLint(); return; }
+  if(t.dataset.toggle){ const k=t.dataset.toggle; state.open[k]=!state.open[k]; render(); return; }
+});
+document.addEventListener('input', e=>{ if(e.target.id==='q'){ state.q=e.target.value; render(); const q=$('q'); if(q){q.focus(); q.setSelectionRange(q.value.length,q.value.length);} } });
+$('modeBtn').onclick = ()=>{ const r=document.documentElement; r.dataset.mode = r.dataset.mode==='dark'?'light':'dark'; };
+$('themeSel').innerHTML = Object.keys(THEMES).map(k=>`<option value="${k}">${THEMES[k]}</option>`).join('');
+$('themeSel').onchange = e=>{ document.documentElement.dataset.theme = e.target.value; render(); };
+$('am-source').value = '原型 v2 的内容草稿：68 条模块契约 + 21 个形状渲染器 + 五类骨架的节序与数据。本页全部外观由 SHAPES 渲染生成，没有任何一节手写样式。';
+render();
+</script>
+</body>
+</html>
